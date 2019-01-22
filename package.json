@@ -1,0 +1,26 @@
+{
+  "name": "react-glossary",
+  "version": "1.0.0",
+  "description": "iterate over a words db",
+  "main": "webpack.config.js",
+  "scripts": {
+    "serve": "webpack-dev-server --watch",
+    "build": "webpack"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^6.2.10",
+    "babel-preset-react": "^6.16.0",
+    "css-loader": "^0.28.7",
+    "html-webpack-plugin": "^2.25.0",
+    "style-loader": "^0.19.0",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^3.1.14"
+  },
+  "dependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
+  }
+}
