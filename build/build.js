@@ -25432,10 +25432,10 @@ module.exports = [{
 	"word_en": "to provide"
 }, {
 	"id": "679",
-	"example_en": "EXAMPLEENG",
-	"example_de": "EXAMPLEDE",
-	"word_de": "spät",
-	"word_en": "late"
+	"example_en": "what time  is it?",
+	"example_de": "Wie spät ist es?",
+	"word_de": "Wie spät ist es?",
+	"word_en": "What time is it?"
 }, {
 	"id": "680",
 	"example_en": "EXAMPLEENG",
@@ -27339,53 +27339,107 @@ module.exports = [{
 	"word_de": "das Einkaufszentrum",
 	"word_en": "the shopping center/mall"
 }, {
-	"id": "1001",
+	"id": "1005",
 	"example_en": "My cellphone is over there",
 	"example_de": "mein Handy ist da drüben",
 	"word_de": "Da drüben",
 	"word_en": "Over there"
 }, {
-	"id": "1001",
+	"id": "1006",
 	"example_en": "Katrin tries on a pair of shoes",
 	"example_de": "Katrin probiert ein Paar Schuhe an",
 	"word_de": "zu anprobieren",
 	"word_en": "to try on"
 }, {
-	"id": "1001",
+	"id": "1007",
 	"example_en": "Do they fit?",
 	"example_de": "passen sie?",
 	"word_de": "zu passen",
 	"word_en": "to fit"
 }, {
-	"id": "1001",
+	"id": "1008",
 	"example_en": "That was great!",
 	"example_de": "Das war grossartig!",
 	"word_de": "prima/grossartig",
 	"word_en": "great"
 }, {
-	"id": "1001",
+	"id": "1009",
 	"example_en": "That is not cheap",
 	"example_de": "Das ist nicht billig",
 	"word_de": "billig",
 	"word_en": "cheap"
 },, {
-	"id": "1001",
+	"id": "1010",
 	"example_en": "I understand the instructions",
 	"example_de": "Ich verstehe die Anleitung",
 	"word_de": "die Anleitung",
 	"word_en": "the instructions"
 }, {
-	"id": "1001",
+	"id": "1011",
 	"example_en": "We have not yet met",
 	"example_de": "Wir haben uns noch nicht getroffen",
 	"word_de": "noch",
 	"word_en": "yet"
 }, {
-	"id": "1001",
+	"id": "1012",
+	"example_en": "This cheesburger tastes good",
+	"example_de": "Dieser Cheeseburger schmeckt gut",
+	"word_de": "Dieser",
+	"word_en": "This"
+}, {
+	"id": "1013",
+	"example_en": "I try to laugh every day",
+	"example_de": "Ich versuche jeden Tag zu lachen",
+	"word_de": "jeden Tag",
+	"word_en": "every day"
+}, {
+	"id": "1014",
+	"example_en": "I'm late.",
+	"example_de": "Ich bin spät dran",
+	"word_de": "spät dran",
+	"word_en": "late"
+}, {
+	"id": "1015",
+	"example_en": "It's three minutes to eleven am",
+	"example_de": "drei vor Elf",
+	"word_de": "vor (time)",
+	"word_en": "before (time)"
+}, {
+	"id": "1016",
+	"example_en": "A quarter after 5",
+	"example_de": "Viertel nach Fünf",
+	"word_de": "Viertel",
+	"word_en": "quarter"
+}, {
+	"id": "1017",
+	"example_en": "5:45 (two ways)",
+	"example_de": "Dreiviertel secs / Viertel vor Sechs",
+	"word_de": "Dreiviertel",
+	"word_en": "3 quarters"
+}, {
+	"id": "1018",
+	"example_en": "That word sounds awkward",
+	"example_de": "Dieses Wort hört sich ungebräuchlich an",
+	"word_de": "ungebraüchlich",
+	"word_en": "awkward/unused (word)"
+}, {
+	"id": "1019",
 	"example_en": "TEMPLATEEXAMPLEENG",
 	"example_de": "TEMPLATEEXAMPLEDE",
 	"word_de": "TEMPLATE",
 	"word_en": "TEMPLATE"
+}, {
+	"id": "1020",
+	"example_en": "When will you come home?",
+	"example_de": "wann kommst du nach hause",
+	"word_de": "nach",
+	"word_en": "to"
+}, {
+	"id": "1001",
+	"example_en": "I have a class at half past four",
+	"example_de": "Ich habe um halb Vier eine Klasse",
+	"word_de": "halb",
+	"word_en": "half"
 }];
 
 /***/ }),
