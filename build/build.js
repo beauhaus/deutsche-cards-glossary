@@ -21804,7 +21804,7 @@ module.exports = [{
 	"example_en": "EXAMPLEENG",
 	"example_de": "EXAMPLEDE",
 	"word_de": "können",
-	"word_en": "can"
+	"word_en": "to be able to (in the sense of ability)"
 }, {
 	"id": "28",
 	"example_en": "EXAMPLEENG",
@@ -21864,7 +21864,7 @@ module.exports = [{
 	"example_en": "EXAMPLEENG",
 	"example_de": "EXAMPLEDE",
 	"word_de": "sollen",
-	"word_en": "should"
+	"word_en": "to be supposed to"
 }, {
 	"id": "40",
 	"example_en": "EXAMPLEENG",
@@ -27368,7 +27368,7 @@ module.exports = [{
 	"example_de": "Das ist nicht billig",
 	"word_de": "billig",
 	"word_en": "cheap"
-},, {
+}, {
 	"id": "1010",
 	"example_en": "I understand the instructions",
 	"example_de": "Ich verstehe die Anleitung",
@@ -27423,12 +27423,6 @@ module.exports = [{
 	"word_de": "ungebraüchlich",
 	"word_en": "awkward/unused (word)"
 }, {
-	"id": "1019",
-	"example_en": "TEMPLATEEXAMPLEENG",
-	"example_de": "TEMPLATEEXAMPLEDE",
-	"word_de": "TEMPLATE",
-	"word_en": "TEMPLATE"
-}, {
 	"id": "1020",
 	"example_en": "When will you come home?",
 	"example_de": "wann kommst du nach hause",
@@ -27436,10 +27430,34 @@ module.exports = [{
 	"word_en": "to"
 }, {
 	"id": "1001",
-	"example_en": "I have a class at half past four",
-	"example_de": "Ich habe um halb Vier eine Klasse",
-	"word_de": "halb",
-	"word_en": "half"
+	"example_en": "I would like to have",
+	"example_de": " Ich hätte gern(e)",
+	"word_de": "gern/gerne",
+	"word_en": "would like"
+}, {
+	"id": "100X",
+	"example_en": "You are beginning to influence me",
+	"example_de": "Du beginnst mich zu beeinflüssen",
+	"word_de": "beeinflüssen",
+	"word_en": "to influence"
+}, {
+	"id": "100X",
+	"example_en": "EXAMPLEEN",
+	"example_de": "EXAMPLEDE",
+	"word_de": "Miserabel",
+	"word_en": "Miserable"
+}, {
+	"id": "10X",
+	"example_en": "Which wine do you want?",
+	"example_de": "Welchen Wein willst du?",
+	"word_de": "Welchen",
+	"word_en": "Which"
+}, {
+	"id": "10X",
+	"example_en": "TEMPLATEEXAMPLEENG",
+	"example_de": "TEMPLATEEXAMPLEDE",
+	"word_de": "TEMPLATE",
+	"word_en": "TEMPLATE"
 }];
 
 /***/ }),
@@ -27529,36 +27547,37 @@ class Result extends React.Component {
   render() {
     return React.createElement(
       "div",
-      { className: "in-stock" },
+      { id: "result-box" },
       React.createElement(
         "details",
         null,
         React.createElement(
+          "a",
+          { id: "home-link", href: "#" },
+          "\u261D"
+        ),
+        React.createElement(
           "summary",
           null,
           React.createElement(
-            "h2",
-            null,
-            React.createElement(
-              "a",
-              { href: "#" },
-              this.props.word.word_de
-            )
+            "h1",
+            { id: "de-word" },
+            this.props.word.word_de
           ),
           React.createElement(
             "p",
-            null,
+            { id: "de-example" },
             this.props.word.example_de
           )
         ),
         React.createElement(
           "p",
-          null,
+          { id: "en-word" },
           this.props.word.word_en
         ),
         React.createElement(
           "p",
-          null,
+          { id: "en-example" },
           this.props.word.example_en
         )
       )

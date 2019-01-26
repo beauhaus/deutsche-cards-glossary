@@ -185,7 +185,7 @@ module.exports = [{
 	"example_en": "EXAMPLEENG",
 	"example_de": "EXAMPLEDE",
 	"word_de": "können",
-	"word_en": "can"
+	"word_en": "to be able to (in the sense of ability)"
 },
 {
 	"id": "28",
@@ -255,7 +255,7 @@ module.exports = [{
 	"example_en": "EXAMPLEENG",
 	"example_de": "EXAMPLEDE",
 	"word_de": "sollen",
-	"word_en": "should"
+	"word_en": "to be supposed to"
 },
 {
 	"id": "40",
@@ -6677,77 +6677,110 @@ module.exports = [{
 	"word_de": "billig",
 	"word_en": "cheap"
 },
-
-	, {
+{
 	"id": "1010",
 	"example_en": "I understand the instructions",
 	"example_de": "Ich verstehe die Anleitung",
 	"word_de": "die Anleitung",
 	"word_en": "the instructions"
-}, {
+},
+{
 	"id": "1011",
 	"example_en": "We have not yet met",
 	"example_de": "Wir haben uns noch nicht getroffen",
 	"word_de": "noch",
 	"word_en": "yet"
-}, {
+},
+{
 	"id": "1012",
 	"example_en": "This cheesburger tastes good",
 	"example_de": "Dieser Cheeseburger schmeckt gut",
 	"word_de": "Dieser",
 	"word_en": "This"
-}, {
+},
+{
 	"id": "1013",
 	"example_en": "I try to laugh every day",
 	"example_de": "Ich versuche jeden Tag zu lachen",
 	"word_de": "jeden Tag",
 	"word_en": "every day"
-}, {
+},
+{
 	"id": "1014",
 	"example_en": "I'm late.",
 	"example_de": "Ich bin spät dran",
 	"word_de": "spät dran",
 	"word_en": "late"
-}, {
+},
+{
 	"id": "1015",
 	"example_en": "It's three minutes to eleven am",
 	"example_de": "drei vor Elf",
 	"word_de": "vor (time)",
 	"word_en": "before (time)"
-}, {
+},
+{
 	"id": "1016",
 	"example_en": "A quarter after 5",
 	"example_de": "Viertel nach Fünf",
 	"word_de": "Viertel",
 	"word_en": "quarter"
-}, {
+},
+{
 	"id": "1017",
 	"example_en": "5:45 (two ways)",
 	"example_de": "Dreiviertel secs / Viertel vor Sechs",
 	"word_de": "Dreiviertel",
 	"word_en": "3 quarters"
-}, {
+},
+{
 	"id": "1018",
 	"example_en": "That word sounds awkward",
 	"example_de": "Dieses Wort hört sich ungebräuchlich an",
 	"word_de": "ungebraüchlich",
 	"word_en": "awkward/unused (word)"
-}, {
-	"id": "1019",
-	"example_en": "TEMPLATEEXAMPLEENG",
-	"example_de": "TEMPLATEEXAMPLEDE",
-	"word_de": "TEMPLATE",
-	"word_en": "TEMPLATE"
-}, {
+},
+{
 	"id": "1020",
 	"example_en": "When will you come home?",
 	"example_de": "wann kommst du nach hause",
 	"word_de": "nach",
 	"word_en": "to"
-}, {
+},
+{
 	"id": "1001",
-	"example_en": "I have a class at half past four",
-	"example_de": "Ich habe um halb Vier eine Klasse",
-	"word_de": "halb",
-	"word_en": "half"
-}];
+	"example_en": "I would like to have",
+	"example_de": " Ich hätte gern(e)",
+	"word_de": "gern/gerne",
+	"word_en": "would like"
+},
+{
+	"id": "100X",
+	"example_en": "You are beginning to influence me",
+	"example_de": "Du beginnst mich zu beeinflüssen",
+	"word_de": "beeinflüssen",
+	"word_en": "to influence"
+},
+{
+	"id": "100X",
+	"example_en": "EXAMPLEEN",
+	"example_de": "EXAMPLEDE",
+	"word_de": "Miserabel",
+	"word_en": "Miserable"
+},
+{
+	"id": "10X",
+	"example_en": "Which wine do you want?",
+	"example_de": "Welchen Wein willst du?",
+	"word_de": "Welchen",
+	"word_en": "Which"
+},
+{
+	"id": "10X",
+	"example_en": "TEMPLATEEXAMPLEENG",
+	"example_de": "TEMPLATEEXAMPLEDE",
+	"word_de": "TEMPLATE",
+	"word_en": "TEMPLATE"
+}
+];
+

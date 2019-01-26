@@ -7,17 +7,16 @@ class Result extends React.Component {
 
   render() {
     return (
-      <div className="in-stock">
-      <details>
-      <summary>
-      <h2>
-        <a href="#">{this.props.word.word_de}</a>
-        </h2>
-        <p>{this.props.word.example_de}</p>
-      </summary>
-      <p>{this.props.word.word_en}</p>
-      <p>{this.props.word.example_en}</p>
-      </details>
+      <div id="result-box">
+        <details>
+          <a id="home-link" href="#">&#x261D;</a>
+          <summary>
+            <h1 id="de-word">{this.props.word.word_de}</h1>
+            <p  id="de-example">{this.props.word.example_de}</p>
+          </summary>
+          <p id="en-word">{this.props.word.word_en}</p>
+          <p id="en-example">{this.props.word.example_en}</p>
+        </details>
       </div>
       );
     }

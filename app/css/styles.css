@@ -1,5 +1,5 @@
 body {
-    background: #f5f5f5;
+    background: #222;
 }
 #app {
     margin: 0 auto;
@@ -10,4 +10,15 @@ body {
 }
 .result {
     margin-bottom: 50px;
+}
+
+#home-link {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+#result-box {
+    border: 1px solid coral;
+    position: relative;
 }
