@@ -1,6 +1,9 @@
 var React = require('react');
 var Results = require('./Results.jsx');
 var SearchBar = require('./Search_bar.jsx');
+const loadToLS = require ("../utils/utils.js").loadToLS;
+const utils = require ("../utils/utils.js");
+
 
 class Search extends React.Component {
   constructor(props) {
@@ -9,12 +12,16 @@ class Search extends React.Component {
       query: ''
     };
   }
+  
 
   searchComponentQHandler(query) {
     this.setState({
       query: query.toLowerCase().trim()
     });
-    console.log("searchQhandle: ", query.toLowerCase().trim())
+    // console.log("searchQhandle: ", query.toLowerCase().trim())
+  }
+  componentDidMount() {
+    utils.ctrl(loadToLS);
   }
 
   render() {
