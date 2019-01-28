@@ -1,8 +1,8 @@
 var React = require('react');
 var Results = require('./Results.jsx');
 var SearchBar = require('./Search_bar.jsx');
-const loadToLS = require ("../utils/utils.js").loadToLS;
-const utils = require ("../utils/utils.js");
+// const loadToLS = require ("../utils/utils.js").loadToLS;
+// const utils = require ("../utils/utils.js");
 
 
 class Search extends React.Component {
@@ -21,7 +21,7 @@ class Search extends React.Component {
     // console.log("searchQhandle: ", query.toLowerCase().trim())
   }
   componentDidMount() {
-    utils.ctrl(loadToLS);
+    // utils.ctrl(loadToLS);
   }
 
   render() {
