@@ -3,9 +3,11 @@ var React = require('react');
 class Result extends React.Component {
   arrMap(input) {
     return input.map(item => item);
-  }
 
+  }
+  
   render() {
+    {console.log("P> Result", this.props)}
     return (
       <div id="result-box">
         <details>

@@ -8,7 +8,7 @@ class SearchBar extends React.Component {
     render() {
         return (
             <div className="search-bar">
-                <input onChange={this.searchBarHandleQuery.bind(this)} placeholder="Search"/>
+                <input id="search-field" onChange={this.searchBarHandleQuery.bind(this)} placeholder="Search"/>
             </div>
         )
     }

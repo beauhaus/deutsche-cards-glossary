@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:200,300,400');
+
 body {
     background: #222;
 }
@@ -8,17 +10,35 @@ body {
     border-radius: 5px;
     padding: 20px;
 }
-.result {
+details {
     margin-bottom: 50px;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
 }
 
-#home-link {
+a {
   position: absolute;
   right: 0;
   top: 0;
+  font-size: 30px;
+  text-decoration: none !important;
 }
 
 #result-box {
     border: 1px solid coral;
     position: relative;
+}
+
+#de-example::before {
+content: '🇩🇪'
+}
+
+#en-example::before {
+    content: '🇺🇸'
+}
+
+#search-field {
+    width: 50%;
+    height: 5vh;
+    border: 3px solid orange;
 }
