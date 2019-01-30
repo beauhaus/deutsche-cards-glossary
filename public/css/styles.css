@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:200,300,400');
 
 body {
-    background: red;
+    background: #222;
 }
 #app {
     margin: 0 auto;

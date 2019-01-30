@@ -1,10 +1,10 @@
 var React = require('react');
 // var Search = require('./Search.jsx')
-// var Maintenance = require('./Maintenance.jsx')
+var Maintenance = require('./Maintenance.jsx')
 var Bounds = require('./Bounds.jsx')
 var SourceDB = require('./SourceDB.jsx')
-
-const utils = require ("../utils/utils.js");
+// var FirstHundredModal = require('./modals/FirstHundredModal.jsx')
+// const utils = require ("../utils/utils.js");
 
 
 
@@ -13,32 +13,24 @@ class Landing extends React.Component {
         super(props)
         this.state = {
             init: "state",
-            lower: 0,
-            upper: 99,
-            db: this.props.database
+            db: this.props.database,
+            selectedModal: null
         }
-        // this.boundsSubmitHandler = this.boundsSubmitHandler.bind(this);
+     
     }
 
-    // boundsSubmitHandler(lowerbounds, upperbounds) {
-        // e.preventDefault();
-        /*gets Partial DB*/
-        // const partialDB = utils.getPartialLS(lowerbounds, upperbounds);
-        // this.setState((prevState) =>{
-        //     db: partialDB
-        // })
-    // }
-
     render() {
-        const {lower, upper, database} = this.state;
+        const {lower, upper, db} = this.state;
+        {console.log("t.s.db: ", this.state.db)}
         return (
-            // <Maintenance/>
             <div id="Landing-box">
+            <Maintenance/>
                 <h1>Landing with form</h1>
                 <hr />
-                <Bounds boundsSubmitHandler = {this.boundsSubmitHandler}/>
-                <SourceDB lower={lower} upper={upper} db={database}/>
-               {/*
+                <Bounds/>
+                {/*
+                    <FirstHundredModal modalSelect={this.state.selectedModal}/>
+                <SourceDB lower={lower} upper={upper} db={db}/>
                  <Search words={database} />
                */}
             </div>

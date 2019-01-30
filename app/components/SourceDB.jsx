@@ -25,8 +25,7 @@ class SourceDB extends React.Component {
     return (
       <div id="source-box">
       <p>source</p>
-      {db.filter((item, idx) => idx>=4 && idx<10)
-        .map((item, idx) => (
+      {db.map((item, idx) => (
         <VocabCard key={idx} item={item}/>
       ))}
       </div>

@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 81);
+/******/ 	return __webpack_require__(__webpack_require__.s = 90);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -328,7 +328,7 @@ module.exports = invariant;
 
 
 
-var emptyFunction = __webpack_require__(9);
+var emptyFunction = __webpack_require__(8);
 
 /**
  * Similar to invariant but only logs a warning if the condition is not met.
@@ -389,11 +389,9 @@ module.exports = warning;
 "use strict";
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
- * All rights reserved.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  * 
  */
@@ -529,12 +527,10 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -542,8 +538,8 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 var _prodInvariant = __webpack_require__(3);
 
-var DOMProperty = __webpack_require__(13);
-var ReactDOMComponentFlags = __webpack_require__(56);
+var DOMProperty = __webpack_require__(14);
+var ReactDOMComponentFlags = __webpack_require__(60);
 
 var invariant = __webpack_require__(1);
 
@@ -769,19 +765,17 @@ module.exports = ExecutionEnvironment;
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2016-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2016-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  * 
  */
 
 
 
-var _prodInvariant = __webpack_require__(14);
+var _prodInvariant = __webpack_require__(18);
 
 var ReactCurrentOwner = __webpack_require__(10);
 
@@ -794,11 +788,11 @@ function isNative(fn) {
   var hasOwnProperty = Object.prototype.hasOwnProperty;
   var reIsNative = RegExp('^' + funcToString
   // Take an example native function source for comparison
-  .call(hasOwnProperty)
+  .call(hasOwnProperty
   // Strip regex characters so we can use it for regex
-  .replace(/[\\^$.*+?()[\]{}|]/g, '\\$&')
+  ).replace(/[\\^$.*+?()[\]{}|]/g, '\\$&'
   // Remove hasOwnProperty from the template to make it generic
-  .replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$');
+  ).replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$');
   try {
     var source = funcToString.call(fn);
     return reIsNative.test(source);
@@ -1097,7 +1091,52 @@ var ReactComponentTreeHook = {
 
 
   getRootIDs: getRootIDs,
-  getRegisteredIDs: getItemIDs
+  getRegisteredIDs: getItemIDs,
+
+  pushNonStandardWarningStack: function (isCreatingElement, currentSource) {
+    if (typeof console.reactStack !== 'function') {
+      return;
+    }
+
+    var stack = [];
+    var currentOwner = ReactCurrentOwner.current;
+    var id = currentOwner && currentOwner._debugID;
+
+    try {
+      if (isCreatingElement) {
+        stack.push({
+          name: id ? ReactComponentTreeHook.getDisplayName(id) : null,
+          fileName: currentSource ? currentSource.fileName : null,
+          lineNumber: currentSource ? currentSource.lineNumber : null
+        });
+      }
+
+      while (id) {
+        var element = ReactComponentTreeHook.getElement(id);
+        var parentID = ReactComponentTreeHook.getParentID(id);
+        var ownerID = ReactComponentTreeHook.getOwnerID(id);
+        var ownerName = ownerID ? ReactComponentTreeHook.getDisplayName(ownerID) : null;
+        var source = element && element._source;
+        stack.push({
+          name: ownerName,
+          fileName: source ? source.fileName : null,
+          lineNumber: source ? source.lineNumber : null
+        });
+        id = parentID;
+      }
+    } catch (err) {
+      // Internal state is messed up.
+      // Stop building the stack (it's just a nice to have).
+    }
+
+    console.reactStack(stack);
+  },
+  popNonStandardWarningStack: function () {
+    if (typeof console.reactStackEnd !== 'function') {
+      return;
+    }
+    console.reactStackEnd();
+  }
 };
 
 module.exports = ReactComponentTreeHook;
@@ -1105,36 +1144,6 @@ module.exports = ReactComponentTreeHook;
 
 /***/ }),
 /* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2016-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- * 
- */
-
-
-
-// Trust the developer to only use ReactInstrumentation with a __DEV__ check
-
-var debugTool = null;
-
-if (process.env.NODE_ENV !== 'production') {
-  var ReactDebugTool = __webpack_require__(104);
-  debugTool = ReactDebugTool;
-}
-
-module.exports = { debugTool: debugTool };
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1176,17 +1185,43 @@ emptyFunction.thatReturnsArgument = function (arg) {
 module.exports = emptyFunction;
 
 /***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {/**
+ * Copyright (c) 2016-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ * 
+ */
+
+
+
+// Trust the developer to only use ReactInstrumentation with a __DEV__ check
+
+var debugTool = null;
+
+if (process.env.NODE_ENV !== 'production') {
+  var ReactDebugTool = __webpack_require__(115);
+  debugTool = ReactDebugTool;
+}
+
+module.exports = { debugTool: debugTool };
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
 /* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  * 
  */
@@ -1200,13 +1235,11 @@ module.exports = emptyFunction;
  * currently being constructed.
  */
 var ReactCurrentOwner = {
-
   /**
    * @internal
    * @type {ReactComponent}
    */
   current: null
-
 };
 
 module.exports = ReactCurrentOwner;
@@ -1217,12 +1250,10 @@ module.exports = ReactCurrentOwner;
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -1231,11 +1262,11 @@ module.exports = ReactCurrentOwner;
 var _prodInvariant = __webpack_require__(3),
     _assign = __webpack_require__(4);
 
-var CallbackQueue = __webpack_require__(60);
+var CallbackQueue = __webpack_require__(64);
 var PooledClass = __webpack_require__(16);
-var ReactFeatureFlags = __webpack_require__(61);
-var ReactReconciler = __webpack_require__(18);
-var Transaction = __webpack_require__(27);
+var ReactFeatureFlags = __webpack_require__(65);
+var ReactReconciler = __webpack_require__(19);
+var Transaction = __webpack_require__(28);
 
 var invariant = __webpack_require__(1);
 
@@ -1430,7 +1461,7 @@ function enqueueUpdate(component) {
  * if no updates are currently being performed.
  */
 function asap(callback, context) {
-  !batchingStrategy.isBatchingUpdates ? process.env.NODE_ENV !== 'production' ? invariant(false, 'ReactUpdates.asap: Can\'t enqueue an asap callback in a context whereupdates are not being batched.') : _prodInvariant('125') : void 0;
+  invariant(batchingStrategy.isBatchingUpdates, "ReactUpdates.asap: Can't enqueue an asap callback in a context where" + 'updates are not being batched.');
   asapCallbackQueue.enqueue(callback, context);
   asapEnqueued = true;
 }
@@ -1473,13 +1504,21 @@ module.exports = ReactUpdates;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+
+module.exports = __webpack_require__(17);
+
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -1489,7 +1528,7 @@ var _assign = __webpack_require__(4);
 
 var PooledClass = __webpack_require__(16);
 
-var emptyFunction = __webpack_require__(9);
+var emptyFunction = __webpack_require__(8);
 var warning = __webpack_require__(2);
 
 var didWarnForAddedNewProperty = false;
@@ -1577,7 +1616,6 @@ function SyntheticEvent(dispatchConfig, targetInst, nativeEvent, nativeEventTarg
 }
 
 _assign(SyntheticEvent.prototype, {
-
   preventDefault: function () {
     this.defaultPrevented = true;
     var event = this.nativeEvent;
@@ -1587,8 +1625,8 @@ _assign(SyntheticEvent.prototype, {
 
     if (event.preventDefault) {
       event.preventDefault();
+      // eslint-disable-next-line valid-typeof
     } else if (typeof event.returnValue !== 'unknown') {
-      // eslint-disable-line valid-typeof
       event.returnValue = false;
     }
     this.isDefaultPrevented = emptyFunction.thatReturnsTrue;
@@ -1602,8 +1640,8 @@ _assign(SyntheticEvent.prototype, {
 
     if (event.stopPropagation) {
       event.stopPropagation();
+      // eslint-disable-next-line valid-typeof
     } else if (typeof event.cancelBubble !== 'unknown') {
-      // eslint-disable-line valid-typeof
       // The ChangeEventPlugin registers a "propertychange" event for
       // IE. This event does not support bubbling or cancelling, and
       // any references to cancelBubble throw "Member not found".  A
@@ -1652,34 +1690,10 @@ _assign(SyntheticEvent.prototype, {
       Object.defineProperty(this, 'stopPropagation', getPooledWarningPropertyDefinition('stopPropagation', emptyFunction));
     }
   }
-
 });
 
 SyntheticEvent.Interface = EventInterface;
 
-if (process.env.NODE_ENV !== 'production') {
-  if (isProxySupported) {
-    /*eslint-disable no-func-assign */
-    SyntheticEvent = new Proxy(SyntheticEvent, {
-      construct: function (target, args) {
-        return this.apply(target, Object.create(target.prototype), args);
-      },
-      apply: function (constructor, that, args) {
-        return new Proxy(constructor.apply(that, args), {
-          set: function (target, prop, value) {
-            if (prop !== 'isPersistent' && !target.constructor.Interface.hasOwnProperty(prop) && shouldBeReleasedProperties.indexOf(prop) === -1) {
-              process.env.NODE_ENV !== 'production' ? warning(didWarnForAddedNewProperty || target.isPersistent(), 'This synthetic event is reused for performance reasons. If you\'re ' + 'seeing this, you\'re adding a new property in the synthetic event object. ' + 'The property is never released. See ' + 'https://fb.me/react-event-pooling for more information.') : void 0;
-              didWarnForAddedNewProperty = true;
-            }
-            target[prop] = value;
-            return true;
-          }
-        });
-      }
-    });
-    /*eslint-enable no-func-assign */
-  }
-}
 /**
  * Helper to reduce boilerplate when creating subclasses.
  *
@@ -1702,6 +1716,34 @@ SyntheticEvent.augmentClass = function (Class, Interface) {
 
   PooledClass.addPoolingTo(Class, PooledClass.fourArgumentPooler);
 };
+
+/** Proxying after everything set on SyntheticEvent
+  * to resolve Proxy issue on some WebKit browsers
+  * in which some Event properties are set to undefined (GH#10010)
+  */
+if (process.env.NODE_ENV !== 'production') {
+  if (isProxySupported) {
+    /*eslint-disable no-func-assign */
+    SyntheticEvent = new Proxy(SyntheticEvent, {
+      construct: function (target, args) {
+        return this.apply(target, Object.create(target.prototype), args);
+      },
+      apply: function (constructor, that, args) {
+        return new Proxy(constructor.apply(that, args), {
+          set: function (target, prop, value) {
+            if (prop !== 'isPersistent' && !target.constructor.Interface.hasOwnProperty(prop) && shouldBeReleasedProperties.indexOf(prop) === -1) {
+              process.env.NODE_ENV !== 'production' ? warning(didWarnForAddedNewProperty || target.isPersistent(), "This synthetic event is reused for performance reasons. If you're " + "seeing this, you're adding a new property in the synthetic event object. " + 'The property is never released. See ' + 'https://fb.me/react-event-pooling for more information.') : void 0;
+              didWarnForAddedNewProperty = true;
+            }
+            target[prop] = value;
+            return true;
+          }
+        });
+      }
+    });
+    /*eslint-enable no-func-assign */
+  }
+}
 
 PooledClass.addPoolingTo(SyntheticEvent, PooledClass.fourArgumentPooler);
 
@@ -1737,23 +1779,21 @@ function getPooledWarningPropertyDefinition(propName, getVal) {
 
   function warn(action, result) {
     var warningCondition = false;
-    process.env.NODE_ENV !== 'production' ? warning(warningCondition, 'This synthetic event is reused for performance reasons. If you\'re seeing this, ' + 'you\'re %s `%s` on a released/nullified synthetic event. %s. ' + 'If you must keep the original synthetic event around, use event.persist(). ' + 'See https://fb.me/react-event-pooling for more information.', action, propName, result) : void 0;
+    process.env.NODE_ENV !== 'production' ? warning(warningCondition, "This synthetic event is reused for performance reasons. If you're seeing this, " + "you're %s `%s` on a released/nullified synthetic event. %s. " + 'If you must keep the original synthetic event around, use event.persist(). ' + 'See https://fb.me/react-event-pooling for more information.', action, propName, result) : void 0;
   }
 }
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -1885,7 +1925,6 @@ var ATTRIBUTE_NAME_START_CHAR = ':A-Z_a-z\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\
  * @see http://jsperf.com/key-missing
  */
 var DOMProperty = {
-
   ID_ATTRIBUTE_NAME: 'data-reactid',
   ROOT_ATTRIBUTE_NAME: 'data-reactroot',
 
@@ -1959,61 +1998,15 @@ module.exports = DOMProperty;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- * 
- */
-
-
-/**
- * WARNING: DO NOT manually require this module.
- * This is a replacement for `invariant(...)` used by the error code system
- * and will _only_ be required by the corresponding babel pass.
- * It always throws.
- */
-
-function reactProdInvariant(code) {
-  var argCount = arguments.length - 1;
-
-  var message = 'Minified React error #' + code + '; visit ' + 'http://facebook.github.io/react/docs/error-decoder.html?invariant=' + code;
-
-  for (var argIdx = 0; argIdx < argCount; argIdx++) {
-    message += '&args[]=' + encodeURIComponent(arguments[argIdx + 1]);
-  }
-
-  message += ' for the full message or use the non-minified dev environment' + ' for full errors and additional helpful warnings.';
-
-  var error = new Error(message);
-  error.name = 'Invariant Violation';
-  error.framesToPop = 1; // we don't care about reactProdInvariant's own frame
-
-  throw error;
-}
-
-module.exports = reactProdInvariant;
-
-/***/ }),
 /* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2014-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2014-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -2024,10 +2017,10 @@ var _assign = __webpack_require__(4);
 var ReactCurrentOwner = __webpack_require__(10);
 
 var warning = __webpack_require__(2);
-var canDefineProperty = __webpack_require__(32);
+var canDefineProperty = __webpack_require__(25);
 var hasOwnProperty = Object.prototype.hasOwnProperty;
 
-var REACT_ELEMENT_TYPE = __webpack_require__(53);
+var REACT_ELEMENT_TYPE = __webpack_require__(54);
 
 var RESERVED_PROPS = {
   key: true,
@@ -2355,12 +2348,10 @@ module.exports = ReactElement;
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  * 
  */
@@ -2473,12 +2464,10 @@ module.exports = PooledClass;
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -2486,42 +2475,52 @@ module.exports = PooledClass;
 
 var _assign = __webpack_require__(4);
 
-var ReactChildren = __webpack_require__(82);
-var ReactComponent = __webpack_require__(34);
-var ReactPureComponent = __webpack_require__(86);
-var ReactClass = __webpack_require__(87);
-var ReactDOMFactories = __webpack_require__(88);
+var ReactBaseClasses = __webpack_require__(52);
+var ReactChildren = __webpack_require__(91);
+var ReactDOMFactories = __webpack_require__(95);
 var ReactElement = __webpack_require__(15);
-var ReactPropTypes = __webpack_require__(90);
-var ReactVersion = __webpack_require__(91);
+var ReactPropTypes = __webpack_require__(99);
+var ReactVersion = __webpack_require__(101);
 
-var onlyChild = __webpack_require__(92);
-var warning = __webpack_require__(2);
+var createReactClass = __webpack_require__(102);
+var onlyChild = __webpack_require__(104);
 
 var createElement = ReactElement.createElement;
 var createFactory = ReactElement.createFactory;
 var cloneElement = ReactElement.cloneElement;
 
 if (process.env.NODE_ENV !== 'production') {
-  var ReactElementValidator = __webpack_require__(54);
+  var lowPriorityWarning = __webpack_require__(33);
+  var canDefineProperty = __webpack_require__(25);
+  var ReactElementValidator = __webpack_require__(56);
+  var didWarnPropTypesDeprecated = false;
   createElement = ReactElementValidator.createElement;
   createFactory = ReactElementValidator.createFactory;
   cloneElement = ReactElementValidator.cloneElement;
 }
 
 var __spread = _assign;
+var createMixin = function (mixin) {
+  return mixin;
+};
 
 if (process.env.NODE_ENV !== 'production') {
-  var warned = false;
+  var warnedForSpread = false;
+  var warnedForCreateMixin = false;
   __spread = function () {
-    process.env.NODE_ENV !== 'production' ? warning(warned, 'React.__spread is deprecated and should not be used. Use ' + 'Object.assign directly or another helper function with similar ' + 'semantics. You may be seeing this warning due to your compiler. ' + 'See https://fb.me/react-spread-deprecation for more details.') : void 0;
-    warned = true;
+    lowPriorityWarning(warnedForSpread, 'React.__spread is deprecated and should not be used. Use ' + 'Object.assign directly or another helper function with similar ' + 'semantics. You may be seeing this warning due to your compiler. ' + 'See https://fb.me/react-spread-deprecation for more details.');
+    warnedForSpread = true;
     return _assign.apply(null, arguments);
+  };
+
+  createMixin = function (mixin) {
+    lowPriorityWarning(warnedForCreateMixin, 'React.createMixin is deprecated and should not be used. ' + 'In React v16.0, it will be removed. ' + 'You can use this mixin directly instead. ' + 'See https://fb.me/createmixin-was-never-implemented for more info.');
+    warnedForCreateMixin = true;
+    return mixin;
   };
 }
 
 var React = {
-
   // Modern
 
   Children: {
@@ -2532,8 +2531,8 @@ var React = {
     only: onlyChild
   },
 
-  Component: ReactComponent,
-  PureComponent: ReactPureComponent,
+  Component: ReactBaseClasses.Component,
+  PureComponent: ReactBaseClasses.PureComponent,
 
   createElement: createElement,
   cloneElement: cloneElement,
@@ -2542,12 +2541,9 @@ var React = {
   // Classic
 
   PropTypes: ReactPropTypes,
-  createClass: ReactClass.createClass,
+  createClass: createReactClass,
   createFactory: createFactory,
-  createMixin: function (mixin) {
-    // Currently a noop. Will be used to validate and trace mixins.
-    return mixin;
-  },
+  createMixin: createMixin,
 
   // This looks DOM specific but these are actually isomorphic helpers
   // since they are just generating DOM strings.
@@ -2559,6 +2555,42 @@ var React = {
   __spread: __spread
 };
 
+if (process.env.NODE_ENV !== 'production') {
+  var warnedForCreateClass = false;
+  if (canDefineProperty) {
+    Object.defineProperty(React, 'PropTypes', {
+      get: function () {
+        lowPriorityWarning(didWarnPropTypesDeprecated, 'Accessing PropTypes via the main React package is deprecated,' + ' and will be removed in  React v16.0.' + ' Use the latest available v15.* prop-types package from npm instead.' + ' For info on usage, compatibility, migration and more, see ' + 'https://fb.me/prop-types-docs');
+        didWarnPropTypesDeprecated = true;
+        return ReactPropTypes;
+      }
+    });
+
+    Object.defineProperty(React, 'createClass', {
+      get: function () {
+        lowPriorityWarning(warnedForCreateClass, 'Accessing createClass via the main React package is deprecated,' + ' and will be removed in React v16.0.' + " Use a plain JavaScript class instead. If you're not yet " + 'ready to migrate, create-react-class v15.* is available ' + 'on npm as a temporary, drop-in replacement. ' + 'For more info see https://fb.me/react-create-class');
+        warnedForCreateClass = true;
+        return createReactClass;
+      }
+    });
+  }
+
+  // React.DOM factories are deprecated. Wrap these methods so that
+  // invocations of the React.DOM namespace and alert users to switch
+  // to the `react-dom-factories` package.
+  React.DOM = {};
+  var warnedForFactories = false;
+  Object.keys(ReactDOMFactories).forEach(function (factory) {
+    React.DOM[factory] = function () {
+      if (!warnedForFactories) {
+        lowPriorityWarning(false, 'Accessing factories like React.DOM.%s has been deprecated ' + 'and will be removed in v16.0+. Use the ' + 'react-dom-factories package instead. ' + ' Version 1.0 provides a drop-in replacement.' + ' For more info, see https://fb.me/react-dom-factories', factory);
+        warnedForFactories = true;
+      }
+      return ReactDOMFactories[factory].apply(ReactDOMFactories, arguments);
+    };
+  });
+}
+
 module.exports = React;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
@@ -2567,20 +2599,60 @@ module.exports = React;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ * 
+ */
+
+
+/**
+ * WARNING: DO NOT manually require this module.
+ * This is a replacement for `invariant(...)` used by the error code system
+ * and will _only_ be required by the corresponding babel pass.
+ * It always throws.
+ */
+
+function reactProdInvariant(code) {
+  var argCount = arguments.length - 1;
+
+  var message = 'Minified React error #' + code + '; visit ' + 'http://facebook.github.io/react/docs/error-decoder.html?invariant=' + code;
+
+  for (var argIdx = 0; argIdx < argCount; argIdx++) {
+    message += '&args[]=' + encodeURIComponent(arguments[argIdx + 1]);
+  }
+
+  message += ' for the full message or use the non-minified dev environment' + ' for full errors and additional helpful warnings.';
+
+  var error = new Error(message);
+  error.name = 'Invariant Violation';
+  error.framesToPop = 1; // we don't care about reactProdInvariant's own frame
+
+  throw error;
+}
+
+module.exports = reactProdInvariant;
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
 
 
-var ReactRef = __webpack_require__(102);
-var ReactInstrumentation = __webpack_require__(8);
+var ReactRef = __webpack_require__(113);
+var ReactInstrumentation = __webpack_require__(9);
 
 var warning = __webpack_require__(2);
 
@@ -2593,7 +2665,6 @@ function attachRefs() {
 }
 
 var ReactReconciler = {
-
   /**
    * Initializes the component, renders markup, and registers event listeners.
    *
@@ -2605,8 +2676,8 @@ var ReactReconciler = {
    * @final
    * @internal
    */
-  mountComponent: function (internalInstance, transaction, hostParent, hostContainerInfo, context, parentDebugID // 0 in production and for roots
-  ) {
+  mountComponent: function (internalInstance, transaction, hostParent, hostContainerInfo, context, parentDebugID) // 0 in production and for roots
+  {
     if (process.env.NODE_ENV !== 'production') {
       if (internalInstance._debugID !== 0) {
         ReactInstrumentation.debugTool.onBeforeMountComponent(internalInstance._debugID, internalInstance._currentElement, parentDebugID);
@@ -2730,34 +2801,31 @@ var ReactReconciler = {
       }
     }
   }
-
 };
 
 module.exports = ReactReconciler;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2015-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2015-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
 
 
-var DOMNamespaces = __webpack_require__(43);
-var setInnerHTML = __webpack_require__(29);
+var DOMNamespaces = __webpack_require__(41);
+var setInnerHTML = __webpack_require__(30);
 
-var createMicrosoftUnsafeLocalFunction = __webpack_require__(44);
-var setTextContent = __webpack_require__(64);
+var createMicrosoftUnsafeLocalFunction = __webpack_require__(42);
+var setTextContent = __webpack_require__(69);
 
 var ELEMENT_NODE_TYPE = 1;
 var DOCUMENT_FRAGMENT_NODE_TYPE = 11;
@@ -2860,16 +2928,6 @@ DOMLazyTree.queueText = queueText;
 module.exports = DOMLazyTree;
 
 /***/ }),
-/* 20 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = __webpack_require__(17);
-
-
-/***/ }),
 /* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2884,37 +2942,11 @@ module.exports = __webpack_require__(17);
 
 
 
-var emptyObject = {};
+var EventPluginHub = __webpack_require__(22);
+var EventPluginUtils = __webpack_require__(35);
 
-if (process.env.NODE_ENV !== 'production') {
-  Object.freeze(emptyObject);
-}
-
-module.exports = emptyObject;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 22 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- */
-
-
-
-var EventPluginHub = __webpack_require__(23);
-var EventPluginUtils = __webpack_require__(37);
-
-var accumulateInto = __webpack_require__(57);
-var forEachAccumulated = __webpack_require__(58);
+var accumulateInto = __webpack_require__(61);
+var forEachAccumulated = __webpack_require__(62);
 var warning = __webpack_require__(2);
 
 var getListener = EventPluginHub.getListener;
@@ -3034,17 +3066,15 @@ module.exports = EventPropagators;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 23 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -3052,12 +3082,12 @@ module.exports = EventPropagators;
 
 var _prodInvariant = __webpack_require__(3);
 
-var EventPluginRegistry = __webpack_require__(26);
-var EventPluginUtils = __webpack_require__(37);
-var ReactErrorUtils = __webpack_require__(38);
+var EventPluginRegistry = __webpack_require__(27);
+var EventPluginUtils = __webpack_require__(35);
+var ReactErrorUtils = __webpack_require__(36);
 
-var accumulateInto = __webpack_require__(57);
-var forEachAccumulated = __webpack_require__(58);
+var accumulateInto = __webpack_require__(61);
+var forEachAccumulated = __webpack_require__(62);
 var invariant = __webpack_require__(1);
 
 /**
@@ -3145,12 +3175,10 @@ function shouldPreventMouseEvent(name, type, props) {
  * @public
  */
 var EventPluginHub = {
-
   /**
    * Methods for injecting dependencies.
    */
   injection: {
-
     /**
      * @param {array} InjectedEventPluginOrder
      * @public
@@ -3161,7 +3189,6 @@ var EventPluginHub = {
      * @param {object} injectedNamesToPlugins Map from names to plugin modules.
      */
     injectEventPluginsByName: EventPluginRegistry.injectEventPluginsByName
-
   },
 
   /**
@@ -3311,32 +3338,29 @@ var EventPluginHub = {
   __getListenerBank: function () {
     return listenerBank;
   }
-
 };
 
 module.exports = EventPluginHub;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 24 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
 
 
-var SyntheticEvent = __webpack_require__(12);
+var SyntheticEvent = __webpack_require__(13);
 
-var getEventTarget = __webpack_require__(39);
+var getEventTarget = __webpack_require__(37);
 
 /**
  * @interface UIEvent
@@ -3382,17 +3406,15 @@ SyntheticEvent.augmentClass(SyntheticUIEvent, UIEventInterface);
 module.exports = SyntheticUIEvent;
 
 /***/ }),
-/* 25 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -3408,7 +3430,6 @@ module.exports = SyntheticUIEvent;
 // TODO: Replace this with ES6: var ReactInstanceMap = new Map();
 
 var ReactInstanceMap = {
-
   /**
    * This API should be called `delete` but we'd have to make sure to always
    * transform these to strings for IE support. When this transform is fully
@@ -3429,10 +3450,39 @@ var ReactInstanceMap = {
   set: function (key, value) {
     key._reactInternalInstance = value;
   }
-
 };
 
 module.exports = ReactInstanceMap;
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ * 
+ */
+
+
+
+var canDefineProperty = false;
+if (process.env.NODE_ENV !== 'production') {
+  try {
+    // $FlowFixMe https://github.com/facebook/flow/issues/285
+    Object.defineProperty({}, 'x', { get: function () {} });
+    canDefineProperty = true;
+  } catch (x) {
+    // IE will fail on defineProperty
+  }
+}
+
+module.exports = canDefineProperty;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
 /* 26 */
@@ -3440,12 +3490,34 @@ module.exports = ReactInstanceMap;
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
+
+
+
+var emptyObject = {};
+
+if (process.env.NODE_ENV !== 'production') {
+  Object.freeze(emptyObject);
+}
+
+module.exports = emptyObject;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  * 
  */
@@ -3549,7 +3621,6 @@ function publishRegistrationName(registrationName, pluginModule, eventName) {
  * @see {EventPluginHub}
  */
 var EventPluginRegistry = {
-
   /**
    * Ordered list of injected plugins.
    */
@@ -3689,24 +3760,21 @@ var EventPluginRegistry = {
       }
     }
   }
-
 };
 
 module.exports = EventPluginRegistry;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  * 
  */
@@ -3810,6 +3878,8 @@ var TransactionImpl = {
     return !!this._isInTransaction;
   },
 
+  /* eslint-disable space-before-function-paren */
+
   /**
    * Executes the function within a safety window. Use this for the top level
    * methods that result in large amounts of computation/mutations that would
@@ -3828,6 +3898,7 @@ var TransactionImpl = {
    * @return {*} Return value from `method`.
    */
   perform: function (method, scope, a, b, c, d, e, f) {
+    /* eslint-enable space-before-function-paren */
     !!this.isInTransaction() ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Transaction.perform(...): Cannot initialize a transaction when there is already an outstanding transaction.') : _prodInvariant('27') : void 0;
     var errorThrown;
     var ret;
@@ -3927,26 +3998,24 @@ module.exports = TransactionImpl;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
 
 
-var SyntheticUIEvent = __webpack_require__(24);
-var ViewportMetrics = __webpack_require__(63);
+var SyntheticUIEvent = __webpack_require__(23);
+var ViewportMetrics = __webpack_require__(68);
 
-var getEventModifierState = __webpack_require__(41);
+var getEventModifierState = __webpack_require__(39);
 
 /**
  * @interface MouseEvent
@@ -4004,29 +4073,27 @@ SyntheticUIEvent.augmentClass(SyntheticMouseEvent, MouseEventInterface);
 module.exports = SyntheticMouseEvent;
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
 
 
 var ExecutionEnvironment = __webpack_require__(6);
-var DOMNamespaces = __webpack_require__(43);
+var DOMNamespaces = __webpack_require__(41);
 
 var WHITESPACE_TEST = /^[ \r\n\t\f]/;
 var NONVISIBLE_TEST = /<(!--|link|noscript|meta|script|style)[ \r\n\t\f\/>]/;
 
-var createMicrosoftUnsafeLocalFunction = __webpack_require__(44);
+var createMicrosoftUnsafeLocalFunction = __webpack_require__(42);
 
 // SVG temp container for IE lacking innerHTML
 var reusableSVGContainer;
@@ -4086,7 +4153,7 @@ if (ExecutionEnvironment.canUseDOM) {
         // in hopes that this is preserved even if "\uFEFF" is transformed to
         // the actual Unicode character (by Babel, for example).
         // https://github.com/mishoo/UglifyJS2/blob/v2.4.20/lib/parse.js#L216
-        node.innerHTML = String.fromCharCode(0xFEFF) + html;
+        node.innerHTML = String.fromCharCode(0xfeff) + html;
 
         // deleteData leaves an empty `TextNode` which offsets the index of all
         // children. Definitely want to avoid this.
@@ -4107,17 +4174,15 @@ if (ExecutionEnvironment.canUseDOM) {
 module.exports = setInnerHTML;
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2016-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2016-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  * Based on the escape-html library, which is used under the MIT License below:
  *
@@ -4215,7 +4280,6 @@ function escapeHtml(string) {
 }
 // end code copied and modified from escape-html
 
-
 /**
  * Escapes text to prevent scripting attacks.
  *
@@ -4235,17 +4299,15 @@ function escapeTextContentForBrowser(text) {
 module.exports = escapeTextContentForBrowser;
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -4253,12 +4315,12 @@ module.exports = escapeTextContentForBrowser;
 
 var _assign = __webpack_require__(4);
 
-var EventPluginRegistry = __webpack_require__(26);
-var ReactEventEmitterMixin = __webpack_require__(128);
-var ViewportMetrics = __webpack_require__(63);
+var EventPluginRegistry = __webpack_require__(27);
+var ReactEventEmitterMixin = __webpack_require__(139);
+var ViewportMetrics = __webpack_require__(68);
 
-var getVendorPrefixedEventName = __webpack_require__(129);
-var isEventSupported = __webpack_require__(40);
+var getVendorPrefixedEventName = __webpack_require__(140);
+var isEventSupported = __webpack_require__(38);
 
 /**
  * Summary of `ReactBrowserEventEmitter` event handling:
@@ -4416,7 +4478,6 @@ function getListeningForDocument(mountAt) {
  * @internal
  */
 var ReactBrowserEventEmitter = _assign({}, ReactEventEmitterMixin, {
-
   /**
    * Injectable event backend
    */
@@ -4490,14 +4551,12 @@ var ReactBrowserEventEmitter = _assign({}, ReactEventEmitterMixin, {
             ReactBrowserEventEmitter.ReactEventListener.trapBubbledEvent('topWheel', 'DOMMouseScroll', mountAt);
           }
         } else if (dependency === 'topScroll') {
-
           if (isEventSupported('scroll', true)) {
             ReactBrowserEventEmitter.ReactEventListener.trapCapturedEvent('topScroll', 'scroll', mountAt);
           } else {
             ReactBrowserEventEmitter.ReactEventListener.trapBubbledEvent('topScroll', 'scroll', ReactBrowserEventEmitter.ReactEventListener.WINDOW_HANDLE);
           }
         } else if (dependency === 'topFocus' || dependency === 'topBlur') {
-
           if (isEventSupported('focus', true)) {
             ReactBrowserEventEmitter.ReactEventListener.trapCapturedEvent('topFocus', 'focus', mountAt);
             ReactBrowserEventEmitter.ReactEventListener.trapCapturedEvent('topBlur', 'blur', mountAt);
@@ -4562,212 +4621,97 @@ var ReactBrowserEventEmitter = _assign({}, ReactEventEmitterMixin, {
       isMonitoringScrollValue = true;
     }
   }
-
 });
 
 module.exports = ReactBrowserEventEmitter;
-
-/***/ }),
-/* 32 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- * 
- */
-
-
-
-var canDefineProperty = false;
-if (process.env.NODE_ENV !== 'production') {
-  try {
-    // $FlowFixMe https://github.com/facebook/flow/issues/285
-    Object.defineProperty({}, 'x', { get: function () {} });
-    canDefineProperty = true;
-  } catch (x) {
-    // IE will fail on defineProperty
-  }
-}
-
-module.exports = canDefineProperty;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
 /* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+/* WEBPACK VAR INJECTION */(function(process) {/**
+ * Copyright (c) 2014-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
- * 
  */
 
 
 
-/* global Symbol */
-
-var ITERATOR_SYMBOL = typeof Symbol === 'function' && Symbol.iterator;
-var FAUX_ITERATOR_SYMBOL = '@@iterator'; // Before Symbol spec.
-
 /**
- * Returns the iterator method function contained on the iterable object.
+ * Forked from fbjs/warning:
+ * https://github.com/facebook/fbjs/blob/e66ba20ad5be433eb54423f2b097d829324d9de6/packages/fbjs/src/__forks__/warning.js
  *
- * Be sure to invoke the function with the iterable as context:
- *
- *     var iteratorFn = getIteratorFn(myIterable);
- *     if (iteratorFn) {
- *       var iterator = iteratorFn.call(myIterable);
- *       ...
- *     }
- *
- * @param {?object} maybeIterable
- * @return {?function}
+ * Only change is we use console.warn instead of console.error,
+ * and do nothing when 'console' is not supported.
+ * This really simplifies the code.
+ * ---
+ * Similar to invariant but only logs a warning if the condition is not met.
+ * This can be used to log issues in development environments in critical
+ * paths. Removing the logging code for production environments will keep the
+ * same logic and follow the same code paths.
  */
-function getIteratorFn(maybeIterable) {
-  var iteratorFn = maybeIterable && (ITERATOR_SYMBOL && maybeIterable[ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL]);
-  if (typeof iteratorFn === 'function') {
-    return iteratorFn;
-  }
+
+var lowPriorityWarning = function () {};
+
+if (process.env.NODE_ENV !== 'production') {
+  var printWarning = function (format) {
+    for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      args[_key - 1] = arguments[_key];
+    }
+
+    var argIndex = 0;
+    var message = 'Warning: ' + format.replace(/%s/g, function () {
+      return args[argIndex++];
+    });
+    if (typeof console !== 'undefined') {
+      console.warn(message);
+    }
+    try {
+      // --- Welcome to debugging React ---
+      // This error was thrown as a convenience so that you can use this stack
+      // to find the callsite that caused this warning to fire.
+      throw new Error(message);
+    } catch (x) {}
+  };
+
+  lowPriorityWarning = function (condition, format) {
+    if (format === undefined) {
+      throw new Error('`warning(condition, format, ...args)` requires a warning ' + 'message argument');
+    }
+    if (!condition) {
+      for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
+        args[_key2 - 2] = arguments[_key2];
+      }
+
+      printWarning.apply(undefined, [format].concat(args));
+    }
+  };
 }
 
-module.exports = getIteratorFn;
+module.exports = lowPriorityWarning;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
 /* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- */
-
-
-
-var _prodInvariant = __webpack_require__(14);
-
-var ReactNoopUpdateQueue = __webpack_require__(35);
-
-var canDefineProperty = __webpack_require__(32);
-var emptyObject = __webpack_require__(21);
-var invariant = __webpack_require__(1);
-var warning = __webpack_require__(2);
-
 /**
- * Base class helpers for the updating state of a component.
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  */
-function ReactComponent(props, context, updater) {
-  this.props = props;
-  this.context = context;
-  this.refs = emptyObject;
-  // We initialize the default updater but the real one gets injected by the
-  // renderer.
-  this.updater = updater || ReactNoopUpdateQueue;
-}
 
-ReactComponent.prototype.isReactComponent = {};
 
-/**
- * Sets a subset of the state. Always use this to mutate
- * state. You should treat `this.state` as immutable.
- *
- * There is no guarantee that `this.state` will be immediately updated, so
- * accessing `this.state` after calling this method may return the old value.
- *
- * There is no guarantee that calls to `setState` will run synchronously,
- * as they may eventually be batched together.  You can provide an optional
- * callback that will be executed when the call to setState is actually
- * completed.
- *
- * When a function is provided to setState, it will be called at some point in
- * the future (not synchronously). It will be called with the up to date
- * component arguments (state, props, context). These values can be different
- * from this.* because your function may be called after receiveProps but before
- * shouldComponentUpdate, and this new state, props, and context will not yet be
- * assigned to this.
- *
- * @param {object|function} partialState Next partial state or function to
- *        produce next partial state to be merged with current state.
- * @param {?function} callback Called after state is updated.
- * @final
- * @protected
- */
-ReactComponent.prototype.setState = function (partialState, callback) {
-  !(typeof partialState === 'object' || typeof partialState === 'function' || partialState == null) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'setState(...): takes an object of state variables to update or a function which returns an object of state variables.') : _prodInvariant('85') : void 0;
-  this.updater.enqueueSetState(this, partialState);
-  if (callback) {
-    this.updater.enqueueCallback(this, callback, 'setState');
-  }
-};
 
-/**
- * Forces an update. This should only be invoked when it is known with
- * certainty that we are **not** in a DOM transaction.
- *
- * You may want to call this when you know that some deeper aspect of the
- * component's state has changed but `setState` was not called.
- *
- * This will not invoke `shouldComponentUpdate`, but it will invoke
- * `componentWillUpdate` and `componentDidUpdate`.
- *
- * @param {?function} callback Called after update is complete.
- * @final
- * @protected
- */
-ReactComponent.prototype.forceUpdate = function (callback) {
-  this.updater.enqueueForceUpdate(this);
-  if (callback) {
-    this.updater.enqueueCallback(this, callback, 'forceUpdate');
-  }
-};
+var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 
-/**
- * Deprecated APIs. These APIs used to exist on classic React classes but since
- * we would like to deprecate them, we're not going to move them over to this
- * modern base class. Instead, we define a getter that warns if it's accessed.
- */
-if (process.env.NODE_ENV !== 'production') {
-  var deprecatedAPIs = {
-    isMounted: ['isMounted', 'Instead, make sure to clean up subscriptions and pending requests in ' + 'componentWillUnmount to prevent memory leaks.'],
-    replaceState: ['replaceState', 'Refactor your code to use setState instead (see ' + 'https://github.com/facebook/react/issues/3236).']
-  };
-  var defineDeprecationWarning = function (methodName, info) {
-    if (canDefineProperty) {
-      Object.defineProperty(ReactComponent.prototype, methodName, {
-        get: function () {
-          process.env.NODE_ENV !== 'production' ? warning(false, '%s(...) is deprecated in plain JavaScript React classes. %s', info[0], info[1]) : void 0;
-          return undefined;
-        }
-      });
-    }
-  };
-  for (var fnName in deprecatedAPIs) {
-    if (deprecatedAPIs.hasOwnProperty(fnName)) {
-      defineDeprecationWarning(fnName, deprecatedAPIs[fnName]);
-    }
-  }
-}
+module.exports = ReactPropTypesSecret;
 
-module.exports = ReactComponent;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
 /* 35 */
@@ -4775,145 +4719,10 @@ module.exports = ReactComponent;
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2015-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- */
-
-
-
-var warning = __webpack_require__(2);
-
-function warnNoop(publicInstance, callerName) {
-  if (process.env.NODE_ENV !== 'production') {
-    var constructor = publicInstance.constructor;
-    process.env.NODE_ENV !== 'production' ? warning(false, '%s(...): Can only update a mounted or mounting component. ' + 'This usually means you called %s() on an unmounted component. ' + 'This is a no-op. Please check the code for the %s component.', callerName, callerName, constructor && (constructor.displayName || constructor.name) || 'ReactClass') : void 0;
-  }
-}
-
-/**
- * This is the abstract API for an update queue.
- */
-var ReactNoopUpdateQueue = {
-
-  /**
-   * Checks whether or not this composite component is mounted.
-   * @param {ReactClass} publicInstance The instance we want to test.
-   * @return {boolean} True if mounted, false otherwise.
-   * @protected
-   * @final
-   */
-  isMounted: function (publicInstance) {
-    return false;
-  },
-
-  /**
-   * Enqueue a callback that will be executed after all the pending updates
-   * have processed.
-   *
-   * @param {ReactClass} publicInstance The instance to use as `this` context.
-   * @param {?function} callback Called after state is updated.
-   * @internal
-   */
-  enqueueCallback: function (publicInstance, callback) {},
-
-  /**
-   * Forces an update. This should only be invoked when it is known with
-   * certainty that we are **not** in a DOM transaction.
-   *
-   * You may want to call this when you know that some deeper aspect of the
-   * component's state has changed but `setState` was not called.
-   *
-   * This will not invoke `shouldComponentUpdate`, but it will invoke
-   * `componentWillUpdate` and `componentDidUpdate`.
-   *
-   * @param {ReactClass} publicInstance The instance that should rerender.
-   * @internal
-   */
-  enqueueForceUpdate: function (publicInstance) {
-    warnNoop(publicInstance, 'forceUpdate');
-  },
-
-  /**
-   * Replaces all of the state. Always use this or `setState` to mutate state.
-   * You should treat `this.state` as immutable.
-   *
-   * There is no guarantee that `this.state` will be immediately updated, so
-   * accessing `this.state` after calling this method may return the old value.
-   *
-   * @param {ReactClass} publicInstance The instance that should rerender.
-   * @param {object} completeState Next state.
-   * @internal
-   */
-  enqueueReplaceState: function (publicInstance, completeState) {
-    warnNoop(publicInstance, 'replaceState');
-  },
-
-  /**
-   * Sets a subset of the state. This only exists because _pendingState is
-   * internal. This provides a merging strategy that is not available to deep
-   * properties which is confusing. TODO: Expose pendingState or don't use it
-   * during the merge.
-   *
-   * @param {ReactClass} publicInstance The instance that should rerender.
-   * @param {object} partialState Next partial state to be merged with state.
-   * @internal
-   */
-  enqueueSetState: function (publicInstance, partialState) {
-    warnNoop(publicInstance, 'setState');
-  }
-};
-
-module.exports = ReactNoopUpdateQueue;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 36 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- * 
- */
-
-
-
-var ReactPropTypeLocationNames = {};
-
-if (process.env.NODE_ENV !== 'production') {
-  ReactPropTypeLocationNames = {
-    prop: 'prop',
-    context: 'context',
-    childContext: 'child context'
-  };
-}
-
-module.exports = ReactPropTypeLocationNames;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 37 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -4921,7 +4730,7 @@ module.exports = ReactPropTypeLocationNames;
 
 var _prodInvariant = __webpack_require__(3);
 
-var ReactErrorUtils = __webpack_require__(38);
+var ReactErrorUtils = __webpack_require__(36);
 
 var invariant = __webpack_require__(1);
 var warning = __webpack_require__(2);
@@ -5135,17 +4944,15 @@ module.exports = EventPluginUtils;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 38 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  * 
  */
@@ -5202,11 +5009,12 @@ if (process.env.NODE_ENV !== 'production') {
   if (typeof window !== 'undefined' && typeof window.dispatchEvent === 'function' && typeof document !== 'undefined' && typeof document.createEvent === 'function') {
     var fakeNode = document.createElement('react');
     ReactErrorUtils.invokeGuardedCallback = function (name, func, a) {
-      var boundFunc = func.bind(null, a);
+      var boundFunc = function () {
+        func(a);
+      };
       var evtType = 'react-' + name;
       fakeNode.addEventListener(evtType, boundFunc, false);
       var evt = document.createEvent('Event');
-      // $FlowFixMe https://github.com/facebook/flow/issues/2336
       evt.initEvent(evtType, false, false);
       fakeNode.dispatchEvent(evt);
       fakeNode.removeEventListener(evtType, boundFunc, false);
@@ -5218,17 +5026,15 @@ module.exports = ReactErrorUtils;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 39 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -5258,17 +5064,15 @@ function getEventTarget(nativeEvent) {
 module.exports = getEventTarget;
 
 /***/ }),
-/* 40 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -5323,17 +5127,15 @@ function isEventSupported(eventNameSuffix, capture) {
 module.exports = isEventSupported;
 
 /***/ }),
-/* 41 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -5345,10 +5147,10 @@ module.exports = isEventSupported;
  */
 
 var modifierKeyToProp = {
-  'Alt': 'altKey',
-  'Control': 'ctrlKey',
-  'Meta': 'metaKey',
-  'Shift': 'shiftKey'
+  Alt: 'altKey',
+  Control: 'ctrlKey',
+  Meta: 'metaKey',
+  Shift: 'shiftKey'
 };
 
 // IE8 does not implement getModifierState so we simply map it to the only
@@ -5371,30 +5173,28 @@ function getEventModifierState(nativeEvent) {
 module.exports = getEventModifierState;
 
 /***/ }),
-/* 42 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
 
 
-var DOMLazyTree = __webpack_require__(19);
-var Danger = __webpack_require__(113);
+var DOMLazyTree = __webpack_require__(20);
+var Danger = __webpack_require__(124);
 var ReactDOMComponentTree = __webpack_require__(5);
-var ReactInstrumentation = __webpack_require__(8);
+var ReactInstrumentation = __webpack_require__(9);
 
-var createMicrosoftUnsafeLocalFunction = __webpack_require__(44);
-var setInnerHTML = __webpack_require__(29);
-var setTextContent = __webpack_require__(64);
+var createMicrosoftUnsafeLocalFunction = __webpack_require__(42);
+var setInnerHTML = __webpack_require__(30);
+var setTextContent = __webpack_require__(69);
 
 function getNodeAfter(parentNode, node) {
   // Special case for text components, which return [open, close] comments
@@ -5522,7 +5322,6 @@ if (process.env.NODE_ENV !== 'production') {
  * Operations for updating with DOM children.
  */
 var DOMChildrenOperations = {
-
   dangerouslyReplaceNodeWithMarkup: dangerouslyReplaceNodeWithMarkup,
 
   replaceDelimitedText: replaceDelimitedText,
@@ -5548,7 +5347,10 @@ var DOMChildrenOperations = {
             ReactInstrumentation.debugTool.onHostOperation({
               instanceID: parentNodeDebugID,
               type: 'insert child',
-              payload: { toIndex: update.toIndex, content: update.content.toString() }
+              payload: {
+                toIndex: update.toIndex,
+                content: update.content.toString()
+              }
             });
           }
           break;
@@ -5595,24 +5397,21 @@ var DOMChildrenOperations = {
       }
     }
   }
-
 };
 
 module.exports = DOMChildrenOperations;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 43 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -5627,17 +5426,15 @@ var DOMNamespaces = {
 module.exports = DOMNamespaces;
 
 /***/ }),
-/* 44 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -5664,17 +5461,15 @@ var createMicrosoftUnsafeLocalFunction = function (func) {
 module.exports = createMicrosoftUnsafeLocalFunction;
 
 /***/ }),
-/* 45 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -5682,20 +5477,23 @@ module.exports = createMicrosoftUnsafeLocalFunction;
 
 var _prodInvariant = __webpack_require__(3);
 
+var ReactPropTypesSecret = __webpack_require__(73);
+var propTypesFactory = __webpack_require__(57);
+
 var React = __webpack_require__(17);
-var ReactPropTypesSecret = __webpack_require__(68);
+var PropTypes = propTypesFactory(React.isValidElement);
 
 var invariant = __webpack_require__(1);
 var warning = __webpack_require__(2);
 
 var hasReadOnlyValue = {
-  'button': true,
-  'checkbox': true,
-  'image': true,
-  'hidden': true,
-  'radio': true,
-  'reset': true,
-  'submit': true
+  button: true,
+  checkbox: true,
+  image: true,
+  hidden: true,
+  radio: true,
+  reset: true,
+  submit: true
 };
 
 function _assertSingleLink(inputProps) {
@@ -5724,7 +5522,7 @@ var propTypes = {
     }
     return new Error('You provided a `checked` prop to a form field without an ' + '`onChange` handler. This will render a read-only field. If ' + 'the field should be mutable use `defaultChecked`. Otherwise, ' + 'set either `onChange` or `readOnly`.');
   },
-  onChange: React.PropTypes.func
+  onChange: PropTypes.func
 };
 
 var loggedTypeFailures = {};
@@ -5805,17 +5603,15 @@ module.exports = LinkedValueUtils;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 46 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2014-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2014-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  * 
  */
@@ -5829,7 +5625,6 @@ var invariant = __webpack_require__(1);
 var injected = false;
 
 var ReactComponentEnvironment = {
-
   /**
    * Optionally injectable hook for swapping out mount images in the middle of
    * the tree.
@@ -5850,14 +5645,13 @@ var ReactComponentEnvironment = {
       injected = true;
     }
   }
-
 };
 
 module.exports = ReactComponentEnvironment;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 47 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5928,17 +5722,15 @@ function shallowEqual(objA, objB) {
 module.exports = shallowEqual;
 
 /***/ }),
-/* 48 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -5975,17 +5767,15 @@ function shouldUpdateReactComponent(prevElement, nextElement) {
 module.exports = shouldUpdateReactComponent;
 
 /***/ }),
-/* 49 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  * 
  */
@@ -6039,17 +5829,15 @@ var KeyEscapeUtils = {
 module.exports = KeyEscapeUtils;
 
 /***/ }),
-/* 50 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2015-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2015-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -6058,8 +5846,8 @@ module.exports = KeyEscapeUtils;
 var _prodInvariant = __webpack_require__(3);
 
 var ReactCurrentOwner = __webpack_require__(10);
-var ReactInstanceMap = __webpack_require__(25);
-var ReactInstrumentation = __webpack_require__(8);
+var ReactInstanceMap = __webpack_require__(24);
+var ReactInstrumentation = __webpack_require__(9);
 var ReactUpdates = __webpack_require__(11);
 
 var invariant = __webpack_require__(1);
@@ -6096,7 +5884,7 @@ function getInternalInstanceReadyForUpdate(publicInstance, callerName) {
   }
 
   if (process.env.NODE_ENV !== 'production') {
-    process.env.NODE_ENV !== 'production' ? warning(ReactCurrentOwner.current == null, '%s(...): Cannot update during an existing state transition (such as ' + 'within `render` or another component\'s constructor). Render methods ' + 'should be a pure function of props and state; constructor ' + 'side-effects are an anti-pattern, but can be moved to ' + '`componentWillMount`.', callerName) : void 0;
+    process.env.NODE_ENV !== 'production' ? warning(ReactCurrentOwner.current == null, '%s(...): Cannot update during an existing state transition (such as ' + "within `render` or another component's constructor). Render methods " + 'should be a pure function of props and state; constructor ' + 'side-effects are an anti-pattern, but can be moved to ' + '`componentWillMount`.', callerName) : void 0;
   }
 
   return internalInstance;
@@ -6107,7 +5895,6 @@ function getInternalInstanceReadyForUpdate(publicInstance, callerName) {
  * reconciliation step.
  */
 var ReactUpdateQueue = {
-
   /**
    * Checks whether or not this composite component is mounted.
    * @param {ReactClass} publicInstance The instance we want to test.
@@ -6213,7 +6000,7 @@ var ReactUpdateQueue = {
    * @param {object} completeState Next state.
    * @internal
    */
-  enqueueReplaceState: function (publicInstance, completeState) {
+  enqueueReplaceState: function (publicInstance, completeState, callback) {
     var internalInstance = getInternalInstanceReadyForUpdate(publicInstance, 'replaceState');
 
     if (!internalInstance) {
@@ -6222,6 +6009,16 @@ var ReactUpdateQueue = {
 
     internalInstance._pendingStateQueue = [completeState];
     internalInstance._pendingReplaceState = true;
+
+    // Future-proof 15.5
+    if (callback !== undefined && callback !== null) {
+      ReactUpdateQueue.validateCallback(callback, 'replaceState');
+      if (internalInstance._pendingCallbacks) {
+        internalInstance._pendingCallbacks.push(callback);
+      } else {
+        internalInstance._pendingCallbacks = [callback];
+      }
+    }
 
     enqueueUpdate(internalInstance);
   },
@@ -6264,24 +6061,21 @@ var ReactUpdateQueue = {
   validateCallback: function (callback, callerName) {
     !(!callback || typeof callback === 'function') ? process.env.NODE_ENV !== 'production' ? invariant(false, '%s(...): Expected the last optional `callback` argument to be a function. Instead received: %s.', callerName, formatUnexpectedArgument(callback)) : _prodInvariant('122', callerName, formatUnexpectedArgument(callback)) : void 0;
   }
-
 };
 
 module.exports = ReactUpdateQueue;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 51 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2015-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2015-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -6289,7 +6083,7 @@ module.exports = ReactUpdateQueue;
 
 var _assign = __webpack_require__(4);
 
-var emptyFunction = __webpack_require__(9);
+var emptyFunction = __webpack_require__(8);
 var warning = __webpack_require__(2);
 
 var validateDOMNesting = emptyFunction;
@@ -6398,7 +6192,6 @@ if (process.env.NODE_ENV !== 'production') {
       // but
       case 'option':
         return tag === '#text';
-
       // https://html.spec.whatwg.org/multipage/syntax.html#parsing-main-intd
       // https://html.spec.whatwg.org/multipage/syntax.html#parsing-main-incaption
       // No special behavior since these rules fall back to "in body" mode for
@@ -6407,25 +6200,20 @@ if (process.env.NODE_ENV !== 'production') {
       // https://html.spec.whatwg.org/multipage/syntax.html#parsing-main-intr
       case 'tr':
         return tag === 'th' || tag === 'td' || tag === 'style' || tag === 'script' || tag === 'template';
-
       // https://html.spec.whatwg.org/multipage/syntax.html#parsing-main-intbody
       case 'tbody':
       case 'thead':
       case 'tfoot':
         return tag === 'tr' || tag === 'style' || tag === 'script' || tag === 'template';
-
       // https://html.spec.whatwg.org/multipage/syntax.html#parsing-main-incolgroup
       case 'colgroup':
         return tag === 'col' || tag === 'template';
-
       // https://html.spec.whatwg.org/multipage/syntax.html#parsing-main-intable
       case 'table':
         return tag === 'caption' || tag === 'colgroup' || tag === 'tbody' || tag === 'tfoot' || tag === 'thead' || tag === 'style' || tag === 'script' || tag === 'template';
-
       // https://html.spec.whatwg.org/multipage/syntax.html#parsing-main-inhead
       case 'head':
         return tag === 'base' || tag === 'basefont' || tag === 'bgsound' || tag === 'link' || tag === 'meta' || tag === 'title' || tag === 'noscript' || tag === 'noframes' || tag === 'style' || tag === 'script' || tag === 'template';
-
       // https://html.spec.whatwg.org/multipage/semantics.html#the-html-element
       case 'html':
         return tag === 'head' || tag === 'body';
@@ -6501,16 +6289,11 @@ if (process.env.NODE_ENV !== 'production') {
       case 'section':
       case 'summary':
       case 'ul':
-
       case 'pre':
       case 'listing':
-
       case 'table':
-
       case 'hr':
-
       case 'xmp':
-
       case 'h1':
       case 'h2':
       case 'h3':
@@ -6626,7 +6409,7 @@ if (process.env.NODE_ENV !== 'production') {
           tagDisplayName = 'Text nodes';
         } else {
           tagDisplayName = 'Whitespace text nodes';
-          whitespaceInfo = ' Make sure you don\'t have any extra whitespace between tags on ' + 'each line of your source code.';
+          whitespaceInfo = " Make sure you don't have any extra whitespace between tags on " + 'each line of your source code.';
         }
       } else {
         tagDisplayName = '<' + childTag + '>';
@@ -6659,17 +6442,15 @@ module.exports = validateDOMNesting;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 52 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -6714,17 +6495,326 @@ function getEventCharCode(nativeEvent) {
 module.exports = getEventCharCode;
 
 /***/ }),
+/* 51 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//DB is required in this one file
+//GetLS simply retrieves DB
+const dictDB = __webpack_require__(192);
+
+//PUT (update/modify)
+
+//DELETE (clear LS completely)
+const clearLS = () => {
+    localStorage.clear();
+};
+/* harmony export (immutable) */ __webpack_exports__["clearLS"] = clearLS;
+
+
+//POST (create)
+const setLS = () => {
+    let dictDBString = JSON.stringify(dictDB);
+    //defaultkey for DB is "dictionaryDB";
+    const dbKey = "dictionaryDB";
+    localStorage.setItem(dbKey, dictDBString);
+};
+/* harmony export (immutable) */ __webpack_exports__["setLS"] = setLS;
+
+
+//GET (read)
+const getLS = () => {
+    //retrieves & places LSDB onto variable
+    const retrievedDB = localStorage.getItem("dictionaryDB");
+    const parsedResult = JSON.parse(retrievedDB);
+    // (parsed)
+    return parsedResult;
+};
+/* harmony export (immutable) */ __webpack_exports__["getLS"] = getLS;
+
+
+const getPartialLS = (lower, upper) => {
+    const retrievedDB = localStorage.getItem("dictionaryDB");
+    const parsedResult = JSON.parse(retrievedDB);
+    const partialArray = parsedResult.filter((item, idx) => idx >= lower && idx <= upper);
+    console.log("partialArray: ", partialArray);
+    return partialArray;
+};
+/* harmony export (immutable) */ __webpack_exports__["getPartialLS"] = getPartialLS;
+
+
+// export const hello = (title, name ) => {
+//     console.log(`Hello ${title}. ${name}. How are you?`)
+// }
+
+// export const food = (meal, dishName ) => {
+//     console.log(`My favorite ${meal} is ${dishName}.`)
+// }
+
+const ctrl = (callback, param1, param2) => {
+    // console.log("ctr ran with: ", arguments[0])
+    return callback(param1, param2);
+};
+/* harmony export (immutable) */ __webpack_exports__["ctrl"] = ctrl;
+
+
+/***/ }),
+/* 52 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
+
+
+
+var _prodInvariant = __webpack_require__(18),
+    _assign = __webpack_require__(4);
+
+var ReactNoopUpdateQueue = __webpack_require__(53);
+
+var canDefineProperty = __webpack_require__(25);
+var emptyObject = __webpack_require__(26);
+var invariant = __webpack_require__(1);
+var lowPriorityWarning = __webpack_require__(33);
+
+/**
+ * Base class helpers for the updating state of a component.
+ */
+function ReactComponent(props, context, updater) {
+  this.props = props;
+  this.context = context;
+  this.refs = emptyObject;
+  // We initialize the default updater but the real one gets injected by the
+  // renderer.
+  this.updater = updater || ReactNoopUpdateQueue;
+}
+
+ReactComponent.prototype.isReactComponent = {};
+
+/**
+ * Sets a subset of the state. Always use this to mutate
+ * state. You should treat `this.state` as immutable.
+ *
+ * There is no guarantee that `this.state` will be immediately updated, so
+ * accessing `this.state` after calling this method may return the old value.
+ *
+ * There is no guarantee that calls to `setState` will run synchronously,
+ * as they may eventually be batched together.  You can provide an optional
+ * callback that will be executed when the call to setState is actually
+ * completed.
+ *
+ * When a function is provided to setState, it will be called at some point in
+ * the future (not synchronously). It will be called with the up to date
+ * component arguments (state, props, context). These values can be different
+ * from this.* because your function may be called after receiveProps but before
+ * shouldComponentUpdate, and this new state, props, and context will not yet be
+ * assigned to this.
+ *
+ * @param {object|function} partialState Next partial state or function to
+ *        produce next partial state to be merged with current state.
+ * @param {?function} callback Called after state is updated.
+ * @final
+ * @protected
+ */
+ReactComponent.prototype.setState = function (partialState, callback) {
+  !(typeof partialState === 'object' || typeof partialState === 'function' || partialState == null) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'setState(...): takes an object of state variables to update or a function which returns an object of state variables.') : _prodInvariant('85') : void 0;
+  this.updater.enqueueSetState(this, partialState);
+  if (callback) {
+    this.updater.enqueueCallback(this, callback, 'setState');
+  }
+};
+
+/**
+ * Forces an update. This should only be invoked when it is known with
+ * certainty that we are **not** in a DOM transaction.
+ *
+ * You may want to call this when you know that some deeper aspect of the
+ * component's state has changed but `setState` was not called.
+ *
+ * This will not invoke `shouldComponentUpdate`, but it will invoke
+ * `componentWillUpdate` and `componentDidUpdate`.
+ *
+ * @param {?function} callback Called after update is complete.
+ * @final
+ * @protected
+ */
+ReactComponent.prototype.forceUpdate = function (callback) {
+  this.updater.enqueueForceUpdate(this);
+  if (callback) {
+    this.updater.enqueueCallback(this, callback, 'forceUpdate');
+  }
+};
+
+/**
+ * Deprecated APIs. These APIs used to exist on classic React classes but since
+ * we would like to deprecate them, we're not going to move them over to this
+ * modern base class. Instead, we define a getter that warns if it's accessed.
+ */
+if (process.env.NODE_ENV !== 'production') {
+  var deprecatedAPIs = {
+    isMounted: ['isMounted', 'Instead, make sure to clean up subscriptions and pending requests in ' + 'componentWillUnmount to prevent memory leaks.'],
+    replaceState: ['replaceState', 'Refactor your code to use setState instead (see ' + 'https://github.com/facebook/react/issues/3236).']
+  };
+  var defineDeprecationWarning = function (methodName, info) {
+    if (canDefineProperty) {
+      Object.defineProperty(ReactComponent.prototype, methodName, {
+        get: function () {
+          lowPriorityWarning(false, '%s(...) is deprecated in plain JavaScript React classes. %s', info[0], info[1]);
+          return undefined;
+        }
+      });
+    }
+  };
+  for (var fnName in deprecatedAPIs) {
+    if (deprecatedAPIs.hasOwnProperty(fnName)) {
+      defineDeprecationWarning(fnName, deprecatedAPIs[fnName]);
+    }
+  }
+}
+
+/**
+ * Base class helpers for the updating state of a component.
+ */
+function ReactPureComponent(props, context, updater) {
+  // Duplicated from ReactComponent.
+  this.props = props;
+  this.context = context;
+  this.refs = emptyObject;
+  // We initialize the default updater but the real one gets injected by the
+  // renderer.
+  this.updater = updater || ReactNoopUpdateQueue;
+}
+
+function ComponentDummy() {}
+ComponentDummy.prototype = ReactComponent.prototype;
+ReactPureComponent.prototype = new ComponentDummy();
+ReactPureComponent.prototype.constructor = ReactPureComponent;
+// Avoid an extra prototype jump for these methods.
+_assign(ReactPureComponent.prototype, ReactComponent.prototype);
+ReactPureComponent.prototype.isPureReactComponent = true;
+
+module.exports = {
+  Component: ReactComponent,
+  PureComponent: ReactPureComponent
+};
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
 /* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * Copyright 2014-present, Facebook, Inc.
- * All rights reserved.
+/* WEBPACK VAR INJECTION */(function(process) {/**
+ * Copyright (c) 2015-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
+
+
+
+var warning = __webpack_require__(2);
+
+function warnNoop(publicInstance, callerName) {
+  if (process.env.NODE_ENV !== 'production') {
+    var constructor = publicInstance.constructor;
+    process.env.NODE_ENV !== 'production' ? warning(false, '%s(...): Can only update a mounted or mounting component. ' + 'This usually means you called %s() on an unmounted component. ' + 'This is a no-op. Please check the code for the %s component.', callerName, callerName, constructor && (constructor.displayName || constructor.name) || 'ReactClass') : void 0;
+  }
+}
+
+/**
+ * This is the abstract API for an update queue.
+ */
+var ReactNoopUpdateQueue = {
+  /**
+   * Checks whether or not this composite component is mounted.
+   * @param {ReactClass} publicInstance The instance we want to test.
+   * @return {boolean} True if mounted, false otherwise.
+   * @protected
+   * @final
+   */
+  isMounted: function (publicInstance) {
+    return false;
+  },
+
+  /**
+   * Enqueue a callback that will be executed after all the pending updates
+   * have processed.
+   *
+   * @param {ReactClass} publicInstance The instance to use as `this` context.
+   * @param {?function} callback Called after state is updated.
+   * @internal
+   */
+  enqueueCallback: function (publicInstance, callback) {},
+
+  /**
+   * Forces an update. This should only be invoked when it is known with
+   * certainty that we are **not** in a DOM transaction.
+   *
+   * You may want to call this when you know that some deeper aspect of the
+   * component's state has changed but `setState` was not called.
+   *
+   * This will not invoke `shouldComponentUpdate`, but it will invoke
+   * `componentWillUpdate` and `componentDidUpdate`.
+   *
+   * @param {ReactClass} publicInstance The instance that should rerender.
+   * @internal
+   */
+  enqueueForceUpdate: function (publicInstance) {
+    warnNoop(publicInstance, 'forceUpdate');
+  },
+
+  /**
+   * Replaces all of the state. Always use this or `setState` to mutate state.
+   * You should treat `this.state` as immutable.
+   *
+   * There is no guarantee that `this.state` will be immediately updated, so
+   * accessing `this.state` after calling this method may return the old value.
+   *
+   * @param {ReactClass} publicInstance The instance that should rerender.
+   * @param {object} completeState Next state.
+   * @internal
+   */
+  enqueueReplaceState: function (publicInstance, completeState) {
+    warnNoop(publicInstance, 'replaceState');
+  },
+
+  /**
+   * Sets a subset of the state. This only exists because _pendingState is
+   * internal. This provides a merging strategy that is not available to deep
+   * properties which is confusing. TODO: Expose pendingState or don't use it
+   * during the merge.
+   *
+   * @param {ReactClass} publicInstance The instance that should rerender.
+   * @param {object} partialState Next partial state to be merged with state.
+   * @internal
+   */
+  enqueueSetState: function (publicInstance, partialState) {
+    warnNoop(publicInstance, 'setState');
+  }
+};
+
+module.exports = ReactNoopUpdateQueue;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 54 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright (c) 2014-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  * 
  */
@@ -6739,17 +6829,59 @@ var REACT_ELEMENT_TYPE = typeof Symbol === 'function' && Symbol['for'] && Symbol
 module.exports = REACT_ELEMENT_TYPE;
 
 /***/ }),
-/* 54 */
+/* 55 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ * 
+ */
+
+
+
+/* global Symbol */
+
+var ITERATOR_SYMBOL = typeof Symbol === 'function' && Symbol.iterator;
+var FAUX_ITERATOR_SYMBOL = '@@iterator'; // Before Symbol spec.
+
+/**
+ * Returns the iterator method function contained on the iterable object.
+ *
+ * Be sure to invoke the function with the iterable as context:
+ *
+ *     var iteratorFn = getIteratorFn(myIterable);
+ *     if (iteratorFn) {
+ *       var iterator = iteratorFn.call(myIterable);
+ *       ...
+ *     }
+ *
+ * @param {?object} maybeIterable
+ * @return {?function}
+ */
+function getIteratorFn(maybeIterable) {
+  var iteratorFn = maybeIterable && (ITERATOR_SYMBOL && maybeIterable[ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL]);
+  if (typeof iteratorFn === 'function') {
+    return iteratorFn;
+  }
+}
+
+module.exports = getIteratorFn;
+
+/***/ }),
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2014-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2014-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -6766,11 +6898,12 @@ var ReactCurrentOwner = __webpack_require__(10);
 var ReactComponentTreeHook = __webpack_require__(7);
 var ReactElement = __webpack_require__(15);
 
-var checkReactTypeSpec = __webpack_require__(89);
+var checkReactTypeSpec = __webpack_require__(96);
 
-var canDefineProperty = __webpack_require__(32);
-var getIteratorFn = __webpack_require__(33);
+var canDefineProperty = __webpack_require__(25);
+var getIteratorFn = __webpack_require__(55);
 var warning = __webpack_require__(2);
+var lowPriorityWarning = __webpack_require__(33);
 
 function getDeclarationErrorAddendum() {
   if (ReactCurrentOwner.current) {
@@ -6778,6 +6911,16 @@ function getDeclarationErrorAddendum() {
     if (name) {
       return ' Check the render method of `' + name + '`.';
     }
+  }
+  return '';
+}
+
+function getSourceInfoErrorAddendum(elementProps) {
+  if (elementProps !== null && elementProps !== undefined && elementProps.__source !== undefined) {
+    var source = elementProps.__source;
+    var fileName = source.fileName.replace(/^.*[\\\/]/, '');
+    var lineNumber = source.lineNumber;
+    return ' Check your code at ' + fileName + ':' + lineNumber + '.';
   }
   return '';
 }
@@ -6901,7 +7044,6 @@ function validatePropTypes(element) {
 }
 
 var ReactElementValidator = {
-
   createElement: function (type, props, children) {
     var validType = typeof type === 'string' || typeof type === 'function';
     // We warn in this case but don't throw. We expect the element creation to
@@ -6910,10 +7052,22 @@ var ReactElementValidator = {
       if (typeof type !== 'function' && typeof type !== 'string') {
         var info = '';
         if (type === undefined || typeof type === 'object' && type !== null && Object.keys(type).length === 0) {
-          info += ' You likely forgot to export your component from the file ' + 'it\'s defined in.';
+          info += ' You likely forgot to export your component from the file ' + "it's defined in.";
         }
-        info += getDeclarationErrorAddendum();
+
+        var sourceInfo = getSourceInfoErrorAddendum(props);
+        if (sourceInfo) {
+          info += sourceInfo;
+        } else {
+          info += getDeclarationErrorAddendum();
+        }
+
+        info += ReactComponentTreeHook.getCurrentStackAddendum();
+
+        var currentSource = props !== null && props !== undefined && props.__source !== undefined ? props.__source : null;
+        ReactComponentTreeHook.pushNonStandardWarningStack(true, currentSource);
         process.env.NODE_ENV !== 'production' ? warning(false, 'React.createElement: type is invalid -- expected a string (for ' + 'built-in components) or a class/function (for composite ' + 'components) but got: %s.%s', type == null ? type : typeof type, info) : void 0;
+        ReactComponentTreeHook.popNonStandardWarningStack();
       }
     }
 
@@ -6951,7 +7105,7 @@ var ReactElementValidator = {
         Object.defineProperty(validatedFactory, 'type', {
           enumerable: false,
           get: function () {
-            process.env.NODE_ENV !== 'production' ? warning(false, 'Factory.type is deprecated. Access the class directly ' + 'before passing it to createFactory.') : void 0;
+            lowPriorityWarning(false, 'Factory.type is deprecated. Access the class directly ' + 'before passing it to createFactory.');
             Object.defineProperty(this, 'type', {
               value: type
             });
@@ -6972,46 +7126,607 @@ var ReactElementValidator = {
     validatePropTypes(newElement);
     return newElement;
   }
-
 };
 
 module.exports = ReactElementValidator;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 55 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- * 
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  */
 
 
 
-var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
+// React 15.5 references this module, and assumes PropTypes are still callable in production.
+// Therefore we re-export development-only version with all the PropTypes checks here.
+// However if one is migrating to the `prop-types` npm library, they will go through the
+// `index.js` entry point, and it will branch depending on the environment.
+var factory = __webpack_require__(58);
+module.exports = function(isValidElement) {
+  // It is still allowed in 15.5.
+  var throwOnDirectAccess = false;
+  return factory(isValidElement, throwOnDirectAccess);
+};
 
-module.exports = ReactPropTypesSecret;
 
 /***/ }),
-/* 56 */
+/* 58 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+var emptyFunction = __webpack_require__(8);
+var invariant = __webpack_require__(1);
+var warning = __webpack_require__(2);
+var assign = __webpack_require__(4);
+
+var ReactPropTypesSecret = __webpack_require__(34);
+var checkPropTypes = __webpack_require__(100);
+
+module.exports = function(isValidElement, throwOnDirectAccess) {
+  /* global Symbol */
+  var ITERATOR_SYMBOL = typeof Symbol === 'function' && Symbol.iterator;
+  var FAUX_ITERATOR_SYMBOL = '@@iterator'; // Before Symbol spec.
+
+  /**
+   * Returns the iterator method function contained on the iterable object.
+   *
+   * Be sure to invoke the function with the iterable as context:
+   *
+   *     var iteratorFn = getIteratorFn(myIterable);
+   *     if (iteratorFn) {
+   *       var iterator = iteratorFn.call(myIterable);
+   *       ...
+   *     }
+   *
+   * @param {?object} maybeIterable
+   * @return {?function}
+   */
+  function getIteratorFn(maybeIterable) {
+    var iteratorFn = maybeIterable && (ITERATOR_SYMBOL && maybeIterable[ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL]);
+    if (typeof iteratorFn === 'function') {
+      return iteratorFn;
+    }
+  }
+
+  /**
+   * Collection of methods that allow declaration and validation of props that are
+   * supplied to React components. Example usage:
+   *
+   *   var Props = require('ReactPropTypes');
+   *   var MyArticle = React.createClass({
+   *     propTypes: {
+   *       // An optional string prop named "description".
+   *       description: Props.string,
+   *
+   *       // A required enum prop named "category".
+   *       category: Props.oneOf(['News','Photos']).isRequired,
+   *
+   *       // A prop named "dialog" that requires an instance of Dialog.
+   *       dialog: Props.instanceOf(Dialog).isRequired
+   *     },
+   *     render: function() { ... }
+   *   });
+   *
+   * A more formal specification of how these methods are used:
+   *
+   *   type := array|bool|func|object|number|string|oneOf([...])|instanceOf(...)
+   *   decl := ReactPropTypes.{type}(.isRequired)?
+   *
+   * Each and every declaration produces a function with the same signature. This
+   * allows the creation of custom validation functions. For example:
+   *
+   *  var MyLink = React.createClass({
+   *    propTypes: {
+   *      // An optional string or URI prop named "href".
+   *      href: function(props, propName, componentName) {
+   *        var propValue = props[propName];
+   *        if (propValue != null && typeof propValue !== 'string' &&
+   *            !(propValue instanceof URI)) {
+   *          return new Error(
+   *            'Expected a string or an URI for ' + propName + ' in ' +
+   *            componentName
+   *          );
+   *        }
+   *      }
+   *    },
+   *    render: function() {...}
+   *  });
+   *
+   * @internal
+   */
+
+  var ANONYMOUS = '<<anonymous>>';
+
+  // Important!
+  // Keep this list in sync with production version in `./factoryWithThrowingShims.js`.
+  var ReactPropTypes = {
+    array: createPrimitiveTypeChecker('array'),
+    bool: createPrimitiveTypeChecker('boolean'),
+    func: createPrimitiveTypeChecker('function'),
+    number: createPrimitiveTypeChecker('number'),
+    object: createPrimitiveTypeChecker('object'),
+    string: createPrimitiveTypeChecker('string'),
+    symbol: createPrimitiveTypeChecker('symbol'),
+
+    any: createAnyTypeChecker(),
+    arrayOf: createArrayOfTypeChecker,
+    element: createElementTypeChecker(),
+    instanceOf: createInstanceTypeChecker,
+    node: createNodeChecker(),
+    objectOf: createObjectOfTypeChecker,
+    oneOf: createEnumTypeChecker,
+    oneOfType: createUnionTypeChecker,
+    shape: createShapeTypeChecker,
+    exact: createStrictShapeTypeChecker,
+  };
+
+  /**
+   * inlined Object.is polyfill to avoid requiring consumers ship their own
+   * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is
+   */
+  /*eslint-disable no-self-compare*/
+  function is(x, y) {
+    // SameValue algorithm
+    if (x === y) {
+      // Steps 1-5, 7-10
+      // Steps 6.b-6.e: +0 != -0
+      return x !== 0 || 1 / x === 1 / y;
+    } else {
+      // Step 6.a: NaN == NaN
+      return x !== x && y !== y;
+    }
+  }
+  /*eslint-enable no-self-compare*/
+
+  /**
+   * We use an Error-like object for backward compatibility as people may call
+   * PropTypes directly and inspect their output. However, we don't use real
+   * Errors anymore. We don't inspect their stack anyway, and creating them
+   * is prohibitively expensive if they are created too often, such as what
+   * happens in oneOfType() for any type before the one that matched.
+   */
+  function PropTypeError(message) {
+    this.message = message;
+    this.stack = '';
+  }
+  // Make `instanceof Error` still work for returned errors.
+  PropTypeError.prototype = Error.prototype;
+
+  function createChainableTypeChecker(validate) {
+    if (process.env.NODE_ENV !== 'production') {
+      var manualPropTypeCallCache = {};
+      var manualPropTypeWarningCount = 0;
+    }
+    function checkType(isRequired, props, propName, componentName, location, propFullName, secret) {
+      componentName = componentName || ANONYMOUS;
+      propFullName = propFullName || propName;
+
+      if (secret !== ReactPropTypesSecret) {
+        if (throwOnDirectAccess) {
+          // New behavior only for users of `prop-types` package
+          invariant(
+            false,
+            'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
+            'Use `PropTypes.checkPropTypes()` to call them. ' +
+            'Read more at http://fb.me/use-check-prop-types'
+          );
+        } else if (process.env.NODE_ENV !== 'production' && typeof console !== 'undefined') {
+          // Old behavior for people using React.PropTypes
+          var cacheKey = componentName + ':' + propName;
+          if (
+            !manualPropTypeCallCache[cacheKey] &&
+            // Avoid spamming the console because they are often not actionable except for lib authors
+            manualPropTypeWarningCount < 3
+          ) {
+            warning(
+              false,
+              'You are manually calling a React.PropTypes validation ' +
+              'function for the `%s` prop on `%s`. This is deprecated ' +
+              'and will throw in the standalone `prop-types` package. ' +
+              'You may be seeing this warning due to a third-party PropTypes ' +
+              'library. See https://fb.me/react-warning-dont-call-proptypes ' + 'for details.',
+              propFullName,
+              componentName
+            );
+            manualPropTypeCallCache[cacheKey] = true;
+            manualPropTypeWarningCount++;
+          }
+        }
+      }
+      if (props[propName] == null) {
+        if (isRequired) {
+          if (props[propName] === null) {
+            return new PropTypeError('The ' + location + ' `' + propFullName + '` is marked as required ' + ('in `' + componentName + '`, but its value is `null`.'));
+          }
+          return new PropTypeError('The ' + location + ' `' + propFullName + '` is marked as required in ' + ('`' + componentName + '`, but its value is `undefined`.'));
+        }
+        return null;
+      } else {
+        return validate(props, propName, componentName, location, propFullName);
+      }
+    }
+
+    var chainedCheckType = checkType.bind(null, false);
+    chainedCheckType.isRequired = checkType.bind(null, true);
+
+    return chainedCheckType;
+  }
+
+  function createPrimitiveTypeChecker(expectedType) {
+    function validate(props, propName, componentName, location, propFullName, secret) {
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== expectedType) {
+        // `propValue` being instance of, say, date/regexp, pass the 'object'
+        // check, but we can offer a more precise error message here rather than
+        // 'of type `object`'.
+        var preciseType = getPreciseType(propValue);
+
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + preciseType + '` supplied to `' + componentName + '`, expected ') + ('`' + expectedType + '`.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createAnyTypeChecker() {
+    return createChainableTypeChecker(emptyFunction.thatReturnsNull);
+  }
+
+  function createArrayOfTypeChecker(typeChecker) {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (typeof typeChecker !== 'function') {
+        return new PropTypeError('Property `' + propFullName + '` of component `' + componentName + '` has invalid PropType notation inside arrayOf.');
+      }
+      var propValue = props[propName];
+      if (!Array.isArray(propValue)) {
+        var propType = getPropType(propValue);
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an array.'));
+      }
+      for (var i = 0; i < propValue.length; i++) {
+        var error = typeChecker(propValue, i, componentName, location, propFullName + '[' + i + ']', ReactPropTypesSecret);
+        if (error instanceof Error) {
+          return error;
+        }
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createElementTypeChecker() {
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      if (!isValidElement(propValue)) {
+        var propType = getPropType(propValue);
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected a single ReactElement.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createInstanceTypeChecker(expectedClass) {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (!(props[propName] instanceof expectedClass)) {
+        var expectedClassName = expectedClass.name || ANONYMOUS;
+        var actualClassName = getClassName(props[propName]);
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + actualClassName + '` supplied to `' + componentName + '`, expected ') + ('instance of `' + expectedClassName + '`.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createEnumTypeChecker(expectedValues) {
+    if (!Array.isArray(expectedValues)) {
+      process.env.NODE_ENV !== 'production' ? warning(false, 'Invalid argument supplied to oneOf, expected an instance of array.') : void 0;
+      return emptyFunction.thatReturnsNull;
+    }
+
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      for (var i = 0; i < expectedValues.length; i++) {
+        if (is(propValue, expectedValues[i])) {
+          return null;
+        }
+      }
+
+      var valuesString = JSON.stringify(expectedValues);
+      return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of value `' + propValue + '` ' + ('supplied to `' + componentName + '`, expected one of ' + valuesString + '.'));
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createObjectOfTypeChecker(typeChecker) {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (typeof typeChecker !== 'function') {
+        return new PropTypeError('Property `' + propFullName + '` of component `' + componentName + '` has invalid PropType notation inside objectOf.');
+      }
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== 'object') {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an object.'));
+      }
+      for (var key in propValue) {
+        if (propValue.hasOwnProperty(key)) {
+          var error = typeChecker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret);
+          if (error instanceof Error) {
+            return error;
+          }
+        }
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createUnionTypeChecker(arrayOfTypeCheckers) {
+    if (!Array.isArray(arrayOfTypeCheckers)) {
+      process.env.NODE_ENV !== 'production' ? warning(false, 'Invalid argument supplied to oneOfType, expected an instance of array.') : void 0;
+      return emptyFunction.thatReturnsNull;
+    }
+
+    for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
+      var checker = arrayOfTypeCheckers[i];
+      if (typeof checker !== 'function') {
+        warning(
+          false,
+          'Invalid argument supplied to oneOfType. Expected an array of check functions, but ' +
+          'received %s at index %s.',
+          getPostfixForTypeWarning(checker),
+          i
+        );
+        return emptyFunction.thatReturnsNull;
+      }
+    }
+
+    function validate(props, propName, componentName, location, propFullName) {
+      for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
+        var checker = arrayOfTypeCheckers[i];
+        if (checker(props, propName, componentName, location, propFullName, ReactPropTypesSecret) == null) {
+          return null;
+        }
+      }
+
+      return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`.'));
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createNodeChecker() {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (!isNode(props[propName])) {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`, expected a ReactNode.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createShapeTypeChecker(shapeTypes) {
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== 'object') {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
+      }
+      for (var key in shapeTypes) {
+        var checker = shapeTypes[key];
+        if (!checker) {
+          continue;
+        }
+        var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret);
+        if (error) {
+          return error;
+        }
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createStrictShapeTypeChecker(shapeTypes) {
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== 'object') {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
+      }
+      // We need to check all keys in case some are required but missing from
+      // props.
+      var allKeys = assign({}, props[propName], shapeTypes);
+      for (var key in allKeys) {
+        var checker = shapeTypes[key];
+        if (!checker) {
+          return new PropTypeError(
+            'Invalid ' + location + ' `' + propFullName + '` key `' + key + '` supplied to `' + componentName + '`.' +
+            '\nBad object: ' + JSON.stringify(props[propName], null, '  ') +
+            '\nValid keys: ' +  JSON.stringify(Object.keys(shapeTypes), null, '  ')
+          );
+        }
+        var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret);
+        if (error) {
+          return error;
+        }
+      }
+      return null;
+    }
+
+    return createChainableTypeChecker(validate);
+  }
+
+  function isNode(propValue) {
+    switch (typeof propValue) {
+      case 'number':
+      case 'string':
+      case 'undefined':
+        return true;
+      case 'boolean':
+        return !propValue;
+      case 'object':
+        if (Array.isArray(propValue)) {
+          return propValue.every(isNode);
+        }
+        if (propValue === null || isValidElement(propValue)) {
+          return true;
+        }
+
+        var iteratorFn = getIteratorFn(propValue);
+        if (iteratorFn) {
+          var iterator = iteratorFn.call(propValue);
+          var step;
+          if (iteratorFn !== propValue.entries) {
+            while (!(step = iterator.next()).done) {
+              if (!isNode(step.value)) {
+                return false;
+              }
+            }
+          } else {
+            // Iterator will provide entry [k,v] tuples rather than values.
+            while (!(step = iterator.next()).done) {
+              var entry = step.value;
+              if (entry) {
+                if (!isNode(entry[1])) {
+                  return false;
+                }
+              }
+            }
+          }
+        } else {
+          return false;
+        }
+
+        return true;
+      default:
+        return false;
+    }
+  }
+
+  function isSymbol(propType, propValue) {
+    // Native Symbol.
+    if (propType === 'symbol') {
+      return true;
+    }
+
+    // 19.4.3.5 Symbol.prototype[@@toStringTag] === 'Symbol'
+    if (propValue['@@toStringTag'] === 'Symbol') {
+      return true;
+    }
+
+    // Fallback for non-spec compliant Symbols which are polyfilled.
+    if (typeof Symbol === 'function' && propValue instanceof Symbol) {
+      return true;
+    }
+
+    return false;
+  }
+
+  // Equivalent of `typeof` but with special handling for array and regexp.
+  function getPropType(propValue) {
+    var propType = typeof propValue;
+    if (Array.isArray(propValue)) {
+      return 'array';
+    }
+    if (propValue instanceof RegExp) {
+      // Old webkits (at least until Android 4.0) return 'function' rather than
+      // 'object' for typeof a RegExp. We'll normalize this here so that /bla/
+      // passes PropTypes.object.
+      return 'object';
+    }
+    if (isSymbol(propType, propValue)) {
+      return 'symbol';
+    }
+    return propType;
+  }
+
+  // This handles more types than `getPropType`. Only used for error messages.
+  // See `createPrimitiveTypeChecker`.
+  function getPreciseType(propValue) {
+    if (typeof propValue === 'undefined' || propValue === null) {
+      return '' + propValue;
+    }
+    var propType = getPropType(propValue);
+    if (propType === 'object') {
+      if (propValue instanceof Date) {
+        return 'date';
+      } else if (propValue instanceof RegExp) {
+        return 'regexp';
+      }
+    }
+    return propType;
+  }
+
+  // Returns a string that is postfixed to a warning about an invalid type.
+  // For example, "undefined" or "of type array"
+  function getPostfixForTypeWarning(value) {
+    var type = getPreciseType(value);
+    switch (type) {
+      case 'array':
+      case 'object':
+        return 'an ' + type;
+      case 'boolean':
+      case 'date':
+      case 'regexp':
+        return 'a ' + type;
+      default:
+        return type;
+    }
+  }
+
+  // Returns class name of the object, if any.
+  function getClassName(propValue) {
+    if (!propValue.constructor || !propValue.constructor.name) {
+      return ANONYMOUS;
+    }
+    return propValue.constructor.name;
+  }
+
+  ReactPropTypes.checkPropTypes = checkPropTypes;
+  ReactPropTypes.PropTypes = ReactPropTypes;
+
+  return ReactPropTypes;
+};
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 59 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = __webpack_require__(105);
+
+
+/***/ }),
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2015-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2015-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -7024,17 +7739,15 @@ var ReactDOMComponentFlags = {
 module.exports = ReactDOMComponentFlags;
 
 /***/ }),
-/* 57 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2014-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2014-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  * 
  */
@@ -7088,17 +7801,15 @@ module.exports = accumulateInto;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 58 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  * 
  */
@@ -7124,17 +7835,15 @@ function forEachAccumulated(arr, cb, scope) {
 module.exports = forEachAccumulated;
 
 /***/ }),
-/* 59 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -7162,17 +7871,15 @@ function getTextContentAccessor() {
 module.exports = getTextContentAccessor;
 
 /***/ }),
-/* 60 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  * 
  */
@@ -7287,17 +7994,15 @@ module.exports = PooledClass.addPoolingTo(CallbackQueue);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 61 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  * 
  */
@@ -7314,17 +8019,141 @@ var ReactFeatureFlags = {
 module.exports = ReactFeatureFlags;
 
 /***/ }),
-/* 62 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
+
+
+
+var ReactDOMComponentTree = __webpack_require__(5);
+
+function isCheckable(elem) {
+  var type = elem.type;
+  var nodeName = elem.nodeName;
+  return nodeName && nodeName.toLowerCase() === 'input' && (type === 'checkbox' || type === 'radio');
+}
+
+function getTracker(inst) {
+  return inst._wrapperState.valueTracker;
+}
+
+function attachTracker(inst, tracker) {
+  inst._wrapperState.valueTracker = tracker;
+}
+
+function detachTracker(inst) {
+  inst._wrapperState.valueTracker = null;
+}
+
+function getValueFromNode(node) {
+  var value;
+  if (node) {
+    value = isCheckable(node) ? '' + node.checked : node.value;
+  }
+  return value;
+}
+
+var inputValueTracking = {
+  // exposed for testing
+  _getTrackerFromNode: function (node) {
+    return getTracker(ReactDOMComponentTree.getInstanceFromNode(node));
+  },
+
+
+  track: function (inst) {
+    if (getTracker(inst)) {
+      return;
+    }
+
+    var node = ReactDOMComponentTree.getNodeFromInstance(inst);
+    var valueField = isCheckable(node) ? 'checked' : 'value';
+    var descriptor = Object.getOwnPropertyDescriptor(node.constructor.prototype, valueField);
+
+    var currentValue = '' + node[valueField];
+
+    // if someone has already defined a value or Safari, then bail
+    // and don't track value will cause over reporting of changes,
+    // but it's better then a hard failure
+    // (needed for certain tests that spyOn input values and Safari)
+    if (node.hasOwnProperty(valueField) || typeof descriptor.get !== 'function' || typeof descriptor.set !== 'function') {
+      return;
+    }
+
+    Object.defineProperty(node, valueField, {
+      enumerable: descriptor.enumerable,
+      configurable: true,
+      get: function () {
+        return descriptor.get.call(this);
+      },
+      set: function (value) {
+        currentValue = '' + value;
+        descriptor.set.call(this, value);
+      }
+    });
+
+    attachTracker(inst, {
+      getValue: function () {
+        return currentValue;
+      },
+      setValue: function (value) {
+        currentValue = '' + value;
+      },
+      stopTracking: function () {
+        detachTracker(inst);
+        delete node[valueField];
+      }
+    });
+  },
+
+  updateValueIfChanged: function (inst) {
+    if (!inst) {
+      return false;
+    }
+    var tracker = getTracker(inst);
+
+    if (!tracker) {
+      inputValueTracking.track(inst);
+      return true;
+    }
+
+    var lastValue = tracker.getValue();
+    var nextValue = getValueFromNode(ReactDOMComponentTree.getNodeFromInstance(inst));
+
+    if (nextValue !== lastValue) {
+      tracker.setValue(nextValue);
+      return true;
+    }
+
+    return false;
+  },
+  stopTracking: function (inst) {
+    var tracker = getTracker(inst);
+    if (tracker) {
+      tracker.stopTracking();
+    }
+  }
+};
+
+module.exports = inputValueTracking;
+
+/***/ }),
+/* 67 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  * 
  */
@@ -7336,21 +8165,21 @@ module.exports = ReactFeatureFlags;
  */
 
 var supportedInputTypes = {
-  'color': true,
-  'date': true,
-  'datetime': true,
+  color: true,
+  date: true,
+  datetime: true,
   'datetime-local': true,
-  'email': true,
-  'month': true,
-  'number': true,
-  'password': true,
-  'range': true,
-  'search': true,
-  'tel': true,
-  'text': true,
-  'time': true,
-  'url': true,
-  'week': true
+  email: true,
+  month: true,
+  number: true,
+  password: true,
+  range: true,
+  search: true,
+  tel: true,
+  text: true,
+  time: true,
+  url: true,
+  week: true
 };
 
 function isTextInputElement(elem) {
@@ -7370,24 +8199,21 @@ function isTextInputElement(elem) {
 module.exports = isTextInputElement;
 
 /***/ }),
-/* 63 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
 
 
 var ViewportMetrics = {
-
   currentScrollLeft: 0,
 
   currentScrollTop: 0,
@@ -7396,31 +8222,28 @@ var ViewportMetrics = {
     ViewportMetrics.currentScrollLeft = scrollPosition.x;
     ViewportMetrics.currentScrollTop = scrollPosition.y;
   }
-
 };
 
 module.exports = ViewportMetrics;
 
 /***/ }),
-/* 64 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
 
 
 var ExecutionEnvironment = __webpack_require__(6);
-var escapeTextContentForBrowser = __webpack_require__(30);
-var setInnerHTML = __webpack_require__(29);
+var escapeTextContentForBrowser = __webpack_require__(31);
+var setInnerHTML = __webpack_require__(30);
 
 /**
  * Set the textContent property of a node, ensuring that whitespace is preserved
@@ -7459,7 +8282,7 @@ if (ExecutionEnvironment.canUseDOM) {
 module.exports = setTextContent;
 
 /***/ }),
-/* 65 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7489,17 +8312,15 @@ function focusNode(node) {
 module.exports = focusNode;
 
 /***/ }),
-/* 66 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -7518,6 +8339,7 @@ var isUnitlessNumber = {
   boxFlexGroup: true,
   boxOrdinalGroup: true,
   columnCount: true,
+  columns: true,
   flex: true,
   flexGrow: true,
   flexPositive: true,
@@ -7525,7 +8347,13 @@ var isUnitlessNumber = {
   flexNegative: true,
   flexOrder: true,
   gridRow: true,
+  gridRowEnd: true,
+  gridRowSpan: true,
+  gridRowStart: true,
   gridColumn: true,
+  gridColumnEnd: true,
+  gridColumnSpan: true,
+  gridColumnStart: true,
   fontWeight: true,
   lineClamp: true,
   lineHeight: true,
@@ -7642,27 +8470,25 @@ var CSSProperty = {
 module.exports = CSSProperty;
 
 /***/ }),
-/* 67 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
 
 
-var DOMProperty = __webpack_require__(13);
+var DOMProperty = __webpack_require__(14);
 var ReactDOMComponentTree = __webpack_require__(5);
-var ReactInstrumentation = __webpack_require__(8);
+var ReactInstrumentation = __webpack_require__(9);
 
-var quoteAttributeValueForBrowser = __webpack_require__(127);
+var quoteAttributeValueForBrowser = __webpack_require__(138);
 var warning = __webpack_require__(2);
 
 var VALID_ATTRIBUTE_NAME_REGEX = new RegExp('^[' + DOMProperty.ATTRIBUTE_NAME_START_CHAR + '][' + DOMProperty.ATTRIBUTE_NAME_CHAR + ']*$');
@@ -7693,7 +8519,6 @@ function shouldIgnoreValue(propertyInfo, value) {
  * Operations for dealing with DOM properties.
  */
 var DOMPropertyOperations = {
-
   /**
    * Creates markup for the ID property.
    *
@@ -7878,24 +8703,21 @@ var DOMPropertyOperations = {
       });
     }
   }
-
 };
 
 module.exports = DOMPropertyOperations;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 68 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  * 
  */
@@ -7907,17 +8729,15 @@ var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 module.exports = ReactPropTypesSecret;
 
 /***/ }),
-/* 69 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -7925,7 +8745,7 @@ module.exports = ReactPropTypesSecret;
 
 var _assign = __webpack_require__(4);
 
-var LinkedValueUtils = __webpack_require__(45);
+var LinkedValueUtils = __webpack_require__(43);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactUpdates = __webpack_require__(11);
 
@@ -8113,17 +8933,15 @@ module.exports = ReactDOMSelect;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 70 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -8132,11 +8950,11 @@ module.exports = ReactDOMSelect;
 var _prodInvariant = __webpack_require__(3),
     _assign = __webpack_require__(4);
 
-var ReactCompositeComponent = __webpack_require__(135);
-var ReactEmptyComponent = __webpack_require__(72);
-var ReactHostComponent = __webpack_require__(73);
+var ReactCompositeComponent = __webpack_require__(146);
+var ReactEmptyComponent = __webpack_require__(77);
+var ReactHostComponent = __webpack_require__(78);
 
-var getNextDebugID = __webpack_require__(138);
+var getNextDebugID = __webpack_require__(149);
 var invariant = __webpack_require__(1);
 var warning = __webpack_require__(2);
 
@@ -8144,9 +8962,6 @@ var warning = __webpack_require__(2);
 var ReactCompositeComponentWrapper = function (element) {
   this.construct(element);
 };
-_assign(ReactCompositeComponentWrapper.prototype, ReactCompositeComponent, {
-  _instantiateReactComponent: instantiateReactComponent
-});
 
 function getDeclarationErrorAddendum(owner) {
   if (owner) {
@@ -8189,7 +9004,7 @@ function instantiateReactComponent(node, shouldHaveDebugID) {
       var info = '';
       if (process.env.NODE_ENV !== 'production') {
         if (type === undefined || typeof type === 'object' && type !== null && Object.keys(type).length === 0) {
-          info += ' You likely forgot to export your component from the file ' + 'it\'s defined in.';
+          info += ' You likely forgot to export your component from the file ' + "it's defined in.";
         }
       }
       info += getDeclarationErrorAddendum(element._owner);
@@ -8243,21 +9058,23 @@ function instantiateReactComponent(node, shouldHaveDebugID) {
   return instance;
 }
 
+_assign(ReactCompositeComponentWrapper.prototype, ReactCompositeComponent, {
+  _instantiateReactComponent: instantiateReactComponent
+});
+
 module.exports = instantiateReactComponent;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 71 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  * 
  */
@@ -8293,17 +9110,15 @@ module.exports = ReactNodeTypes;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 72 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2014-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2014-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -8328,17 +9143,15 @@ ReactEmptyComponent.injection = ReactEmptyComponentInjection;
 module.exports = ReactEmptyComponent;
 
 /***/ }),
-/* 73 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2014-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2014-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -8402,17 +9215,15 @@ module.exports = ReactHostComponent;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 74 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -8421,11 +9232,11 @@ module.exports = ReactHostComponent;
 var _prodInvariant = __webpack_require__(3);
 
 var ReactCurrentOwner = __webpack_require__(10);
-var REACT_ELEMENT_TYPE = __webpack_require__(139);
+var REACT_ELEMENT_TYPE = __webpack_require__(150);
 
-var getIteratorFn = __webpack_require__(140);
+var getIteratorFn = __webpack_require__(151);
 var invariant = __webpack_require__(1);
-var KeyEscapeUtils = __webpack_require__(49);
+var KeyEscapeUtils = __webpack_require__(47);
 var warning = __webpack_require__(2);
 
 var SEPARATOR = '.';
@@ -8539,7 +9350,7 @@ function traverseAllChildrenImpl(children, nameSoFar, callback, traverseContext)
       if (process.env.NODE_ENV !== 'production') {
         addendum = ' If you meant to render a collection of children, use an array ' + 'instead or wrap the object using createFragment(object) from the ' + 'React add-ons.';
         if (children._isReactElement) {
-          addendum = ' It looks like you\'re using an element created by a different ' + 'version of React. Make sure to use only one copy of React.';
+          addendum = " It looks like you're using an element created by a different " + 'version of React. Make sure to use only one copy of React.';
         }
         if (ReactCurrentOwner.current) {
           var name = ReactCurrentOwner.current.getName();
@@ -8584,7 +9395,7 @@ module.exports = traverseAllChildren;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 75 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8599,7 +9410,7 @@ module.exports = traverseAllChildren;
  * @typechecks
  */
 
-var emptyFunction = __webpack_require__(9);
+var emptyFunction = __webpack_require__(8);
 
 /**
  * Upstream version of event listener. Does not take into account specific
@@ -8665,27 +9476,25 @@ module.exports = EventListener;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 76 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
 
 
-var ReactDOMSelection = __webpack_require__(152);
+var ReactDOMSelection = __webpack_require__(163);
 
-var containsNode = __webpack_require__(154);
-var focusNode = __webpack_require__(65);
-var getActiveElement = __webpack_require__(77);
+var containsNode = __webpack_require__(165);
+var focusNode = __webpack_require__(70);
+var getActiveElement = __webpack_require__(82);
 
 function isInDocument(node) {
   return containsNode(document.documentElement, node);
@@ -8698,7 +9507,6 @@ function isInDocument(node) {
  * Input selection module for React.
  */
 var ReactInputSelection = {
-
   hasSelectionCapabilities: function (elem) {
     var nodeName = elem && elem.nodeName && elem.nodeName.toLowerCase();
     return nodeName && (nodeName === 'input' && elem.type === 'text' || nodeName === 'textarea' || elem.contentEditable === 'true');
@@ -8794,7 +9602,7 @@ var ReactInputSelection = {
 module.exports = ReactInputSelection;
 
 /***/ }),
-/* 77 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8836,17 +9644,15 @@ function getActiveElement(doc) /*?DOMElement*/{
 module.exports = getActiveElement;
 
 /***/ }),
-/* 78 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -8854,27 +9660,27 @@ module.exports = getActiveElement;
 
 var _prodInvariant = __webpack_require__(3);
 
-var DOMLazyTree = __webpack_require__(19);
-var DOMProperty = __webpack_require__(13);
+var DOMLazyTree = __webpack_require__(20);
+var DOMProperty = __webpack_require__(14);
 var React = __webpack_require__(17);
-var ReactBrowserEventEmitter = __webpack_require__(31);
+var ReactBrowserEventEmitter = __webpack_require__(32);
 var ReactCurrentOwner = __webpack_require__(10);
 var ReactDOMComponentTree = __webpack_require__(5);
-var ReactDOMContainerInfo = __webpack_require__(169);
-var ReactDOMFeatureFlags = __webpack_require__(170);
-var ReactFeatureFlags = __webpack_require__(61);
-var ReactInstanceMap = __webpack_require__(25);
-var ReactInstrumentation = __webpack_require__(8);
-var ReactMarkupChecksum = __webpack_require__(171);
-var ReactReconciler = __webpack_require__(18);
-var ReactUpdateQueue = __webpack_require__(50);
+var ReactDOMContainerInfo = __webpack_require__(180);
+var ReactDOMFeatureFlags = __webpack_require__(181);
+var ReactFeatureFlags = __webpack_require__(65);
+var ReactInstanceMap = __webpack_require__(24);
+var ReactInstrumentation = __webpack_require__(9);
+var ReactMarkupChecksum = __webpack_require__(182);
+var ReactReconciler = __webpack_require__(19);
+var ReactUpdateQueue = __webpack_require__(48);
 var ReactUpdates = __webpack_require__(11);
 
-var emptyObject = __webpack_require__(21);
-var instantiateReactComponent = __webpack_require__(70);
+var emptyObject = __webpack_require__(26);
+var instantiateReactComponent = __webpack_require__(75);
 var invariant = __webpack_require__(1);
-var setInnerHTML = __webpack_require__(29);
-var shouldUpdateReactComponent = __webpack_require__(48);
+var setInnerHTML = __webpack_require__(30);
+var shouldUpdateReactComponent = __webpack_require__(46);
 var warning = __webpack_require__(2);
 
 var ATTR_NAME = DOMProperty.ID_ATTRIBUTE_NAME;
@@ -9098,7 +9904,6 @@ TopLevelWrapper.isReactTopLevelWrapper = true;
  * Inside of `container`, the first element rendered is the "reactRoot".
  */
 var ReactMount = {
-
   TopLevelWrapper: TopLevelWrapper,
 
   /**
@@ -9187,13 +9992,14 @@ var ReactMount = {
 
   _renderSubtreeIntoContainer: function (parentComponent, nextElement, container, callback) {
     ReactUpdateQueue.validateCallback(callback, 'ReactDOM.render');
-    !React.isValidElement(nextElement) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'ReactDOM.render(): Invalid component element.%s', typeof nextElement === 'string' ? ' Instead of passing a string like \'div\', pass ' + 'React.createElement(\'div\') or <div />.' : typeof nextElement === 'function' ? ' Instead of passing a class like Foo, pass ' + 'React.createElement(Foo) or <Foo />.' :
-    // Check if it quacks like an element
-    nextElement != null && nextElement.props !== undefined ? ' This may be caused by unintentionally loading two independent ' + 'copies of React.' : '') : _prodInvariant('39', typeof nextElement === 'string' ? ' Instead of passing a string like \'div\', pass ' + 'React.createElement(\'div\') or <div />.' : typeof nextElement === 'function' ? ' Instead of passing a class like Foo, pass ' + 'React.createElement(Foo) or <Foo />.' : nextElement != null && nextElement.props !== undefined ? ' This may be caused by unintentionally loading two independent ' + 'copies of React.' : '') : void 0;
+    !React.isValidElement(nextElement) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'ReactDOM.render(): Invalid component element.%s', typeof nextElement === 'string' ? " Instead of passing a string like 'div', pass " + "React.createElement('div') or <div />." : typeof nextElement === 'function' ? ' Instead of passing a class like Foo, pass ' + 'React.createElement(Foo) or <Foo />.' : // Check if it quacks like an element
+    nextElement != null && nextElement.props !== undefined ? ' This may be caused by unintentionally loading two independent ' + 'copies of React.' : '') : _prodInvariant('39', typeof nextElement === 'string' ? " Instead of passing a string like 'div', pass " + "React.createElement('div') or <div />." : typeof nextElement === 'function' ? ' Instead of passing a class like Foo, pass ' + 'React.createElement(Foo) or <Foo />.' : nextElement != null && nextElement.props !== undefined ? ' This may be caused by unintentionally loading two independent ' + 'copies of React.' : '') : void 0;
 
     process.env.NODE_ENV !== 'production' ? warning(!container || !container.tagName || container.tagName.toUpperCase() !== 'BODY', 'render(): Rendering components directly into document.body is ' + 'discouraged, since its children are often manipulated by third-party ' + 'scripts and browser extensions. This may lead to subtle ' + 'reconciliation issues. Try rendering into a container element created ' + 'for your app.') : void 0;
 
-    var nextWrappedElement = React.createElement(TopLevelWrapper, { child: nextElement });
+    var nextWrappedElement = React.createElement(TopLevelWrapper, {
+      child: nextElement
+    });
 
     var nextContext;
     if (parentComponent) {
@@ -9282,7 +10088,7 @@ var ReactMount = {
     !isValidContainer(container) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'unmountComponentAtNode(...): Target container is not a DOM element.') : _prodInvariant('40') : void 0;
 
     if (process.env.NODE_ENV !== 'production') {
-      process.env.NODE_ENV !== 'production' ? warning(!nodeIsRenderedByOtherInstance(container), 'unmountComponentAtNode(): The node you\'re attempting to unmount ' + 'was rendered by another copy of React.') : void 0;
+      process.env.NODE_ENV !== 'production' ? warning(!nodeIsRenderedByOtherInstance(container), "unmountComponentAtNode(): The node you're attempting to unmount " + 'was rendered by another copy of React.') : void 0;
     }
 
     var prevComponent = getTopLevelWrapperInContainer(container);
@@ -9295,7 +10101,7 @@ var ReactMount = {
       var isContainerReactRoot = container.nodeType === 1 && container.hasAttribute(ROOT_ATTR_NAME);
 
       if (process.env.NODE_ENV !== 'production') {
-        process.env.NODE_ENV !== 'production' ? warning(!containerHasNonRootReactChild, 'unmountComponentAtNode(): The node you\'re attempting to unmount ' + 'was rendered by React and is not a top-level container. %s', isContainerReactRoot ? 'You may have accidentally passed in a React root node instead ' + 'of its container.' : 'Instead, have the parent component update its state and ' + 'rerender in order to remove this component.') : void 0;
+        process.env.NODE_ENV !== 'production' ? warning(!containerHasNonRootReactChild, "unmountComponentAtNode(): The node you're attempting to unmount " + 'was rendered by React and is not a top-level container. %s', isContainerReactRoot ? 'You may have accidentally passed in a React root node instead ' + 'of its container.' : 'Instead, have the parent component update its state and ' + 'rerender in order to remove this component.') : void 0;
       }
 
       return false;
@@ -9380,23 +10186,21 @@ module.exports = ReactMount;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 79 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
 
 
-var ReactNodeTypes = __webpack_require__(71);
+var ReactNodeTypes = __webpack_require__(76);
 
 function getHostComponentFromComposite(inst) {
   var type;
@@ -9415,99 +10219,295 @@ function getHostComponentFromComposite(inst) {
 module.exports = getHostComponentFromComposite;
 
 /***/ }),
-/* 80 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//DB is required in this one file
-//GetLS simply retrieves DB
-const dictDB = __webpack_require__(183);
-
-//PUT (update/modify)
-
-//DELETE (clear LS completely)
-const clearLS = () => {
-    localStorage.clear();
-};
-/* harmony export (immutable) */ __webpack_exports__["clearLS"] = clearLS;
-
-
-//POST (create)
-const setLS = () => {
-    let dictDBString = JSON.stringify(dictDB);
-    //defaultkey for DB is "dictionaryDB";
-    const dbKey = "dictionaryDB";
-    localStorage.setItem(dbKey, dictDBString);
-};
-/* harmony export (immutable) */ __webpack_exports__["setLS"] = setLS;
-
-
-//GET (read)
-const getLS = () => {
-    //retrieves & places LSDB onto variable
-    const retrievedDB = localStorage.getItem("dictionaryDB");
-    const parsedResult = JSON.parse(retrievedDB);
-    // (parsed)
-    return parsedResult;
-};
-/* harmony export (immutable) */ __webpack_exports__["getLS"] = getLS;
-
-
-const getPartialLS = (lower, upper) => {
-    const retrievedDB = localStorage.getItem("dictionaryDB");
-    const parsedResult = JSON.parse(retrievedDB);
-    const partialArray = parsedResult.filter((item, idx) => idx >= lower && idx <= upper);
-    return partialArray;
-};
-/* harmony export (immutable) */ __webpack_exports__["getPartialLS"] = getPartialLS;
-
-
-const ctrl = callback => {
-    // console.log("ctr ran with: ", arguments[0])
-    return callback(callback);
-};
-/* harmony export (immutable) */ __webpack_exports__["ctrl"] = ctrl;
-
-
-/***/ }),
-/* 81 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var React = __webpack_require__(20);
-var ReactDOM = __webpack_require__(93);
-const Landing = __webpack_require__(179);
+/* WEBPACK VAR INJECTION */(function(process) {/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 
-const utils = __webpack_require__(80);
+if (process.env.NODE_ENV !== 'production') {
+  var REACT_ELEMENT_TYPE = (typeof Symbol === 'function' &&
+    Symbol.for &&
+    Symbol.for('react.element')) ||
+    0xeac7;
+
+  var isValidElement = function(object) {
+    return typeof object === 'object' &&
+      object !== null &&
+      object.$$typeof === REACT_ELEMENT_TYPE;
+  };
+
+  // By explicitly using `prop-types` you are opting into new development behavior.
+  // http://fb.me/prop-types-in-prod
+  var throwOnDirectAccess = true;
+  module.exports = __webpack_require__(58)(isValidElement, throwOnDirectAccess);
+} else {
+  // By explicitly using `prop-types` you are opting into new production behavior.
+  // http://fb.me/prop-types-in-prod
+  module.exports = __webpack_require__(200)();
+}
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 86 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = findTabbableDescendants;
+/*!
+ * Adapted from jQuery UI core
+ *
+ * http://jqueryui.com
+ *
+ * Copyright 2014 jQuery Foundation and other contributors
+ * Released under the MIT license.
+ * http://jquery.org/license
+ *
+ * http://api.jqueryui.com/category/ui-core/
+ */
+
+var tabbableNode = /input|select|textarea|button|object/;
+
+function hidden(el) {
+  return el.offsetWidth <= 0 && el.offsetHeight <= 0 || el.style.display === 'none';
+}
+
+function visible(element) {
+  var parentElement = element;
+  while (parentElement) {
+    if (parentElement === document.body) break;
+    if (hidden(parentElement)) return false;
+    parentElement = parentElement.parentNode;
+  }
+  return true;
+}
+
+function focusable(element, isTabIndexNotNaN) {
+  var nodeName = element.nodeName.toLowerCase();
+  var res = tabbableNode.test(nodeName) && !element.disabled || (nodeName === "a" ? element.href || isTabIndexNotNaN : isTabIndexNotNaN);
+  return res && visible(element);
+}
+
+function tabbable(element) {
+  var tabIndex = element.getAttribute('tabindex');
+  if (tabIndex === null) tabIndex = undefined;
+  var isTabIndexNaN = isNaN(tabIndex);
+  return (isTabIndexNaN || tabIndex >= 0) && focusable(element, !isTabIndexNaN);
+}
+
+function findTabbableDescendants(element) {
+  return [].slice.call(element.querySelectorAll('*'), 0).filter(tabbable);
+}
+
+/***/ }),
+/* 87 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.assertNodeList = assertNodeList;
+exports.setElement = setElement;
+exports.tryForceFallback = tryForceFallback;
+exports.validateElement = validateElement;
+exports.hide = hide;
+exports.show = show;
+exports.documentNotReadyOrSSRTesting = documentNotReadyOrSSRTesting;
+exports.resetForTesting = resetForTesting;
+var globalElement = null;
+
+function assertNodeList(nodeList, selector) {
+  if (!nodeList || !nodeList.length) {
+    throw new Error('react-modal: No elements were found for selector ' + selector + '.');
+  }
+}
+
+function setElement(element) {
+  var useElement = element;
+  if (typeof useElement === 'string') {
+    var el = document.querySelectorAll(useElement);
+    assertNodeList(el, useElement);
+    useElement = 'length' in el ? el[0] : el;
+  }
+  globalElement = useElement || globalElement;
+  return globalElement;
+}
+
+function tryForceFallback() {
+  if (document && document.body) {
+    // force fallback to document.body
+    setElement(document.body);
+    return true;
+  }
+  return false;
+}
+
+function validateElement(appElement) {
+  if (!appElement && !globalElement && !tryForceFallback()) {
+    throw new Error(['react-modal: Cannot fallback to `document.body`, because it\'s not ready or available.', 'If you are doing server-side rendering, use this function to defined an element.', '`Modal.setAppElement(el)` to make this accessible']);
+  }
+}
+
+function hide(appElement) {
+  validateElement(appElement);
+  (appElement || globalElement).setAttribute('aria-hidden', 'true');
+}
+
+function show(appElement) {
+  validateElement(appElement);
+  (appElement || globalElement).removeAttribute('aria-hidden');
+}
+
+function documentNotReadyOrSSRTesting() {
+  globalElement = null;
+}
+
+function resetForTesting() {
+  globalElement = document.body;
+}
+
+/***/ }),
+/* 88 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.get = get;
+exports.add = add;
+exports.remove = remove;
+exports.totalCount = totalCount;
+var classListMap = {};
+
+function get() {
+  return classListMap;
+}
+
+function add(bodyClass) {
+  // Set variable and default if none
+  if (!classListMap[bodyClass]) {
+    classListMap[bodyClass] = 0;
+  }
+  classListMap[bodyClass] += 1;
+  return bodyClass;
+}
+
+function remove(bodyClass) {
+  if (classListMap[bodyClass]) {
+    classListMap[bodyClass] -= 1;
+  }
+  return bodyClass;
+}
+
+function totalCount() {
+  return Object.keys(classListMap).reduce(function (acc, curr) {
+    return acc + classListMap[curr];
+  }, 0);
+}
+
+/***/ }),
+/* 89 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _exenv = __webpack_require__(205);
+
+var _exenv2 = _interopRequireDefault(_exenv);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var EE = _exenv2.default;
+
+var SafeHTMLElement = EE.canUseDOM ? window.HTMLElement : {};
+
+exports.default = SafeHTMLElement;
+
+/***/ }),
+/* 90 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var React = __webpack_require__(12);
+var ReactDOM = __webpack_require__(59);
+const Landing = __webpack_require__(190);
+
+const utils = __webpack_require__(51);
+// utils.ctrl(utils.getPartialLS, 4, 14 );
+
 /*setsDB*/
-utils.ctrl(utils.setLS);
+// utils.ctrl(utils.setLS);
 /*getsDB*/
-const dictDB = utils.ctrl(utils.getLS);
+// const dictDB = utils.ctrl(utils.getLS);
+const dictDB = [];
 
 ReactDOM.render(React.createElement(Landing, { database: dictDB }), document.getElementById('app'));
 
+/*
+
+
+let add = function(a, b) {
+  console.log("add")
+  return a + b;
+}
+let sub = function(a, b) {
+  console.log("sub")
+  return a - b;
+}
+let mult = function(a, b) {
+  console.log("mult")
+  return a * b;
+}
+let calc = function(callback, a, b ) {
+  console.log("calc")
+  return callback(a, b);
+}
+
+calc(mult, 2, 3);
+
+
+*/
+
 /***/ }),
-/* 82 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
 
 
-var PooledClass = __webpack_require__(83);
+var PooledClass = __webpack_require__(92);
 var ReactElement = __webpack_require__(15);
 
-var emptyFunction = __webpack_require__(9);
-var traverseAllChildren = __webpack_require__(84);
+var emptyFunction = __webpack_require__(8);
+var traverseAllChildren = __webpack_require__(93);
 
 var twoArgumentPooler = PooledClass.twoArgumentPooler;
 var fourArgumentPooler = PooledClass.fourArgumentPooler;
@@ -9683,24 +10683,22 @@ var ReactChildren = {
 module.exports = ReactChildren;
 
 /***/ }),
-/* 83 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  * 
  */
 
 
 
-var _prodInvariant = __webpack_require__(14);
+var _prodInvariant = __webpack_require__(18);
 
 var invariant = __webpack_require__(1);
 
@@ -9801,30 +10799,28 @@ module.exports = PooledClass;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 84 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
 
 
-var _prodInvariant = __webpack_require__(14);
+var _prodInvariant = __webpack_require__(18);
 
 var ReactCurrentOwner = __webpack_require__(10);
-var REACT_ELEMENT_TYPE = __webpack_require__(53);
+var REACT_ELEMENT_TYPE = __webpack_require__(54);
 
-var getIteratorFn = __webpack_require__(33);
+var getIteratorFn = __webpack_require__(55);
 var invariant = __webpack_require__(1);
-var KeyEscapeUtils = __webpack_require__(85);
+var KeyEscapeUtils = __webpack_require__(94);
 var warning = __webpack_require__(2);
 
 var SEPARATOR = '.';
@@ -9938,7 +10934,7 @@ function traverseAllChildrenImpl(children, nameSoFar, callback, traverseContext)
       if (process.env.NODE_ENV !== 'production') {
         addendum = ' If you meant to render a collection of children, use an array ' + 'instead or wrap the object using createFragment(object) from the ' + 'React add-ons.';
         if (children._isReactElement) {
-          addendum = ' It looks like you\'re using an element created by a different ' + 'version of React. Make sure to use only one copy of React.';
+          addendum = " It looks like you're using an element created by a different " + 'version of React. Make sure to use only one copy of React.';
         }
         if (ReactCurrentOwner.current) {
           var name = ReactCurrentOwner.current.getName();
@@ -9983,17 +10979,15 @@ module.exports = traverseAllChildren;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 85 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  * 
  */
@@ -10047,787 +11041,15 @@ var KeyEscapeUtils = {
 module.exports = KeyEscapeUtils;
 
 /***/ }),
-/* 86 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- */
-
-
-
-var _assign = __webpack_require__(4);
-
-var ReactComponent = __webpack_require__(34);
-var ReactNoopUpdateQueue = __webpack_require__(35);
-
-var emptyObject = __webpack_require__(21);
-
-/**
- * Base class helpers for the updating state of a component.
- */
-function ReactPureComponent(props, context, updater) {
-  // Duplicated from ReactComponent.
-  this.props = props;
-  this.context = context;
-  this.refs = emptyObject;
-  // We initialize the default updater but the real one gets injected by the
-  // renderer.
-  this.updater = updater || ReactNoopUpdateQueue;
-}
-
-function ComponentDummy() {}
-ComponentDummy.prototype = ReactComponent.prototype;
-ReactPureComponent.prototype = new ComponentDummy();
-ReactPureComponent.prototype.constructor = ReactPureComponent;
-// Avoid an extra prototype jump for these methods.
-_assign(ReactPureComponent.prototype, ReactComponent.prototype);
-ReactPureComponent.prototype.isPureReactComponent = true;
-
-module.exports = ReactPureComponent;
-
-/***/ }),
-/* 87 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- */
-
-
-
-var _prodInvariant = __webpack_require__(14),
-    _assign = __webpack_require__(4);
-
-var ReactComponent = __webpack_require__(34);
-var ReactElement = __webpack_require__(15);
-var ReactPropTypeLocationNames = __webpack_require__(36);
-var ReactNoopUpdateQueue = __webpack_require__(35);
-
-var emptyObject = __webpack_require__(21);
-var invariant = __webpack_require__(1);
-var warning = __webpack_require__(2);
-
-var MIXINS_KEY = 'mixins';
-
-// Helper function to allow the creation of anonymous functions which do not
-// have .name set to the name of the variable being assigned to.
-function identity(fn) {
-  return fn;
-}
-
-/**
- * Policies that describe methods in `ReactClassInterface`.
- */
-
-
-var injectedMixins = [];
-
-/**
- * Composite components are higher-level components that compose other composite
- * or host components.
- *
- * To create a new type of `ReactClass`, pass a specification of
- * your new class to `React.createClass`. The only requirement of your class
- * specification is that you implement a `render` method.
- *
- *   var MyComponent = React.createClass({
- *     render: function() {
- *       return <div>Hello World</div>;
- *     }
- *   });
- *
- * The class specification supports a specific protocol of methods that have
- * special meaning (e.g. `render`). See `ReactClassInterface` for
- * more the comprehensive protocol. Any other properties and methods in the
- * class specification will be available on the prototype.
- *
- * @interface ReactClassInterface
- * @internal
- */
-var ReactClassInterface = {
-
-  /**
-   * An array of Mixin objects to include when defining your component.
-   *
-   * @type {array}
-   * @optional
-   */
-  mixins: 'DEFINE_MANY',
-
-  /**
-   * An object containing properties and methods that should be defined on
-   * the component's constructor instead of its prototype (static methods).
-   *
-   * @type {object}
-   * @optional
-   */
-  statics: 'DEFINE_MANY',
-
-  /**
-   * Definition of prop types for this component.
-   *
-   * @type {object}
-   * @optional
-   */
-  propTypes: 'DEFINE_MANY',
-
-  /**
-   * Definition of context types for this component.
-   *
-   * @type {object}
-   * @optional
-   */
-  contextTypes: 'DEFINE_MANY',
-
-  /**
-   * Definition of context types this component sets for its children.
-   *
-   * @type {object}
-   * @optional
-   */
-  childContextTypes: 'DEFINE_MANY',
-
-  // ==== Definition methods ====
-
-  /**
-   * Invoked when the component is mounted. Values in the mapping will be set on
-   * `this.props` if that prop is not specified (i.e. using an `in` check).
-   *
-   * This method is invoked before `getInitialState` and therefore cannot rely
-   * on `this.state` or use `this.setState`.
-   *
-   * @return {object}
-   * @optional
-   */
-  getDefaultProps: 'DEFINE_MANY_MERGED',
-
-  /**
-   * Invoked once before the component is mounted. The return value will be used
-   * as the initial value of `this.state`.
-   *
-   *   getInitialState: function() {
-   *     return {
-   *       isOn: false,
-   *       fooBaz: new BazFoo()
-   *     }
-   *   }
-   *
-   * @return {object}
-   * @optional
-   */
-  getInitialState: 'DEFINE_MANY_MERGED',
-
-  /**
-   * @return {object}
-   * @optional
-   */
-  getChildContext: 'DEFINE_MANY_MERGED',
-
-  /**
-   * Uses props from `this.props` and state from `this.state` to render the
-   * structure of the component.
-   *
-   * No guarantees are made about when or how often this method is invoked, so
-   * it must not have side effects.
-   *
-   *   render: function() {
-   *     var name = this.props.name;
-   *     return <div>Hello, {name}!</div>;
-   *   }
-   *
-   * @return {ReactComponent}
-   * @nosideeffects
-   * @required
-   */
-  render: 'DEFINE_ONCE',
-
-  // ==== Delegate methods ====
-
-  /**
-   * Invoked when the component is initially created and about to be mounted.
-   * This may have side effects, but any external subscriptions or data created
-   * by this method must be cleaned up in `componentWillUnmount`.
-   *
-   * @optional
-   */
-  componentWillMount: 'DEFINE_MANY',
-
-  /**
-   * Invoked when the component has been mounted and has a DOM representation.
-   * However, there is no guarantee that the DOM node is in the document.
-   *
-   * Use this as an opportunity to operate on the DOM when the component has
-   * been mounted (initialized and rendered) for the first time.
-   *
-   * @param {DOMElement} rootNode DOM element representing the component.
-   * @optional
-   */
-  componentDidMount: 'DEFINE_MANY',
-
-  /**
-   * Invoked before the component receives new props.
-   *
-   * Use this as an opportunity to react to a prop transition by updating the
-   * state using `this.setState`. Current props are accessed via `this.props`.
-   *
-   *   componentWillReceiveProps: function(nextProps, nextContext) {
-   *     this.setState({
-   *       likesIncreasing: nextProps.likeCount > this.props.likeCount
-   *     });
-   *   }
-   *
-   * NOTE: There is no equivalent `componentWillReceiveState`. An incoming prop
-   * transition may cause a state change, but the opposite is not true. If you
-   * need it, you are probably looking for `componentWillUpdate`.
-   *
-   * @param {object} nextProps
-   * @optional
-   */
-  componentWillReceiveProps: 'DEFINE_MANY',
-
-  /**
-   * Invoked while deciding if the component should be updated as a result of
-   * receiving new props, state and/or context.
-   *
-   * Use this as an opportunity to `return false` when you're certain that the
-   * transition to the new props/state/context will not require a component
-   * update.
-   *
-   *   shouldComponentUpdate: function(nextProps, nextState, nextContext) {
-   *     return !equal(nextProps, this.props) ||
-   *       !equal(nextState, this.state) ||
-   *       !equal(nextContext, this.context);
-   *   }
-   *
-   * @param {object} nextProps
-   * @param {?object} nextState
-   * @param {?object} nextContext
-   * @return {boolean} True if the component should update.
-   * @optional
-   */
-  shouldComponentUpdate: 'DEFINE_ONCE',
-
-  /**
-   * Invoked when the component is about to update due to a transition from
-   * `this.props`, `this.state` and `this.context` to `nextProps`, `nextState`
-   * and `nextContext`.
-   *
-   * Use this as an opportunity to perform preparation before an update occurs.
-   *
-   * NOTE: You **cannot** use `this.setState()` in this method.
-   *
-   * @param {object} nextProps
-   * @param {?object} nextState
-   * @param {?object} nextContext
-   * @param {ReactReconcileTransaction} transaction
-   * @optional
-   */
-  componentWillUpdate: 'DEFINE_MANY',
-
-  /**
-   * Invoked when the component's DOM representation has been updated.
-   *
-   * Use this as an opportunity to operate on the DOM when the component has
-   * been updated.
-   *
-   * @param {object} prevProps
-   * @param {?object} prevState
-   * @param {?object} prevContext
-   * @param {DOMElement} rootNode DOM element representing the component.
-   * @optional
-   */
-  componentDidUpdate: 'DEFINE_MANY',
-
-  /**
-   * Invoked when the component is about to be removed from its parent and have
-   * its DOM representation destroyed.
-   *
-   * Use this as an opportunity to deallocate any external resources.
-   *
-   * NOTE: There is no `componentDidUnmount` since your component will have been
-   * destroyed by that point.
-   *
-   * @optional
-   */
-  componentWillUnmount: 'DEFINE_MANY',
-
-  // ==== Advanced methods ====
-
-  /**
-   * Updates the component's currently mounted DOM representation.
-   *
-   * By default, this implements React's rendering and reconciliation algorithm.
-   * Sophisticated clients may wish to override this.
-   *
-   * @param {ReactReconcileTransaction} transaction
-   * @internal
-   * @overridable
-   */
-  updateComponent: 'OVERRIDE_BASE'
-
-};
-
-/**
- * Mapping from class specification keys to special processing functions.
- *
- * Although these are declared like instance properties in the specification
- * when defining classes using `React.createClass`, they are actually static
- * and are accessible on the constructor instead of the prototype. Despite
- * being static, they must be defined outside of the "statics" key under
- * which all other static methods are defined.
- */
-var RESERVED_SPEC_KEYS = {
-  displayName: function (Constructor, displayName) {
-    Constructor.displayName = displayName;
-  },
-  mixins: function (Constructor, mixins) {
-    if (mixins) {
-      for (var i = 0; i < mixins.length; i++) {
-        mixSpecIntoComponent(Constructor, mixins[i]);
-      }
-    }
-  },
-  childContextTypes: function (Constructor, childContextTypes) {
-    if (process.env.NODE_ENV !== 'production') {
-      validateTypeDef(Constructor, childContextTypes, 'childContext');
-    }
-    Constructor.childContextTypes = _assign({}, Constructor.childContextTypes, childContextTypes);
-  },
-  contextTypes: function (Constructor, contextTypes) {
-    if (process.env.NODE_ENV !== 'production') {
-      validateTypeDef(Constructor, contextTypes, 'context');
-    }
-    Constructor.contextTypes = _assign({}, Constructor.contextTypes, contextTypes);
-  },
-  /**
-   * Special case getDefaultProps which should move into statics but requires
-   * automatic merging.
-   */
-  getDefaultProps: function (Constructor, getDefaultProps) {
-    if (Constructor.getDefaultProps) {
-      Constructor.getDefaultProps = createMergedResultFunction(Constructor.getDefaultProps, getDefaultProps);
-    } else {
-      Constructor.getDefaultProps = getDefaultProps;
-    }
-  },
-  propTypes: function (Constructor, propTypes) {
-    if (process.env.NODE_ENV !== 'production') {
-      validateTypeDef(Constructor, propTypes, 'prop');
-    }
-    Constructor.propTypes = _assign({}, Constructor.propTypes, propTypes);
-  },
-  statics: function (Constructor, statics) {
-    mixStaticSpecIntoComponent(Constructor, statics);
-  },
-  autobind: function () {} };
-
-function validateTypeDef(Constructor, typeDef, location) {
-  for (var propName in typeDef) {
-    if (typeDef.hasOwnProperty(propName)) {
-      // use a warning instead of an invariant so components
-      // don't show up in prod but only in __DEV__
-      process.env.NODE_ENV !== 'production' ? warning(typeof typeDef[propName] === 'function', '%s: %s type `%s` is invalid; it must be a function, usually from ' + 'React.PropTypes.', Constructor.displayName || 'ReactClass', ReactPropTypeLocationNames[location], propName) : void 0;
-    }
-  }
-}
-
-function validateMethodOverride(isAlreadyDefined, name) {
-  var specPolicy = ReactClassInterface.hasOwnProperty(name) ? ReactClassInterface[name] : null;
-
-  // Disallow overriding of base class methods unless explicitly allowed.
-  if (ReactClassMixin.hasOwnProperty(name)) {
-    !(specPolicy === 'OVERRIDE_BASE') ? process.env.NODE_ENV !== 'production' ? invariant(false, 'ReactClassInterface: You are attempting to override `%s` from your class specification. Ensure that your method names do not overlap with React methods.', name) : _prodInvariant('73', name) : void 0;
-  }
-
-  // Disallow defining methods more than once unless explicitly allowed.
-  if (isAlreadyDefined) {
-    !(specPolicy === 'DEFINE_MANY' || specPolicy === 'DEFINE_MANY_MERGED') ? process.env.NODE_ENV !== 'production' ? invariant(false, 'ReactClassInterface: You are attempting to define `%s` on your component more than once. This conflict may be due to a mixin.', name) : _prodInvariant('74', name) : void 0;
-  }
-}
-
-/**
- * Mixin helper which handles policy validation and reserved
- * specification keys when building React classes.
- */
-function mixSpecIntoComponent(Constructor, spec) {
-  if (!spec) {
-    if (process.env.NODE_ENV !== 'production') {
-      var typeofSpec = typeof spec;
-      var isMixinValid = typeofSpec === 'object' && spec !== null;
-
-      process.env.NODE_ENV !== 'production' ? warning(isMixinValid, '%s: You\'re attempting to include a mixin that is either null ' + 'or not an object. Check the mixins included by the component, ' + 'as well as any mixins they include themselves. ' + 'Expected object but got %s.', Constructor.displayName || 'ReactClass', spec === null ? null : typeofSpec) : void 0;
-    }
-
-    return;
-  }
-
-  !(typeof spec !== 'function') ? process.env.NODE_ENV !== 'production' ? invariant(false, 'ReactClass: You\'re attempting to use a component class or function as a mixin. Instead, just use a regular object.') : _prodInvariant('75') : void 0;
-  !!ReactElement.isValidElement(spec) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'ReactClass: You\'re attempting to use a component as a mixin. Instead, just use a regular object.') : _prodInvariant('76') : void 0;
-
-  var proto = Constructor.prototype;
-  var autoBindPairs = proto.__reactAutoBindPairs;
-
-  // By handling mixins before any other properties, we ensure the same
-  // chaining order is applied to methods with DEFINE_MANY policy, whether
-  // mixins are listed before or after these methods in the spec.
-  if (spec.hasOwnProperty(MIXINS_KEY)) {
-    RESERVED_SPEC_KEYS.mixins(Constructor, spec.mixins);
-  }
-
-  for (var name in spec) {
-    if (!spec.hasOwnProperty(name)) {
-      continue;
-    }
-
-    if (name === MIXINS_KEY) {
-      // We have already handled mixins in a special case above.
-      continue;
-    }
-
-    var property = spec[name];
-    var isAlreadyDefined = proto.hasOwnProperty(name);
-    validateMethodOverride(isAlreadyDefined, name);
-
-    if (RESERVED_SPEC_KEYS.hasOwnProperty(name)) {
-      RESERVED_SPEC_KEYS[name](Constructor, property);
-    } else {
-      // Setup methods on prototype:
-      // The following member methods should not be automatically bound:
-      // 1. Expected ReactClass methods (in the "interface").
-      // 2. Overridden methods (that were mixed in).
-      var isReactClassMethod = ReactClassInterface.hasOwnProperty(name);
-      var isFunction = typeof property === 'function';
-      var shouldAutoBind = isFunction && !isReactClassMethod && !isAlreadyDefined && spec.autobind !== false;
-
-      if (shouldAutoBind) {
-        autoBindPairs.push(name, property);
-        proto[name] = property;
-      } else {
-        if (isAlreadyDefined) {
-          var specPolicy = ReactClassInterface[name];
-
-          // These cases should already be caught by validateMethodOverride.
-          !(isReactClassMethod && (specPolicy === 'DEFINE_MANY_MERGED' || specPolicy === 'DEFINE_MANY')) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'ReactClass: Unexpected spec policy %s for key %s when mixing in component specs.', specPolicy, name) : _prodInvariant('77', specPolicy, name) : void 0;
-
-          // For methods which are defined more than once, call the existing
-          // methods before calling the new property, merging if appropriate.
-          if (specPolicy === 'DEFINE_MANY_MERGED') {
-            proto[name] = createMergedResultFunction(proto[name], property);
-          } else if (specPolicy === 'DEFINE_MANY') {
-            proto[name] = createChainedFunction(proto[name], property);
-          }
-        } else {
-          proto[name] = property;
-          if (process.env.NODE_ENV !== 'production') {
-            // Add verbose displayName to the function, which helps when looking
-            // at profiling tools.
-            if (typeof property === 'function' && spec.displayName) {
-              proto[name].displayName = spec.displayName + '_' + name;
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-function mixStaticSpecIntoComponent(Constructor, statics) {
-  if (!statics) {
-    return;
-  }
-  for (var name in statics) {
-    var property = statics[name];
-    if (!statics.hasOwnProperty(name)) {
-      continue;
-    }
-
-    var isReserved = name in RESERVED_SPEC_KEYS;
-    !!isReserved ? process.env.NODE_ENV !== 'production' ? invariant(false, 'ReactClass: You are attempting to define a reserved property, `%s`, that shouldn\'t be on the "statics" key. Define it as an instance property instead; it will still be accessible on the constructor.', name) : _prodInvariant('78', name) : void 0;
-
-    var isInherited = name in Constructor;
-    !!isInherited ? process.env.NODE_ENV !== 'production' ? invariant(false, 'ReactClass: You are attempting to define `%s` on your component more than once. This conflict may be due to a mixin.', name) : _prodInvariant('79', name) : void 0;
-    Constructor[name] = property;
-  }
-}
-
-/**
- * Merge two objects, but throw if both contain the same key.
- *
- * @param {object} one The first object, which is mutated.
- * @param {object} two The second object
- * @return {object} one after it has been mutated to contain everything in two.
- */
-function mergeIntoWithNoDuplicateKeys(one, two) {
-  !(one && two && typeof one === 'object' && typeof two === 'object') ? process.env.NODE_ENV !== 'production' ? invariant(false, 'mergeIntoWithNoDuplicateKeys(): Cannot merge non-objects.') : _prodInvariant('80') : void 0;
-
-  for (var key in two) {
-    if (two.hasOwnProperty(key)) {
-      !(one[key] === undefined) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'mergeIntoWithNoDuplicateKeys(): Tried to merge two objects with the same key: `%s`. This conflict may be due to a mixin; in particular, this may be caused by two getInitialState() or getDefaultProps() methods returning objects with clashing keys.', key) : _prodInvariant('81', key) : void 0;
-      one[key] = two[key];
-    }
-  }
-  return one;
-}
-
-/**
- * Creates a function that invokes two functions and merges their return values.
- *
- * @param {function} one Function to invoke first.
- * @param {function} two Function to invoke second.
- * @return {function} Function that invokes the two argument functions.
- * @private
- */
-function createMergedResultFunction(one, two) {
-  return function mergedResult() {
-    var a = one.apply(this, arguments);
-    var b = two.apply(this, arguments);
-    if (a == null) {
-      return b;
-    } else if (b == null) {
-      return a;
-    }
-    var c = {};
-    mergeIntoWithNoDuplicateKeys(c, a);
-    mergeIntoWithNoDuplicateKeys(c, b);
-    return c;
-  };
-}
-
-/**
- * Creates a function that invokes two functions and ignores their return vales.
- *
- * @param {function} one Function to invoke first.
- * @param {function} two Function to invoke second.
- * @return {function} Function that invokes the two argument functions.
- * @private
- */
-function createChainedFunction(one, two) {
-  return function chainedFunction() {
-    one.apply(this, arguments);
-    two.apply(this, arguments);
-  };
-}
-
-/**
- * Binds a method to the component.
- *
- * @param {object} component Component whose method is going to be bound.
- * @param {function} method Method to be bound.
- * @return {function} The bound method.
- */
-function bindAutoBindMethod(component, method) {
-  var boundMethod = method.bind(component);
-  if (process.env.NODE_ENV !== 'production') {
-    boundMethod.__reactBoundContext = component;
-    boundMethod.__reactBoundMethod = method;
-    boundMethod.__reactBoundArguments = null;
-    var componentName = component.constructor.displayName;
-    var _bind = boundMethod.bind;
-    boundMethod.bind = function (newThis) {
-      for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-        args[_key - 1] = arguments[_key];
-      }
-
-      // User is trying to bind() an autobound method; we effectively will
-      // ignore the value of "this" that the user is trying to use, so
-      // let's warn.
-      if (newThis !== component && newThis !== null) {
-        process.env.NODE_ENV !== 'production' ? warning(false, 'bind(): React component methods may only be bound to the ' + 'component instance. See %s', componentName) : void 0;
-      } else if (!args.length) {
-        process.env.NODE_ENV !== 'production' ? warning(false, 'bind(): You are binding a component method to the component. ' + 'React does this for you automatically in a high-performance ' + 'way, so you can safely remove this call. See %s', componentName) : void 0;
-        return boundMethod;
-      }
-      var reboundMethod = _bind.apply(boundMethod, arguments);
-      reboundMethod.__reactBoundContext = component;
-      reboundMethod.__reactBoundMethod = method;
-      reboundMethod.__reactBoundArguments = args;
-      return reboundMethod;
-    };
-  }
-  return boundMethod;
-}
-
-/**
- * Binds all auto-bound methods in a component.
- *
- * @param {object} component Component whose method is going to be bound.
- */
-function bindAutoBindMethods(component) {
-  var pairs = component.__reactAutoBindPairs;
-  for (var i = 0; i < pairs.length; i += 2) {
-    var autoBindKey = pairs[i];
-    var method = pairs[i + 1];
-    component[autoBindKey] = bindAutoBindMethod(component, method);
-  }
-}
-
-/**
- * Add more to the ReactClass base class. These are all legacy features and
- * therefore not already part of the modern ReactComponent.
- */
-var ReactClassMixin = {
-
-  /**
-   * TODO: This will be deprecated because state should always keep a consistent
-   * type signature and the only use case for this, is to avoid that.
-   */
-  replaceState: function (newState, callback) {
-    this.updater.enqueueReplaceState(this, newState);
-    if (callback) {
-      this.updater.enqueueCallback(this, callback, 'replaceState');
-    }
-  },
-
-  /**
-   * Checks whether or not this composite component is mounted.
-   * @return {boolean} True if mounted, false otherwise.
-   * @protected
-   * @final
-   */
-  isMounted: function () {
-    return this.updater.isMounted(this);
-  }
-};
-
-var ReactClassComponent = function () {};
-_assign(ReactClassComponent.prototype, ReactComponent.prototype, ReactClassMixin);
-
-/**
- * Module for creating composite components.
- *
- * @class ReactClass
- */
-var ReactClass = {
-
-  /**
-   * Creates a composite component class given a class specification.
-   * See https://facebook.github.io/react/docs/top-level-api.html#react.createclass
-   *
-   * @param {object} spec Class specification (which must define `render`).
-   * @return {function} Component constructor function.
-   * @public
-   */
-  createClass: function (spec) {
-    // To keep our warnings more understandable, we'll use a little hack here to
-    // ensure that Constructor.name !== 'Constructor'. This makes sure we don't
-    // unnecessarily identify a class without displayName as 'Constructor'.
-    var Constructor = identity(function (props, context, updater) {
-      // This constructor gets overridden by mocks. The argument is used
-      // by mocks to assert on what gets mounted.
-
-      if (process.env.NODE_ENV !== 'production') {
-        process.env.NODE_ENV !== 'production' ? warning(this instanceof Constructor, 'Something is calling a React component directly. Use a factory or ' + 'JSX instead. See: https://fb.me/react-legacyfactory') : void 0;
-      }
-
-      // Wire up auto-binding
-      if (this.__reactAutoBindPairs.length) {
-        bindAutoBindMethods(this);
-      }
-
-      this.props = props;
-      this.context = context;
-      this.refs = emptyObject;
-      this.updater = updater || ReactNoopUpdateQueue;
-
-      this.state = null;
-
-      // ReactClasses doesn't have constructors. Instead, they use the
-      // getInitialState and componentWillMount methods for initialization.
-
-      var initialState = this.getInitialState ? this.getInitialState() : null;
-      if (process.env.NODE_ENV !== 'production') {
-        // We allow auto-mocks to proceed as if they're returning null.
-        if (initialState === undefined && this.getInitialState._isMockFunction) {
-          // This is probably bad practice. Consider warning here and
-          // deprecating this convenience.
-          initialState = null;
-        }
-      }
-      !(typeof initialState === 'object' && !Array.isArray(initialState)) ? process.env.NODE_ENV !== 'production' ? invariant(false, '%s.getInitialState(): must return an object or null', Constructor.displayName || 'ReactCompositeComponent') : _prodInvariant('82', Constructor.displayName || 'ReactCompositeComponent') : void 0;
-
-      this.state = initialState;
-    });
-    Constructor.prototype = new ReactClassComponent();
-    Constructor.prototype.constructor = Constructor;
-    Constructor.prototype.__reactAutoBindPairs = [];
-
-    injectedMixins.forEach(mixSpecIntoComponent.bind(null, Constructor));
-
-    mixSpecIntoComponent(Constructor, spec);
-
-    // Initialize the defaultProps property after all mixins have been merged.
-    if (Constructor.getDefaultProps) {
-      Constructor.defaultProps = Constructor.getDefaultProps();
-    }
-
-    if (process.env.NODE_ENV !== 'production') {
-      // This is a tag to indicate that the use of these method names is ok,
-      // since it's used with createClass. If it's not, then it's likely a
-      // mistake so we'll warn you to use the static property, property
-      // initializer or constructor respectively.
-      if (Constructor.getDefaultProps) {
-        Constructor.getDefaultProps.isReactClassApproved = {};
-      }
-      if (Constructor.prototype.getInitialState) {
-        Constructor.prototype.getInitialState.isReactClassApproved = {};
-      }
-    }
-
-    !Constructor.prototype.render ? process.env.NODE_ENV !== 'production' ? invariant(false, 'createClass(...): Class specification must implement a `render` method.') : _prodInvariant('83') : void 0;
-
-    if (process.env.NODE_ENV !== 'production') {
-      process.env.NODE_ENV !== 'production' ? warning(!Constructor.prototype.componentShouldUpdate, '%s has a method called ' + 'componentShouldUpdate(). Did you mean shouldComponentUpdate()? ' + 'The name is phrased as a question because the function is ' + 'expected to return a value.', spec.displayName || 'A component') : void 0;
-      process.env.NODE_ENV !== 'production' ? warning(!Constructor.prototype.componentWillRecieveProps, '%s has a method called ' + 'componentWillRecieveProps(). Did you mean componentWillReceiveProps()?', spec.displayName || 'A component') : void 0;
-    }
-
-    // Reduce time spent doing lookups by setting these on the prototype.
-    for (var methodName in ReactClassInterface) {
-      if (!Constructor.prototype[methodName]) {
-        Constructor.prototype[methodName] = null;
-      }
-    }
-
-    return Constructor;
-  },
-
-  injection: {
-    injectMixin: function (mixin) {
-      injectedMixins.push(mixin);
-    }
-  }
-
-};
-
-module.exports = ReactClass;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 88 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -10842,13 +11064,12 @@ var ReactElement = __webpack_require__(15);
  */
 var createDOMFactory = ReactElement.createFactory;
 if (process.env.NODE_ENV !== 'production') {
-  var ReactElementValidator = __webpack_require__(54);
+  var ReactElementValidator = __webpack_require__(56);
   createDOMFactory = ReactElementValidator.createFactory;
 }
 
 /**
  * Creates a mapping from supported HTML tags to `ReactDOMComponent` classes.
- * This is also accessible via `React.DOM`.
  *
  * @public
  */
@@ -10993,26 +11214,24 @@ module.exports = ReactDOMFactories;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 89 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
 
 
-var _prodInvariant = __webpack_require__(14);
+var _prodInvariant = __webpack_require__(18);
 
-var ReactPropTypeLocationNames = __webpack_require__(36);
-var ReactPropTypesSecret = __webpack_require__(55);
+var ReactPropTypeLocationNames = __webpack_require__(97);
+var ReactPropTypesSecret = __webpack_require__(98);
 
 var invariant = __webpack_require__(1);
 var warning = __webpack_require__(2);
@@ -11086,481 +11305,1079 @@ module.exports = checkReactTypeSpec;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 90 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
+ * 
  */
 
 
 
-var ReactElement = __webpack_require__(15);
-var ReactPropTypeLocationNames = __webpack_require__(36);
-var ReactPropTypesSecret = __webpack_require__(55);
+var ReactPropTypeLocationNames = {};
 
-var emptyFunction = __webpack_require__(9);
-var getIteratorFn = __webpack_require__(33);
-var warning = __webpack_require__(2);
-
-/**
- * Collection of methods that allow declaration and validation of props that are
- * supplied to React components. Example usage:
- *
- *   var Props = require('ReactPropTypes');
- *   var MyArticle = React.createClass({
- *     propTypes: {
- *       // An optional string prop named "description".
- *       description: Props.string,
- *
- *       // A required enum prop named "category".
- *       category: Props.oneOf(['News','Photos']).isRequired,
- *
- *       // A prop named "dialog" that requires an instance of Dialog.
- *       dialog: Props.instanceOf(Dialog).isRequired
- *     },
- *     render: function() { ... }
- *   });
- *
- * A more formal specification of how these methods are used:
- *
- *   type := array|bool|func|object|number|string|oneOf([...])|instanceOf(...)
- *   decl := ReactPropTypes.{type}(.isRequired)?
- *
- * Each and every declaration produces a function with the same signature. This
- * allows the creation of custom validation functions. For example:
- *
- *  var MyLink = React.createClass({
- *    propTypes: {
- *      // An optional string or URI prop named "href".
- *      href: function(props, propName, componentName) {
- *        var propValue = props[propName];
- *        if (propValue != null && typeof propValue !== 'string' &&
- *            !(propValue instanceof URI)) {
- *          return new Error(
- *            'Expected a string or an URI for ' + propName + ' in ' +
- *            componentName
- *          );
- *        }
- *      }
- *    },
- *    render: function() {...}
- *  });
- *
- * @internal
- */
-
-var ANONYMOUS = '<<anonymous>>';
-
-var ReactPropTypes = {
-  array: createPrimitiveTypeChecker('array'),
-  bool: createPrimitiveTypeChecker('boolean'),
-  func: createPrimitiveTypeChecker('function'),
-  number: createPrimitiveTypeChecker('number'),
-  object: createPrimitiveTypeChecker('object'),
-  string: createPrimitiveTypeChecker('string'),
-  symbol: createPrimitiveTypeChecker('symbol'),
-
-  any: createAnyTypeChecker(),
-  arrayOf: createArrayOfTypeChecker,
-  element: createElementTypeChecker(),
-  instanceOf: createInstanceTypeChecker,
-  node: createNodeChecker(),
-  objectOf: createObjectOfTypeChecker,
-  oneOf: createEnumTypeChecker,
-  oneOfType: createUnionTypeChecker,
-  shape: createShapeTypeChecker
-};
-
-/**
- * inlined Object.is polyfill to avoid requiring consumers ship their own
- * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is
- */
-/*eslint-disable no-self-compare*/
-function is(x, y) {
-  // SameValue algorithm
-  if (x === y) {
-    // Steps 1-5, 7-10
-    // Steps 6.b-6.e: +0 != -0
-    return x !== 0 || 1 / x === 1 / y;
-  } else {
-    // Step 6.a: NaN == NaN
-    return x !== x && y !== y;
-  }
+if (process.env.NODE_ENV !== 'production') {
+  ReactPropTypeLocationNames = {
+    prop: 'prop',
+    context: 'context',
+    childContext: 'child context'
+  };
 }
-/*eslint-enable no-self-compare*/
+
+module.exports = ReactPropTypeLocationNames;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 98 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ * 
+ */
+
+
+
+var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
+
+module.exports = ReactPropTypesSecret;
+
+/***/ }),
+/* 99 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
+
+
+
+var _require = __webpack_require__(15),
+    isValidElement = _require.isValidElement;
+
+var factory = __webpack_require__(57);
+
+module.exports = factory(isValidElement);
+
+/***/ }),
+/* 100 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+if (process.env.NODE_ENV !== 'production') {
+  var invariant = __webpack_require__(1);
+  var warning = __webpack_require__(2);
+  var ReactPropTypesSecret = __webpack_require__(34);
+  var loggedTypeFailures = {};
+}
 
 /**
- * We use an Error-like object for backward compatibility as people may call
- * PropTypes directly and inspect their output. However we don't use real
- * Errors anymore. We don't inspect their stack anyway, and creating them
- * is prohibitively expensive if they are created too often, such as what
- * happens in oneOfType() for any type before the one that matched.
+ * Assert that the values match with the type specs.
+ * Error messages are memorized and will only be shown once.
+ *
+ * @param {object} typeSpecs Map of name to a ReactPropType
+ * @param {object} values Runtime values that need to be type-checked
+ * @param {string} location e.g. "prop", "context", "child context"
+ * @param {string} componentName Name of the component for error messages.
+ * @param {?Function} getStack Returns the component stack.
+ * @private
  */
-function PropTypeError(message) {
-  this.message = message;
-  this.stack = '';
-}
-// Make `instanceof Error` still work for returned errors.
-PropTypeError.prototype = Error.prototype;
-
-function createChainableTypeChecker(validate) {
+function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
   if (process.env.NODE_ENV !== 'production') {
-    var manualPropTypeCallCache = {};
-  }
-  function checkType(isRequired, props, propName, componentName, location, propFullName, secret) {
-    componentName = componentName || ANONYMOUS;
-    propFullName = propFullName || propName;
-    if (process.env.NODE_ENV !== 'production') {
-      if (secret !== ReactPropTypesSecret && typeof console !== 'undefined') {
-        var cacheKey = componentName + ':' + propName;
-        if (!manualPropTypeCallCache[cacheKey]) {
-          process.env.NODE_ENV !== 'production' ? warning(false, 'You are manually calling a React.PropTypes validation ' + 'function for the `%s` prop on `%s`. This is deprecated ' + 'and will not work in production with the next major version. ' + 'You may be seeing this warning due to a third-party PropTypes ' + 'library. See https://fb.me/react-warning-dont-call-proptypes ' + 'for details.', propFullName, componentName) : void 0;
-          manualPropTypeCallCache[cacheKey] = true;
+    for (var typeSpecName in typeSpecs) {
+      if (typeSpecs.hasOwnProperty(typeSpecName)) {
+        var error;
+        // Prop type validation may throw. In case they do, we don't want to
+        // fail the render phase where it didn't fail before. So we log it.
+        // After these have been cleaned up, we'll let them throw.
+        try {
+          // This is intentionally an invariant that gets caught. It's the same
+          // behavior as without this statement except with a better message.
+          invariant(typeof typeSpecs[typeSpecName] === 'function', '%s: %s type `%s` is invalid; it must be a function, usually from ' + 'the `prop-types` package, but received `%s`.', componentName || 'React class', location, typeSpecName, typeof typeSpecs[typeSpecName]);
+          error = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, ReactPropTypesSecret);
+        } catch (ex) {
+          error = ex;
+        }
+        warning(!error || error instanceof Error, '%s: type specification of %s `%s` is invalid; the type checker ' + 'function must return `null` or an `Error` but returned a %s. ' + 'You may have forgotten to pass an argument to the type checker ' + 'creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and ' + 'shape all require an argument).', componentName || 'React class', location, typeSpecName, typeof error);
+        if (error instanceof Error && !(error.message in loggedTypeFailures)) {
+          // Only monitor this failure once because there tends to be a lot of the
+          // same error.
+          loggedTypeFailures[error.message] = true;
+
+          var stack = getStack ? getStack() : '';
+
+          warning(false, 'Failed %s type: %s%s', location, error.message, stack != null ? stack : '');
         }
       }
     }
-    if (props[propName] == null) {
-      var locationName = ReactPropTypeLocationNames[location];
-      if (isRequired) {
-        if (props[propName] === null) {
-          return new PropTypeError('The ' + locationName + ' `' + propFullName + '` is marked as required ' + ('in `' + componentName + '`, but its value is `null`.'));
+  }
+}
+
+module.exports = checkPropTypes;
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 101 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
+
+
+
+module.exports = '15.6.2';
+
+/***/ }),
+/* 102 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
+
+
+
+var _require = __webpack_require__(52),
+    Component = _require.Component;
+
+var _require2 = __webpack_require__(15),
+    isValidElement = _require2.isValidElement;
+
+var ReactNoopUpdateQueue = __webpack_require__(53);
+var factory = __webpack_require__(103);
+
+module.exports = factory(Component, isValidElement, ReactNoopUpdateQueue);
+
+/***/ }),
+/* 103 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
+
+
+
+var _assign = __webpack_require__(4);
+
+var emptyObject = __webpack_require__(26);
+var _invariant = __webpack_require__(1);
+
+if (process.env.NODE_ENV !== 'production') {
+  var warning = __webpack_require__(2);
+}
+
+var MIXINS_KEY = 'mixins';
+
+// Helper function to allow the creation of anonymous functions which do not
+// have .name set to the name of the variable being assigned to.
+function identity(fn) {
+  return fn;
+}
+
+var ReactPropTypeLocationNames;
+if (process.env.NODE_ENV !== 'production') {
+  ReactPropTypeLocationNames = {
+    prop: 'prop',
+    context: 'context',
+    childContext: 'child context'
+  };
+} else {
+  ReactPropTypeLocationNames = {};
+}
+
+function factory(ReactComponent, isValidElement, ReactNoopUpdateQueue) {
+  /**
+   * Policies that describe methods in `ReactClassInterface`.
+   */
+
+  var injectedMixins = [];
+
+  /**
+   * Composite components are higher-level components that compose other composite
+   * or host components.
+   *
+   * To create a new type of `ReactClass`, pass a specification of
+   * your new class to `React.createClass`. The only requirement of your class
+   * specification is that you implement a `render` method.
+   *
+   *   var MyComponent = React.createClass({
+   *     render: function() {
+   *       return <div>Hello World</div>;
+   *     }
+   *   });
+   *
+   * The class specification supports a specific protocol of methods that have
+   * special meaning (e.g. `render`). See `ReactClassInterface` for
+   * more the comprehensive protocol. Any other properties and methods in the
+   * class specification will be available on the prototype.
+   *
+   * @interface ReactClassInterface
+   * @internal
+   */
+  var ReactClassInterface = {
+    /**
+     * An array of Mixin objects to include when defining your component.
+     *
+     * @type {array}
+     * @optional
+     */
+    mixins: 'DEFINE_MANY',
+
+    /**
+     * An object containing properties and methods that should be defined on
+     * the component's constructor instead of its prototype (static methods).
+     *
+     * @type {object}
+     * @optional
+     */
+    statics: 'DEFINE_MANY',
+
+    /**
+     * Definition of prop types for this component.
+     *
+     * @type {object}
+     * @optional
+     */
+    propTypes: 'DEFINE_MANY',
+
+    /**
+     * Definition of context types for this component.
+     *
+     * @type {object}
+     * @optional
+     */
+    contextTypes: 'DEFINE_MANY',
+
+    /**
+     * Definition of context types this component sets for its children.
+     *
+     * @type {object}
+     * @optional
+     */
+    childContextTypes: 'DEFINE_MANY',
+
+    // ==== Definition methods ====
+
+    /**
+     * Invoked when the component is mounted. Values in the mapping will be set on
+     * `this.props` if that prop is not specified (i.e. using an `in` check).
+     *
+     * This method is invoked before `getInitialState` and therefore cannot rely
+     * on `this.state` or use `this.setState`.
+     *
+     * @return {object}
+     * @optional
+     */
+    getDefaultProps: 'DEFINE_MANY_MERGED',
+
+    /**
+     * Invoked once before the component is mounted. The return value will be used
+     * as the initial value of `this.state`.
+     *
+     *   getInitialState: function() {
+     *     return {
+     *       isOn: false,
+     *       fooBaz: new BazFoo()
+     *     }
+     *   }
+     *
+     * @return {object}
+     * @optional
+     */
+    getInitialState: 'DEFINE_MANY_MERGED',
+
+    /**
+     * @return {object}
+     * @optional
+     */
+    getChildContext: 'DEFINE_MANY_MERGED',
+
+    /**
+     * Uses props from `this.props` and state from `this.state` to render the
+     * structure of the component.
+     *
+     * No guarantees are made about when or how often this method is invoked, so
+     * it must not have side effects.
+     *
+     *   render: function() {
+     *     var name = this.props.name;
+     *     return <div>Hello, {name}!</div>;
+     *   }
+     *
+     * @return {ReactComponent}
+     * @required
+     */
+    render: 'DEFINE_ONCE',
+
+    // ==== Delegate methods ====
+
+    /**
+     * Invoked when the component is initially created and about to be mounted.
+     * This may have side effects, but any external subscriptions or data created
+     * by this method must be cleaned up in `componentWillUnmount`.
+     *
+     * @optional
+     */
+    componentWillMount: 'DEFINE_MANY',
+
+    /**
+     * Invoked when the component has been mounted and has a DOM representation.
+     * However, there is no guarantee that the DOM node is in the document.
+     *
+     * Use this as an opportunity to operate on the DOM when the component has
+     * been mounted (initialized and rendered) for the first time.
+     *
+     * @param {DOMElement} rootNode DOM element representing the component.
+     * @optional
+     */
+    componentDidMount: 'DEFINE_MANY',
+
+    /**
+     * Invoked before the component receives new props.
+     *
+     * Use this as an opportunity to react to a prop transition by updating the
+     * state using `this.setState`. Current props are accessed via `this.props`.
+     *
+     *   componentWillReceiveProps: function(nextProps, nextContext) {
+     *     this.setState({
+     *       likesIncreasing: nextProps.likeCount > this.props.likeCount
+     *     });
+     *   }
+     *
+     * NOTE: There is no equivalent `componentWillReceiveState`. An incoming prop
+     * transition may cause a state change, but the opposite is not true. If you
+     * need it, you are probably looking for `componentWillUpdate`.
+     *
+     * @param {object} nextProps
+     * @optional
+     */
+    componentWillReceiveProps: 'DEFINE_MANY',
+
+    /**
+     * Invoked while deciding if the component should be updated as a result of
+     * receiving new props, state and/or context.
+     *
+     * Use this as an opportunity to `return false` when you're certain that the
+     * transition to the new props/state/context will not require a component
+     * update.
+     *
+     *   shouldComponentUpdate: function(nextProps, nextState, nextContext) {
+     *     return !equal(nextProps, this.props) ||
+     *       !equal(nextState, this.state) ||
+     *       !equal(nextContext, this.context);
+     *   }
+     *
+     * @param {object} nextProps
+     * @param {?object} nextState
+     * @param {?object} nextContext
+     * @return {boolean} True if the component should update.
+     * @optional
+     */
+    shouldComponentUpdate: 'DEFINE_ONCE',
+
+    /**
+     * Invoked when the component is about to update due to a transition from
+     * `this.props`, `this.state` and `this.context` to `nextProps`, `nextState`
+     * and `nextContext`.
+     *
+     * Use this as an opportunity to perform preparation before an update occurs.
+     *
+     * NOTE: You **cannot** use `this.setState()` in this method.
+     *
+     * @param {object} nextProps
+     * @param {?object} nextState
+     * @param {?object} nextContext
+     * @param {ReactReconcileTransaction} transaction
+     * @optional
+     */
+    componentWillUpdate: 'DEFINE_MANY',
+
+    /**
+     * Invoked when the component's DOM representation has been updated.
+     *
+     * Use this as an opportunity to operate on the DOM when the component has
+     * been updated.
+     *
+     * @param {object} prevProps
+     * @param {?object} prevState
+     * @param {?object} prevContext
+     * @param {DOMElement} rootNode DOM element representing the component.
+     * @optional
+     */
+    componentDidUpdate: 'DEFINE_MANY',
+
+    /**
+     * Invoked when the component is about to be removed from its parent and have
+     * its DOM representation destroyed.
+     *
+     * Use this as an opportunity to deallocate any external resources.
+     *
+     * NOTE: There is no `componentDidUnmount` since your component will have been
+     * destroyed by that point.
+     *
+     * @optional
+     */
+    componentWillUnmount: 'DEFINE_MANY',
+
+    // ==== Advanced methods ====
+
+    /**
+     * Updates the component's currently mounted DOM representation.
+     *
+     * By default, this implements React's rendering and reconciliation algorithm.
+     * Sophisticated clients may wish to override this.
+     *
+     * @param {ReactReconcileTransaction} transaction
+     * @internal
+     * @overridable
+     */
+    updateComponent: 'OVERRIDE_BASE'
+  };
+
+  /**
+   * Mapping from class specification keys to special processing functions.
+   *
+   * Although these are declared like instance properties in the specification
+   * when defining classes using `React.createClass`, they are actually static
+   * and are accessible on the constructor instead of the prototype. Despite
+   * being static, they must be defined outside of the "statics" key under
+   * which all other static methods are defined.
+   */
+  var RESERVED_SPEC_KEYS = {
+    displayName: function(Constructor, displayName) {
+      Constructor.displayName = displayName;
+    },
+    mixins: function(Constructor, mixins) {
+      if (mixins) {
+        for (var i = 0; i < mixins.length; i++) {
+          mixSpecIntoComponent(Constructor, mixins[i]);
         }
-        return new PropTypeError('The ' + locationName + ' `' + propFullName + '` is marked as required in ' + ('`' + componentName + '`, but its value is `undefined`.'));
       }
-      return null;
-    } else {
-      return validate(props, propName, componentName, location, propFullName);
-    }
-  }
-
-  var chainedCheckType = checkType.bind(null, false);
-  chainedCheckType.isRequired = checkType.bind(null, true);
-
-  return chainedCheckType;
-}
-
-function createPrimitiveTypeChecker(expectedType) {
-  function validate(props, propName, componentName, location, propFullName, secret) {
-    var propValue = props[propName];
-    var propType = getPropType(propValue);
-    if (propType !== expectedType) {
-      var locationName = ReactPropTypeLocationNames[location];
-      // `propValue` being instance of, say, date/regexp, pass the 'object'
-      // check, but we can offer a more precise error message here rather than
-      // 'of type `object`'.
-      var preciseType = getPreciseType(propValue);
-
-      return new PropTypeError('Invalid ' + locationName + ' `' + propFullName + '` of type ' + ('`' + preciseType + '` supplied to `' + componentName + '`, expected ') + ('`' + expectedType + '`.'));
-    }
-    return null;
-  }
-  return createChainableTypeChecker(validate);
-}
-
-function createAnyTypeChecker() {
-  return createChainableTypeChecker(emptyFunction.thatReturns(null));
-}
-
-function createArrayOfTypeChecker(typeChecker) {
-  function validate(props, propName, componentName, location, propFullName) {
-    if (typeof typeChecker !== 'function') {
-      return new PropTypeError('Property `' + propFullName + '` of component `' + componentName + '` has invalid PropType notation inside arrayOf.');
-    }
-    var propValue = props[propName];
-    if (!Array.isArray(propValue)) {
-      var locationName = ReactPropTypeLocationNames[location];
-      var propType = getPropType(propValue);
-      return new PropTypeError('Invalid ' + locationName + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an array.'));
-    }
-    for (var i = 0; i < propValue.length; i++) {
-      var error = typeChecker(propValue, i, componentName, location, propFullName + '[' + i + ']', ReactPropTypesSecret);
-      if (error instanceof Error) {
-        return error;
+    },
+    childContextTypes: function(Constructor, childContextTypes) {
+      if (process.env.NODE_ENV !== 'production') {
+        validateTypeDef(Constructor, childContextTypes, 'childContext');
       }
-    }
-    return null;
-  }
-  return createChainableTypeChecker(validate);
-}
-
-function createElementTypeChecker() {
-  function validate(props, propName, componentName, location, propFullName) {
-    var propValue = props[propName];
-    if (!ReactElement.isValidElement(propValue)) {
-      var locationName = ReactPropTypeLocationNames[location];
-      var propType = getPropType(propValue);
-      return new PropTypeError('Invalid ' + locationName + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected a single ReactElement.'));
-    }
-    return null;
-  }
-  return createChainableTypeChecker(validate);
-}
-
-function createInstanceTypeChecker(expectedClass) {
-  function validate(props, propName, componentName, location, propFullName) {
-    if (!(props[propName] instanceof expectedClass)) {
-      var locationName = ReactPropTypeLocationNames[location];
-      var expectedClassName = expectedClass.name || ANONYMOUS;
-      var actualClassName = getClassName(props[propName]);
-      return new PropTypeError('Invalid ' + locationName + ' `' + propFullName + '` of type ' + ('`' + actualClassName + '` supplied to `' + componentName + '`, expected ') + ('instance of `' + expectedClassName + '`.'));
-    }
-    return null;
-  }
-  return createChainableTypeChecker(validate);
-}
-
-function createEnumTypeChecker(expectedValues) {
-  if (!Array.isArray(expectedValues)) {
-    process.env.NODE_ENV !== 'production' ? warning(false, 'Invalid argument supplied to oneOf, expected an instance of array.') : void 0;
-    return emptyFunction.thatReturnsNull;
-  }
-
-  function validate(props, propName, componentName, location, propFullName) {
-    var propValue = props[propName];
-    for (var i = 0; i < expectedValues.length; i++) {
-      if (is(propValue, expectedValues[i])) {
-        return null;
+      Constructor.childContextTypes = _assign(
+        {},
+        Constructor.childContextTypes,
+        childContextTypes
+      );
+    },
+    contextTypes: function(Constructor, contextTypes) {
+      if (process.env.NODE_ENV !== 'production') {
+        validateTypeDef(Constructor, contextTypes, 'context');
       }
-    }
+      Constructor.contextTypes = _assign(
+        {},
+        Constructor.contextTypes,
+        contextTypes
+      );
+    },
+    /**
+     * Special case getDefaultProps which should move into statics but requires
+     * automatic merging.
+     */
+    getDefaultProps: function(Constructor, getDefaultProps) {
+      if (Constructor.getDefaultProps) {
+        Constructor.getDefaultProps = createMergedResultFunction(
+          Constructor.getDefaultProps,
+          getDefaultProps
+        );
+      } else {
+        Constructor.getDefaultProps = getDefaultProps;
+      }
+    },
+    propTypes: function(Constructor, propTypes) {
+      if (process.env.NODE_ENV !== 'production') {
+        validateTypeDef(Constructor, propTypes, 'prop');
+      }
+      Constructor.propTypes = _assign({}, Constructor.propTypes, propTypes);
+    },
+    statics: function(Constructor, statics) {
+      mixStaticSpecIntoComponent(Constructor, statics);
+    },
+    autobind: function() {}
+  };
 
-    var locationName = ReactPropTypeLocationNames[location];
-    var valuesString = JSON.stringify(expectedValues);
-    return new PropTypeError('Invalid ' + locationName + ' `' + propFullName + '` of value `' + propValue + '` ' + ('supplied to `' + componentName + '`, expected one of ' + valuesString + '.'));
-  }
-  return createChainableTypeChecker(validate);
-}
-
-function createObjectOfTypeChecker(typeChecker) {
-  function validate(props, propName, componentName, location, propFullName) {
-    if (typeof typeChecker !== 'function') {
-      return new PropTypeError('Property `' + propFullName + '` of component `' + componentName + '` has invalid PropType notation inside objectOf.');
-    }
-    var propValue = props[propName];
-    var propType = getPropType(propValue);
-    if (propType !== 'object') {
-      var locationName = ReactPropTypeLocationNames[location];
-      return new PropTypeError('Invalid ' + locationName + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an object.'));
-    }
-    for (var key in propValue) {
-      if (propValue.hasOwnProperty(key)) {
-        var error = typeChecker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret);
-        if (error instanceof Error) {
-          return error;
+  function validateTypeDef(Constructor, typeDef, location) {
+    for (var propName in typeDef) {
+      if (typeDef.hasOwnProperty(propName)) {
+        // use a warning instead of an _invariant so components
+        // don't show up in prod but only in __DEV__
+        if (process.env.NODE_ENV !== 'production') {
+          warning(
+            typeof typeDef[propName] === 'function',
+            '%s: %s type `%s` is invalid; it must be a function, usually from ' +
+              'React.PropTypes.',
+            Constructor.displayName || 'ReactClass',
+            ReactPropTypeLocationNames[location],
+            propName
+          );
         }
       }
     }
-    return null;
-  }
-  return createChainableTypeChecker(validate);
-}
-
-function createUnionTypeChecker(arrayOfTypeCheckers) {
-  if (!Array.isArray(arrayOfTypeCheckers)) {
-    process.env.NODE_ENV !== 'production' ? warning(false, 'Invalid argument supplied to oneOfType, expected an instance of array.') : void 0;
-    return emptyFunction.thatReturnsNull;
   }
 
-  function validate(props, propName, componentName, location, propFullName) {
-    for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
-      var checker = arrayOfTypeCheckers[i];
-      if (checker(props, propName, componentName, location, propFullName, ReactPropTypesSecret) == null) {
-        return null;
+  function validateMethodOverride(isAlreadyDefined, name) {
+    var specPolicy = ReactClassInterface.hasOwnProperty(name)
+      ? ReactClassInterface[name]
+      : null;
+
+    // Disallow overriding of base class methods unless explicitly allowed.
+    if (ReactClassMixin.hasOwnProperty(name)) {
+      _invariant(
+        specPolicy === 'OVERRIDE_BASE',
+        'ReactClassInterface: You are attempting to override ' +
+          '`%s` from your class specification. Ensure that your method names ' +
+          'do not overlap with React methods.',
+        name
+      );
+    }
+
+    // Disallow defining methods more than once unless explicitly allowed.
+    if (isAlreadyDefined) {
+      _invariant(
+        specPolicy === 'DEFINE_MANY' || specPolicy === 'DEFINE_MANY_MERGED',
+        'ReactClassInterface: You are attempting to define ' +
+          '`%s` on your component more than once. This conflict may be due ' +
+          'to a mixin.',
+        name
+      );
+    }
+  }
+
+  /**
+   * Mixin helper which handles policy validation and reserved
+   * specification keys when building React classes.
+   */
+  function mixSpecIntoComponent(Constructor, spec) {
+    if (!spec) {
+      if (process.env.NODE_ENV !== 'production') {
+        var typeofSpec = typeof spec;
+        var isMixinValid = typeofSpec === 'object' && spec !== null;
+
+        if (process.env.NODE_ENV !== 'production') {
+          warning(
+            isMixinValid,
+            "%s: You're attempting to include a mixin that is either null " +
+              'or not an object. Check the mixins included by the component, ' +
+              'as well as any mixins they include themselves. ' +
+              'Expected object but got %s.',
+            Constructor.displayName || 'ReactClass',
+            spec === null ? null : typeofSpec
+          );
+        }
       }
+
+      return;
     }
 
-    var locationName = ReactPropTypeLocationNames[location];
-    return new PropTypeError('Invalid ' + locationName + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`.'));
-  }
-  return createChainableTypeChecker(validate);
-}
+    _invariant(
+      typeof spec !== 'function',
+      "ReactClass: You're attempting to " +
+        'use a component class or function as a mixin. Instead, just use a ' +
+        'regular object.'
+    );
+    _invariant(
+      !isValidElement(spec),
+      "ReactClass: You're attempting to " +
+        'use a component as a mixin. Instead, just use a regular object.'
+    );
 
-function createNodeChecker() {
-  function validate(props, propName, componentName, location, propFullName) {
-    if (!isNode(props[propName])) {
-      var locationName = ReactPropTypeLocationNames[location];
-      return new PropTypeError('Invalid ' + locationName + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`, expected a ReactNode.'));
-    }
-    return null;
-  }
-  return createChainableTypeChecker(validate);
-}
+    var proto = Constructor.prototype;
+    var autoBindPairs = proto.__reactAutoBindPairs;
 
-function createShapeTypeChecker(shapeTypes) {
-  function validate(props, propName, componentName, location, propFullName) {
-    var propValue = props[propName];
-    var propType = getPropType(propValue);
-    if (propType !== 'object') {
-      var locationName = ReactPropTypeLocationNames[location];
-      return new PropTypeError('Invalid ' + locationName + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
+    // By handling mixins before any other properties, we ensure the same
+    // chaining order is applied to methods with DEFINE_MANY policy, whether
+    // mixins are listed before or after these methods in the spec.
+    if (spec.hasOwnProperty(MIXINS_KEY)) {
+      RESERVED_SPEC_KEYS.mixins(Constructor, spec.mixins);
     }
-    for (var key in shapeTypes) {
-      var checker = shapeTypes[key];
-      if (!checker) {
+
+    for (var name in spec) {
+      if (!spec.hasOwnProperty(name)) {
         continue;
       }
-      var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret);
-      if (error) {
-        return error;
-      }
-    }
-    return null;
-  }
-  return createChainableTypeChecker(validate);
-}
 
-function isNode(propValue) {
-  switch (typeof propValue) {
-    case 'number':
-    case 'string':
-    case 'undefined':
-      return true;
-    case 'boolean':
-      return !propValue;
-    case 'object':
-      if (Array.isArray(propValue)) {
-        return propValue.every(isNode);
-      }
-      if (propValue === null || ReactElement.isValidElement(propValue)) {
-        return true;
+      if (name === MIXINS_KEY) {
+        // We have already handled mixins in a special case above.
+        continue;
       }
 
-      var iteratorFn = getIteratorFn(propValue);
-      if (iteratorFn) {
-        var iterator = iteratorFn.call(propValue);
-        var step;
-        if (iteratorFn !== propValue.entries) {
-          while (!(step = iterator.next()).done) {
-            if (!isNode(step.value)) {
-              return false;
-            }
-          }
+      var property = spec[name];
+      var isAlreadyDefined = proto.hasOwnProperty(name);
+      validateMethodOverride(isAlreadyDefined, name);
+
+      if (RESERVED_SPEC_KEYS.hasOwnProperty(name)) {
+        RESERVED_SPEC_KEYS[name](Constructor, property);
+      } else {
+        // Setup methods on prototype:
+        // The following member methods should not be automatically bound:
+        // 1. Expected ReactClass methods (in the "interface").
+        // 2. Overridden methods (that were mixed in).
+        var isReactClassMethod = ReactClassInterface.hasOwnProperty(name);
+        var isFunction = typeof property === 'function';
+        var shouldAutoBind =
+          isFunction &&
+          !isReactClassMethod &&
+          !isAlreadyDefined &&
+          spec.autobind !== false;
+
+        if (shouldAutoBind) {
+          autoBindPairs.push(name, property);
+          proto[name] = property;
         } else {
-          // Iterator will provide entry [k,v] tuples rather than values.
-          while (!(step = iterator.next()).done) {
-            var entry = step.value;
-            if (entry) {
-              if (!isNode(entry[1])) {
-                return false;
+          if (isAlreadyDefined) {
+            var specPolicy = ReactClassInterface[name];
+
+            // These cases should already be caught by validateMethodOverride.
+            _invariant(
+              isReactClassMethod &&
+                (specPolicy === 'DEFINE_MANY_MERGED' ||
+                  specPolicy === 'DEFINE_MANY'),
+              'ReactClass: Unexpected spec policy %s for key %s ' +
+                'when mixing in component specs.',
+              specPolicy,
+              name
+            );
+
+            // For methods which are defined more than once, call the existing
+            // methods before calling the new property, merging if appropriate.
+            if (specPolicy === 'DEFINE_MANY_MERGED') {
+              proto[name] = createMergedResultFunction(proto[name], property);
+            } else if (specPolicy === 'DEFINE_MANY') {
+              proto[name] = createChainedFunction(proto[name], property);
+            }
+          } else {
+            proto[name] = property;
+            if (process.env.NODE_ENV !== 'production') {
+              // Add verbose displayName to the function, which helps when looking
+              // at profiling tools.
+              if (typeof property === 'function' && spec.displayName) {
+                proto[name].displayName = spec.displayName + '_' + name;
               }
             }
           }
         }
-      } else {
-        return false;
       }
-
-      return true;
-    default:
-      return false;
-  }
-}
-
-function isSymbol(propType, propValue) {
-  // Native Symbol.
-  if (propType === 'symbol') {
-    return true;
-  }
-
-  // 19.4.3.5 Symbol.prototype[@@toStringTag] === 'Symbol'
-  if (propValue['@@toStringTag'] === 'Symbol') {
-    return true;
-  }
-
-  // Fallback for non-spec compliant Symbols which are polyfilled.
-  if (typeof Symbol === 'function' && propValue instanceof Symbol) {
-    return true;
-  }
-
-  return false;
-}
-
-// Equivalent of `typeof` but with special handling for array and regexp.
-function getPropType(propValue) {
-  var propType = typeof propValue;
-  if (Array.isArray(propValue)) {
-    return 'array';
-  }
-  if (propValue instanceof RegExp) {
-    // Old webkits (at least until Android 4.0) return 'function' rather than
-    // 'object' for typeof a RegExp. We'll normalize this here so that /bla/
-    // passes PropTypes.object.
-    return 'object';
-  }
-  if (isSymbol(propType, propValue)) {
-    return 'symbol';
-  }
-  return propType;
-}
-
-// This handles more types than `getPropType`. Only used for error messages.
-// See `createPrimitiveTypeChecker`.
-function getPreciseType(propValue) {
-  var propType = getPropType(propValue);
-  if (propType === 'object') {
-    if (propValue instanceof Date) {
-      return 'date';
-    } else if (propValue instanceof RegExp) {
-      return 'regexp';
     }
   }
-  return propType;
-}
 
-// Returns class name of the object, if any.
-function getClassName(propValue) {
-  if (!propValue.constructor || !propValue.constructor.name) {
-    return ANONYMOUS;
+  function mixStaticSpecIntoComponent(Constructor, statics) {
+    if (!statics) {
+      return;
+    }
+    for (var name in statics) {
+      var property = statics[name];
+      if (!statics.hasOwnProperty(name)) {
+        continue;
+      }
+
+      var isReserved = name in RESERVED_SPEC_KEYS;
+      _invariant(
+        !isReserved,
+        'ReactClass: You are attempting to define a reserved ' +
+          'property, `%s`, that shouldn\'t be on the "statics" key. Define it ' +
+          'as an instance property instead; it will still be accessible on the ' +
+          'constructor.',
+        name
+      );
+
+      var isInherited = name in Constructor;
+      _invariant(
+        !isInherited,
+        'ReactClass: You are attempting to define ' +
+          '`%s` on your component more than once. This conflict may be ' +
+          'due to a mixin.',
+        name
+      );
+      Constructor[name] = property;
+    }
   }
-  return propValue.constructor.name;
+
+  /**
+   * Merge two objects, but throw if both contain the same key.
+   *
+   * @param {object} one The first object, which is mutated.
+   * @param {object} two The second object
+   * @return {object} one after it has been mutated to contain everything in two.
+   */
+  function mergeIntoWithNoDuplicateKeys(one, two) {
+    _invariant(
+      one && two && typeof one === 'object' && typeof two === 'object',
+      'mergeIntoWithNoDuplicateKeys(): Cannot merge non-objects.'
+    );
+
+    for (var key in two) {
+      if (two.hasOwnProperty(key)) {
+        _invariant(
+          one[key] === undefined,
+          'mergeIntoWithNoDuplicateKeys(): ' +
+            'Tried to merge two objects with the same key: `%s`. This conflict ' +
+            'may be due to a mixin; in particular, this may be caused by two ' +
+            'getInitialState() or getDefaultProps() methods returning objects ' +
+            'with clashing keys.',
+          key
+        );
+        one[key] = two[key];
+      }
+    }
+    return one;
+  }
+
+  /**
+   * Creates a function that invokes two functions and merges their return values.
+   *
+   * @param {function} one Function to invoke first.
+   * @param {function} two Function to invoke second.
+   * @return {function} Function that invokes the two argument functions.
+   * @private
+   */
+  function createMergedResultFunction(one, two) {
+    return function mergedResult() {
+      var a = one.apply(this, arguments);
+      var b = two.apply(this, arguments);
+      if (a == null) {
+        return b;
+      } else if (b == null) {
+        return a;
+      }
+      var c = {};
+      mergeIntoWithNoDuplicateKeys(c, a);
+      mergeIntoWithNoDuplicateKeys(c, b);
+      return c;
+    };
+  }
+
+  /**
+   * Creates a function that invokes two functions and ignores their return vales.
+   *
+   * @param {function} one Function to invoke first.
+   * @param {function} two Function to invoke second.
+   * @return {function} Function that invokes the two argument functions.
+   * @private
+   */
+  function createChainedFunction(one, two) {
+    return function chainedFunction() {
+      one.apply(this, arguments);
+      two.apply(this, arguments);
+    };
+  }
+
+  /**
+   * Binds a method to the component.
+   *
+   * @param {object} component Component whose method is going to be bound.
+   * @param {function} method Method to be bound.
+   * @return {function} The bound method.
+   */
+  function bindAutoBindMethod(component, method) {
+    var boundMethod = method.bind(component);
+    if (process.env.NODE_ENV !== 'production') {
+      boundMethod.__reactBoundContext = component;
+      boundMethod.__reactBoundMethod = method;
+      boundMethod.__reactBoundArguments = null;
+      var componentName = component.constructor.displayName;
+      var _bind = boundMethod.bind;
+      boundMethod.bind = function(newThis) {
+        for (
+          var _len = arguments.length,
+            args = Array(_len > 1 ? _len - 1 : 0),
+            _key = 1;
+          _key < _len;
+          _key++
+        ) {
+          args[_key - 1] = arguments[_key];
+        }
+
+        // User is trying to bind() an autobound method; we effectively will
+        // ignore the value of "this" that the user is trying to use, so
+        // let's warn.
+        if (newThis !== component && newThis !== null) {
+          if (process.env.NODE_ENV !== 'production') {
+            warning(
+              false,
+              'bind(): React component methods may only be bound to the ' +
+                'component instance. See %s',
+              componentName
+            );
+          }
+        } else if (!args.length) {
+          if (process.env.NODE_ENV !== 'production') {
+            warning(
+              false,
+              'bind(): You are binding a component method to the component. ' +
+                'React does this for you automatically in a high-performance ' +
+                'way, so you can safely remove this call. See %s',
+              componentName
+            );
+          }
+          return boundMethod;
+        }
+        var reboundMethod = _bind.apply(boundMethod, arguments);
+        reboundMethod.__reactBoundContext = component;
+        reboundMethod.__reactBoundMethod = method;
+        reboundMethod.__reactBoundArguments = args;
+        return reboundMethod;
+      };
+    }
+    return boundMethod;
+  }
+
+  /**
+   * Binds all auto-bound methods in a component.
+   *
+   * @param {object} component Component whose method is going to be bound.
+   */
+  function bindAutoBindMethods(component) {
+    var pairs = component.__reactAutoBindPairs;
+    for (var i = 0; i < pairs.length; i += 2) {
+      var autoBindKey = pairs[i];
+      var method = pairs[i + 1];
+      component[autoBindKey] = bindAutoBindMethod(component, method);
+    }
+  }
+
+  var IsMountedPreMixin = {
+    componentDidMount: function() {
+      this.__isMounted = true;
+    }
+  };
+
+  var IsMountedPostMixin = {
+    componentWillUnmount: function() {
+      this.__isMounted = false;
+    }
+  };
+
+  /**
+   * Add more to the ReactClass base class. These are all legacy features and
+   * therefore not already part of the modern ReactComponent.
+   */
+  var ReactClassMixin = {
+    /**
+     * TODO: This will be deprecated because state should always keep a consistent
+     * type signature and the only use case for this, is to avoid that.
+     */
+    replaceState: function(newState, callback) {
+      this.updater.enqueueReplaceState(this, newState, callback);
+    },
+
+    /**
+     * Checks whether or not this composite component is mounted.
+     * @return {boolean} True if mounted, false otherwise.
+     * @protected
+     * @final
+     */
+    isMounted: function() {
+      if (process.env.NODE_ENV !== 'production') {
+        warning(
+          this.__didWarnIsMounted,
+          '%s: isMounted is deprecated. Instead, make sure to clean up ' +
+            'subscriptions and pending requests in componentWillUnmount to ' +
+            'prevent memory leaks.',
+          (this.constructor && this.constructor.displayName) ||
+            this.name ||
+            'Component'
+        );
+        this.__didWarnIsMounted = true;
+      }
+      return !!this.__isMounted;
+    }
+  };
+
+  var ReactClassComponent = function() {};
+  _assign(
+    ReactClassComponent.prototype,
+    ReactComponent.prototype,
+    ReactClassMixin
+  );
+
+  /**
+   * Creates a composite component class given a class specification.
+   * See https://facebook.github.io/react/docs/top-level-api.html#react.createclass
+   *
+   * @param {object} spec Class specification (which must define `render`).
+   * @return {function} Component constructor function.
+   * @public
+   */
+  function createClass(spec) {
+    // To keep our warnings more understandable, we'll use a little hack here to
+    // ensure that Constructor.name !== 'Constructor'. This makes sure we don't
+    // unnecessarily identify a class without displayName as 'Constructor'.
+    var Constructor = identity(function(props, context, updater) {
+      // This constructor gets overridden by mocks. The argument is used
+      // by mocks to assert on what gets mounted.
+
+      if (process.env.NODE_ENV !== 'production') {
+        warning(
+          this instanceof Constructor,
+          'Something is calling a React component directly. Use a factory or ' +
+            'JSX instead. See: https://fb.me/react-legacyfactory'
+        );
+      }
+
+      // Wire up auto-binding
+      if (this.__reactAutoBindPairs.length) {
+        bindAutoBindMethods(this);
+      }
+
+      this.props = props;
+      this.context = context;
+      this.refs = emptyObject;
+      this.updater = updater || ReactNoopUpdateQueue;
+
+      this.state = null;
+
+      // ReactClasses doesn't have constructors. Instead, they use the
+      // getInitialState and componentWillMount methods for initialization.
+
+      var initialState = this.getInitialState ? this.getInitialState() : null;
+      if (process.env.NODE_ENV !== 'production') {
+        // We allow auto-mocks to proceed as if they're returning null.
+        if (
+          initialState === undefined &&
+          this.getInitialState._isMockFunction
+        ) {
+          // This is probably bad practice. Consider warning here and
+          // deprecating this convenience.
+          initialState = null;
+        }
+      }
+      _invariant(
+        typeof initialState === 'object' && !Array.isArray(initialState),
+        '%s.getInitialState(): must return an object or null',
+        Constructor.displayName || 'ReactCompositeComponent'
+      );
+
+      this.state = initialState;
+    });
+    Constructor.prototype = new ReactClassComponent();
+    Constructor.prototype.constructor = Constructor;
+    Constructor.prototype.__reactAutoBindPairs = [];
+
+    injectedMixins.forEach(mixSpecIntoComponent.bind(null, Constructor));
+
+    mixSpecIntoComponent(Constructor, IsMountedPreMixin);
+    mixSpecIntoComponent(Constructor, spec);
+    mixSpecIntoComponent(Constructor, IsMountedPostMixin);
+
+    // Initialize the defaultProps property after all mixins have been merged.
+    if (Constructor.getDefaultProps) {
+      Constructor.defaultProps = Constructor.getDefaultProps();
+    }
+
+    if (process.env.NODE_ENV !== 'production') {
+      // This is a tag to indicate that the use of these method names is ok,
+      // since it's used with createClass. If it's not, then it's likely a
+      // mistake so we'll warn you to use the static property, property
+      // initializer or constructor respectively.
+      if (Constructor.getDefaultProps) {
+        Constructor.getDefaultProps.isReactClassApproved = {};
+      }
+      if (Constructor.prototype.getInitialState) {
+        Constructor.prototype.getInitialState.isReactClassApproved = {};
+      }
+    }
+
+    _invariant(
+      Constructor.prototype.render,
+      'createClass(...): Class specification must implement a `render` method.'
+    );
+
+    if (process.env.NODE_ENV !== 'production') {
+      warning(
+        !Constructor.prototype.componentShouldUpdate,
+        '%s has a method called ' +
+          'componentShouldUpdate(). Did you mean shouldComponentUpdate()? ' +
+          'The name is phrased as a question because the function is ' +
+          'expected to return a value.',
+        spec.displayName || 'A component'
+      );
+      warning(
+        !Constructor.prototype.componentWillRecieveProps,
+        '%s has a method called ' +
+          'componentWillRecieveProps(). Did you mean componentWillReceiveProps()?',
+        spec.displayName || 'A component'
+      );
+    }
+
+    // Reduce time spent doing lookups by setting these on the prototype.
+    for (var methodName in ReactClassInterface) {
+      if (!Constructor.prototype[methodName]) {
+        Constructor.prototype[methodName] = null;
+      }
+    }
+
+    return Constructor;
+  }
+
+  return createClass;
 }
 
-module.exports = ReactPropTypes;
+module.exports = factory;
+
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 91 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- */
-
-
-
-module.exports = '15.4.2';
-
-/***/ }),
-/* 92 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
 
-var _prodInvariant = __webpack_require__(14);
+var _prodInvariant = __webpack_require__(18);
 
 var ReactElement = __webpack_require__(15);
 
@@ -11589,27 +12406,15 @@ module.exports = onlyChild;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 93 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = __webpack_require__(94);
-
-
-/***/ }),
-/* 94 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -11618,15 +12423,15 @@ module.exports = __webpack_require__(94);
 
 
 var ReactDOMComponentTree = __webpack_require__(5);
-var ReactDefaultInjection = __webpack_require__(95);
-var ReactMount = __webpack_require__(78);
-var ReactReconciler = __webpack_require__(18);
+var ReactDefaultInjection = __webpack_require__(106);
+var ReactMount = __webpack_require__(83);
+var ReactReconciler = __webpack_require__(19);
 var ReactUpdates = __webpack_require__(11);
-var ReactVersion = __webpack_require__(173);
+var ReactVersion = __webpack_require__(184);
 
-var findDOMNode = __webpack_require__(174);
-var getHostComponentFromComposite = __webpack_require__(79);
-var renderSubtreeIntoContainer = __webpack_require__(175);
+var findDOMNode = __webpack_require__(185);
+var getHostComponentFromComposite = __webpack_require__(84);
+var renderSubtreeIntoContainer = __webpack_require__(186);
 var warning = __webpack_require__(2);
 
 ReactDefaultInjection.inject();
@@ -11640,6 +12445,7 @@ var ReactDOM = {
   /* eslint-disable camelcase */
   unstable_batchedUpdates: ReactUpdates.batchedUpdates,
   unstable_renderSubtreeIntoContainer: renderSubtreeIntoContainer
+  /* eslint-enable camelcase */
 };
 
 // Inject the runtime into a devtools global hook regardless of browser.
@@ -11668,7 +12474,6 @@ if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== 'undefined' && typeof __REACT_DEVT
 if (process.env.NODE_ENV !== 'production') {
   var ExecutionEnvironment = __webpack_require__(6);
   if (ExecutionEnvironment.canUseDOM && window.top === window.self) {
-
     // First check if devtools is not installed
     if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ === 'undefined') {
       // If we're in Chrome or Firefox, provide a download link if not installed.
@@ -11680,7 +12485,7 @@ if (process.env.NODE_ENV !== 'production') {
     }
 
     var testFunc = function testFn() {};
-    process.env.NODE_ENV !== 'production' ? warning((testFunc.name || testFunc.toString()).indexOf('testFn') !== -1, 'It looks like you\'re using a minified copy of the development build ' + 'of React. When deploying React apps to production, make sure to use ' + 'the production build which skips development warnings and is faster. ' + 'See https://fb.me/react-minification for more details.') : void 0;
+    process.env.NODE_ENV !== 'production' ? warning((testFunc.name || testFunc.toString()).indexOf('testFn') !== -1, "It looks like you're using a minified copy of the development build " + 'of React. When deploying React apps to production, make sure to use ' + 'the production build which skips development warnings and is faster. ' + 'See https://fb.me/react-minification for more details.') : void 0;
 
     // If we're in IE8, check to see if we are in compatibility mode and provide
     // information on preventing compatibility mode
@@ -11702,10 +12507,10 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 if (process.env.NODE_ENV !== 'production') {
-  var ReactInstrumentation = __webpack_require__(8);
-  var ReactDOMUnknownPropertyHook = __webpack_require__(176);
-  var ReactDOMNullInputValuePropHook = __webpack_require__(177);
-  var ReactDOMInvalidARIAHook = __webpack_require__(178);
+  var ReactInstrumentation = __webpack_require__(9);
+  var ReactDOMUnknownPropertyHook = __webpack_require__(187);
+  var ReactDOMNullInputValuePropHook = __webpack_require__(188);
+  var ReactDOMInvalidARIAHook = __webpack_require__(189);
 
   ReactInstrumentation.debugTool.addHook(ReactDOMUnknownPropertyHook);
   ReactInstrumentation.debugTool.addHook(ReactDOMNullInputValuePropHook);
@@ -11716,41 +12521,39 @@ module.exports = ReactDOM;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 95 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
 
 
-var ARIADOMPropertyConfig = __webpack_require__(96);
-var BeforeInputEventPlugin = __webpack_require__(97);
-var ChangeEventPlugin = __webpack_require__(101);
-var DefaultEventPluginOrder = __webpack_require__(109);
-var EnterLeaveEventPlugin = __webpack_require__(110);
-var HTMLDOMPropertyConfig = __webpack_require__(111);
-var ReactComponentBrowserEnvironment = __webpack_require__(112);
-var ReactDOMComponent = __webpack_require__(118);
+var ARIADOMPropertyConfig = __webpack_require__(107);
+var BeforeInputEventPlugin = __webpack_require__(108);
+var ChangeEventPlugin = __webpack_require__(112);
+var DefaultEventPluginOrder = __webpack_require__(120);
+var EnterLeaveEventPlugin = __webpack_require__(121);
+var HTMLDOMPropertyConfig = __webpack_require__(122);
+var ReactComponentBrowserEnvironment = __webpack_require__(123);
+var ReactDOMComponent = __webpack_require__(129);
 var ReactDOMComponentTree = __webpack_require__(5);
-var ReactDOMEmptyComponent = __webpack_require__(144);
-var ReactDOMTreeTraversal = __webpack_require__(145);
-var ReactDOMTextComponent = __webpack_require__(146);
-var ReactDefaultBatchingStrategy = __webpack_require__(147);
-var ReactEventListener = __webpack_require__(148);
-var ReactInjection = __webpack_require__(150);
-var ReactReconcileTransaction = __webpack_require__(151);
-var SVGDOMPropertyConfig = __webpack_require__(157);
-var SelectEventPlugin = __webpack_require__(158);
-var SimpleEventPlugin = __webpack_require__(159);
+var ReactDOMEmptyComponent = __webpack_require__(155);
+var ReactDOMTreeTraversal = __webpack_require__(156);
+var ReactDOMTextComponent = __webpack_require__(157);
+var ReactDefaultBatchingStrategy = __webpack_require__(158);
+var ReactEventListener = __webpack_require__(159);
+var ReactInjection = __webpack_require__(161);
+var ReactReconcileTransaction = __webpack_require__(162);
+var SVGDOMPropertyConfig = __webpack_require__(168);
+var SelectEventPlugin = __webpack_require__(169);
+var SimpleEventPlugin = __webpack_require__(170);
 
 var alreadyInjected = false;
 
@@ -11807,17 +12610,15 @@ module.exports = {
 };
 
 /***/ }),
-/* 96 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -11886,27 +12687,25 @@ var ARIADOMPropertyConfig = {
 module.exports = ARIADOMPropertyConfig;
 
 /***/ }),
-/* 97 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
 
 
-var EventPropagators = __webpack_require__(22);
+var EventPropagators = __webpack_require__(21);
 var ExecutionEnvironment = __webpack_require__(6);
-var FallbackCompositionState = __webpack_require__(98);
-var SyntheticCompositionEvent = __webpack_require__(99);
-var SyntheticInputEvent = __webpack_require__(100);
+var FallbackCompositionState = __webpack_require__(109);
+var SyntheticCompositionEvent = __webpack_require__(110);
+var SyntheticInputEvent = __webpack_require__(111);
 
 var END_KEYCODES = [9, 13, 27, 32]; // Tab, Return, Esc, Space
 var START_KEYCODE = 229;
@@ -12265,7 +13064,6 @@ function extractBeforeInputEvent(topLevelType, targetInst, nativeEvent, nativeEv
  * `composition` event types.
  */
 var BeforeInputEventPlugin = {
-
   eventTypes: eventTypes,
 
   extractEvents: function (topLevelType, targetInst, nativeEvent, nativeEventTarget) {
@@ -12276,17 +13074,15 @@ var BeforeInputEventPlugin = {
 module.exports = BeforeInputEventPlugin;
 
 /***/ }),
-/* 98 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -12296,7 +13092,7 @@ var _assign = __webpack_require__(4);
 
 var PooledClass = __webpack_require__(16);
 
-var getTextContentAccessor = __webpack_require__(59);
+var getTextContentAccessor = __webpack_require__(63);
 
 /**
  * This helper class stores information about text content of a target node,
@@ -12376,23 +13172,21 @@ PooledClass.addPoolingTo(FallbackCompositionState);
 module.exports = FallbackCompositionState;
 
 /***/ }),
-/* 99 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
 
 
-var SyntheticEvent = __webpack_require__(12);
+var SyntheticEvent = __webpack_require__(13);
 
 /**
  * @interface Event
@@ -12417,23 +13211,21 @@ SyntheticEvent.augmentClass(SyntheticCompositionEvent, CompositionEventInterface
 module.exports = SyntheticCompositionEvent;
 
 /***/ }),
-/* 100 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
 
 
-var SyntheticEvent = __webpack_require__(12);
+var SyntheticEvent = __webpack_require__(13);
 
 /**
  * @interface Event
@@ -12459,32 +13251,31 @@ SyntheticEvent.augmentClass(SyntheticInputEvent, InputEventInterface);
 module.exports = SyntheticInputEvent;
 
 /***/ }),
-/* 101 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
 
 
-var EventPluginHub = __webpack_require__(23);
-var EventPropagators = __webpack_require__(22);
+var EventPluginHub = __webpack_require__(22);
+var EventPropagators = __webpack_require__(21);
 var ExecutionEnvironment = __webpack_require__(6);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactUpdates = __webpack_require__(11);
-var SyntheticEvent = __webpack_require__(12);
+var SyntheticEvent = __webpack_require__(13);
 
-var getEventTarget = __webpack_require__(39);
-var isEventSupported = __webpack_require__(40);
-var isTextInputElement = __webpack_require__(62);
+var inputValueTracking = __webpack_require__(66);
+var getEventTarget = __webpack_require__(37);
+var isEventSupported = __webpack_require__(38);
+var isTextInputElement = __webpack_require__(67);
 
 var eventTypes = {
   change: {
@@ -12496,13 +13287,17 @@ var eventTypes = {
   }
 };
 
+function createAndAccumulateChangeEvent(inst, nativeEvent, target) {
+  var event = SyntheticEvent.getPooled(eventTypes.change, inst, nativeEvent, target);
+  event.type = 'change';
+  EventPropagators.accumulateTwoPhaseDispatches(event);
+  return event;
+}
 /**
  * For IE shims
  */
 var activeElement = null;
 var activeElementInst = null;
-var activeElementValue = null;
-var activeElementValueProp = null;
 
 /**
  * SECTION: handle `change` event
@@ -12519,8 +13314,7 @@ if (ExecutionEnvironment.canUseDOM) {
 }
 
 function manualDispatchChangeEvent(nativeEvent) {
-  var event = SyntheticEvent.getPooled(eventTypes.change, activeElementInst, nativeEvent, getEventTarget(nativeEvent));
-  EventPropagators.accumulateTwoPhaseDispatches(event);
+  var event = createAndAccumulateChangeEvent(activeElementInst, nativeEvent, getEventTarget(nativeEvent));
 
   // If change and propertychange bubbled, we'd just bind to it like all the
   // other events and have it go through ReactBrowserEventEmitter. Since it
@@ -12556,11 +13350,21 @@ function stopWatchingForChangeEventIE8() {
   activeElementInst = null;
 }
 
+function getInstIfValueChanged(targetInst, nativeEvent) {
+  var updated = inputValueTracking.updateValueIfChanged(targetInst);
+  var simulated = nativeEvent.simulated === true && ChangeEventPlugin._allowSimulatedPassThrough;
+
+  if (updated || simulated) {
+    return targetInst;
+  }
+}
+
 function getTargetInstForChangeEvent(topLevelType, targetInst) {
   if (topLevelType === 'topChange') {
     return targetInst;
   }
 }
+
 function handleEventsForChangeEventIE8(topLevelType, target, targetInst) {
   if (topLevelType === 'topFocus') {
     // stopWatching() should be a noop here but we call it just in case we
@@ -12579,105 +13383,54 @@ var isInputEventSupported = false;
 if (ExecutionEnvironment.canUseDOM) {
   // IE9 claims to support the input event but fails to trigger it when
   // deleting text, so we ignore its input events.
-  // IE10+ fire input events to often, such when a placeholder
-  // changes or when an input with a placeholder is focused.
-  isInputEventSupported = isEventSupported('input') && (!document.documentMode || document.documentMode > 11);
+
+  isInputEventSupported = isEventSupported('input') && (!document.documentMode || document.documentMode > 9);
 }
 
 /**
- * (For IE <=11) Replacement getter/setter for the `value` property that gets
- * set on the active element.
- */
-var newValueProp = {
-  get: function () {
-    return activeElementValueProp.get.call(this);
-  },
-  set: function (val) {
-    // Cast to a string so we can do equality checks.
-    activeElementValue = '' + val;
-    activeElementValueProp.set.call(this, val);
-  }
-};
-
-/**
- * (For IE <=11) Starts tracking propertychange events on the passed-in element
+ * (For IE <=9) Starts tracking propertychange events on the passed-in element
  * and override the value property so that we can distinguish user events from
  * value changes in JS.
  */
 function startWatchingForValueChange(target, targetInst) {
   activeElement = target;
   activeElementInst = targetInst;
-  activeElementValue = target.value;
-  activeElementValueProp = Object.getOwnPropertyDescriptor(target.constructor.prototype, 'value');
-
-  // Not guarded in a canDefineProperty check: IE8 supports defineProperty only
-  // on DOM elements
-  Object.defineProperty(activeElement, 'value', newValueProp);
-  if (activeElement.attachEvent) {
-    activeElement.attachEvent('onpropertychange', handlePropertyChange);
-  } else {
-    activeElement.addEventListener('propertychange', handlePropertyChange, false);
-  }
+  activeElement.attachEvent('onpropertychange', handlePropertyChange);
 }
 
 /**
- * (For IE <=11) Removes the event listeners from the currently-tracked element,
+ * (For IE <=9) Removes the event listeners from the currently-tracked element,
  * if any exists.
  */
 function stopWatchingForValueChange() {
   if (!activeElement) {
     return;
   }
-
-  // delete restores the original property definition
-  delete activeElement.value;
-
-  if (activeElement.detachEvent) {
-    activeElement.detachEvent('onpropertychange', handlePropertyChange);
-  } else {
-    activeElement.removeEventListener('propertychange', handlePropertyChange, false);
-  }
+  activeElement.detachEvent('onpropertychange', handlePropertyChange);
 
   activeElement = null;
   activeElementInst = null;
-  activeElementValue = null;
-  activeElementValueProp = null;
 }
 
 /**
- * (For IE <=11) Handles a propertychange event, sending a `change` event if
+ * (For IE <=9) Handles a propertychange event, sending a `change` event if
  * the value of the active element has changed.
  */
 function handlePropertyChange(nativeEvent) {
   if (nativeEvent.propertyName !== 'value') {
     return;
   }
-  var value = nativeEvent.srcElement.value;
-  if (value === activeElementValue) {
-    return;
-  }
-  activeElementValue = value;
-
-  manualDispatchChangeEvent(nativeEvent);
-}
-
-/**
- * If a `change` event should be fired, returns the target's ID.
- */
-function getTargetInstForInputEvent(topLevelType, targetInst) {
-  if (topLevelType === 'topInput') {
-    // In modern browsers (i.e., not IE8 or IE9), the input event is exactly
-    // what we want so fall through here and trigger an abstract event
-    return targetInst;
+  if (getInstIfValueChanged(activeElementInst, nativeEvent)) {
+    manualDispatchChangeEvent(nativeEvent);
   }
 }
 
-function handleEventsForInputEventIE(topLevelType, target, targetInst) {
+function handleEventsForInputEventPolyfill(topLevelType, target, targetInst) {
   if (topLevelType === 'topFocus') {
     // In IE8, we can capture almost all .value changes by adding a
     // propertychange handler and looking for events with propertyName
     // equal to 'value'
-    // In IE9-11, propertychange fires for most input events but is buggy and
+    // In IE9, propertychange fires for most input events but is buggy and
     // doesn't fire when text is deleted, but conveniently, selectionchange
     // appears to fire in all of the remaining cases so we catch those and
     // forward the event if the value has changed
@@ -12695,7 +13448,7 @@ function handleEventsForInputEventIE(topLevelType, target, targetInst) {
 }
 
 // For IE8 and IE9.
-function getTargetInstForInputEventIE(topLevelType, targetInst) {
+function getTargetInstForInputEventPolyfill(topLevelType, targetInst, nativeEvent) {
   if (topLevelType === 'topSelectionChange' || topLevelType === 'topKeyUp' || topLevelType === 'topKeyDown') {
     // On the selectionchange event, the target is just document which isn't
     // helpful for us so just check activeElement instead.
@@ -12707,10 +13460,7 @@ function getTargetInstForInputEventIE(topLevelType, targetInst) {
     // keystroke if user does a key repeat (it'll be a little delayed: right
     // before the second keystroke). Other input methods (e.g., paste) seem to
     // fire selectionchange normally.
-    if (activeElement && activeElement.value !== activeElementValue) {
-      activeElementValue = activeElement.value;
-      return activeElementInst;
-    }
+    return getInstIfValueChanged(activeElementInst, nativeEvent);
   }
 }
 
@@ -12721,12 +13471,39 @@ function shouldUseClickEvent(elem) {
   // Use the `click` event to detect changes to checkbox and radio inputs.
   // This approach works across all browsers, whereas `change` does not fire
   // until `blur` in IE8.
-  return elem.nodeName && elem.nodeName.toLowerCase() === 'input' && (elem.type === 'checkbox' || elem.type === 'radio');
+  var nodeName = elem.nodeName;
+  return nodeName && nodeName.toLowerCase() === 'input' && (elem.type === 'checkbox' || elem.type === 'radio');
 }
 
-function getTargetInstForClickEvent(topLevelType, targetInst) {
+function getTargetInstForClickEvent(topLevelType, targetInst, nativeEvent) {
   if (topLevelType === 'topClick') {
-    return targetInst;
+    return getInstIfValueChanged(targetInst, nativeEvent);
+  }
+}
+
+function getTargetInstForInputOrChangeEvent(topLevelType, targetInst, nativeEvent) {
+  if (topLevelType === 'topInput' || topLevelType === 'topChange') {
+    return getInstIfValueChanged(targetInst, nativeEvent);
+  }
+}
+
+function handleControlledInputBlur(inst, node) {
+  // TODO: In IE, inst is occasionally null. Why?
+  if (inst == null) {
+    return;
+  }
+
+  // Fiber and ReactDOM keep wrapper state in separate places
+  var state = inst._wrapperState || node._wrapperState;
+
+  if (!state || !state.controlled || node.type !== 'number') {
+    return;
+  }
+
+  // If controlled, assign the value attribute to the current value on blur
+  var value = '' + node.value;
+  if (node.getAttribute('value') !== value) {
+    node.setAttribute('value', value);
   }
 }
 
@@ -12741,8 +13518,10 @@ function getTargetInstForClickEvent(topLevelType, targetInst) {
  * - select
  */
 var ChangeEventPlugin = {
-
   eventTypes: eventTypes,
+
+  _allowSimulatedPassThrough: true,
+  _isInputEventSupported: isInputEventSupported,
 
   extractEvents: function (topLevelType, targetInst, nativeEvent, nativeEventTarget) {
     var targetNode = targetInst ? ReactDOMComponentTree.getNodeFromInstance(targetInst) : window;
@@ -12756,21 +13535,19 @@ var ChangeEventPlugin = {
       }
     } else if (isTextInputElement(targetNode)) {
       if (isInputEventSupported) {
-        getTargetInstFunc = getTargetInstForInputEvent;
+        getTargetInstFunc = getTargetInstForInputOrChangeEvent;
       } else {
-        getTargetInstFunc = getTargetInstForInputEventIE;
-        handleEventFunc = handleEventsForInputEventIE;
+        getTargetInstFunc = getTargetInstForInputEventPolyfill;
+        handleEventFunc = handleEventsForInputEventPolyfill;
       }
     } else if (shouldUseClickEvent(targetNode)) {
       getTargetInstFunc = getTargetInstForClickEvent;
     }
 
     if (getTargetInstFunc) {
-      var inst = getTargetInstFunc(topLevelType, targetInst);
+      var inst = getTargetInstFunc(topLevelType, targetInst, nativeEvent);
       if (inst) {
-        var event = SyntheticEvent.getPooled(eventTypes.change, inst, nativeEvent, nativeEventTarget);
-        event.type = 'change';
-        EventPropagators.accumulateTwoPhaseDispatches(event);
+        var event = createAndAccumulateChangeEvent(inst, nativeEvent, nativeEventTarget);
         return event;
       }
     }
@@ -12778,31 +13555,33 @@ var ChangeEventPlugin = {
     if (handleEventFunc) {
       handleEventFunc(topLevelType, targetNode, targetInst);
     }
-  }
 
+    // When blurring, set the value attribute for number inputs
+    if (topLevelType === 'topBlur') {
+      handleControlledInputBlur(targetInst, targetNode);
+    }
+  }
 };
 
 module.exports = ChangeEventPlugin;
 
 /***/ }),
-/* 102 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  * 
  */
 
 
 
-var ReactOwner = __webpack_require__(103);
+var ReactOwner = __webpack_require__(114);
 
 var ReactRef = {};
 
@@ -12879,17 +13658,15 @@ ReactRef.detachRefs = function (instance, element) {
 module.exports = ReactRef;
 
 /***/ }),
-/* 103 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  * 
  */
@@ -12972,36 +13749,33 @@ var ReactOwner = {
       owner.detachRef(ref);
     }
   }
-
 };
 
 module.exports = ReactOwner;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 104 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2016-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2016-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  * 
  */
 
 
 
-var ReactInvalidSetStateWarningHook = __webpack_require__(105);
-var ReactHostOperationHistoryHook = __webpack_require__(106);
+var ReactInvalidSetStateWarningHook = __webpack_require__(116);
+var ReactHostOperationHistoryHook = __webpack_require__(117);
 var ReactComponentTreeHook = __webpack_require__(7);
 var ExecutionEnvironment = __webpack_require__(6);
 
-var performanceNow = __webpack_require__(107);
+var performanceNow = __webpack_require__(118);
 var warning = __webpack_require__(2);
 
 var hooks = [];
@@ -13163,9 +13937,7 @@ function resumeCurrentLifeCycleTimer() {
 }
 
 var lastMarkTimeStamp = 0;
-var canUsePerformanceMeasure =
-// $FlowFixMe https://github.com/facebook/flow/issues/2345
-typeof performance !== 'undefined' && typeof performance.mark === 'function' && typeof performance.clearMarks === 'function' && typeof performance.measure === 'function' && typeof performance.clearMeasures === 'function';
+var canUsePerformanceMeasure = typeof performance !== 'undefined' && typeof performance.mark === 'function' && typeof performance.clearMarks === 'function' && typeof performance.measure === 'function' && typeof performance.clearMeasures === 'function';
 
 function shouldMark(debugID) {
   if (!isProfiling || !canUsePerformanceMeasure) {
@@ -13213,7 +13985,9 @@ function markEnd(debugID, markType) {
   }
 
   performance.clearMarks(markName);
-  performance.clearMeasures(measurementName);
+  if (measurementName) {
+    performance.clearMeasures(measurementName);
+  }
 }
 
 var ReactDebugTool = {
@@ -13346,17 +14120,15 @@ module.exports = ReactDebugTool;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 105 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2016-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2016-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  * 
  */
@@ -13389,17 +14161,15 @@ module.exports = ReactInvalidSetStateWarningHook;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 106 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2016-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2016-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  * 
  */
@@ -13428,7 +14198,7 @@ var ReactHostOperationHistoryHook = {
 module.exports = ReactHostOperationHistoryHook;
 
 /***/ }),
-/* 107 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13443,7 +14213,7 @@ module.exports = ReactHostOperationHistoryHook;
  * @typechecks
  */
 
-var performance = __webpack_require__(108);
+var performance = __webpack_require__(119);
 
 var performanceNow;
 
@@ -13465,7 +14235,7 @@ if (performance.now) {
 module.exports = performanceNow;
 
 /***/ }),
-/* 108 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13491,17 +14261,15 @@ if (ExecutionEnvironment.canUseDOM) {
 module.exports = performance || {};
 
 /***/ }),
-/* 109 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -13522,25 +14290,23 @@ var DefaultEventPluginOrder = ['ResponderEventPlugin', 'SimpleEventPlugin', 'Tap
 module.exports = DefaultEventPluginOrder;
 
 /***/ }),
-/* 110 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
 
 
-var EventPropagators = __webpack_require__(22);
+var EventPropagators = __webpack_require__(21);
 var ReactDOMComponentTree = __webpack_require__(5);
-var SyntheticMouseEvent = __webpack_require__(28);
+var SyntheticMouseEvent = __webpack_require__(29);
 
 var eventTypes = {
   mouseEnter: {
@@ -13554,7 +14320,6 @@ var eventTypes = {
 };
 
 var EnterLeaveEventPlugin = {
-
   eventTypes: eventTypes,
 
   /**
@@ -13621,29 +14386,26 @@ var EnterLeaveEventPlugin = {
 
     return [leave, enter];
   }
-
 };
 
 module.exports = EnterLeaveEventPlugin;
 
 /***/ }),
-/* 111 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
 
 
-var DOMProperty = __webpack_require__(13);
+var DOMProperty = __webpack_require__(14);
 
 var MUST_USE_PROPERTY = DOMProperty.injection.MUST_USE_PROPERTY;
 var HAS_BOOLEAN_VALUE = DOMProperty.injection.HAS_BOOLEAN_VALUE;
@@ -13686,6 +14448,7 @@ var HTMLDOMPropertyConfig = {
     contentEditable: 0,
     contextMenu: 0,
     controls: HAS_BOOLEAN_VALUE,
+    controlsList: 0,
     coords: 0,
     crossOrigin: 0,
     data: 0, // For `<object />` acts as `src`.
@@ -13838,30 +14601,52 @@ var HTMLDOMPropertyConfig = {
     htmlFor: 'for',
     httpEquiv: 'http-equiv'
   },
-  DOMPropertyNames: {}
+  DOMPropertyNames: {},
+  DOMMutationMethods: {
+    value: function (node, value) {
+      if (value == null) {
+        return node.removeAttribute('value');
+      }
+
+      // Number inputs get special treatment due to some edge cases in
+      // Chrome. Let everything else assign the value attribute as normal.
+      // https://github.com/facebook/react/issues/7253#issuecomment-236074326
+      if (node.type !== 'number' || node.hasAttribute('value') === false) {
+        node.setAttribute('value', '' + value);
+      } else if (node.validity && !node.validity.badInput && node.ownerDocument.activeElement !== node) {
+        // Don't assign an attribute if validation reports bad
+        // input. Chrome will clear the value. Additionally, don't
+        // operate on inputs that have focus, otherwise Chrome might
+        // strip off trailing decimal places and cause the user's
+        // cursor position to jump to the beginning of the input.
+        //
+        // In ReactDOMInput, we have an onBlur event that will trigger
+        // this function again when focus is lost.
+        node.setAttribute('value', '' + value);
+      }
+    }
+  }
 };
 
 module.exports = HTMLDOMPropertyConfig;
 
 /***/ }),
-/* 112 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
 
 
-var DOMChildrenOperations = __webpack_require__(42);
-var ReactDOMIDOperations = __webpack_require__(117);
+var DOMChildrenOperations = __webpack_require__(40);
+var ReactDOMIDOperations = __webpack_require__(128);
 
 /**
  * Abstracts away all functionality of the reconciler that requires knowledge of
@@ -13869,27 +14654,23 @@ var ReactDOMIDOperations = __webpack_require__(117);
  * need for this injection.
  */
 var ReactComponentBrowserEnvironment = {
-
   processChildrenUpdates: ReactDOMIDOperations.dangerouslyProcessChildrenUpdates,
 
   replaceNodeWithMarkup: DOMChildrenOperations.dangerouslyReplaceNodeWithMarkup
-
 };
 
 module.exports = ReactComponentBrowserEnvironment;
 
 /***/ }),
-/* 113 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -13897,15 +14678,14 @@ module.exports = ReactComponentBrowserEnvironment;
 
 var _prodInvariant = __webpack_require__(3);
 
-var DOMLazyTree = __webpack_require__(19);
+var DOMLazyTree = __webpack_require__(20);
 var ExecutionEnvironment = __webpack_require__(6);
 
-var createNodesFromMarkup = __webpack_require__(114);
-var emptyFunction = __webpack_require__(9);
+var createNodesFromMarkup = __webpack_require__(125);
+var emptyFunction = __webpack_require__(8);
 var invariant = __webpack_require__(1);
 
 var Danger = {
-
   /**
    * Replaces a node with a string of markup at its current position within its
    * parent. The markup must render into a single root node.
@@ -13926,14 +14706,13 @@ var Danger = {
       DOMLazyTree.replaceChildWithTree(oldChild, markup);
     }
   }
-
 };
 
 module.exports = Danger;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 114 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13952,8 +14731,8 @@ module.exports = Danger;
 
 var ExecutionEnvironment = __webpack_require__(6);
 
-var createArrayFromMixed = __webpack_require__(115);
-var getMarkupWrap = __webpack_require__(116);
+var createArrayFromMixed = __webpack_require__(126);
+var getMarkupWrap = __webpack_require__(127);
 var invariant = __webpack_require__(1);
 
 /**
@@ -14021,7 +14800,7 @@ module.exports = createNodesFromMarkup;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 115 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14152,7 +14931,7 @@ module.exports = createArrayFromMixed;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 116 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14251,30 +15030,27 @@ module.exports = getMarkupWrap;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 117 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
 
 
-var DOMChildrenOperations = __webpack_require__(42);
+var DOMChildrenOperations = __webpack_require__(40);
 var ReactDOMComponentTree = __webpack_require__(5);
 
 /**
  * Operations used to process updates to DOM nodes.
  */
 var ReactDOMIDOperations = {
-
   /**
    * Updates a component's children by processing a series of updates.
    *
@@ -14290,17 +15066,15 @@ var ReactDOMIDOperations = {
 module.exports = ReactDOMIDOperations;
 
 /***/ }),
-/* 118 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -14311,31 +15085,32 @@ module.exports = ReactDOMIDOperations;
 var _prodInvariant = __webpack_require__(3),
     _assign = __webpack_require__(4);
 
-var AutoFocusUtils = __webpack_require__(119);
-var CSSPropertyOperations = __webpack_require__(120);
-var DOMLazyTree = __webpack_require__(19);
-var DOMNamespaces = __webpack_require__(43);
-var DOMProperty = __webpack_require__(13);
-var DOMPropertyOperations = __webpack_require__(67);
-var EventPluginHub = __webpack_require__(23);
-var EventPluginRegistry = __webpack_require__(26);
-var ReactBrowserEventEmitter = __webpack_require__(31);
-var ReactDOMComponentFlags = __webpack_require__(56);
+var AutoFocusUtils = __webpack_require__(130);
+var CSSPropertyOperations = __webpack_require__(131);
+var DOMLazyTree = __webpack_require__(20);
+var DOMNamespaces = __webpack_require__(41);
+var DOMProperty = __webpack_require__(14);
+var DOMPropertyOperations = __webpack_require__(72);
+var EventPluginHub = __webpack_require__(22);
+var EventPluginRegistry = __webpack_require__(27);
+var ReactBrowserEventEmitter = __webpack_require__(32);
+var ReactDOMComponentFlags = __webpack_require__(60);
 var ReactDOMComponentTree = __webpack_require__(5);
-var ReactDOMInput = __webpack_require__(130);
-var ReactDOMOption = __webpack_require__(131);
-var ReactDOMSelect = __webpack_require__(69);
-var ReactDOMTextarea = __webpack_require__(132);
-var ReactInstrumentation = __webpack_require__(8);
-var ReactMultiChild = __webpack_require__(133);
-var ReactServerRenderingTransaction = __webpack_require__(142);
+var ReactDOMInput = __webpack_require__(141);
+var ReactDOMOption = __webpack_require__(142);
+var ReactDOMSelect = __webpack_require__(74);
+var ReactDOMTextarea = __webpack_require__(143);
+var ReactInstrumentation = __webpack_require__(9);
+var ReactMultiChild = __webpack_require__(144);
+var ReactServerRenderingTransaction = __webpack_require__(153);
 
-var emptyFunction = __webpack_require__(9);
-var escapeTextContentForBrowser = __webpack_require__(30);
+var emptyFunction = __webpack_require__(8);
+var escapeTextContentForBrowser = __webpack_require__(31);
 var invariant = __webpack_require__(1);
-var isEventSupported = __webpack_require__(40);
-var shallowEqual = __webpack_require__(47);
-var validateDOMNesting = __webpack_require__(51);
+var isEventSupported = __webpack_require__(38);
+var shallowEqual = __webpack_require__(45);
+var inputValueTracking = __webpack_require__(66);
+var validateDOMNesting = __webpack_require__(49);
 var warning = __webpack_require__(2);
 
 var Flags = ReactDOMComponentFlags;
@@ -14345,7 +15120,7 @@ var listenTo = ReactBrowserEventEmitter.listenTo;
 var registrationNameModules = EventPluginRegistry.registrationNameModules;
 
 // For quickly matching children type, to test if can be treated as content.
-var CONTENT_TYPES = { 'string': true, 'number': true };
+var CONTENT_TYPES = { string: true, number: true };
 
 var STYLE = 'style';
 var HTML = '__html';
@@ -14454,7 +15229,7 @@ function enqueuePutListener(inst, registrationName, listener, transaction) {
   if (process.env.NODE_ENV !== 'production') {
     // IE8 has no API for event capturing and the `onScroll` event doesn't
     // bubble.
-    process.env.NODE_ENV !== 'production' ? warning(registrationName !== 'onScroll' || isEventSupported('scroll', true), 'This browser doesn\'t support the `onScroll` event') : void 0;
+    process.env.NODE_ENV !== 'production' ? warning(registrationName !== 'onScroll' || isEventSupported('scroll', true), "This browser doesn't support the `onScroll` event") : void 0;
   }
   var containerInfo = inst._hostContainerInfo;
   var isDocumentFragment = containerInfo._node && containerInfo._node.nodeType === DOC_FRAGMENT_TYPE;
@@ -14544,6 +15319,10 @@ var mediaEvents = {
   topWaiting: 'waiting'
 };
 
+function trackInputValue() {
+  inputValueTracking.track(this);
+}
+
 function trapBubbledEventsLocal() {
   var inst = this;
   // If a component renders to null or if another component fatals and causes
@@ -14559,7 +15338,6 @@ function trapBubbledEventsLocal() {
       break;
     case 'video':
     case 'audio':
-
       inst._wrapperState.listeners = [];
       // Create listener for each media event
       for (var event in mediaEvents) {
@@ -14593,34 +15371,35 @@ function postUpdateSelectWrapper() {
 // those special-case tags.
 
 var omittedCloseTags = {
-  'area': true,
-  'base': true,
-  'br': true,
-  'col': true,
-  'embed': true,
-  'hr': true,
-  'img': true,
-  'input': true,
-  'keygen': true,
-  'link': true,
-  'meta': true,
-  'param': true,
-  'source': true,
-  'track': true,
-  'wbr': true
+  area: true,
+  base: true,
+  br: true,
+  col: true,
+  embed: true,
+  hr: true,
+  img: true,
+  input: true,
+  keygen: true,
+  link: true,
+  meta: true,
+  param: true,
+  source: true,
+  track: true,
+  wbr: true
+  // NOTE: menuitem's close tag should be omitted, but that causes problems.
 };
 
 var newlineEatingTags = {
-  'listing': true,
-  'pre': true,
-  'textarea': true
+  listing: true,
+  pre: true,
+  textarea: true
 };
 
 // For HTML, certain tags cannot have children. This has the same purpose as
 // `omittedCloseTags` except that `menuitem` should still have its closing tag.
 
 var voidElementTags = _assign({
-  'menuitem': true
+  menuitem: true
 }, omittedCloseTags);
 
 // We accept any tag to be rendered but since this gets injected into arbitrary
@@ -14684,7 +15463,6 @@ function ReactDOMComponent(element) {
 ReactDOMComponent.displayName = 'ReactDOMComponent';
 
 ReactDOMComponent.Mixin = {
-
   /**
    * Generates root tag markup then recurses. This method has side effects and
    * is not idempotent.
@@ -14721,6 +15499,7 @@ ReactDOMComponent.Mixin = {
       case 'input':
         ReactDOMInput.mountWrapper(this, props, hostParent);
         props = ReactDOMInput.getHostProps(this, props);
+        transaction.getReactMountReady().enqueue(trackInputValue, this);
         transaction.getReactMountReady().enqueue(trapBubbledEventsLocal, this);
         break;
       case 'option':
@@ -14735,6 +15514,7 @@ ReactDOMComponent.Mixin = {
       case 'textarea':
         ReactDOMTextarea.mountWrapper(this, props, hostParent);
         props = ReactDOMTextarea.getHostProps(this, props);
+        transaction.getReactMountReady().enqueue(trackInputValue, this);
         transaction.getReactMountReady().enqueue(trapBubbledEventsLocal, this);
         break;
     }
@@ -15055,6 +15835,10 @@ ReactDOMComponent.Mixin = {
         // happen after `_updateDOMProperties`. Otherwise HTML5 input validations
         // raise warnings and prevent the new value from being assigned.
         ReactDOMInput.updateWrapper(this);
+
+        // We also check that we haven't missed a value update, such as a
+        // Radio group shifting the checked value to another named radio input.
+        inputValueTracking.updateValueIfChanged(this);
         break;
       case 'textarea':
         ReactDOMTextarea.updateWrapper(this);
@@ -15260,6 +16044,10 @@ ReactDOMComponent.Mixin = {
           }
         }
         break;
+      case 'input':
+      case 'textarea':
+        inputValueTracking.stopTracking(this);
+        break;
       case 'html':
       case 'head':
       case 'body':
@@ -15288,7 +16076,6 @@ ReactDOMComponent.Mixin = {
   getPublicInstance: function () {
     return getNode(this);
   }
-
 };
 
 _assign(ReactDOMComponent.prototype, ReactDOMComponent.Mixin, ReactMultiChild.Mixin);
@@ -15297,17 +16084,15 @@ module.exports = ReactDOMComponent;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 119 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -15315,7 +16100,7 @@ module.exports = ReactDOMComponent;
 
 var ReactDOMComponentTree = __webpack_require__(5);
 
-var focusNode = __webpack_require__(65);
+var focusNode = __webpack_require__(70);
 
 var AutoFocusUtils = {
   focusDOMComponent: function () {
@@ -15326,30 +16111,28 @@ var AutoFocusUtils = {
 module.exports = AutoFocusUtils;
 
 /***/ }),
-/* 120 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
 
 
-var CSSProperty = __webpack_require__(66);
+var CSSProperty = __webpack_require__(71);
 var ExecutionEnvironment = __webpack_require__(6);
-var ReactInstrumentation = __webpack_require__(8);
+var ReactInstrumentation = __webpack_require__(9);
 
-var camelizeStyleName = __webpack_require__(121);
-var dangerousStyleValue = __webpack_require__(123);
-var hyphenateStyleName = __webpack_require__(124);
-var memoizeStringOnly = __webpack_require__(126);
+var camelizeStyleName = __webpack_require__(132);
+var dangerousStyleValue = __webpack_require__(134);
+var hyphenateStyleName = __webpack_require__(135);
+var memoizeStringOnly = __webpack_require__(137);
 var warning = __webpack_require__(2);
 
 var processStyleName = memoizeStringOnly(function (styleName) {
@@ -15407,7 +16190,7 @@ if (process.env.NODE_ENV !== 'production') {
     }
 
     warnedStyleValues[value] = true;
-    process.env.NODE_ENV !== 'production' ? warning(false, 'Style property values shouldn\'t contain a semicolon.%s ' + 'Try "%s: %s" instead.', checkRenderMessage(owner), name, value.replace(badStyleValueWithSemicolonPattern, '')) : void 0;
+    process.env.NODE_ENV !== 'production' ? warning(false, "Style property values shouldn't contain a semicolon.%s " + 'Try "%s: %s" instead.', checkRenderMessage(owner), name, value.replace(badStyleValueWithSemicolonPattern, '')) : void 0;
   };
 
   var warnStyleValueIsNaN = function (name, value, owner) {
@@ -15457,7 +16240,6 @@ if (process.env.NODE_ENV !== 'production') {
  * Operations for dealing with CSS properties.
  */
 var CSSPropertyOperations = {
-
   /**
    * Serializes a mapping of style properties for use as inline styles:
    *
@@ -15477,13 +16259,16 @@ var CSSPropertyOperations = {
       if (!styles.hasOwnProperty(styleName)) {
         continue;
       }
+      var isCustomProperty = styleName.indexOf('--') === 0;
       var styleValue = styles[styleName];
       if (process.env.NODE_ENV !== 'production') {
-        warnValidStyle(styleName, styleValue, component);
+        if (!isCustomProperty) {
+          warnValidStyle(styleName, styleValue, component);
+        }
       }
       if (styleValue != null) {
         serialized += processStyleName(styleName) + ':';
-        serialized += dangerousStyleValue(styleName, styleValue, component) + ';';
+        serialized += dangerousStyleValue(styleName, styleValue, component, isCustomProperty) + ';';
       }
     }
     return serialized || null;
@@ -15511,14 +16296,19 @@ var CSSPropertyOperations = {
       if (!styles.hasOwnProperty(styleName)) {
         continue;
       }
+      var isCustomProperty = styleName.indexOf('--') === 0;
       if (process.env.NODE_ENV !== 'production') {
-        warnValidStyle(styleName, styles[styleName], component);
+        if (!isCustomProperty) {
+          warnValidStyle(styleName, styles[styleName], component);
+        }
       }
-      var styleValue = dangerousStyleValue(styleName, styles[styleName], component);
+      var styleValue = dangerousStyleValue(styleName, styles[styleName], component, isCustomProperty);
       if (styleName === 'float' || styleName === 'cssFloat') {
         styleName = styleFloatAccessor;
       }
-      if (styleValue) {
+      if (isCustomProperty) {
+        style.setProperty(styleName, styleValue);
+      } else if (styleValue) {
         style[styleName] = styleValue;
       } else {
         var expansion = hasShorthandPropertyBug && CSSProperty.shorthandPropertyExpansions[styleName];
@@ -15534,14 +16324,13 @@ var CSSPropertyOperations = {
       }
     }
   }
-
 };
 
 module.exports = CSSPropertyOperations;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 121 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15556,7 +16345,7 @@ module.exports = CSSPropertyOperations;
 
 
 
-var camelize = __webpack_require__(122);
+var camelize = __webpack_require__(133);
 
 var msPattern = /^-ms-/;
 
@@ -15584,7 +16373,7 @@ function camelizeStyleName(string) {
 module.exports = camelizeStyleName;
 
 /***/ }),
-/* 122 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15619,23 +16408,21 @@ function camelize(string) {
 module.exports = camelize;
 
 /***/ }),
-/* 123 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
 
 
-var CSSProperty = __webpack_require__(66);
+var CSSProperty = __webpack_require__(71);
 var warning = __webpack_require__(2);
 
 var isUnitlessNumber = CSSProperty.isUnitlessNumber;
@@ -15651,7 +16438,7 @@ var styleWarnings = {};
  * @param {ReactDOMComponent} component
  * @return {string} Normalized style value with dimensions applied.
  */
-function dangerousStyleValue(name, value, component) {
+function dangerousStyleValue(name, value, component, isCustomProperty) {
   // Note that we've removed escapeTextForBrowser() calls here since the
   // whole string will be escaped when the attribute is injected into
   // the markup. If you provide unsafe user data here they can inject
@@ -15668,7 +16455,7 @@ function dangerousStyleValue(name, value, component) {
   }
 
   var isNonNumeric = isNaN(value);
-  if (isNonNumeric || value === 0 || isUnitlessNumber.hasOwnProperty(name) && isUnitlessNumber[name]) {
+  if (isCustomProperty || isNonNumeric || value === 0 || isUnitlessNumber.hasOwnProperty(name) && isUnitlessNumber[name]) {
     return '' + value; // cast to string
   }
 
@@ -15704,7 +16491,7 @@ module.exports = dangerousStyleValue;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 124 */
+/* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15719,7 +16506,7 @@ module.exports = dangerousStyleValue;
 
 
 
-var hyphenate = __webpack_require__(125);
+var hyphenate = __webpack_require__(136);
 
 var msPattern = /^ms-/;
 
@@ -15746,7 +16533,7 @@ function hyphenateStyleName(string) {
 module.exports = hyphenateStyleName;
 
 /***/ }),
-/* 125 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15782,7 +16569,7 @@ function hyphenate(string) {
 module.exports = hyphenate;
 
 /***/ }),
-/* 126 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15815,23 +16602,21 @@ function memoizeStringOnly(callback) {
 module.exports = memoizeStringOnly;
 
 /***/ }),
-/* 127 */
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
 
 
-var escapeTextContentForBrowser = __webpack_require__(30);
+var escapeTextContentForBrowser = __webpack_require__(31);
 
 /**
  * Escapes attribute value to prevent scripting attacks.
@@ -15846,23 +16631,21 @@ function quoteAttributeValueForBrowser(value) {
 module.exports = quoteAttributeValueForBrowser;
 
 /***/ }),
-/* 128 */
+/* 139 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
 
 
-var EventPluginHub = __webpack_require__(23);
+var EventPluginHub = __webpack_require__(22);
 
 function runEventQueueInBatch(events) {
   EventPluginHub.enqueueEvents(events);
@@ -15870,7 +16653,6 @@ function runEventQueueInBatch(events) {
 }
 
 var ReactEventEmitterMixin = {
-
   /**
    * Streams a fired top-level event to `EventPluginHub` where plugins have the
    * opportunity to create `ReactEvent`s to be dispatched.
@@ -15884,17 +16666,15 @@ var ReactEventEmitterMixin = {
 module.exports = ReactEventEmitterMixin;
 
 /***/ }),
-/* 129 */
+/* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -15990,17 +16770,15 @@ function getVendorPrefixedEventName(eventName) {
 module.exports = getVendorPrefixedEventName;
 
 /***/ }),
-/* 130 */
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -16009,8 +16787,8 @@ module.exports = getVendorPrefixedEventName;
 var _prodInvariant = __webpack_require__(3),
     _assign = __webpack_require__(4);
 
-var DOMPropertyOperations = __webpack_require__(67);
-var LinkedValueUtils = __webpack_require__(45);
+var DOMPropertyOperations = __webpack_require__(72);
+var LinkedValueUtils = __webpack_require__(43);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactUpdates = __webpack_require__(11);
 
@@ -16108,12 +16886,9 @@ var ReactDOMInput = {
       initialChecked: props.checked != null ? props.checked : props.defaultChecked,
       initialValue: props.value != null ? props.value : defaultValue,
       listeners: null,
-      onChange: _handleChange.bind(inst)
+      onChange: _handleChange.bind(inst),
+      controlled: isControlled(props)
     };
-
-    if (process.env.NODE_ENV !== 'production') {
-      inst._wrapperState.controlled = isControlled(props);
-    }
   },
 
   updateWrapper: function (inst) {
@@ -16142,14 +16917,26 @@ var ReactDOMInput = {
     var node = ReactDOMComponentTree.getNodeFromInstance(inst);
     var value = LinkedValueUtils.getValue(props);
     if (value != null) {
+      if (value === 0 && node.value === '') {
+        node.value = '0';
+        // Note: IE9 reports a number inputs as 'text', so check props instead.
+      } else if (props.type === 'number') {
+        // Simulate `input.valueAsNumber`. IE9 does not support it
+        var valueAsNumber = parseFloat(node.value, 10) || 0;
 
-      // Cast `value` to a string to ensure the value is set correctly. While
-      // browsers typically do this as necessary, jsdom doesn't.
-      var newValue = '' + value;
-
-      // To avoid side effects (such as losing text selection), only set value if changed
-      if (newValue !== node.value) {
-        node.value = newValue;
+        if (
+        // eslint-disable-next-line
+        value != valueAsNumber ||
+        // eslint-disable-next-line
+        value == valueAsNumber && node.value != value) {
+          // Cast `value` to a string to ensure the value is set correctly. While
+          // browsers typically do this as necessary, jsdom doesn't.
+          node.value = '' + value;
+        }
+      } else if (node.value !== '' + value) {
+        // Cast `value` to a string to ensure the value is set correctly. While
+        // browsers typically do this as necessary, jsdom doesn't.
+        node.value = '' + value;
       }
     } else {
       if (props.value == null && props.defaultValue != null) {
@@ -16274,17 +17061,15 @@ module.exports = ReactDOMInput;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 131 */
+/* 142 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -16294,7 +17079,7 @@ var _assign = __webpack_require__(4);
 
 var React = __webpack_require__(17);
 var ReactDOMComponentTree = __webpack_require__(5);
-var ReactDOMSelect = __webpack_require__(69);
+var ReactDOMSelect = __webpack_require__(74);
 
 var warning = __webpack_require__(2);
 var didWarnInvalidOptionChildren = false;
@@ -16396,24 +17181,21 @@ var ReactDOMOption = {
 
     return hostProps;
   }
-
 };
 
 module.exports = ReactDOMOption;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 132 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -16422,7 +17204,7 @@ module.exports = ReactDOMOption;
 var _prodInvariant = __webpack_require__(3),
     _assign = __webpack_require__(4);
 
-var LinkedValueUtils = __webpack_require__(45);
+var LinkedValueUtils = __webpack_require__(43);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactUpdates = __webpack_require__(11);
 
@@ -16569,17 +17351,15 @@ module.exports = ReactDOMTextarea;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 133 */
+/* 144 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -16587,16 +17367,16 @@ module.exports = ReactDOMTextarea;
 
 var _prodInvariant = __webpack_require__(3);
 
-var ReactComponentEnvironment = __webpack_require__(46);
-var ReactInstanceMap = __webpack_require__(25);
-var ReactInstrumentation = __webpack_require__(8);
+var ReactComponentEnvironment = __webpack_require__(44);
+var ReactInstanceMap = __webpack_require__(24);
+var ReactInstrumentation = __webpack_require__(9);
 
 var ReactCurrentOwner = __webpack_require__(10);
-var ReactReconciler = __webpack_require__(18);
-var ReactChildReconciler = __webpack_require__(134);
+var ReactReconciler = __webpack_require__(19);
+var ReactChildReconciler = __webpack_require__(145);
 
-var emptyFunction = __webpack_require__(9);
-var flattenChildren = __webpack_require__(141);
+var emptyFunction = __webpack_require__(8);
+var flattenChildren = __webpack_require__(152);
 var invariant = __webpack_require__(1);
 
 /**
@@ -16743,7 +17523,6 @@ if (process.env.NODE_ENV !== 'production') {
  * @internal
  */
 var ReactMultiChild = {
-
   /**
    * Provides common functionality for components that must reconcile multiple
    * children. This is used by `ReactDOMComponent` to mount, update, and
@@ -16752,7 +17531,6 @@ var ReactMultiChild = {
    * @lends {ReactMultiChild.prototype}
    */
   Mixin: {
-
     _reconcilerInstantiateChildren: function (nestedChildren, transaction, context) {
       if (process.env.NODE_ENV !== 'production') {
         var selfDebugID = getDebugID(this);
@@ -17016,37 +17794,33 @@ var ReactMultiChild = {
       child._mountIndex = null;
       return update;
     }
-
   }
-
 };
 
 module.exports = ReactMultiChild;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 134 */
+/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2014-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2014-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
 
 
-var ReactReconciler = __webpack_require__(18);
+var ReactReconciler = __webpack_require__(19);
 
-var instantiateReactComponent = __webpack_require__(70);
-var KeyEscapeUtils = __webpack_require__(49);
-var shouldUpdateReactComponent = __webpack_require__(48);
-var traverseAllChildren = __webpack_require__(74);
+var instantiateReactComponent = __webpack_require__(75);
+var KeyEscapeUtils = __webpack_require__(47);
+var shouldUpdateReactComponent = __webpack_require__(46);
+var traverseAllChildren = __webpack_require__(79);
 var warning = __webpack_require__(2);
 
 var ReactComponentTreeHook;
@@ -17090,8 +17864,8 @@ var ReactChildReconciler = {
    * @return {?object} A set of child instances.
    * @internal
    */
-  instantiateChildren: function (nestedChildNodes, transaction, context, selfDebugID // 0 in production and for roots
-  ) {
+  instantiateChildren: function (nestedChildNodes, transaction, context, selfDebugID) // 0 in production and for roots
+  {
     if (nestedChildNodes == null) {
       return null;
     }
@@ -17117,8 +17891,8 @@ var ReactChildReconciler = {
    * @return {?object} A new set of child instances.
    * @internal
    */
-  updateChildren: function (prevChildren, nextChildren, mountImages, removedNodes, transaction, hostParent, hostContainerInfo, context, selfDebugID // 0 in production and for roots
-  ) {
+  updateChildren: function (prevChildren, nextChildren, mountImages, removedNodes, transaction, hostParent, hostContainerInfo, context, selfDebugID) // 0 in production and for roots
+  {
     // We currently don't have a way to track moves here but if we use iterators
     // instead of for..in we can zip the iterators and check if an item has
     // moved.
@@ -17178,24 +17952,21 @@ var ReactChildReconciler = {
       }
     }
   }
-
 };
 
 module.exports = ReactChildReconciler;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 135 */
+/* 146 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -17205,22 +17976,22 @@ var _prodInvariant = __webpack_require__(3),
     _assign = __webpack_require__(4);
 
 var React = __webpack_require__(17);
-var ReactComponentEnvironment = __webpack_require__(46);
+var ReactComponentEnvironment = __webpack_require__(44);
 var ReactCurrentOwner = __webpack_require__(10);
-var ReactErrorUtils = __webpack_require__(38);
-var ReactInstanceMap = __webpack_require__(25);
-var ReactInstrumentation = __webpack_require__(8);
-var ReactNodeTypes = __webpack_require__(71);
-var ReactReconciler = __webpack_require__(18);
+var ReactErrorUtils = __webpack_require__(36);
+var ReactInstanceMap = __webpack_require__(24);
+var ReactInstrumentation = __webpack_require__(9);
+var ReactNodeTypes = __webpack_require__(76);
+var ReactReconciler = __webpack_require__(19);
 
 if (process.env.NODE_ENV !== 'production') {
-  var checkReactTypeSpec = __webpack_require__(136);
+  var checkReactTypeSpec = __webpack_require__(147);
 }
 
-var emptyObject = __webpack_require__(21);
+var emptyObject = __webpack_require__(26);
 var invariant = __webpack_require__(1);
-var shallowEqual = __webpack_require__(47);
-var shouldUpdateReactComponent = __webpack_require__(48);
+var shallowEqual = __webpack_require__(45);
+var shouldUpdateReactComponent = __webpack_require__(46);
 var warning = __webpack_require__(2);
 
 var CompositeTypes = {
@@ -17308,7 +18079,6 @@ var nextMountID = 1;
  * @lends {ReactCompositeComponent.prototype}
  */
 var ReactCompositeComponent = {
-
   /**
    * Base constructor for all composite component.
    *
@@ -17404,7 +18174,7 @@ var ReactCompositeComponent = {
       var propsMutated = inst.props !== publicProps;
       var componentName = Component.displayName || Component.name || 'Component';
 
-      process.env.NODE_ENV !== 'production' ? warning(inst.props === undefined || !propsMutated, '%s(...): When calling super() in `%s`, make sure to pass ' + 'up the same props that your component\'s constructor was passed.', componentName, componentName) : void 0;
+      process.env.NODE_ENV !== 'production' ? warning(inst.props === undefined || !propsMutated, '%s(...): When calling super() in `%s`, make sure to pass ' + "up the same props that your component's constructor was passed.", componentName, componentName) : void 0;
     }
 
     // These should be set up in the constructor, but as a convenience for
@@ -17465,7 +18235,7 @@ var ReactCompositeComponent = {
   },
 
   _constructComponent: function (doConstruct, publicProps, publicContext, updateQueue) {
-    if (process.env.NODE_ENV !== 'production') {
+    if (process.env.NODE_ENV !== 'production' && !doConstruct) {
       ReactCurrentOwner.current = this;
       try {
         return this._constructComponentWithoutOwner(doConstruct, publicProps, publicContext, updateQueue);
@@ -17705,7 +18475,7 @@ var ReactCompositeComponent = {
     if (childContext) {
       !(typeof Component.childContextTypes === 'object') ? process.env.NODE_ENV !== 'production' ? invariant(false, '%s.getChildContext(): childContextTypes must be defined in order to use getChildContext().', this.getName() || 'ReactCompositeComponent') : _prodInvariant('107', this.getName() || 'ReactCompositeComponent') : void 0;
       if (process.env.NODE_ENV !== 'production') {
-        this._checkContextTypes(Component.childContextTypes, childContext, 'childContext');
+        this._checkContextTypes(Component.childContextTypes, childContext, 'child context');
       }
       for (var name in childContext) {
         !(name in Component.childContextTypes) ? process.env.NODE_ENV !== 'production' ? invariant(false, '%s.getChildContext(): key "%s" is not defined in childContextTypes.', this.getName() || 'ReactCompositeComponent', name) : _prodInvariant('108', this.getName() || 'ReactCompositeComponent', name) : void 0;
@@ -18086,24 +18856,21 @@ var ReactCompositeComponent = {
 
   // Stub
   _instantiateReactComponent: null
-
 };
 
 module.exports = ReactCompositeComponent;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 136 */
+/* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -18111,8 +18878,8 @@ module.exports = ReactCompositeComponent;
 
 var _prodInvariant = __webpack_require__(3);
 
-var ReactPropTypeLocationNames = __webpack_require__(137);
-var ReactPropTypesSecret = __webpack_require__(68);
+var ReactPropTypeLocationNames = __webpack_require__(148);
+var ReactPropTypesSecret = __webpack_require__(73);
 
 var invariant = __webpack_require__(1);
 var warning = __webpack_require__(2);
@@ -18186,17 +18953,15 @@ module.exports = checkReactTypeSpec;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 137 */
+/* 148 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  * 
  */
@@ -18217,17 +18982,15 @@ module.exports = ReactPropTypeLocationNames;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 138 */
+/* 149 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  * 
  */
@@ -18243,17 +19006,15 @@ function getNextDebugID() {
 module.exports = getNextDebugID;
 
 /***/ }),
-/* 139 */
+/* 150 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2014-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2014-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  * 
  */
@@ -18268,17 +19029,15 @@ var REACT_ELEMENT_TYPE = typeof Symbol === 'function' && Symbol['for'] && Symbol
 module.exports = REACT_ELEMENT_TYPE;
 
 /***/ }),
-/* 140 */
+/* 151 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  * 
  */
@@ -18314,25 +19073,23 @@ function getIteratorFn(maybeIterable) {
 module.exports = getIteratorFn;
 
 /***/ }),
-/* 141 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  * 
  */
 
 
 
-var KeyEscapeUtils = __webpack_require__(49);
-var traverseAllChildren = __webpack_require__(74);
+var KeyEscapeUtils = __webpack_require__(47);
+var traverseAllChildren = __webpack_require__(79);
 var warning = __webpack_require__(2);
 
 var ReactComponentTreeHook;
@@ -18396,17 +19153,15 @@ module.exports = flattenChildren;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 142 */
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2014-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2014-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -18415,9 +19170,9 @@ module.exports = flattenChildren;
 var _assign = __webpack_require__(4);
 
 var PooledClass = __webpack_require__(16);
-var Transaction = __webpack_require__(27);
-var ReactInstrumentation = __webpack_require__(8);
-var ReactServerUpdateQueue = __webpack_require__(143);
+var Transaction = __webpack_require__(28);
+var ReactInstrumentation = __webpack_require__(9);
+var ReactServerUpdateQueue = __webpack_require__(154);
 
 /**
  * Executed within the scope of the `Transaction` instance. Consider these as
@@ -18492,17 +19247,15 @@ module.exports = ReactServerRenderingTransaction;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 143 */
+/* 154 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2015-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2015-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  * 
  */
@@ -18511,7 +19264,7 @@ module.exports = ReactServerRenderingTransaction;
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var ReactUpdateQueue = __webpack_require__(50);
+var ReactUpdateQueue = __webpack_require__(48);
 
 var warning = __webpack_require__(2);
 
@@ -18637,17 +19390,15 @@ module.exports = ReactServerUpdateQueue;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 144 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2014-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2014-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -18655,7 +19406,7 @@ module.exports = ReactServerUpdateQueue;
 
 var _assign = __webpack_require__(4);
 
-var DOMLazyTree = __webpack_require__(19);
+var DOMLazyTree = __webpack_require__(20);
 var ReactDOMComponentTree = __webpack_require__(5);
 
 var ReactDOMEmptyComponent = function (instantiate) {
@@ -18702,17 +19453,15 @@ _assign(ReactDOMEmptyComponent.prototype, {
 module.exports = ReactDOMEmptyComponent;
 
 /***/ }),
-/* 145 */
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2015-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2015-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -18844,17 +19593,15 @@ module.exports = {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 146 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -18863,13 +19610,13 @@ module.exports = {
 var _prodInvariant = __webpack_require__(3),
     _assign = __webpack_require__(4);
 
-var DOMChildrenOperations = __webpack_require__(42);
-var DOMLazyTree = __webpack_require__(19);
+var DOMChildrenOperations = __webpack_require__(40);
+var DOMLazyTree = __webpack_require__(20);
 var ReactDOMComponentTree = __webpack_require__(5);
 
-var escapeTextContentForBrowser = __webpack_require__(30);
+var escapeTextContentForBrowser = __webpack_require__(31);
 var invariant = __webpack_require__(1);
-var validateDOMNesting = __webpack_require__(51);
+var validateDOMNesting = __webpack_require__(49);
 
 /**
  * Text nodes violate a couple assumptions that React makes about components:
@@ -18902,7 +19649,6 @@ var ReactDOMTextComponent = function (text) {
 };
 
 _assign(ReactDOMTextComponent.prototype, {
-
   /**
    * Creates the markup for this text node. This node is not intended to have
    * any features besides containing text content.
@@ -19007,24 +19753,21 @@ _assign(ReactDOMTextComponent.prototype, {
     this._commentNodes = null;
     ReactDOMComponentTree.uncacheNode(this);
   }
-
 });
 
 module.exports = ReactDOMTextComponent;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 147 */
+/* 158 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -19033,9 +19776,9 @@ module.exports = ReactDOMTextComponent;
 var _assign = __webpack_require__(4);
 
 var ReactUpdates = __webpack_require__(11);
-var Transaction = __webpack_require__(27);
+var Transaction = __webpack_require__(28);
 
-var emptyFunction = __webpack_require__(9);
+var emptyFunction = __webpack_require__(8);
 
 var RESET_BATCHED_UPDATES = {
   initialize: emptyFunction,
@@ -19087,17 +19830,15 @@ var ReactDefaultBatchingStrategy = {
 module.exports = ReactDefaultBatchingStrategy;
 
 /***/ }),
-/* 148 */
+/* 159 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -19105,14 +19846,14 @@ module.exports = ReactDefaultBatchingStrategy;
 
 var _assign = __webpack_require__(4);
 
-var EventListener = __webpack_require__(75);
+var EventListener = __webpack_require__(80);
 var ExecutionEnvironment = __webpack_require__(6);
 var PooledClass = __webpack_require__(16);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactUpdates = __webpack_require__(11);
 
-var getEventTarget = __webpack_require__(39);
-var getUnboundedScrollPosition = __webpack_require__(149);
+var getEventTarget = __webpack_require__(37);
+var getUnboundedScrollPosition = __webpack_require__(160);
 
 /**
  * Find the deepest React component completely containing the root of the
@@ -19247,7 +19988,7 @@ var ReactEventListener = {
 module.exports = ReactEventListener;
 
 /***/ }),
-/* 149 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19289,29 +20030,27 @@ function getUnboundedScrollPosition(scrollable) {
 module.exports = getUnboundedScrollPosition;
 
 /***/ }),
-/* 150 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
 
 
-var DOMProperty = __webpack_require__(13);
-var EventPluginHub = __webpack_require__(23);
-var EventPluginUtils = __webpack_require__(37);
-var ReactComponentEnvironment = __webpack_require__(46);
-var ReactEmptyComponent = __webpack_require__(72);
-var ReactBrowserEventEmitter = __webpack_require__(31);
-var ReactHostComponent = __webpack_require__(73);
+var DOMProperty = __webpack_require__(14);
+var EventPluginHub = __webpack_require__(22);
+var EventPluginUtils = __webpack_require__(35);
+var ReactComponentEnvironment = __webpack_require__(44);
+var ReactEmptyComponent = __webpack_require__(77);
+var ReactBrowserEventEmitter = __webpack_require__(32);
+var ReactHostComponent = __webpack_require__(78);
 var ReactUpdates = __webpack_require__(11);
 
 var ReactInjection = {
@@ -19328,17 +20067,15 @@ var ReactInjection = {
 module.exports = ReactInjection;
 
 /***/ }),
-/* 151 */
+/* 162 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -19346,13 +20083,13 @@ module.exports = ReactInjection;
 
 var _assign = __webpack_require__(4);
 
-var CallbackQueue = __webpack_require__(60);
+var CallbackQueue = __webpack_require__(64);
 var PooledClass = __webpack_require__(16);
-var ReactBrowserEventEmitter = __webpack_require__(31);
-var ReactInputSelection = __webpack_require__(76);
-var ReactInstrumentation = __webpack_require__(8);
-var Transaction = __webpack_require__(27);
-var ReactUpdateQueue = __webpack_require__(50);
+var ReactBrowserEventEmitter = __webpack_require__(32);
+var ReactInputSelection = __webpack_require__(81);
+var ReactInstrumentation = __webpack_require__(9);
+var Transaction = __webpack_require__(28);
+var ReactUpdateQueue = __webpack_require__(48);
 
 /**
  * Ensures that, when possible, the selection range (currently selected text
@@ -19512,17 +20249,15 @@ module.exports = ReactReconcileTransaction;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 152 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -19530,8 +20265,8 @@ module.exports = ReactReconcileTransaction;
 
 var ExecutionEnvironment = __webpack_require__(6);
 
-var getNodeForCharacterOffset = __webpack_require__(153);
-var getTextContentAccessor = __webpack_require__(59);
+var getNodeForCharacterOffset = __webpack_require__(164);
+var getTextContentAccessor = __webpack_require__(63);
 
 /**
  * While `isCollapsed` is available on the Selection object and `collapsed`
@@ -19729,17 +20464,15 @@ var ReactDOMSelection = {
 module.exports = ReactDOMSelection;
 
 /***/ }),
-/* 153 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -19808,7 +20541,7 @@ function getNodeForCharacterOffset(root, offset) {
 module.exports = getNodeForCharacterOffset;
 
 /***/ }),
-/* 154 */
+/* 165 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19823,7 +20556,7 @@ module.exports = getNodeForCharacterOffset;
  * 
  */
 
-var isTextNode = __webpack_require__(155);
+var isTextNode = __webpack_require__(166);
 
 /*eslint-disable no-bitwise */
 
@@ -19851,7 +20584,7 @@ function containsNode(outerNode, innerNode) {
 module.exports = containsNode;
 
 /***/ }),
-/* 155 */
+/* 166 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19866,7 +20599,7 @@ module.exports = containsNode;
  * @typechecks
  */
 
-var isNode = __webpack_require__(156);
+var isNode = __webpack_require__(167);
 
 /**
  * @param {*} object The object to check.
@@ -19879,7 +20612,7 @@ function isTextNode(object) {
 module.exports = isTextNode;
 
 /***/ }),
-/* 156 */
+/* 167 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19907,17 +20640,15 @@ function isNode(object) {
 module.exports = isNode;
 
 /***/ }),
-/* 157 */
+/* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -20214,31 +20945,29 @@ Object.keys(ATTRS).forEach(function (key) {
 module.exports = SVGDOMPropertyConfig;
 
 /***/ }),
-/* 158 */
+/* 169 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
 
 
-var EventPropagators = __webpack_require__(22);
+var EventPropagators = __webpack_require__(21);
 var ExecutionEnvironment = __webpack_require__(6);
 var ReactDOMComponentTree = __webpack_require__(5);
-var ReactInputSelection = __webpack_require__(76);
-var SyntheticEvent = __webpack_require__(12);
+var ReactInputSelection = __webpack_require__(81);
+var SyntheticEvent = __webpack_require__(13);
 
-var getActiveElement = __webpack_require__(77);
-var isTextInputElement = __webpack_require__(62);
-var shallowEqual = __webpack_require__(47);
+var getActiveElement = __webpack_require__(82);
+var isTextInputElement = __webpack_require__(67);
+var shallowEqual = __webpack_require__(45);
 
 var skipSelectionChangeEvent = ExecutionEnvironment.canUseDOM && 'documentMode' in document && document.documentMode <= 11;
 
@@ -20343,7 +21072,6 @@ function constructSelectEvent(nativeEvent, nativeEventTarget) {
  * - Fires after user input.
  */
 var SelectEventPlugin = {
-
   eventTypes: eventTypes,
 
   extractEvents: function (topLevelType, targetInst, nativeEvent, nativeEventTarget) {
@@ -20367,7 +21095,6 @@ var SelectEventPlugin = {
         activeElementInst = null;
         lastSelection = null;
         break;
-
       // Don't fire the event while the user is dragging. This matches the
       // semantics of the native select event.
       case 'topMouseDown':
@@ -20377,7 +21104,6 @@ var SelectEventPlugin = {
       case 'topMouseUp':
         mouseDown = false;
         return constructSelectEvent(nativeEvent, nativeEventTarget);
-
       // Chrome and IE fire non-standard event when selection is changed (and
       // sometimes when it hasn't). IE's event fires out of order with respect
       // to key and input events on deletion, so we discard it.
@@ -20410,17 +21136,15 @@ var SelectEventPlugin = {
 module.exports = SelectEventPlugin;
 
 /***/ }),
-/* 159 */
+/* 170 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  * 
  */
@@ -20429,23 +21153,23 @@ module.exports = SelectEventPlugin;
 
 var _prodInvariant = __webpack_require__(3);
 
-var EventListener = __webpack_require__(75);
-var EventPropagators = __webpack_require__(22);
+var EventListener = __webpack_require__(80);
+var EventPropagators = __webpack_require__(21);
 var ReactDOMComponentTree = __webpack_require__(5);
-var SyntheticAnimationEvent = __webpack_require__(160);
-var SyntheticClipboardEvent = __webpack_require__(161);
-var SyntheticEvent = __webpack_require__(12);
-var SyntheticFocusEvent = __webpack_require__(162);
-var SyntheticKeyboardEvent = __webpack_require__(163);
-var SyntheticMouseEvent = __webpack_require__(28);
-var SyntheticDragEvent = __webpack_require__(165);
-var SyntheticTouchEvent = __webpack_require__(166);
-var SyntheticTransitionEvent = __webpack_require__(167);
-var SyntheticUIEvent = __webpack_require__(24);
-var SyntheticWheelEvent = __webpack_require__(168);
+var SyntheticAnimationEvent = __webpack_require__(171);
+var SyntheticClipboardEvent = __webpack_require__(172);
+var SyntheticEvent = __webpack_require__(13);
+var SyntheticFocusEvent = __webpack_require__(173);
+var SyntheticKeyboardEvent = __webpack_require__(174);
+var SyntheticMouseEvent = __webpack_require__(29);
+var SyntheticDragEvent = __webpack_require__(176);
+var SyntheticTouchEvent = __webpack_require__(177);
+var SyntheticTransitionEvent = __webpack_require__(178);
+var SyntheticUIEvent = __webpack_require__(23);
+var SyntheticWheelEvent = __webpack_require__(179);
 
-var emptyFunction = __webpack_require__(9);
-var getEventCharCode = __webpack_require__(52);
+var emptyFunction = __webpack_require__(8);
+var getEventCharCode = __webpack_require__(50);
 var invariant = __webpack_require__(1);
 
 /**
@@ -20497,7 +21221,6 @@ function isInteractive(tag) {
 }
 
 var SimpleEventPlugin = {
-
   eventTypes: eventTypes,
 
   extractEvents: function (topLevelType, targetInst, nativeEvent, nativeEventTarget) {
@@ -20637,30 +21360,27 @@ var SimpleEventPlugin = {
       delete onClickListeners[key];
     }
   }
-
 };
 
 module.exports = SimpleEventPlugin;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 160 */
+/* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
 
 
-var SyntheticEvent = __webpack_require__(12);
+var SyntheticEvent = __webpack_require__(13);
 
 /**
  * @interface Event
@@ -20688,23 +21408,21 @@ SyntheticEvent.augmentClass(SyntheticAnimationEvent, AnimationEventInterface);
 module.exports = SyntheticAnimationEvent;
 
 /***/ }),
-/* 161 */
+/* 172 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
 
 
-var SyntheticEvent = __webpack_require__(12);
+var SyntheticEvent = __webpack_require__(13);
 
 /**
  * @interface Event
@@ -20731,23 +21449,21 @@ SyntheticEvent.augmentClass(SyntheticClipboardEvent, ClipboardEventInterface);
 module.exports = SyntheticClipboardEvent;
 
 /***/ }),
-/* 162 */
+/* 173 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
 
 
-var SyntheticUIEvent = __webpack_require__(24);
+var SyntheticUIEvent = __webpack_require__(23);
 
 /**
  * @interface FocusEvent
@@ -20772,27 +21488,25 @@ SyntheticUIEvent.augmentClass(SyntheticFocusEvent, FocusEventInterface);
 module.exports = SyntheticFocusEvent;
 
 /***/ }),
-/* 163 */
+/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
 
 
-var SyntheticUIEvent = __webpack_require__(24);
+var SyntheticUIEvent = __webpack_require__(23);
 
-var getEventCharCode = __webpack_require__(52);
-var getEventKey = __webpack_require__(164);
-var getEventModifierState = __webpack_require__(41);
+var getEventCharCode = __webpack_require__(50);
+var getEventKey = __webpack_require__(175);
+var getEventModifierState = __webpack_require__(39);
 
 /**
  * @interface KeyboardEvent
@@ -20861,41 +21575,39 @@ SyntheticUIEvent.augmentClass(SyntheticKeyboardEvent, KeyboardEventInterface);
 module.exports = SyntheticKeyboardEvent;
 
 /***/ }),
-/* 164 */
+/* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
 
 
-var getEventCharCode = __webpack_require__(52);
+var getEventCharCode = __webpack_require__(50);
 
 /**
  * Normalization of deprecated HTML5 `key` values
  * @see https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent#Key_names
  */
 var normalizeKey = {
-  'Esc': 'Escape',
-  'Spacebar': ' ',
-  'Left': 'ArrowLeft',
-  'Up': 'ArrowUp',
-  'Right': 'ArrowRight',
-  'Down': 'ArrowDown',
-  'Del': 'Delete',
-  'Win': 'OS',
-  'Menu': 'ContextMenu',
-  'Apps': 'ContextMenu',
-  'Scroll': 'ScrollLock',
-  'MozPrintableKey': 'Unidentified'
+  Esc: 'Escape',
+  Spacebar: ' ',
+  Left: 'ArrowLeft',
+  Up: 'ArrowUp',
+  Right: 'ArrowRight',
+  Down: 'ArrowDown',
+  Del: 'Delete',
+  Win: 'OS',
+  Menu: 'ContextMenu',
+  Apps: 'ContextMenu',
+  Scroll: 'ScrollLock',
+  MozPrintableKey: 'Unidentified'
 };
 
 /**
@@ -20925,8 +21637,18 @@ var translateToKey = {
   40: 'ArrowDown',
   45: 'Insert',
   46: 'Delete',
-  112: 'F1', 113: 'F2', 114: 'F3', 115: 'F4', 116: 'F5', 117: 'F6',
-  118: 'F7', 119: 'F8', 120: 'F9', 121: 'F10', 122: 'F11', 123: 'F12',
+  112: 'F1',
+  113: 'F2',
+  114: 'F3',
+  115: 'F4',
+  116: 'F5',
+  117: 'F6',
+  118: 'F7',
+  119: 'F8',
+  120: 'F9',
+  121: 'F10',
+  122: 'F11',
+  123: 'F12',
   144: 'NumLock',
   145: 'ScrollLock',
   224: 'Meta'
@@ -20968,23 +21690,21 @@ function getEventKey(nativeEvent) {
 module.exports = getEventKey;
 
 /***/ }),
-/* 165 */
+/* 176 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
 
 
-var SyntheticMouseEvent = __webpack_require__(28);
+var SyntheticMouseEvent = __webpack_require__(29);
 
 /**
  * @interface DragEvent
@@ -21009,25 +21729,23 @@ SyntheticMouseEvent.augmentClass(SyntheticDragEvent, DragEventInterface);
 module.exports = SyntheticDragEvent;
 
 /***/ }),
-/* 166 */
+/* 177 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
 
 
-var SyntheticUIEvent = __webpack_require__(24);
+var SyntheticUIEvent = __webpack_require__(23);
 
-var getEventModifierState = __webpack_require__(41);
+var getEventModifierState = __webpack_require__(39);
 
 /**
  * @interface TouchEvent
@@ -21059,23 +21777,21 @@ SyntheticUIEvent.augmentClass(SyntheticTouchEvent, TouchEventInterface);
 module.exports = SyntheticTouchEvent;
 
 /***/ }),
-/* 167 */
+/* 178 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
 
 
-var SyntheticEvent = __webpack_require__(12);
+var SyntheticEvent = __webpack_require__(13);
 
 /**
  * @interface Event
@@ -21103,23 +21819,21 @@ SyntheticEvent.augmentClass(SyntheticTransitionEvent, TransitionEventInterface);
 module.exports = SyntheticTransitionEvent;
 
 /***/ }),
-/* 168 */
+/* 179 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
 
 
-var SyntheticMouseEvent = __webpack_require__(28);
+var SyntheticMouseEvent = __webpack_require__(29);
 
 /**
  * @interface WheelEvent
@@ -21127,15 +21841,12 @@ var SyntheticMouseEvent = __webpack_require__(28);
  */
 var WheelEventInterface = {
   deltaX: function (event) {
-    return 'deltaX' in event ? event.deltaX :
-    // Fallback to `wheelDeltaX` for Webkit and normalize (right is positive).
+    return 'deltaX' in event ? event.deltaX : // Fallback to `wheelDeltaX` for Webkit and normalize (right is positive).
     'wheelDeltaX' in event ? -event.wheelDeltaX : 0;
   },
   deltaY: function (event) {
-    return 'deltaY' in event ? event.deltaY :
-    // Fallback to `wheelDeltaY` for Webkit and normalize (down is positive).
-    'wheelDeltaY' in event ? -event.wheelDeltaY :
-    // Fallback to `wheelDelta` for IE<9 and normalize (down is positive).
+    return 'deltaY' in event ? event.deltaY : // Fallback to `wheelDeltaY` for Webkit and normalize (down is positive).
+    'wheelDeltaY' in event ? -event.wheelDeltaY : // Fallback to `wheelDelta` for IE<9 and normalize (down is positive).
     'wheelDelta' in event ? -event.wheelDelta : 0;
   },
   deltaZ: null,
@@ -21162,23 +21873,21 @@ SyntheticMouseEvent.augmentClass(SyntheticWheelEvent, WheelEventInterface);
 module.exports = SyntheticWheelEvent;
 
 /***/ }),
-/* 169 */
+/* 180 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
 
 
-var validateDOMNesting = __webpack_require__(51);
+var validateDOMNesting = __webpack_require__(49);
 
 var DOC_NODE_TYPE = 9;
 
@@ -21201,17 +21910,15 @@ module.exports = ReactDOMContainerInfo;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 170 */
+/* 181 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -21225,23 +21932,21 @@ var ReactDOMFeatureFlags = {
 module.exports = ReactDOMFeatureFlags;
 
 /***/ }),
-/* 171 */
+/* 182 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
 
 
-var adler32 = __webpack_require__(172);
+var adler32 = __webpack_require__(183);
 
 var TAG_END = /\/?>/;
 var COMMENT_START = /^<\!\-\-/;
@@ -21280,17 +21985,15 @@ var ReactMarkupChecksum = {
 module.exports = ReactMarkupChecksum;
 
 /***/ }),
-/* 172 */
+/* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  * 
  */
@@ -21329,36 +22032,32 @@ function adler32(data) {
 module.exports = adler32;
 
 /***/ }),
-/* 173 */
+/* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
 
 
-module.exports = '15.4.2';
+module.exports = '15.6.2';
 
 /***/ }),
-/* 174 */
+/* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -21368,9 +22067,9 @@ var _prodInvariant = __webpack_require__(3);
 
 var ReactCurrentOwner = __webpack_require__(10);
 var ReactDOMComponentTree = __webpack_require__(5);
-var ReactInstanceMap = __webpack_require__(25);
+var ReactInstanceMap = __webpack_require__(24);
 
-var getHostComponentFromComposite = __webpack_require__(79);
+var getHostComponentFromComposite = __webpack_require__(84);
 var invariant = __webpack_require__(1);
 var warning = __webpack_require__(2);
 
@@ -21414,45 +22113,41 @@ module.exports = findDOMNode;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 175 */
+/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
 
 
-var ReactMount = __webpack_require__(78);
+var ReactMount = __webpack_require__(83);
 
 module.exports = ReactMount.renderSubtreeIntoContainer;
 
 /***/ }),
-/* 176 */
+/* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
 
 
-var DOMProperty = __webpack_require__(13);
-var EventPluginRegistry = __webpack_require__(26);
+var DOMProperty = __webpack_require__(14);
+var EventPluginRegistry = __webpack_require__(27);
 var ReactComponentTreeHook = __webpack_require__(7);
 
 var warning = __webpack_require__(2);
@@ -21553,17 +22248,15 @@ module.exports = ReactDOMUnknownPropertyHook;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 177 */
+/* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
@@ -21602,23 +22295,21 @@ module.exports = ReactDOMNullInputValuePropHook;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 178 */
+/* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
+ * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  *
  */
 
 
 
-var DOMProperty = __webpack_require__(13);
+var DOMProperty = __webpack_require__(14);
 var ReactComponentTreeHook = __webpack_require__(7);
 
 var warning = __webpack_require__(2);
@@ -21701,16 +22392,17 @@ module.exports = ReactDOMInvalidARIAHook;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 179 */
+/* 190 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var React = __webpack_require__(20);
+var React = __webpack_require__(12);
 // var Search = require('./Search.jsx')
-// var Maintenance = require('./Maintenance.jsx')
-var Bounds = __webpack_require__(180);
-var SourceDB = __webpack_require__(181);
+var Maintenance = __webpack_require__(191);
+var Bounds = __webpack_require__(193);
+var SourceDB = __webpack_require__(194);
+var FirstHundredModal = __webpack_require__(196);
+// const utils = require ("../utils/utils.js");
 
-const utils = __webpack_require__(80);
 
 class Landing extends React.Component {
     constructor(props) {
@@ -21719,36 +22411,27 @@ class Landing extends React.Component {
             init: "state",
             lower: 0,
             upper: 99,
-            db: this.props.database
-            // this.boundsSubmitHandler = this.boundsSubmitHandler.bind(this);
+            db: this.props.database,
+            selectedModal: null
         };
     }
 
-    // boundsSubmitHandler(lowerbounds, upperbounds) {
-    // e.preventDefault();
-    /*gets Partial DB*/
-    // const partialDB = utils.getPartialLS(lowerbounds, upperbounds);
-    // this.setState((prevState) =>{
-    //     db: partialDB
-    // })
-    // }
-
     render() {
-        const { lower, upper, database } = this.state;
-        return (
-            // <Maintenance/>
+        const { lower, upper, db } = this.state;
+        {
+            console.log("t.s.db: ", this.state.db);
+        }
+        return React.createElement(
+            'div',
+            { id: 'Landing-box' },
+            React.createElement(Maintenance, null),
             React.createElement(
-                'div',
-                { id: 'Landing-box' },
-                React.createElement(
-                    'h1',
-                    null,
-                    'Landing with form'
-                ),
-                React.createElement('hr', null),
-                React.createElement(Bounds, { boundsSubmitHandler: this.boundsSubmitHandler }),
-                React.createElement(SourceDB, { lower: lower, upper: upper, db: database })
-            )
+                'h1',
+                null,
+                'Landing with form'
+            ),
+            React.createElement('hr', null),
+            React.createElement(Bounds, null)
         );
     }
 }
@@ -21756,10 +22439,105 @@ class Landing extends React.Component {
 module.exports = Landing;
 
 /***/ }),
-/* 180 */
+/* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var React = __webpack_require__(20);
+var React = __webpack_require__(12);
+const utils = __webpack_require__(51);
+
+class Maintenance extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            init: "state"
+        };
+        this.formSubmitHandler = this.formSubmitHandler.bind(this);
+        this.clearLSHandler = this.clearLSHandler.bind(this);
+        this.reloadLSHandler = this.reloadLSHandler.bind(this);
+    }
+
+    clearLSHandler() {
+        console.log("cleared LS");
+        utils.ctrl(utils.clearLS);
+    }
+    reloadLSHandler() {
+        console.log("reloaded LS");
+        utils.ctrl(utils.setLS);
+    }
+    formSubmitHandler(e) {
+        e.preventDefault();
+
+        const inputVal1 = e.target.elements.input1.value;
+        const inputVal2 = e.target.elements.input2.value;
+        const inputVal3 = e.target.elements.input3.value;
+        const inputVal4 = e.target.elements.input4.value;
+        const inputVal5 = e.target.elements.input5.value;
+        const dbEntry = {
+            "example_en": inputVal1,
+            "example_de": inputVal2,
+            "word_de": inputVal3,
+            "word_en": inputVal4,
+            "show_switch": inputVal5
+        };
+
+        console.log("form submitted", dbEntry);
+    }
+    componentDidMount() {
+        // console.log("maintenance loaded")
+    }
+
+    render() {
+        return React.createElement(
+            "div",
+            { className: "maintenance-component" },
+            React.createElement(
+                "button",
+                { onClick: this.clearLSHandler },
+                "ClearLS"
+            ),
+            React.createElement(
+                "button",
+                { onClick: this.reloadLSHandler },
+                "ReloadLS"
+            ),
+            React.createElement(
+                "form",
+                { onSubmit: this.formSubmitHandler },
+                React.createElement("input", { type: "text", name: "input1", placeholder: "example_en" }),
+                React.createElement("input", { type: "text", name: "input2", placeholder: "example_de" }),
+                React.createElement("input", { type: "text", name: "input3", placeholder: "word_de" }),
+                React.createElement("input", { type: "text", name: "input4", placeholder: "word_en" }),
+                React.createElement("input", { type: "text", name: "input5", placeholder: "show_switch" }),
+                React.createElement(
+                    "button",
+                    null,
+                    "submit"
+                )
+            )
+        );
+    }
+}
+
+module.exports = Maintenance;
+
+/*
+
+
+
+                */
+
+/***/ }),
+/* 192 */
+/***/ (function(module, exports) {
+
+module.exports = [{"id":"1","word_de":"der/die/das","word_en":"the","example_de":"Der Sonnenaufgang ist wunderschön","example_en":"The sunrise is beautiful","show_switch":"true"},{"id":"2","word_de":"in","word_en":"in","example_de":"Der Himmel ist in grau Deutschland","example_en":"The sky is grey in Germany","show_switch":"true"},{"id":"3","word_de":"und","word_en":"and ","example_de":"Peter und Kate frühstücken","example_en":"Peter and Kate are eating breakfast","show_switch":"true"},{"id":"4","word_de":"sein","word_en":"his","example_de":"sein Buch ist im Auto","example_en":"His book is in the car","show_switch":"true"},{"id":"5","word_de":"ein","word_en":"a","example_de":"Sie ist Mitglied der Gruppe","example_en":"She is a member of the group","show_switch":"true"},{"id":"6","word_de":"zu","word_en":"to","example_de":"Schön dich zu sehen!","example_en":"Nice to see you!","show_switch":"true"},{"id":"7","word_de":"werden","word_en":"become","example_de":"Nacht wird Tag","example_en":"night becomes day","show_switch":"true"},{"id":"8","word_de":"von","word_en":"Of","example_de":"Wir haben Schule von Montag bis Freitag","example_en":"We have school from Monday to Friday","show_switch":"true"},{"id":"9","word_de":"haben","word_en":"have","example_de":"Hast du deine Schlüssel?","example_en":"Do you have your keys?","show_switch":"true"},{"id":"10","word_de":"mit","word_en":"with","example_de":"Diese Woche ist mein Vater mit meinem Bruder in der Stadt","example_en":"This week, my father is with my brother in the city","show_switch":"true"},{"id":"11","word_de":"er/sie/es/sie","word_en":"he / she / it / she / they","example_de":"Er ist zu allem bereit","example_en":"He is ready for anything","show_switch":"true"},{"id":"12","word_de":"für","word_en":"for","example_de":"Das ist für ihr","example_en":"That is for her","show_switch":"true"},{"id":"13","word_de":"nicht","word_en":"not","example_de":"Ich glaube es nicht","example_en":"I don't believe it","show_switch":"true"},{"id":"14","word_de":"an","word_en":"at","example_de":"EXAMPLEDE TBD","example_en":"EXAMPLEENG TBD","show_switch":"true"},{"id":"15","word_de":"auf","word_en":"on","example_de":"auf den Tisch","example_en":"on the table","show_switch":"true"},{"id":"16","word_de":"eine","word_en":"a","example_de":"eine bitte","example_en":"a request","show_switch":"true"},{"id":"17","word_de":"es","word_en":"it","example_de":"Ist es schwer?","example_en":"Is it difficult?","show_switch":"true"},{"id":"18","word_de":"auch","word_en":"also","example_de":"Ich bin auch früh aufgestanden","example_en":"I also got up early","show_switch":"true"},{"id":"19","word_de":"sie","word_en":"she","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"20","word_de":"als","word_en":"as","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"21","word_de":"er","word_en":"he","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"22","word_de":"bei","word_en":"at","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"23","word_de":"dies","word_en":"this","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"24","word_de":"dass","word_en":"that","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"25","word_de":"nach","word_en":"after","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"26","word_de":"ihr","word_en":"you","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"27","word_de":"können","word_en":"to be able to (in the sense of ability)","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"28","word_de":"aus","word_en":"from","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"29","word_de":"Jahr","word_en":"Year","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"32","word_de":"so","word_en":"","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"33","word_de":"wie","word_en":"like","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"34","word_de":"über","word_en":"over","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"35","word_de":"nur","word_en":"Only","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"36","word_de":"all-","word_en":"all","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"37","word_de":"vor","word_en":"before","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"38","word_de":"wir","word_en":"we","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"39","word_de":"sollen","word_en":"to be supposed to","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"40","word_de":"aber","word_en":"but","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"41","word_de":"müssen","word_en":"need","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"42","word_de":"ich","word_en":"I","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"43","word_de":"neu","word_en":"new","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"44","word_de":"bis","word_en":"until","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"45","word_de":"wollen","word_en":"want","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"46","word_de":"oder","word_en":"or","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"47","word_de":"man","word_en":"man","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"48","word_de":"mehr","word_en":"more","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"49","word_de":"sagen","word_en":"say","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"50","word_de":"erst","word_en":"only","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"51","word_de":"geben","word_en":"give","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"52","word_de":"durch","word_en":"through","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"53","word_de":"wenn","word_en":"if","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"54","word_de":"gegen","word_en":"against","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"55","word_de":"kommen","word_en":"come","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"56","word_de":"gross","word_en":"big","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"57","word_de":"er/es","word_en":"he / it","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"58","word_de":"ander-","word_en":"other","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"59","word_de":"gut","word_en":"good","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"60","word_de":"schon","word_en":"already","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"61","word_de":"kein-","word_en":"none-","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"62","word_de":"weit","word_en":"far","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"63","word_de":"machen","word_en":"make","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"64","word_de":"doch","word_en":"but","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"65","word_de":"unter","word_en":"under","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"66","word_de":"dann","word_en":"then","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"67","word_de":"wieder","word_en":"again","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"68","word_de":"Prozent","word_en":"Percent","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"69","word_de":"zwei","word_en":"two","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"70","word_de":"immer","word_en":"always","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"71","word_de":"gehen","word_en":"go","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"73","word_de":"seit","word_en":"since","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"74","word_de":"da","word_en":"there","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"75","word_de":"stehen","word_en":"stand","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"76","word_de":"Million","word_en":"Million","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"78","word_de":"damit","word_en":"with it","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"79","word_de":"was","word_en":"what","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"80","word_de":"Zeit","word_en":"Time","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"81","word_de":"jed-","word_en":"each","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"82","word_de":"zwischen","word_en":"between","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"83","word_de":"sehen","word_en":"see","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"84","word_de":"Land","word_en":"Country","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"85","word_de":"drei","word_en":"three","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"87","word_de":"Frau","word_en":"Mrs.","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"88","word_de":"Ich","word_en":"I","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"89","word_de":"Tag","word_en":"Day","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"90","word_de":"deutsch","word_en":"word_de","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"91","word_de":"denn","word_en":"because","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"92","word_de":"bereits","word_en":"already","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"93","word_de":"weil","word_en":"because","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"94","word_de":"Mensch","word_en":"Human","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"95","word_de":"beid-","word_en":"both","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"96","word_de":"bleiben","word_en":"stay","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"97","word_de":"jetzt","word_en":"now","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"98","word_de":"Mann","word_en":"Man","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"99","word_de":"ohne","word_en":"without","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"100","word_de":"nun","word_en":"now","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"101","word_de":"alt","word_en":"old","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"102","word_de":"Kind","word_en":"Child","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"103","word_de":"dabei","word_en":"","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"104","word_de":"liegen","word_en":"lie","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"105","word_de":"hoch","word_en":"high","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"106","word_de":"dörfen","word_en":"allowed","example_de":"Darfst du das essen?","example_en":"Are you allowed to eat this?","show_switch":"true"},{"id":"107","word_de":"Berlin","word_en":"Berlin","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"108","word_de":"Mark","word_en":"Mark","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"109","word_de":"hier","word_en":"here","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"110","word_de":"heute","word_en":"today","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"111","word_de":"finden","word_en":"find","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"112","word_de":"sehr","word_en":"very","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"113","word_de":"rund","word_en":"around","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"114","word_de":"Stadt","word_en":"City","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"115","word_de":"selbst","word_en":"even","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"116","word_de":"viel","word_en":"much","example_de":"Ich habe zu viel getrunken","example_en":"I have drunk too much","show_switch":"true"},{"id":"117","word_de":"etwa","word_en":"about","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"118","word_de":"klein","word_en":"small","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"119","word_de":"Deutschland","word_en":"word_dey","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"120","word_de":"letzt-","word_en":"last","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"121","word_de":"zeigen","word_en":"show","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"122","word_de":"Aber","word_en":"But","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"123","word_de":"eigen","word_en":"own","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"124","word_de":"kein","word_en":"no","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"125","word_de":"Ende","word_en":"End","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"126","word_de":"bringen","word_en":"bring","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"127","word_de":"Woche","word_en":"Week","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"128","word_de":"lassen","word_en":"leave","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"129","word_de":"einmal","word_en":"once","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"130","word_de":"viel","word_en":"a lot of","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"131","word_de":"einig-","word_en":"unite","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"132","word_de":"wenig","word_en":"little","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"133","word_de":"sowie","word_en":"and","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"134","word_de":"jung","word_en":"young","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"135","word_de":"dort","word_en":"there","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"138","word_de":"wer","word_en":"who","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"139","word_de":"lass","word_en":"let","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"140","word_de":"nah","word_en":"close to","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"141","word_de":"während","word_en":"during","example_de":"währenddessen werde ich auf dich warten","example_en":"Meanwhile, I'll wait for you","show_switch":"true"},{"id":"142","word_de":"wo","word_en":"where","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"143","word_de":"halten","word_en":"hold","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"144","word_de":"Patentamt","word_en":"Patent Office","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"145","word_de":"allerdings","word_en":"however","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"146","word_de":"lang","word_en":"long","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"147","word_de":"etwas","word_en":"something","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"148","word_de":"sondern","word_en":"but","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"149","word_de":"Haus","word_en":"House","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"150","word_de":"nichts","word_en":"nothing","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"151","word_de":"Euro","word_en":"Euro","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"152","word_de":"Frage","word_en":"Question","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"153","word_de":"dazu","word_en":"","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"154","word_de":"vier","word_en":"four","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"155","word_de":"nehmen","word_en":"take","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"156","word_de":"zwar","word_en":"though","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"157","word_de":"gestern","word_en":"yesterday","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"158","word_de":"stellen","word_en":"put","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"159","word_de":"dafür","word_en":"for","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"160","word_de":"politisch","word_en":"politically","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"161","word_de":"heissen","word_en":"to be called","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"162","word_de":"jedoch","word_en":"however","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"163","word_de":"wegen","word_en":"because of","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"165","word_de":"Leben","word_en":"Life","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"166","word_de":"stark","word_en":"strong","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"167","word_de":"Seite","word_en":"page","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"168","word_de":"Welt","word_en":"World","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"169","word_de":"vergangen","word_en":"passed","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"170","word_de":"spielen","word_en":"play","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"171","word_de":"Fall","word_en":"Case","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"172","word_de":"fast","word_en":"almost","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"173","word_de":"Weg","word_en":"Way","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"174","word_de":"ob","word_en":"whether","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"175","word_de":"ab","word_en":"from","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"176","word_de":"wichtig","word_en":"important","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"177","word_de":"Präsident","word_en":"President","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"178","word_de":"kurz","word_en":"short","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"179","word_de":"also","word_en":"So","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"180","word_de":"beginnen","word_en":"start","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"181","word_de":"gleich","word_en":"equal to","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"182","word_de":"tun","word_en":"do","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"183","word_de":"Arbeit","word_en":"Work","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"184","word_de":"fünf","word_en":"five","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"186","word_de":"Bild","word_en":"Picture","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"187","word_de":"erhalten","word_en":"get","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"188","word_de":"Monat","word_en":"Month","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"189","word_de":"Unternehmen","word_en":"Company","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"190","word_de":"Regierung","word_en":"Government","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"191","word_de":"Teil","word_en":"Part","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"192","word_de":"unser-","word_en":"ours","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"193","word_de":"Wien","word_en":"Vienna","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"194","word_de":"solch-","word_en":"such","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"195","word_de":"ja","word_en":"yes","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"196","word_de":"schwer","word_en":"difficult","example_de":"Ist es schwer?","example_en":"Is it difficult?","show_switch":"true"},{"id":"197","word_de":"international","word_en":"international","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG"},{"id":"198","word_de":"sprechen","word_en":"speak","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"199","word_de":"gehören","word_en":"belong","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"200","word_de":"weiss","word_en":"white","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"201","word_de":"Spiel","word_en":"Game","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"202","word_de":"mögen","word_en":"like","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"203","word_de":"möglich","word_en":"possible","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"204","word_de":"Geld","word_en":"Money","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"205","word_de":"Grund","word_en":"Reason","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"206","word_de":"fahren","word_en":"drive","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"207","word_de":"bisher","word_en":"previously","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"208","word_de":"Problem","word_en":"Problem","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"209","word_de":"Partei","word_en":"Party","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"210","word_de":"österreich","word_en":"Austria","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"211","word_de":"d-halber","word_en":"d-half","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"212","word_de":"Peter","word_en":"Peter","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"213","word_de":"sogar","word_en":"even","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"214","word_de":"davon","word_en":"of which","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"215","word_de":"welch-","word_en":"which","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"216","word_de":"zehn","word_en":"ten","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"217","word_de":"gar","word_en":"even","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"218","word_de":"gelten","word_en":"apply","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"219","word_de":"einfach","word_en":"easy","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"220","word_de":"führen","word_en":"lead","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"221","word_de":"bekommen","word_en":"get","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"222","word_de":"gemeinsam","word_en":"together","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"223","word_de":"weniger","word_en":"less","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"224","word_de":"kaum","word_en":"barely","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"225","word_de":"Milliarde","word_en":"Billion","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"226","word_de":"Polizei","word_en":"Police","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"228","word_de":"neben","word_en":"next to","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"229","word_de":"Geschichte","word_en":"Story","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"230","word_de":"Staat","word_en":"State","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"231","word_de":"wissen","word_en":"know","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"232","word_de":"Strasse","word_en":"Road","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"234","word_de":"später","word_en":"later","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"235","word_de":"meist","word_en":"usually","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"236","word_de":"bestehen","word_en":"exist","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"237","word_de":"europäisch","word_en":"European","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"238","word_de":"gewinnen","word_en":"win","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"239","word_de":"derzeit","word_en":"currently","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"240","word_de":"schnell","word_en":"fast","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"242","word_de":"Stunde","word_en":"Hour","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"243","word_de":"Berliner","word_en":"Berliner","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"244","word_de":"wohl","word_en":"probably","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"245","word_de":"darauf","word_en":"on it","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"246","word_de":"Thema","word_en":"Topic","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"248","word_de":"Man","word_en":"Man","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"249","word_de":"früh","word_en":"early","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"250","word_de":"schaffen","word_en":"create","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"251","word_de":"Gruppe","word_en":"Group","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"252","word_de":"fordern","word_en":"call","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"253","word_de":"Deutsch","word_en":"word_de","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"254","word_de":"öffentlich","word_en":"public","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"255","word_de":"Mitglied","word_en":"Member","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"256","word_de":"schliesslich","word_en":"finally","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"257","word_de":"besonders","word_en":"special","example_de":"the Film was nothing special","example_en":"der Film war nicht besonders","show_switch":"true"},{"id":"258","word_de":"Grüne","word_en":"Green","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"259","word_de":"Beispiel","word_en":"example","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"260","word_de":"jen-","word_en":"jen-","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"261","word_de":"natürlich","word_en":"of course","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"262","word_de":"Europa","word_en":"Europe","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"263","word_de":"nennen","word_en":"call","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"264","word_de":"Chef","word_en":"Boss","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"266","word_de":"setzen","word_en":"put","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"267","word_de":"Wort","word_en":"word_de","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"268","word_de":"bekannt","word_en":"known","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"269","word_de":"Film","word_en":"Movie","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"270","word_de":"frei","word_en":"free","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"271","word_de":"deutlich","word_en":"clearly","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"272","word_de":"nie","word_en":"never","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"273","word_de":"Ziel","word_en":"Goal","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"274","word_de":"folgen","word_en":"follow","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"275","word_de":"Familie","word_en":"Family","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"276","word_de":"arbeiten","word_en":"work","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"277","word_de":"Zahl","word_en":"Number","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"278","word_de":"Schule","word_en":"School","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"280","word_de":"Erfolg","word_en":"Success","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"281","word_de":"sechs","word_en":"six","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"282","word_de":"Leute","word_en":"People","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"283","word_de":"treffen","word_en":"meet","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"284","word_de":"Projekt","word_en":"Project","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"285","word_de":"mal","word_en":"times","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"286","word_de":"schreiben","word_en":"write","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"287","word_de":"Punkt","word_en":"Point","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"288","word_de":"Minute","word_en":"Minute","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"289","word_de":"erklären","word_en":"explain","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"291","word_de":"eigentlich","word_en":"actually","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"292","word_de":"klar","word_en":"clear","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"293","word_de":"hinter","word_en":"behind","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"294","word_de":"sicher","word_en":"sure","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"295","word_de":"richtig","word_en":"right","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"296","word_de":"genau","word_en":"exactly","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"297","word_de":"Preis","word_en":"Price","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"298","word_de":"vielleicht","word_en":"maybe","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"299","word_de":"Hand","word_en":"Hand","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"300","word_de":"Name","word_en":"Name","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"301","word_de":"schön","word_en":"nice","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"302","word_de":"erwarten","word_en":"expect","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"303","word_de":"allein","word_en":"alone","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"304","word_de":"Bank","word_en":"Bank","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"305","word_de":"scheinen","word_en":"seem","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"306","word_de":"denken","word_en":"think","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"307","word_de":"leben","word_en":"live","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"308","word_de":"Mal","word_en":"Time","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"309","word_de":"Art","word_en":"Art","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"310","word_de":"laufen","word_en":"run","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"311","word_de":"einzig","word_en":"only","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"312","word_de":"Meter","word_en":"Meter","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"313","word_de":"erklärt","word_en":"explains","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"314","word_de":"insgesamt","word_en":"a total of","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"315","word_de":"Mitarbeiter","word_en":"Employees","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"316","word_de":"Gemeinde","word_en":"Community","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"317","word_de":"brauchen","word_en":"need","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"318","word_de":"pro","word_en":"per","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"319","word_de":"Gespräch","word_en":"Conversation","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"320","word_de":"Aus","word_en":"From","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"322","word_de":"künftig","word_en":"in future","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"323","word_de":"oft","word_en":"often","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"324","word_de":"ausserdem","word_en":"also","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"325","word_de":"steigen","word_en":"climb","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"326","word_de":"mehrer-","word_en":"several","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"327","word_de":"jährig","word_en":"year","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"328","word_de":"bieten","word_en":"offer","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"329","word_de":"suchen","word_en":"search","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"330","word_de":"Programm","word_en":"Program","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"331","word_de":"Anfang","word_en":"Beginning","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"332","word_de":"erreichen","word_en":"reach","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"333","word_de":"leicht","word_en":"easy","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"334","word_de":"entscheiden","word_en":"decide","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"335","word_de":"Hans","word_en":"Hans","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"338","word_de":"damals","word_en":"at that time","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"340","word_de":"amerikanisch","word_en":"American","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"342","word_de":"Buch","word_en":"Book","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"344","word_de":"Zukunft","word_en":"Future","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"346","word_de":"Verein","word_en":"Club","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"347","word_de":"Firma","word_en":"Company","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"348","word_de":"entstehen","word_en":"emerge","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"349","word_de":"Ergebnis","word_en":"Result","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"350","word_de":"glauben","word_en":"believe","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"351","word_de":"Angabe","word_en":"Indication","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"352","word_de":"dagegen","word_en":"against","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"353","word_de":"Auto","word_en":"Car","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"354","word_de":"Chance","word_en":"Chance","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"355","word_de":"Entscheidung","word_en":"Decision","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"356","word_de":"ziehen","word_en":"pull","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"357","word_de":"Herr","word_en":"Mr.","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"359","word_de":"Team","word_en":"Team","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"360","word_de":"Schilling","word_en":"Shilling","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"361","word_de":"ebenfalls","word_en":"also","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"362","word_de":"München","word_en":"Munich","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"363","word_de":"verschieden","word_en":"different","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"364","word_de":"Politik","word_en":"Politics","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"365","word_de":"darüber","word_en":"about","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"366","word_de":"stattfinden","word_en":"take place","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"367","word_de":"Dollar","word_en":"Dollars","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"368","word_de":"Wahl","word_en":"Election","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"369","word_de":"fehlen","word_en":"missing","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"370","word_de":"voll","word_en":"full","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"371","word_de":"du","word_en":"you","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"372","word_de":"schlecht","word_en":"bad","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"373","word_de":"laut","word_en":"according to","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"374","word_de":"übernehmen","word_en":"take over","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"375","word_de":"Markt","word_en":"Market","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"376","word_de":"Gesellschaft","word_en":"Society","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"377","word_de":"Bereich","word_en":"Area","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"378","word_de":"sorgen","word_en":"take care","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"379","word_de":"acht","word_en":"eight","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"380","word_de":"tragen","word_en":"wear","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"383","word_de":"zudem","word_en":"also","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"384","word_de":"zunüchst","word_en":"first","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"386","word_de":"eher","word_en":"rather","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"387","word_de":"Zeitung","word_en":"Newspaper","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"388","word_de":"offen","word_en":"open","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"389","word_de":"wirklich","word_en":"really","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"390","word_de":"Musik","word_en":"Music","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"391","word_de":"gegenüber","word_en":"opposite","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"393","word_de":"handeln","word_en":"act","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"394","word_de":"knapp","word_en":"just","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"395","word_de":"recht","word_en":"right","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"396","word_de":"Ag","word_en":"Ag","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"397","word_de":"nachdem","word_en":"after","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"398","word_de":"inzwischen","word_en":"now","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"399","word_de":"Trainer","word_en":"Trainer","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"401","word_de":"entsprechen","word_en":"correspond to","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"402","word_de":"Krieg","word_en":"War","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"403","word_de":"Stelle","word_en":"Position","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"404","word_de":"jugendlich","word_en":"teen","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"405","word_de":"Person","word_en":"Person","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"406","word_de":"Entwicklung","word_en":"Development","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"407","word_de":"Werk","word_en":"Work","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"409","word_de":"ebenso","word_en":"also","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"410","word_de":"sozial","word_en":"socially","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"411","word_de":"Sieg","word_en":"Victory","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"412","word_de":"versuchen","word_en":"try","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"413","word_de":"Möglichkeit","word_en":"Option","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"414","word_de":"fragen","word_en":"ask","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"416","word_de":"anbieten","word_en":"offer","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"417","word_de":"Ort","word_en":"Place","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"418","word_de":"Stück","word_en":"Piece","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"419","word_de":"Gast","word_en":"Guest","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"420","word_de":"sitzen","word_en":"sit","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"421","word_de":"Folge","word_en":"Episode","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"422","word_de":"warum","word_en":"why","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"423","word_de":"obwohl","word_en":"although","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"424","word_de":"gerade","word_en":"straight","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"425","word_de":"daran","word_en":"at this","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"426","word_de":"Hilfe","word_en":"Help","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"427","word_de":"Mutter","word_en":"Mother","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"428","word_de":"rot","word_en":"red","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"429","word_de":"Bürgermeister","word_en":"Mayor","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG"},{"id":"430","word_de":"Sache","word_en":"Thing","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"431","word_de":"nämlich","word_en":"namely","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"432","word_de":"Politiker","word_en":"Politician","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"433","word_de":"Raum","word_en":"Room","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"434","word_de":"Mannschaft","word_en":"Team","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"435","word_de":"Freund","word_en":"Friend","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"436","word_de":"erscheinen","word_en":"appear","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"437","word_de":"zunehmen","word_en":"increase","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"438","word_de":"Rolle","word_en":"Roll","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"439","word_de":"Schüler","word_en":"Student","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"440","word_de":"gegeben","word_en":"given","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"441","word_de":"rechnen","word_en":"count","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"443","word_de":"kennen","word_en":"know","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"444","word_de":"Kirche","word_en":"Church","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"445","word_de":"Interesse","word_en":"Interest","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"446","word_de":"Angebot","word_en":"Offer","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"447","word_de":"Fussball","word_en":"Soccer","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"448","word_de":"Abend","word_en":"Evening","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"449","word_de":"gern","word_en":"like","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"450","word_de":"österreichisch","word_en":"Austrian","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG"},{"id":"451","word_de":"manch-","word_en":"some","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"452","word_de":"sieben","word_en":"seven","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"453","word_de":"erstmals","word_en":"first time","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"454","word_de":"Stimme","word_en":"Vote","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"455","word_de":"Vater","word_en":"Father","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"456","word_de":"Eltern","word_en":"Parents","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"457","word_de":"Kunst","word_en":"Art","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"459","word_de":"überhaupt","word_en":"at all","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"460","word_de":"Auge","word_en":"Eye","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"461","word_de":"Region","word_en":"Region","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"462","word_de":"Einsatz","word_en":"Use","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"463","word_de":"Jetzt","word_en":"Now","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"464","word_de":"Bericht","word_en":"Report","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"465","word_de":"Nacht","word_en":"Night","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"466","word_de":"mitteilen","word_en":"communicate","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"467","word_de":"zuvor","word_en":"before","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"469","word_de":"Opfer","word_en":"Victim","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"470","word_de":"Hamburg","word_en":"Hamburg","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"471","word_de":"erfolgreich","word_en":"successful","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"472","word_de":"daher","word_en":"therefore","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"473","word_de":"Kopf","word_en":"Head","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"474","word_de":"verstehen","word_en":"understand","example_de":"Sie versteht es nicht","example_en":"She doesn't understand","show_switch":"true"},{"id":"475","word_de":"berichten","word_en":"report","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"476","word_de":"Wochenende","word_en":"Weekend","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"477","word_de":"unsr-","word_en":"our-","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"478","word_de":"dennoch","word_en":"nevertheless","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"479","word_de":"Betrieb","word_en":"Operation","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"480","word_de":"Internet","word_en":"Internet","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"482","word_de":"privat","word_en":"private","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"483","word_de":"helfen","word_en":"help","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"484","word_de":"Blick","word_en":"View","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"485","word_de":"Frankreich","word_en":"France","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"486","word_de":"vorstellen","word_en":"imagine","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"487","word_de":"eben","word_en":"just","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"488","word_de":"kosten","word_en":"cost","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"491","word_de":"Kosten","word_en":"Cost","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"492","word_de":"lieb","word_en":"dear","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"493","word_de":"zusätzlich","word_en":"additionally","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"494","word_de":"bestimmt","word_en":"determined","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"495","word_de":"französisch","word_en":"french","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"497","word_de":"Bund","word_en":"Covenant","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"498","word_de":"Bürger","word_en":"Citizen","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"499","word_de":"Titel","word_en":"Title","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"500","word_de":"zurück","word_en":"back","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"501","word_de":"Foto","word_en":"Photo","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"502","word_de":"Kraft","word_en":"Force","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"503","word_de":"zuletzt","word_en":"last","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"504","word_de":"betont","word_en":"emphasizes","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"505","word_de":"völlig","word_en":"totally","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"506","word_de":"tatsächlich","word_en":"actually","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"507","word_de":"statt","word_en":"instead of","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"508","word_de":"danach","word_en":"after that","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"509","word_de":"Unter","word_en":"Under","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"510","word_de":"einzeln","word_en":"individually","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"511","word_de":"Geschäft","word_en":"Business","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"512","word_de":"Wirtschaft","word_en":"Economy","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"513","word_de":"legen","word_en":"put","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"514","word_de":"Tod","word_en":"Death","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"515","word_de":"direkt","word_en":"directly","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"516","word_de":"zahlreich","word_en":"numerous","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"517","word_de":"Aufgabe","word_en":"Task","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"518","word_de":"drohen","word_en":"threaten","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"519","word_de":"Grenze","word_en":"Border","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"520","word_de":"Sprecher","word_en":"Speaker","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"521","word_de":"Idee","word_en":"Idea","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"522","word_de":"Gericht","word_en":"Court","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"523","word_de":"Information","word_en":"Information","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"524","word_de":"Bahn","word_en":"Track","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"525","word_de":"Kunde","word_en":"Customer","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"526","word_de":"bald","word_en":"soon","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"527","word_de":"Zwei","word_en":"Two","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"528","word_de":"hoffen","word_en":"hope","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"529","word_de":"trotz","word_en":"despite","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"530","word_de":"Wasser","word_en":"Water","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"531","word_de":"Kritik","word_en":"Criticism","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"532","word_de":"Wählen","word_en":"choose","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"533","word_de":"befinden","word_en":"are","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"534","word_de":"Gesetz","word_en":"Law","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"535","word_de":"ähnlich","word_en":"similar to","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"536","word_de":"ankündigen","word_en":"announce","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"537","word_de":"Spieler","word_en":"Player","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"538","word_de":"nutzen","word_en":"use","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"539","word_de":"Höhe","word_en":"Height","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"540","word_de":"Wohnung","word_en":"Apartment","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"541","word_de":"zählen","word_en":"count","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"542","word_de":"Wert","word_en":"Value","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"543","word_de":"besonder-","word_en":"particular","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"544","word_de":"Situation","word_en":"Situation","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"545","word_de":"sterben","word_en":"die","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"546","word_de":"Ausstellung","word_en":"Exhibition","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"547","word_de":"offenbar","word_en":"apparently","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"548","word_de":"gesamt","word_en":"total","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"549","word_de":"Amt","word_en":"Office","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"550","word_de":"Sinn","word_en":"Sense","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"551","word_de":"erzählen","word_en":"tell","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"552","word_de":"Klaus","word_en":"Klaus","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"553","word_de":"Recht","word_en":"Right","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"554","word_de":"Kreis","word_en":"Circle","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"555","word_de":"Schweiz","word_en":"Switzerland","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"556","word_de":"sonst","word_en":"otherwise","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"557","word_de":"Vorsitzende","word_en":"Chair","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"559","word_de":"Besucher","word_en":"Visitors","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"560","word_de":"anders","word_en":"different","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"561","word_de":"planen","word_en":"plan","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"562","word_de":"Tor","word_en":"Gate","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"563","word_de":"Universität","word_en":"University","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"564","word_de":"einsetzen","word_en":"insert","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"565","word_de":"Kampf","word_en":"Fight","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"566","word_de":"Union","word_en":"Union","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"567","word_de":"bislang","word_en":"so far","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"568","word_de":"paar","word_en":"couple","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"569","word_de":"Lage","word_en":"Location","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"570","word_de":"hören","word_en":"hear","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"571","word_de":"verloren","word_en":"lost","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"572","word_de":"zumindest","word_en":"at least","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"573","word_de":"geplant","word_en":"planned","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"574","word_de":"Plan","word_en":"Plan","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"575","word_de":"wirken","word_en":"act","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"576","word_de":"aufnehmen","word_en":"to record","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"577","word_de":"zusammen","word_en":"together","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"578","word_de":"schwarz","word_en":"black","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"579","word_de":"ablehnen","word_en":"reject","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"581","word_de":"verlassen","word_en":"leave","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"582","word_de":"Publikum","word_en":"Audience","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"583","word_de":"Bau","word_en":"Construction","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"584","word_de":"erneut","word_en":"again","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"585","word_de":"Franz","word_en":"Franz","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"586","word_de":"früher","word_en":"earlier","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"587","word_de":"System","word_en":"System","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"588","word_de":"Theater","word_en":"Theater","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"589","word_de":"Beginn","word_en":"Beginning","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"590","word_de":"Kollege","word_en":"Colleague","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"591","word_de":"verlieren","word_en":"lose","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"592","word_de":"Vertrag","word_en":"Contract","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"593","word_de":"fallen","word_en":"fall","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"594","word_de":"Kilometer","word_en":"Kilometer","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"595","word_de":"Schritt","word_en":"Step","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"596","word_de":"bauen","word_en":"build","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"598","word_de":"Form","word_en":"Form","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"599","word_de":"reden","word_en":"talk","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"600","word_de":"hart","word_en":"hard","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"601","word_de":"niemand","word_en":"nobody","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"602","word_de":"offiziell","word_en":"officially","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"603","word_de":"Bevölkerung","word_en":"Population","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"604","word_de":"persönlich","word_en":"personally","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"605","word_de":"lernen","word_en":"learn","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"606","word_de":"gleichzeitig","word_en":"at the same time","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"607","word_de":"Bayern","word_en":"Bavaria","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"608","word_de":"Arzt","word_en":"Doctor","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"609","word_de":"fühlen","word_en":"feel","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"610","word_de":"warten","word_en":"wait","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"611","word_de":"Institut","word_en":"Institute","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"612","word_de":"zahlen","word_en":"pay","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"613","word_de":"Saison","word_en":"Season","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"614","word_de":"Mittel","word_en":"Mean","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"615","word_de":"Leistung","word_en":"Power","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"616","word_de":"britisch","word_en":"British","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"617","word_de":"Zug","word_en":"Train","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"618","word_de":"endlich","word_en":"finally","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"619","word_de":"Mädchen","word_en":"Girl","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"620","word_de":"Bonn","word_en":"Bonn","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"621","word_de":"Verfügung","word_en":"Available","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"623","word_de":"mindestens","word_en":"at least","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"624","word_de":"russisch","word_en":"Russian","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"625","word_de":"Richtung","word_en":"Direction","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"626","word_de":"Aktion","word_en":"Action","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"627","word_de":"schliessen","word_en":"close","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"629","word_de":"gering","word_en":"low","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"630","word_de":"erinnern","word_en":"remember","example_de":"Kannst du dich an ihn erinnern?","example_en":"Can you remember him?","show_switch":"true"},{"id":"632","word_de":"Kultur","word_en":"Culture","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"633","word_de":"schlagen","word_en":"beat","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"634","word_de":"Diskussion","word_en":"Discussion","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"635","word_de":"ändern","word_en":"change","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"636","word_de":"aussehen","word_en":"look","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"637","word_de":"teuer","word_en":"expensive","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"638","word_de":"Parlament","word_en":"Parliament","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"639","word_de":"geraten","word_en":"advised","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"640","word_de":"unterstützen","word_en":"support","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"641","word_de":"technisch","word_en":"technically","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"642","word_de":"Angst","word_en":"Fear","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"643","word_de":"verletzen","word_en":"hurt","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"644","word_de":"Museum","word_en":"Museum","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"645","word_de":"innerhalb","word_en":"within","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"646","word_de":"Lüsung","word_en":"Solution","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"648","word_de":"leisten","word_en":"afford","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"649","word_de":"Tochter","word_en":"Daughter","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"650","word_de":"Erfahrung","word_en":"Experience","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"651","word_de":"Franken","word_en":"Francs","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"652","word_de":"weiterhin","word_en":"continue","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"653","word_de":"sofort","word_en":"immediately","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"655","word_de":"Künstler","word_en":"Artist","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"657","word_de":"wirtschaftlich","word_en":"economically","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG"},{"id":"658","word_de":"bedeuten","word_en":"mean","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"659","word_de":"Beamter","word_en":"Official","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"660","word_de":"positiv","word_en":"positive","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"661","word_de":"freuen","word_en":"happy","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"662","word_de":"Prozess","word_en":"Process","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"663","word_de":"Behörde","word_en":"Authority","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"664","word_de":"falsch","word_en":"wrong","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"665","word_de":"Band","word_en":"Volume","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"666","word_de":"Mehrheit","word_en":"Majority","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"667","word_de":"entwickelt","word_en":"develops","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"668","word_de":"Konzern","word_en":"Group","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"669","word_de":"tot","word_en":"dead","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"670","word_de":"Bühne","word_en":"Stage","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"671","word_de":"verantwortlich","word_en":"responsible","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG"},{"id":"672","word_de":"Veranstaltung","word_en":"Event","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG"},{"id":"673","word_de":"genug","word_en":"enough","example_de":"Ich habe nicht genug getrunken","example_en":"I haven't drunk enough","show_switch":"true"},{"id":"674","word_de":"Vertreter","word_en":"Representative","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"675","word_de":"immerhin","word_en":"at least","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"676","word_de":"erfahren","word_en":"experience","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"677","word_de":"erster","word_en":"first","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"678","word_de":"vorsehen","word_en":"to provide","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"679","word_de":"Wie spät ist es?","word_en":"What time is it?","example_de":"Wie spät ist es?","example_en":"what time  is it?","show_switch":"true"},{"id":"680","word_de":"Rahmen","word_en":"Frame","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"681","word_de":"notwendig","word_en":"necessary","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"682","word_de":"finanziell","word_en":"financially","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"683","word_de":"Arbeitsplatz","word_en":"Workplace","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"684","word_de":"Zuschauer","word_en":"Audience","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"685","word_de":"darin","word_en":"in it","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"686","word_de":"tief","word_en":"deep","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"687","word_de":"trotzdem","word_en":"anyway","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"688","word_de":"Druck","word_en":"Pressure","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"689","word_de":"Weise","word_en":"Way","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"690","word_de":"Tier","word_en":"Animal","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"691","word_de":"feststellen","word_en":"determine","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"693","word_de":"ausgehen","word_en":"go out","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"694","word_de":"modern","word_en":"modern","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"695","word_de":"lesen","word_en":"read","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"696","word_de":"Sicherheit","word_en":"Security","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"697","word_de":"Gebiet","word_en":"Area","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"698","word_de":"beispielsweise","word_en":"for example","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG"},{"id":"699","word_de":"Autor","word_en":"Author","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"700","word_de":"Medium","word_en":"Medium","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"701","word_de":"aktuell","word_en":"currently","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"702","word_de":"Italien","word_en":"Italy","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"703","word_de":"täglich","word_en":"daily","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"704","word_de":"Klasse","word_en":"grade","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"705","word_de":"berichtet","word_en":"reported","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"706","word_de":"wesentlich","word_en":"essentially","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"707","word_de":"per","word_en":"by","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"708","word_de":"Walter","word_en":"Walter","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"709","word_de":"Bad","word_en":"Bath","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"710","word_de":"Soldat","word_en":"Soldier","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"711","word_de":"schwierig","word_en":"difficult","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"712","word_de":"Rede","word_en":"Speech","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"713","word_de":"Verhandlung","word_en":"Negotiation","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"714","word_de":"wachsen","word_en":"grow","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"715","word_de":"treten","word_en":"step","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"717","word_de":"öffnen","word_en":"open","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"718","word_de":"heutig","word_en":"today","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"719","word_de":"starten","word_en":"start","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"720","word_de":"verhindern","word_en":"prevent","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"721","word_de":"Gefahr","word_en":"Danger","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"723","word_de":"dadurch","word_en":"by","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"724","word_de":"weltweit","word_en":"worldwide","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"725","word_de":"Führung","word_en":"Leadership","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"726","word_de":"Konzept","word_en":"Concept","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"727","word_de":"Meinung","word_en":"Opinion","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"728","word_de":"historisch","word_en":"historically","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"729","word_de":"Vorschlag","word_en":"Proposal","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"730","word_de":"Forderung","word_en":"Claim","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"731","word_de":"Kommission","word_en":"Commission","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"732","word_de":"weder","word_en":"neither","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"733","word_de":"jedenfalls","word_en":"at least","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"734","word_de":"Vorjahr","word_en":"Previous year","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"735","word_de":"beschliessen","word_en":"decide","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"736","word_de":"Organisation","word_en":"Organization","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"737","word_de":"holen","word_en":"pick","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"738","word_de":"Hälfte","word_en":"Half","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"739","word_de":"eng","word_en":"tight","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"740","word_de":"Müller","word_en":"Miller","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"741","word_de":"Richter","word_en":"Judge","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"742","word_de":"melden","word_en":"Report","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"743","word_de":"Verlag","word_en":"Publisher","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"744","word_de":"allgemein","word_en":"general","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"745","word_de":"Umsatz","word_en":"Turnover","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"746","word_de":"lediglich","word_en":"only","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"747","word_de":"vertreten","word_en":"represented","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"748","word_de":"präsentieren","word_en":"present","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"749","word_de":"zuständig","word_en":"responsible","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"750","word_de":"sogenannt","word_en":"so-called","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"751","word_de":"zwälf","word_en":"twelve","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"752","word_de":"London","word_en":"London","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"753","word_de":"Koalition","word_en":"Coalition","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"754","word_de":"Ministerpräsid","word_en":"Prime Minister","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG"},{"id":"755","word_de":"Leiter","word_en":"Ladder","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"756","word_de":"neun","word_en":"nine","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"758","word_de":"jährlich","word_en":"annually","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"759","word_de":"Herz","word_en":"Heart","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"760","word_de":"erkennen","word_en":"recognize","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"761","word_de":"bilden","word_en":"make up","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"762","word_de":"Bremen","word_en":"Bremen","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"763","word_de":"Verband","word_en":"Association","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"764","word_de":"plötzlich","word_en":"suddenly","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"765","word_de":"häufig","word_en":"often","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"766","word_de":"Zusammenarbeit","word_en":"Cooperation","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG"},{"id":"767","word_de":"stammen","word_en":"come","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"768","word_de":"heiss","word_en":"hot","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"769","word_de":"kaufen","word_en":"buy","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"770","word_de":"Experte","word_en":"Expert","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"771","word_de":"Unterstützung","word_en":"Support","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG"},{"id":"772","word_de":"Boden","word_en":"Floor","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"773","word_de":"ex","word_en":"ex","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"774","word_de":"gewiss","word_en":"certainly","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"775","word_de":"darstellen","word_en":"represent","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"776","word_de":"Fan","word_en":"Fan","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"777","word_de":"scheitern","word_en":"fail","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"778","word_de":"Volk","word_en":"People","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"779","word_de":"Sprache","word_en":"Language","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"780","word_de":"vorliegen","word_en":"present","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"781","word_de":"Aktie","word_en":"Share","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"782","word_de":"Urteil","word_en":"Judgment","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"783","word_de":"Hoffnung","word_en":"Hope","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"784","word_de":"ergeben","word_en":"yield","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"785","word_de":"überraschen","word_en":"surprise","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"786","word_de":"Vorstand","word_en":"Board","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"787","word_de":"dauern","word_en":"take","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"788","word_de":"durchaus","word_en":"definitely","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"789","word_de":"Dienst","word_en":"Service","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"790","word_de":"Anteil","word_en":"Share","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"791","word_de":"verkauft","word_en":"sold","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"792","word_de":"Gegner","word_en":"Opponent","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"793","word_de":"Linie","word_en":"Line","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"794","word_de":"Verhältnis","word_en":"Ratio","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"795","word_de":"unterschiedlich","word_en":"different","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG"},{"id":"796","word_de":"Verfahren","word_en":"Method","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"797","word_de":"betragen","word_en":"amount to","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"798","word_de":"Streit","word_en":"Quarrel","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"799","word_de":"darunter","word_en":"including","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"800","word_de":"selten","word_en":"rarely","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"801","word_de":"Hotel","word_en":"Hotel","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"802","word_de":"warnen","word_en":"warn","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"803","word_de":"Massnahme","word_en":"Measure","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"804","word_de":"zugleich","word_en":"at the same time","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"805","word_de":"Modell","word_en":"Model","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"806","word_de":"Vergleich","word_en":"Comparison","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"808","word_de":"übrig","word_en":"leftover, remaining","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"809","word_de":"fällen","word_en":"fall","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"810","word_de":"sowohl","word_en":"both","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"811","word_de":"Beitrag","word_en":"Contribution","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"812","word_de":"aktiv","word_en":"active","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"813","word_de":"nötig","word_en":"necessary","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"814","word_de":"Produkt","word_en":"Product","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"815","word_de":"Text","word_en":"Text","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"816","word_de":"Reise","word_en":"Trip","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"817","word_de":"Sport","word_en":"Sports","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"818","word_de":"mittlerweile","word_en":"now","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"819","word_de":"verbinden","word_en":"connect","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"820","word_de":"Mehr","word_en":"More","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"821","word_de":"Gebäude","word_en":"Building","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"822","word_de":"Junge","word_en":"Boy","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"823","word_de":"versprechen","word_en":"promise","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"824","word_de":"Nato","word_en":"Nato","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"825","word_de":"beteiligen","word_en":"participate","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"826","word_de":"Bundesregierun","word_en":"Federal Government","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG"},{"id":"827","word_de":"China","word_en":"China","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"828","word_de":"Liebe","word_en":"Love","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"829","word_de":"Ding","word_en":"Thing","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"830","word_de":"hingegen","word_en":"however,","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"831","word_de":"eröffnen","word_en":"open","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"832","word_de":"gelt","word_en":"","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"833","word_de":"bestätigen","word_en":"confirm","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"834","word_de":"Israel","word_en":"Israel","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"835","word_de":"gelangen","word_en":"arrive","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"836","word_de":"Täter","word_en":"Offender","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"837","word_de":"Alter","word_en":"Age","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"838","word_de":"Partner","word_en":"Partner","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"839","word_de":"Lehrer","word_en":"Teacher","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"840","word_de":"Zentrum","word_en":"Center","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"841","word_de":"Abgeordnete","word_en":"Deputies","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"842","word_de":"Macht","word_en":"Power","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"843","word_de":"Wunsch","word_en":"Wish","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"844","word_de":"darum","word_en":"therefore","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"845","word_de":"bezahlen","word_en":"pay","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"846","word_de":"Vorwurf","word_en":"Reproach","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"847","word_de":"staatlich","word_en":"State","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"848","word_de":"kämpfen","word_en":"fight","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"849","word_de":"Geschäftsführe","word_en":"CEO","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG"},{"id":"850","word_de":"Besuch","word_en":"Visit","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"851","word_de":"gründen","word_en":"found","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"852","word_de":"Oder","word_en":"Or","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"853","word_de":"Auftrag","word_en":"Order","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"854","word_de":"Versuch","word_en":"Trial","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"855","word_de":"Fischer","word_en":"Fisherman","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"856","word_de":"Satz","word_en":"Sentence","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"857","word_de":"fest","word_en":"fixed","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"858","word_de":"verzichten","word_en":"renounce","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"859","word_de":"Reihe","word_en":"Row","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"860","word_de":"Reform","word_en":"Reform","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"861","word_de":"verlangen","word_en":"ask for","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"862","word_de":"Antrag","word_en":"Application","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"863","word_de":"Bezirk","word_en":"District","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"864","word_de":"Konzert","word_en":"Concert","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"865","word_de":"Szene","word_en":"Scene","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"866","word_de":"sinken","word_en":"sink","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"867","word_de":"teilnehmen","word_en":"participate","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"868","word_de":"diesmal","word_en":"this time","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"869","word_de":"Vorstellung","word_en":"Presentation","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"870","word_de":"Zusammenhang","word_en":"Connection","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"871","word_de":"Schaden","word_en":"Damage","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"872","word_de":"breit","word_en":"wide","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"873","word_de":"stimmen","word_en":"vote","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"874","word_de":"entschieden","word_en":"decided","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"875","word_de":"bereit","word_en":"ready","example_de":"Ich bin bereit zu gehen","example_en":"I'm ready to go","show_switch":"true"},{"id":"876","word_de":"Fraktion","word_en":"Fraction","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"877","word_de":"ständig","word_en":"constantly","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"878","word_de":"bezeichnen","word_en":"denote","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"879","word_de":"Wettbewerb","word_en":"Competition","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"880","word_de":"italienisch","word_en":"Italian","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"881","word_de":"Bedeutung","word_en":"word_en","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"882","word_de":"abschliessen","word_en":"complete","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"883","word_de":"Innsbruck","word_en":"Innsbruck","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"884","word_de":"Gesicht","word_en":"Face","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"885","word_de":"Antwort","word_en":"Answer","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"886","word_de":"Glück","word_en":"Luck","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"887","word_de":"Trotz","word_en":"Despite","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"888","word_de":"bevor","word_en":"before","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"889","word_de":"herrschen","word_en":"rule","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"890","word_de":"Kandidat","word_en":"Candidate","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"891","word_de":"aufgrund","word_en":"due to","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"892","word_de":"Position","word_en":"Position","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"893","word_de":"Student","word_en":"Student","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"894","word_de":"vergessen","word_en":"forget","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"895","word_de":"Gewerkschaft","word_en":"Union","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"896","word_de":"manchmal","word_en":"sometimes","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"897","word_de":"Gefühl","word_en":"Feeling","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"898","word_de":"Ernst","word_en":"Ernst","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"899","word_de":"Westen","word_en":"West","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"900","word_de":"betroffen","word_en":"affected","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"901","word_de":"abend","word_en":"evening","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"902","word_de":"passieren","word_en":"happen","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"903","word_de":"Patient","word_en":"Patient","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"904","word_de":"Ansicht","word_en":"View","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"905","word_de":"erhöhen","word_en":"increase","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"906","word_de":"dienen","word_en":"serve","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"907","word_de":"überzeugen","word_en":"convince","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"908","word_de":"Ausland","word_en":"Foreign","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"909","word_de":"Karte","word_en":"Card","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"910","word_de":"Gewinn","word_en":"Profit","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"911","word_de":"sichern","word_en":"secure","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"912","word_de":"Bauer","word_en":"Farmer","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"913","word_de":"jemand","word_en":"someone","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"914","word_de":"Luft","word_en":"Air","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"915","word_de":"Kontakt","word_en":"Contact","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"916","word_de":"stossen","word_en":"bump","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"917","word_de":"geschlossen","word_en":"closed","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"918","word_de":"konkret","word_en":"specifically","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"919","word_de":"vorwerfen","word_en":"accuse","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"920","word_de":"öffentlichkeit","word_en":"Public","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG"},{"id":"921","word_de":"antreten","word_en":"compete","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"922","word_de":"Washington","word_en":"Washington","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"923","word_de":"gesetzt","word_en":"set","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"924","word_de":"Gott","word_en":"God","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"925","word_de":"auftreten","word_en":"occur","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"926","word_de":"Vergangenheit","word_en":"Past","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG"},{"id":"927","word_de":"Osten","word_en":"East","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"928","word_de":"Start","word_en":"Start","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"929","word_de":"angeblich","word_en":"allegedly","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"930","word_de":"äussern","word_en":"to express","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"931","word_de":"Manager","word_en":"Manager","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"932","word_de":"Jugend","word_en":"Youth","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"933","word_de":"Heinz","word_en":"Heinz","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"934","word_de":"ausser","word_en":"except","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"935","word_de":"beschäftigt","word_en":"busy","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"936","word_de":"Fahrzeug","word_en":"Vehicle","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"937","word_de":"stets","word_en":"always","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"938","word_de":"Tür","word_en":"Door","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"939","word_de":"unbekannt","word_en":"unknown","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"940","word_de":"Gewalt","word_en":"Violence","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"942","word_de":"Hinweis","word_en":"Note","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"943","word_de":"Anspruch","word_en":"Claim","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"944","word_de":"Spitze","word_en":"Tip","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"945","word_de":"wahr","word_en":"true","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"946","word_de":"Anlage","word_en":"Annex","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"947","word_de":"Regel","word_en":"Rule","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"948","word_de":"Initiative","word_en":"Initiative","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"949","word_de":"Nummer","word_en":"Number","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"950","word_de":"verbessern","word_en":"improve","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"951","word_de":"Konflikt","word_en":"Conflict","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"952","word_de":"verdienen","word_en":"earn","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"953","word_de":"Tat","word_en":"Act","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"954","word_de":"anschliessend","word_en":"then, subsequently","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG"},{"id":"955","word_de":"Bewegung","word_en":"Movement","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"956","word_de":"Dame","word_en":"Lady","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"957","word_de":"Nachricht","word_en":"Message","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"958","word_de":"Brief","word_en":"Letter","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"959","word_de":"geboren","word_en":"born","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"960","word_de":"viert","word_en":"fourth","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"961","word_de":"Teilnehmer","word_en":"Participant","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"962","word_de":"Kohl","word_en":"Cabbage","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"963","word_de":"reich","word_en":"rich","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"964","word_de":"liefern","word_en":"deliver","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"965","word_de":"umfassen","word_en":"include","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"966","word_de":"grün","word_en":"green","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"967","word_de":"Krankenhaus","word_en":"Hospital","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"968","word_de":"Industrie","word_en":"Industry","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"969","word_de":"durchsetzen","word_en":"prevail","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"970","word_de":"Fernsehen","word_en":"Television","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"971","word_de":"Star","word_en":"Star","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"972","word_de":"Fuss","word_en":"Foot","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"973","word_de":"hin","word_en":"towards","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"974","word_de":"Licht","word_en":"Light","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"975","word_de":"Tisch","word_en":"Table","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"976","word_de":"wänschen","word_en":"wish","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"977","word_de":"Niederlage","word_en":"Defeat","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"978","word_de":"stecken","word_en":"stuck","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"979","word_de":"erleben","word_en":"experience","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"980","word_de":"zufrieden","word_en":"satisfied","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"982","word_de":"bitten","word_en":"ask","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"983","word_de":"Runde","word_en":"Round","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"984","word_de":"morgen","word_en":"tomorrow","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"985","word_de":"singen","word_en":"sing","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"986","word_de":"Nein","word_en":"No","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"987","word_de":"Verlust","word_en":"Loss","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"988","word_de":"Aussage","word_en":"Statement","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"989","word_de":"Produktion","word_en":"Production","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"990","word_de":"Unfall","word_en":"Accident","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"991","word_de":"leider","word_en":"unfortunately","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"992","word_de":"heftig","word_en":"violently","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"993","word_de":"rein","word_en":"purely","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"994","word_de":"oben","word_en":"above","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"995","word_de":"Anlass","word_en":"Occasion","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"996","word_de":"freilich","word_en":"of course","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"998","word_de":"traditionell","word_en":"traditional","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"999","word_de":"Moskau","word_en":"Moscow","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"1000","word_de":"Journalist","word_en":"Journalist","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"1001","word_de":"Besorgungen","word_en":"Errands","example_de":"Katrina macht Besorgungen","example_en":"Katrina is running errands","show_switch":"true"},{"id":"1002","word_de":"mögen","word_en":"to like","example_de":"I like fish","example_en":"Ich mag Fisch","show_switch":"true"},{"id":"1003","word_de":"besonders","word_en":"especially","example_de":"Ich mag besonders die Farbe","example_en":"I especially like the color","show_switch":"true"},{"id":"1004","word_de":"das Einkaufszentrum","word_en":"the shopping center/mall","example_de":"Sie geht in das Einkaufszentrum","example_en":"She's going to the mall","show_switch":"true"},{"id":"1005","word_de":"Da drüben","word_en":"Over there","example_de":"mein Handy ist da drüben","example_en":"My cellphone is over there","show_switch":"true"},{"id":"1006","word_de":"zu anprobieren","word_en":"to try on","example_de":"Katrin probiert ein Paar Schuhe an","example_en":"Katrin tries on a pair of shoes","show_switch":"true"},{"id":"1007","word_de":"zu passen","word_en":"to fit","example_de":"passen sie?","example_en":"Do they fit?","show_switch":"true"},{"id":"1008","word_de":"prima/grossartig","word_en":"great","example_de":"Das war grossartig!","example_en":"That was great!","show_switch":"true"},{"id":"1009","word_de":"billig","word_en":"cheap","example_de":"Das ist nicht billig","example_en":"That is not cheap","show_switch":"true"},{"id":"1010","word_de":"die Anleitung","word_en":"the instructions","example_de":"Ich verstehe die Anleitung","example_en":"I understand the instructions","show_switch":"true"},{"id":"1011","word_de":"noch","word_en":"yet","example_de":"Wir haben uns noch nicht getroffen","example_en":"We have not yet met","show_switch":"true"},{"id":"1012","word_de":"Dieser","word_en":"This","example_de":"Dieser Cheeseburger schmeckt gut","example_en":"This cheesburger tastes good","show_switch":"true"},{"id":"1013","word_de":"jeden Tag","word_en":"every day","example_de":"Ich versuche jeden Tag zu lachen","example_en":"I try to laugh every day","show_switch":"true"},{"id":"1014","word_de":"spät dran","word_en":"late","example_de":"Ich bin spät dran","example_en":"I'm late.","show_switch":"true"},{"id":"1015","word_de":"vor (time)","word_en":"before (time)","example_de":"drei vor Elf","example_en":"It's three minutes to eleven am","show_switch":"true"},{"id":"1016","word_de":"Viertel","word_en":"quarter","example_de":"Viertel nach Fünf","example_en":"A quarter after 5","show_switch":"true"},{"id":"1017","word_de":"Dreiviertel","word_en":"3 quarters","example_de":"Dreiviertel secs / Viertel vor Sechs","example_en":"5:45 (two ways)","show_switch":"true"},{"id":"1018","word_de":"ungebraüchlich","word_en":"awkward/unused (word)","example_de":"Dieses Wort hört sich ungebräuchlich an","example_en":"That word sounds awkward","show_switch":"true"},{"id":"1020","word_de":"nach","word_en":"to","example_de":"wann kommst du nach hause","example_en":"When will you come home?","show_switch":"true"},{"id":"1001","word_de":"gern/gerne","word_en":"would like","example_de":" Ich hätte gern(e)","example_en":"I would like to have","show_switch":"true"},{"id":"100X","word_de":"beeinflüssen","word_en":"to influence","example_de":"Du beginnst mich zu beeinflüssen","example_en":"You are beginning to influence me","show_switch":"true"},{"id":"100X","word_de":"Miserabel","word_en":"Miserable","example_de":"EXAMPLEDE","example_en":"EXAMPLEEN","show_switch":"true"},{"id":"10X","word_de":"Welchen","word_en":"Which","example_de":"Welchen Wein willst du?","example_en":"Which wine do you want?","show_switch":"true"},{"id":"10X","word_de":"Gedanken","word_en":"Thou","example_de":"Du hast meine Gedanken gelesen","example_en":"You've read my thoughts","show_switch":"true"},{"id":"10X","word_de":"TEMPLATE","word_en":"TEMPLATE","example_de":"TEMPLATEEXAMPLEDE","example_en":"TEMPLATEEXAMPLEENG","show_switch":"true"},{"id":"10X","word_de":"TEMPLATE","word_en":"TEMPLATE","example_de":"TEMPLATEEXAMPLEDE","example_en":"TEMPLATEEXAMPLEENG","show_switch":"true"},{"id":"10X","word_de":"TEMPLATE","word_en":"TEMPLATE","example_de":"TEMPLATEEXAMPLEDE","example_en":"TEMPLATEEXAMPLEENG","show_switch":"true"},{"id":"10X","word_de":"TEMPLATE","word_en":"TEMPLATE","example_de":"TEMPLATEEXAMPLEDE","example_en":"TEMPLATEEXAMPLEENG","show_switch":"true"}]
+
+/***/ }),
+/* 193 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var React = __webpack_require__(12);
+const utils = __webpack_require__(51);
 
 class Bounds extends React.Component {
     constructor(props) {
@@ -21771,51 +22549,65 @@ class Bounds extends React.Component {
         };
         this.firstHundredClickHandler = this.firstHundredClickHandler.bind(this);
         this.secondHundredClickHandler = this.secondHundredClickHandler.bind(this);
+        this.thirdHundredClickHandler = this.thirdHundredClickHandler.bind(this);
+        this.fourthHundredClickHandler = this.fourthHundredClickHandler.bind(this);
     }
 
     firstHundredClickHandler() {
-        this.setState(prevState => ({
-            lowerbound: 0,
-            upperbound: 99
-        }));
+        utils.ctrl(utils.getPartialLS, 0, 99);
     }
 
     secondHundredClickHandler() {
-        this.setState(prevState => ({
-            lowerbound: 100,
-            upperbound: 199
-        }));
+        utils.ctrl(utils.getPartialLS, 100, 199);
     }
+    thirdHundredClickHandler() {
+        utils.ctrl(utils.getPartialLS, 200, 299);
+    }
+
+    fourthHundredClickHandler() {
+        utils.ctrl(utils.getPartialLS, 300, 399);
+    }
+
     render() {
         const { upperbound, lowerbound } = this.state;
         return React.createElement(
-            'div',
-            { id: 'bounds-box' },
+            "div",
+            { id: "bounds-box" },
             React.createElement(
-                'h1',
+                "h1",
                 null,
-                'Range: ',
+                "Range: ",
                 React.createElement(
-                    'span',
+                    "span",
                     null,
                     lowerbound
                 ),
-                '\u2013',
+                "\u2013",
                 React.createElement(
-                    'span',
+                    "span",
                     null,
                     upperbound
                 )
             ),
             React.createElement(
-                'button',
+                "button",
                 { onClick: this.firstHundredClickHandler },
-                '0-99'
+                "0-99"
             ),
             React.createElement(
-                'button',
+                "button",
                 { onClick: this.secondHundredClickHandler },
-                '100-199'
+                "100-199"
+            ),
+            React.createElement(
+                "button",
+                { onClick: this.thirdHundredClickHandler },
+                "200-299"
+            ),
+            React.createElement(
+                "button",
+                { onClick: this.fourthHundredClickHandler },
+                "300-399"
             )
         );
     }
@@ -21824,8 +22616,6 @@ class Bounds extends React.Component {
 module.exports = Bounds;
 
 /*
-  this.thirdHundredClickHandler = this.thirdHundredClickHandler.bind(this);
-        this.fourthHundredClickHandler = this.fourthHundredClickHandler.bind(this);
         this.fifthHundredClickHandler = this.fifthHundredClickHandler.bind(this);
         this.sixthHundredClickHandler = this.sixthHundredClickHandler.bind(this);
         this.seventhHundredClickHandler = this.seventhHundredClickHandler.bind(this);
@@ -21909,8 +22699,6 @@ module.exports = Bounds;
 
 
 
- <button onClick={this.thirdHundredClickHandler}>200-299</button>
-                <button onClick={this.fourthHundredClickHandler}>300-399</button>
                 <button onClick={this.fifthHundredClickHandler}>400-499</button>
                 <button onClick={this.sixthHundredClickHandler}>500-599</button>
                 <button onClick={this.seventhHundredClickHandler}>600-699</button>
@@ -21923,11 +22711,11 @@ module.exports = Bounds;
                 */
 
 /***/ }),
-/* 181 */
+/* 194 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var React = __webpack_require__(20);
-var VocabCard = __webpack_require__(182);
+var React = __webpack_require__(12);
+var VocabCard = __webpack_require__(195);
 
 class SourceDB extends React.Component {
   constructor(props) {
@@ -21959,7 +22747,7 @@ class SourceDB extends React.Component {
         null,
         'source'
       ),
-      db.filter((item, idx) => idx >= 4 && idx < 10).map((item, idx) => React.createElement(VocabCard, { key: idx, item: item }))
+      db.map((item, idx) => React.createElement(VocabCard, { key: idx, item: item }))
     );
   }
 }
@@ -21967,10 +22755,10 @@ class SourceDB extends React.Component {
 module.exports = SourceDB;
 
 /***/ }),
-/* 182 */
+/* 195 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var React = __webpack_require__(20);
+var React = __webpack_require__(12);
 
 class VocabCard extends React.Component {
 
@@ -22018,10 +22806,951 @@ class VocabCard extends React.Component {
 module.exports = VocabCard;
 
 /***/ }),
-/* 183 */
+/* 196 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* WEBPACK VAR INJECTION */(function(module) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_modal__ = __webpack_require__(198);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react_modal__);
+var React = __webpack_require__(12);
+
+
+class FirstHundredModal extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        // {console.log("P>FirstHundy", this.props)}
+        return React.createElement(__WEBPACK_IMPORTED_MODULE_0_react_modal___default.a, {
+            isOpen: true,
+            contentLabel: 'first hundred'
+        });
+    }
+}
+
+module.exports = FirstHundredModal;
+
+/*
+const FirstHundredModal = (props) => (
+    <Modal
+    isOpen={true}
+    contentLabel="first hundred"
+    >
+        <h2>First Hundred</h2>
+    </Modal>
+)
+*/
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(197)(module)))
+
+/***/ }),
+/* 197 */
 /***/ (function(module, exports) {
 
-module.exports = [{"id":"1","word_de":"der/die/das","word_en":"the","example_de":"Der Sonnenaufgang ist wunderschön","example_en":"The sunrise is beautiful","show_switch":"true"},{"id":"2","word_de":"in","word_en":"in","example_de":"Der Himmel ist in grau Deutschland","example_en":"The sky is grey in Germany","show_switch":"true"},{"id":"3","word_de":"und","word_en":"and ","example_de":"Peter und Kate frühstücken","example_en":"Peter and Kate are eating breakfast","show_switch":"true"},{"id":"4","word_de":"sein","word_en":"his","example_de":"sein Buch ist im Auto","example_en":"His book is in the car","show_switch":"true"},{"id":"5","word_de":"ein","word_en":"a","example_de":"Sie ist Mitglied der Gruppe","example_en":"She is a member of the group","show_switch":"true"},{"id":"6","word_de":"zu","word_en":"to","example_de":"Schön dich zu sehen!","example_en":"Nice to see you!","show_switch":"true"},{"id":"7","word_de":"werden","word_en":"become","example_de":"Nacht wird Tag","example_en":"night becomes day","show_switch":"true"},{"id":"8","word_de":"von","word_en":"Of","example_de":"Wir haben Schule von Montag bis Freitag","example_en":"We have school from Monday to Friday","show_switch":"true"},{"id":"9","word_de":"haben","word_en":"have","example_de":"Hast du deine Schlüssel?","example_en":"Do you have your keys?","show_switch":"true"},{"id":"10","word_de":"mit","word_en":"with","example_de":"Diese Woche ist mein Vater mit meinem Bruder in der Stadt","example_en":"This week, my father is with my brother in the city","show_switch":"true"},{"id":"11","word_de":"er/sie/es/sie","word_en":"he / she / it / she / they","example_de":"Er ist zu allem bereit","example_en":"He is ready for anything","show_switch":"true"},{"id":"12","word_de":"für","word_en":"for","example_de":"Das ist für ihr","example_en":"That is for her","show_switch":"true"},{"id":"13","word_de":"nicht","word_en":"not","example_de":"Ich glaube es nicht","example_en":"I don't believe it","show_switch":"true"},{"id":"14","word_de":"an","word_en":"at","example_de":"EXAMPLEDE TBD","example_en":"EXAMPLEENG TBD","show_switch":"true"},{"id":"15","word_de":"auf","word_en":"on","example_de":"auf den Tisch","example_en":"on the table","show_switch":"true"},{"id":"16","word_de":"eine","word_en":"a","example_de":"eine bitte","example_en":"a request","show_switch":"true"},{"id":"17","word_de":"es","word_en":"it","example_de":"Ist es schwer?","example_en":"Is it difficult?","show_switch":"true"},{"id":"18","word_de":"auch","word_en":"also","example_de":"Ich bin auch früh aufgestanden","example_en":"I also got up early","show_switch":"true"},{"id":"19","word_de":"sie","word_en":"she","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"20","word_de":"als","word_en":"as","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"21","word_de":"er","word_en":"he","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"22","word_de":"bei","word_en":"at","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"23","word_de":"dies","word_en":"this","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"24","word_de":"dass","word_en":"that","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"25","word_de":"nach","word_en":"after","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"26","word_de":"ihr","word_en":"you","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"27","word_de":"können","word_en":"to be able to (in the sense of ability)","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"28","word_de":"aus","word_en":"from","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"29","word_de":"Jahr","word_en":"Year","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"32","word_de":"so","word_en":"","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"33","word_de":"wie","word_en":"like","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"34","word_de":"über","word_en":"over","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"35","word_de":"nur","word_en":"Only","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"36","word_de":"all-","word_en":"all","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"37","word_de":"vor","word_en":"before","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"38","word_de":"wir","word_en":"we","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"39","word_de":"sollen","word_en":"to be supposed to","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"40","word_de":"aber","word_en":"but","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"41","word_de":"müssen","word_en":"need","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"42","word_de":"ich","word_en":"I","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"43","word_de":"neu","word_en":"new","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"44","word_de":"bis","word_en":"until","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"45","word_de":"wollen","word_en":"want","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"46","word_de":"oder","word_en":"or","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"47","word_de":"man","word_en":"man","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"48","word_de":"mehr","word_en":"more","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"49","word_de":"sagen","word_en":"say","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"50","word_de":"erst","word_en":"only","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"51","word_de":"geben","word_en":"give","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"52","word_de":"durch","word_en":"through","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"53","word_de":"wenn","word_en":"if","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"54","word_de":"gegen","word_en":"against","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"55","word_de":"kommen","word_en":"come","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"56","word_de":"gross","word_en":"big","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"57","word_de":"er/es","word_en":"he / it","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"58","word_de":"ander-","word_en":"other","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"59","word_de":"gut","word_en":"good","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"60","word_de":"schon","word_en":"already","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"61","word_de":"kein-","word_en":"none-","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"62","word_de":"weit","word_en":"far","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"63","word_de":"machen","word_en":"make","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"64","word_de":"doch","word_en":"but","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"65","word_de":"unter","word_en":"under","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"66","word_de":"dann","word_en":"then","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"67","word_de":"wieder","word_en":"again","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"68","word_de":"Prozent","word_en":"Percent","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"69","word_de":"zwei","word_en":"two","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"70","word_de":"immer","word_en":"always","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"71","word_de":"gehen","word_en":"go","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"73","word_de":"seit","word_en":"since","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"74","word_de":"da","word_en":"there","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"75","word_de":"stehen","word_en":"stand","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"76","word_de":"Million","word_en":"Million","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"78","word_de":"damit","word_en":"with it","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"79","word_de":"was","word_en":"what","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"80","word_de":"Zeit","word_en":"Time","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"81","word_de":"jed-","word_en":"each","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"82","word_de":"zwischen","word_en":"between","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"83","word_de":"sehen","word_en":"see","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"84","word_de":"Land","word_en":"Country","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"85","word_de":"drei","word_en":"three","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"87","word_de":"Frau","word_en":"Mrs.","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"88","word_de":"Ich","word_en":"I","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"89","word_de":"Tag","word_en":"Day","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"90","word_de":"deutsch","word_en":"word_de","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"91","word_de":"denn","word_en":"because","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"92","word_de":"bereits","word_en":"already","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"93","word_de":"weil","word_en":"because","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"94","word_de":"Mensch","word_en":"Human","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"95","word_de":"beid-","word_en":"both","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"96","word_de":"bleiben","word_en":"stay","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"97","word_de":"jetzt","word_en":"now","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"98","word_de":"Mann","word_en":"Man","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"99","word_de":"ohne","word_en":"without","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"100","word_de":"nun","word_en":"now","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"101","word_de":"alt","word_en":"old","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"102","word_de":"Kind","word_en":"Child","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"103","word_de":"dabei","word_en":"","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"104","word_de":"liegen","word_en":"lie","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"105","word_de":"hoch","word_en":"high","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"106","word_de":"dörfen","word_en":"allowed","example_de":"Darfst du das essen?","example_en":"Are you allowed to eat this?","show_switch":"true"},{"id":"107","word_de":"Berlin","word_en":"Berlin","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"108","word_de":"Mark","word_en":"Mark","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"109","word_de":"hier","word_en":"here","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"110","word_de":"heute","word_en":"today","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"111","word_de":"finden","word_en":"find","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"112","word_de":"sehr","word_en":"very","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"113","word_de":"rund","word_en":"around","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"114","word_de":"Stadt","word_en":"City","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"115","word_de":"selbst","word_en":"even","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"116","word_de":"viel","word_en":"much","example_de":"Ich habe zu viel getrunken","example_en":"I have drunk too much","show_switch":"true"},{"id":"117","word_de":"etwa","word_en":"about","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"118","word_de":"klein","word_en":"small","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"119","word_de":"Deutschland","word_en":"word_dey","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"120","word_de":"letzt-","word_en":"last","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"121","word_de":"zeigen","word_en":"show","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"122","word_de":"Aber","word_en":"But","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"123","word_de":"eigen","word_en":"own","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"124","word_de":"kein","word_en":"no","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"125","word_de":"Ende","word_en":"End","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"126","word_de":"bringen","word_en":"bring","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"127","word_de":"Woche","word_en":"Week","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"128","word_de":"lassen","word_en":"leave","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"129","word_de":"einmal","word_en":"once","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"130","word_de":"viel","word_en":"a lot of","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"131","word_de":"einig-","word_en":"unite","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"132","word_de":"wenig","word_en":"little","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"133","word_de":"sowie","word_en":"and","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"134","word_de":"jung","word_en":"young","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"135","word_de":"dort","word_en":"there","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"138","word_de":"wer","word_en":"who","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"139","word_de":"lass","word_en":"let","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"140","word_de":"nah","word_en":"close to","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"141","word_de":"während","word_en":"during","example_de":"währenddessen werde ich auf dich warten","example_en":"Meanwhile, I'll wait for you","show_switch":"true"},{"id":"142","word_de":"wo","word_en":"where","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"143","word_de":"halten","word_en":"hold","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"144","word_de":"Patentamt","word_en":"Patent Office","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"145","word_de":"allerdings","word_en":"however","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"146","word_de":"lang","word_en":"long","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"147","word_de":"etwas","word_en":"something","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"148","word_de":"sondern","word_en":"but","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"149","word_de":"Haus","word_en":"House","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"150","word_de":"nichts","word_en":"nothing","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"151","word_de":"Euro","word_en":"Euro","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"152","word_de":"Frage","word_en":"Question","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"153","word_de":"dazu","word_en":"","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"154","word_de":"vier","word_en":"four","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"155","word_de":"nehmen","word_en":"take","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"156","word_de":"zwar","word_en":"though","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"157","word_de":"gestern","word_en":"yesterday","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"158","word_de":"stellen","word_en":"put","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"159","word_de":"dafür","word_en":"for","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"160","word_de":"politisch","word_en":"politically","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"161","word_de":"heissen","word_en":"to be called","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"162","word_de":"jedoch","word_en":"however","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"163","word_de":"wegen","word_en":"because of","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"165","word_de":"Leben","word_en":"Life","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"166","word_de":"stark","word_en":"strong","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"167","word_de":"Seite","word_en":"page","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"168","word_de":"Welt","word_en":"World","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"169","word_de":"vergangen","word_en":"passed","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"170","word_de":"spielen","word_en":"play","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"171","word_de":"Fall","word_en":"Case","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"172","word_de":"fast","word_en":"almost","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"173","word_de":"Weg","word_en":"Way","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"174","word_de":"ob","word_en":"whether","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"175","word_de":"ab","word_en":"from","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"176","word_de":"wichtig","word_en":"important","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"177","word_de":"Präsident","word_en":"President","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"178","word_de":"kurz","word_en":"short","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"179","word_de":"also","word_en":"So","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"180","word_de":"beginnen","word_en":"start","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"181","word_de":"gleich","word_en":"equal to","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"182","word_de":"tun","word_en":"do","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"183","word_de":"Arbeit","word_en":"Work","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"184","word_de":"fünf","word_en":"five","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"186","word_de":"Bild","word_en":"Picture","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"187","word_de":"erhalten","word_en":"get","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"188","word_de":"Monat","word_en":"Month","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"189","word_de":"Unternehmen","word_en":"Company","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"190","word_de":"Regierung","word_en":"Government","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"191","word_de":"Teil","word_en":"Part","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"192","word_de":"unser-","word_en":"ours","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"193","word_de":"Wien","word_en":"Vienna","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"194","word_de":"solch-","word_en":"such","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"195","word_de":"ja","word_en":"yes","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"196","word_de":"schwer","word_en":"difficult","example_de":"Ist es schwer?","example_en":"Is it difficult?","show_switch":"true"},{"id":"197","word_de":"international","word_en":"international","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG"},{"id":"198","word_de":"sprechen","word_en":"speak","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"199","word_de":"gehören","word_en":"belong","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"200","word_de":"weiss","word_en":"white","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"201","word_de":"Spiel","word_en":"Game","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"202","word_de":"mögen","word_en":"like","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"203","word_de":"möglich","word_en":"possible","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"204","word_de":"Geld","word_en":"Money","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"205","word_de":"Grund","word_en":"Reason","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"206","word_de":"fahren","word_en":"drive","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"207","word_de":"bisher","word_en":"previously","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"208","word_de":"Problem","word_en":"Problem","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"209","word_de":"Partei","word_en":"Party","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"210","word_de":"österreich","word_en":"Austria","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"211","word_de":"d-halber","word_en":"d-half","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"212","word_de":"Peter","word_en":"Peter","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"213","word_de":"sogar","word_en":"even","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"214","word_de":"davon","word_en":"of which","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"215","word_de":"welch-","word_en":"which","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"216","word_de":"zehn","word_en":"ten","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"217","word_de":"gar","word_en":"even","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"218","word_de":"gelten","word_en":"apply","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"219","word_de":"einfach","word_en":"easy","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"220","word_de":"führen","word_en":"lead","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"221","word_de":"bekommen","word_en":"get","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"222","word_de":"gemeinsam","word_en":"together","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"223","word_de":"weniger","word_en":"less","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"224","word_de":"kaum","word_en":"barely","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"225","word_de":"Milliarde","word_en":"Billion","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"226","word_de":"Polizei","word_en":"Police","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"228","word_de":"neben","word_en":"next to","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"229","word_de":"Geschichte","word_en":"Story","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"230","word_de":"Staat","word_en":"State","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"231","word_de":"wissen","word_en":"know","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"232","word_de":"Strasse","word_en":"Road","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"234","word_de":"später","word_en":"later","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"235","word_de":"meist","word_en":"usually","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"236","word_de":"bestehen","word_en":"exist","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"237","word_de":"europäisch","word_en":"European","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"238","word_de":"gewinnen","word_en":"win","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"239","word_de":"derzeit","word_en":"currently","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"240","word_de":"schnell","word_en":"fast","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"242","word_de":"Stunde","word_en":"Hour","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"243","word_de":"Berliner","word_en":"Berliner","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"244","word_de":"wohl","word_en":"probably","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"245","word_de":"darauf","word_en":"on it","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"246","word_de":"Thema","word_en":"Topic","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"248","word_de":"Man","word_en":"Man","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"249","word_de":"früh","word_en":"early","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"250","word_de":"schaffen","word_en":"create","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"251","word_de":"Gruppe","word_en":"Group","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"252","word_de":"fordern","word_en":"call","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"253","word_de":"Deutsch","word_en":"word_de","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"254","word_de":"öffentlich","word_en":"public","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"255","word_de":"Mitglied","word_en":"Member","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"256","word_de":"schliesslich","word_en":"finally","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"257","word_de":"besonders","word_en":"special","example_de":"the Film was nothing special","example_en":"der Film war nicht besonders","show_switch":"true"},{"id":"258","word_de":"Grüne","word_en":"Green","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"259","word_de":"Beispiel","word_en":"example","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"260","word_de":"jen-","word_en":"jen-","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"261","word_de":"natürlich","word_en":"of course","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"262","word_de":"Europa","word_en":"Europe","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"263","word_de":"nennen","word_en":"call","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"264","word_de":"Chef","word_en":"Boss","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"266","word_de":"setzen","word_en":"put","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"267","word_de":"Wort","word_en":"word_de","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"268","word_de":"bekannt","word_en":"known","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"269","word_de":"Film","word_en":"Movie","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"270","word_de":"frei","word_en":"free","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"271","word_de":"deutlich","word_en":"clearly","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"272","word_de":"nie","word_en":"never","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"273","word_de":"Ziel","word_en":"Goal","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"274","word_de":"folgen","word_en":"follow","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"275","word_de":"Familie","word_en":"Family","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"276","word_de":"arbeiten","word_en":"work","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"277","word_de":"Zahl","word_en":"Number","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"278","word_de":"Schule","word_en":"School","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"280","word_de":"Erfolg","word_en":"Success","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"281","word_de":"sechs","word_en":"six","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"282","word_de":"Leute","word_en":"People","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"283","word_de":"treffen","word_en":"meet","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"284","word_de":"Projekt","word_en":"Project","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"285","word_de":"mal","word_en":"times","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"286","word_de":"schreiben","word_en":"write","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"287","word_de":"Punkt","word_en":"Point","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"288","word_de":"Minute","word_en":"Minute","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"289","word_de":"erklären","word_en":"explain","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"291","word_de":"eigentlich","word_en":"actually","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"292","word_de":"klar","word_en":"clear","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"293","word_de":"hinter","word_en":"behind","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"294","word_de":"sicher","word_en":"sure","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"295","word_de":"richtig","word_en":"right","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"296","word_de":"genau","word_en":"exactly","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"297","word_de":"Preis","word_en":"Price","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"298","word_de":"vielleicht","word_en":"maybe","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"299","word_de":"Hand","word_en":"Hand","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"300","word_de":"Name","word_en":"Name","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"301","word_de":"schön","word_en":"nice","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"302","word_de":"erwarten","word_en":"expect","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"303","word_de":"allein","word_en":"alone","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"304","word_de":"Bank","word_en":"Bank","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"305","word_de":"scheinen","word_en":"seem","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"306","word_de":"denken","word_en":"think","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"307","word_de":"leben","word_en":"live","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"308","word_de":"Mal","word_en":"Time","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"309","word_de":"Art","word_en":"Art","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"310","word_de":"laufen","word_en":"run","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"311","word_de":"einzig","word_en":"only","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"312","word_de":"Meter","word_en":"Meter","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"313","word_de":"erklärt","word_en":"explains","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"314","word_de":"insgesamt","word_en":"a total of","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"315","word_de":"Mitarbeiter","word_en":"Employees","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"316","word_de":"Gemeinde","word_en":"Community","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"317","word_de":"brauchen","word_en":"need","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"318","word_de":"pro","word_en":"per","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"319","word_de":"Gespräch","word_en":"Conversation","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"320","word_de":"Aus","word_en":"From","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"322","word_de":"künftig","word_en":"in future","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"323","word_de":"oft","word_en":"often","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"324","word_de":"ausserdem","word_en":"also","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"325","word_de":"steigen","word_en":"climb","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"326","word_de":"mehrer-","word_en":"several","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"327","word_de":"jährig","word_en":"year","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"328","word_de":"bieten","word_en":"offer","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"329","word_de":"suchen","word_en":"search","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"330","word_de":"Programm","word_en":"Program","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"331","word_de":"Anfang","word_en":"Beginning","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"332","word_de":"erreichen","word_en":"reach","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"333","word_de":"leicht","word_en":"easy","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"334","word_de":"entscheiden","word_en":"decide","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"335","word_de":"Hans","word_en":"Hans","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"338","word_de":"damals","word_en":"at that time","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"340","word_de":"amerikanisch","word_en":"American","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"342","word_de":"Buch","word_en":"Book","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"344","word_de":"Zukunft","word_en":"Future","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"346","word_de":"Verein","word_en":"Club","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"347","word_de":"Firma","word_en":"Company","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"348","word_de":"entstehen","word_en":"emerge","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"349","word_de":"Ergebnis","word_en":"Result","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"350","word_de":"glauben","word_en":"believe","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"351","word_de":"Angabe","word_en":"Indication","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"352","word_de":"dagegen","word_en":"against","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"353","word_de":"Auto","word_en":"Car","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"354","word_de":"Chance","word_en":"Chance","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"355","word_de":"Entscheidung","word_en":"Decision","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"356","word_de":"ziehen","word_en":"pull","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"357","word_de":"Herr","word_en":"Mr.","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"359","word_de":"Team","word_en":"Team","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"360","word_de":"Schilling","word_en":"Shilling","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"361","word_de":"ebenfalls","word_en":"also","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"362","word_de":"München","word_en":"Munich","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"363","word_de":"verschieden","word_en":"different","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"364","word_de":"Politik","word_en":"Politics","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"365","word_de":"darüber","word_en":"about","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"366","word_de":"stattfinden","word_en":"take place","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"367","word_de":"Dollar","word_en":"Dollars","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"368","word_de":"Wahl","word_en":"Election","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"369","word_de":"fehlen","word_en":"missing","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"370","word_de":"voll","word_en":"full","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"371","word_de":"du","word_en":"you","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"372","word_de":"schlecht","word_en":"bad","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"373","word_de":"laut","word_en":"according to","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"374","word_de":"übernehmen","word_en":"take over","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"375","word_de":"Markt","word_en":"Market","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"376","word_de":"Gesellschaft","word_en":"Society","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"377","word_de":"Bereich","word_en":"Area","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"378","word_de":"sorgen","word_en":"take care","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"379","word_de":"acht","word_en":"eight","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"380","word_de":"tragen","word_en":"wear","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"383","word_de":"zudem","word_en":"also","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"384","word_de":"zunüchst","word_en":"first","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"386","word_de":"eher","word_en":"rather","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"387","word_de":"Zeitung","word_en":"Newspaper","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"388","word_de":"offen","word_en":"open","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"389","word_de":"wirklich","word_en":"really","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"390","word_de":"Musik","word_en":"Music","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"391","word_de":"gegenüber","word_en":"opposite","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"393","word_de":"handeln","word_en":"act","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"394","word_de":"knapp","word_en":"just","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"395","word_de":"recht","word_en":"right","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"396","word_de":"Ag","word_en":"Ag","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"397","word_de":"nachdem","word_en":"after","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"398","word_de":"inzwischen","word_en":"now","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"399","word_de":"Trainer","word_en":"Trainer","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"401","word_de":"entsprechen","word_en":"correspond to","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"402","word_de":"Krieg","word_en":"War","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"403","word_de":"Stelle","word_en":"Position","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"404","word_de":"jugendlich","word_en":"teen","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"405","word_de":"Person","word_en":"Person","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"406","word_de":"Entwicklung","word_en":"Development","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"407","word_de":"Werk","word_en":"Work","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"409","word_de":"ebenso","word_en":"also","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"410","word_de":"sozial","word_en":"socially","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"411","word_de":"Sieg","word_en":"Victory","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"412","word_de":"versuchen","word_en":"try","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"413","word_de":"Möglichkeit","word_en":"Option","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"414","word_de":"fragen","word_en":"ask","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"416","word_de":"anbieten","word_en":"offer","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"417","word_de":"Ort","word_en":"Place","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"418","word_de":"Stück","word_en":"Piece","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"419","word_de":"Gast","word_en":"Guest","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"420","word_de":"sitzen","word_en":"sit","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"421","word_de":"Folge","word_en":"Episode","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"422","word_de":"warum","word_en":"why","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"423","word_de":"obwohl","word_en":"although","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"424","word_de":"gerade","word_en":"straight","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"425","word_de":"daran","word_en":"at this","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"426","word_de":"Hilfe","word_en":"Help","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"427","word_de":"Mutter","word_en":"Mother","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"428","word_de":"rot","word_en":"red","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"429","word_de":"Bürgermeister","word_en":"Mayor","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG"},{"id":"430","word_de":"Sache","word_en":"Thing","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"431","word_de":"nämlich","word_en":"namely","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"432","word_de":"Politiker","word_en":"Politician","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"433","word_de":"Raum","word_en":"Room","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"434","word_de":"Mannschaft","word_en":"Team","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"435","word_de":"Freund","word_en":"Friend","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"436","word_de":"erscheinen","word_en":"appear","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"437","word_de":"zunehmen","word_en":"increase","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"438","word_de":"Rolle","word_en":"Roll","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"439","word_de":"Schüler","word_en":"Student","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"440","word_de":"gegeben","word_en":"given","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"441","word_de":"rechnen","word_en":"count","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"443","word_de":"kennen","word_en":"know","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"444","word_de":"Kirche","word_en":"Church","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"445","word_de":"Interesse","word_en":"Interest","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"446","word_de":"Angebot","word_en":"Offer","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"447","word_de":"Fussball","word_en":"Soccer","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"448","word_de":"Abend","word_en":"Evening","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"449","word_de":"gern","word_en":"like","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"450","word_de":"österreichisch","word_en":"Austrian","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG"},{"id":"451","word_de":"manch-","word_en":"some","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"452","word_de":"sieben","word_en":"seven","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"453","word_de":"erstmals","word_en":"first time","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"454","word_de":"Stimme","word_en":"Vote","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"455","word_de":"Vater","word_en":"Father","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"456","word_de":"Eltern","word_en":"Parents","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"457","word_de":"Kunst","word_en":"Art","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"459","word_de":"überhaupt","word_en":"at all","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"460","word_de":"Auge","word_en":"Eye","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"461","word_de":"Region","word_en":"Region","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"462","word_de":"Einsatz","word_en":"Use","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"463","word_de":"Jetzt","word_en":"Now","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"464","word_de":"Bericht","word_en":"Report","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"465","word_de":"Nacht","word_en":"Night","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"466","word_de":"mitteilen","word_en":"communicate","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"467","word_de":"zuvor","word_en":"before","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"469","word_de":"Opfer","word_en":"Victim","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"470","word_de":"Hamburg","word_en":"Hamburg","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"471","word_de":"erfolgreich","word_en":"successful","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"472","word_de":"daher","word_en":"therefore","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"473","word_de":"Kopf","word_en":"Head","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"474","word_de":"verstehen","word_en":"understand","example_de":"Sie versteht es nicht","example_en":"She doesn't understand","show_switch":"true"},{"id":"475","word_de":"berichten","word_en":"report","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"476","word_de":"Wochenende","word_en":"Weekend","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"477","word_de":"unsr-","word_en":"our-","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"478","word_de":"dennoch","word_en":"nevertheless","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"479","word_de":"Betrieb","word_en":"Operation","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"480","word_de":"Internet","word_en":"Internet","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"482","word_de":"privat","word_en":"private","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"483","word_de":"helfen","word_en":"help","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"484","word_de":"Blick","word_en":"View","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"485","word_de":"Frankreich","word_en":"France","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"486","word_de":"vorstellen","word_en":"imagine","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"487","word_de":"eben","word_en":"just","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"488","word_de":"kosten","word_en":"cost","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"491","word_de":"Kosten","word_en":"Cost","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"492","word_de":"lieb","word_en":"dear","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"493","word_de":"zusätzlich","word_en":"additionally","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"494","word_de":"bestimmt","word_en":"determined","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"495","word_de":"französisch","word_en":"french","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"497","word_de":"Bund","word_en":"Covenant","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"498","word_de":"Bürger","word_en":"Citizen","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"499","word_de":"Titel","word_en":"Title","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"500","word_de":"zurück","word_en":"back","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"501","word_de":"Foto","word_en":"Photo","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"502","word_de":"Kraft","word_en":"Force","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"503","word_de":"zuletzt","word_en":"last","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"504","word_de":"betont","word_en":"emphasizes","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"505","word_de":"völlig","word_en":"totally","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"506","word_de":"tatsächlich","word_en":"actually","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"507","word_de":"statt","word_en":"instead of","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"508","word_de":"danach","word_en":"after that","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"509","word_de":"Unter","word_en":"Under","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"510","word_de":"einzeln","word_en":"individually","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"511","word_de":"Geschäft","word_en":"Business","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"512","word_de":"Wirtschaft","word_en":"Economy","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"513","word_de":"legen","word_en":"put","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"514","word_de":"Tod","word_en":"Death","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"515","word_de":"direkt","word_en":"directly","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"516","word_de":"zahlreich","word_en":"numerous","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"517","word_de":"Aufgabe","word_en":"Task","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"518","word_de":"drohen","word_en":"threaten","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"519","word_de":"Grenze","word_en":"Border","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"520","word_de":"Sprecher","word_en":"Speaker","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"521","word_de":"Idee","word_en":"Idea","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"522","word_de":"Gericht","word_en":"Court","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"523","word_de":"Information","word_en":"Information","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"524","word_de":"Bahn","word_en":"Track","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"525","word_de":"Kunde","word_en":"Customer","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"526","word_de":"bald","word_en":"soon","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"527","word_de":"Zwei","word_en":"Two","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"528","word_de":"hoffen","word_en":"hope","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"529","word_de":"trotz","word_en":"despite","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"530","word_de":"Wasser","word_en":"Water","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"531","word_de":"Kritik","word_en":"Criticism","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"532","word_de":"Wählen","word_en":"choose","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"533","word_de":"befinden","word_en":"are","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"534","word_de":"Gesetz","word_en":"Law","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"535","word_de":"ähnlich","word_en":"similar to","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"536","word_de":"ankündigen","word_en":"announce","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"537","word_de":"Spieler","word_en":"Player","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"538","word_de":"nutzen","word_en":"use","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"539","word_de":"Höhe","word_en":"Height","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"540","word_de":"Wohnung","word_en":"Apartment","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"541","word_de":"zählen","word_en":"count","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"542","word_de":"Wert","word_en":"Value","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"543","word_de":"besonder-","word_en":"particular","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"544","word_de":"Situation","word_en":"Situation","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"545","word_de":"sterben","word_en":"die","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"546","word_de":"Ausstellung","word_en":"Exhibition","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"547","word_de":"offenbar","word_en":"apparently","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"548","word_de":"gesamt","word_en":"total","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"549","word_de":"Amt","word_en":"Office","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"550","word_de":"Sinn","word_en":"Sense","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"551","word_de":"erzählen","word_en":"tell","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"552","word_de":"Klaus","word_en":"Klaus","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"553","word_de":"Recht","word_en":"Right","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"554","word_de":"Kreis","word_en":"Circle","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"555","word_de":"Schweiz","word_en":"Switzerland","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"556","word_de":"sonst","word_en":"otherwise","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"557","word_de":"Vorsitzende","word_en":"Chair","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"559","word_de":"Besucher","word_en":"Visitors","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"560","word_de":"anders","word_en":"different","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"561","word_de":"planen","word_en":"plan","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"562","word_de":"Tor","word_en":"Gate","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"563","word_de":"Universität","word_en":"University","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"564","word_de":"einsetzen","word_en":"insert","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"565","word_de":"Kampf","word_en":"Fight","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"566","word_de":"Union","word_en":"Union","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"567","word_de":"bislang","word_en":"so far","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"568","word_de":"paar","word_en":"couple","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"569","word_de":"Lage","word_en":"Location","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"570","word_de":"hören","word_en":"hear","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"571","word_de":"verloren","word_en":"lost","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"572","word_de":"zumindest","word_en":"at least","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"573","word_de":"geplant","word_en":"planned","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"574","word_de":"Plan","word_en":"Plan","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"575","word_de":"wirken","word_en":"act","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"576","word_de":"aufnehmen","word_en":"to record","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"577","word_de":"zusammen","word_en":"together","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"578","word_de":"schwarz","word_en":"black","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"579","word_de":"ablehnen","word_en":"reject","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"581","word_de":"verlassen","word_en":"leave","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"582","word_de":"Publikum","word_en":"Audience","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"583","word_de":"Bau","word_en":"Construction","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"584","word_de":"erneut","word_en":"again","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"585","word_de":"Franz","word_en":"Franz","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"586","word_de":"früher","word_en":"earlier","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"587","word_de":"System","word_en":"System","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"588","word_de":"Theater","word_en":"Theater","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"589","word_de":"Beginn","word_en":"Beginning","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"590","word_de":"Kollege","word_en":"Colleague","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"591","word_de":"verlieren","word_en":"lose","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"592","word_de":"Vertrag","word_en":"Contract","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"593","word_de":"fallen","word_en":"fall","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"594","word_de":"Kilometer","word_en":"Kilometer","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"595","word_de":"Schritt","word_en":"Step","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"596","word_de":"bauen","word_en":"build","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"598","word_de":"Form","word_en":"Form","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"599","word_de":"reden","word_en":"talk","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"600","word_de":"hart","word_en":"hard","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"601","word_de":"niemand","word_en":"nobody","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"602","word_de":"offiziell","word_en":"officially","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"603","word_de":"Bevölkerung","word_en":"Population","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"604","word_de":"persönlich","word_en":"personally","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"605","word_de":"lernen","word_en":"learn","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"606","word_de":"gleichzeitig","word_en":"at the same time","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"607","word_de":"Bayern","word_en":"Bavaria","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"608","word_de":"Arzt","word_en":"Doctor","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"609","word_de":"fühlen","word_en":"feel","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"610","word_de":"warten","word_en":"wait","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"611","word_de":"Institut","word_en":"Institute","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"612","word_de":"zahlen","word_en":"pay","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"613","word_de":"Saison","word_en":"Season","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"614","word_de":"Mittel","word_en":"Mean","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"615","word_de":"Leistung","word_en":"Power","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"616","word_de":"britisch","word_en":"British","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"617","word_de":"Zug","word_en":"Train","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"618","word_de":"endlich","word_en":"finally","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"619","word_de":"Mädchen","word_en":"Girl","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"620","word_de":"Bonn","word_en":"Bonn","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"621","word_de":"Verfügung","word_en":"Available","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"623","word_de":"mindestens","word_en":"at least","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"624","word_de":"russisch","word_en":"Russian","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"625","word_de":"Richtung","word_en":"Direction","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"626","word_de":"Aktion","word_en":"Action","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"627","word_de":"schliessen","word_en":"close","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"629","word_de":"gering","word_en":"low","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"630","word_de":"erinnern","word_en":"remember","example_de":"Kannst du dich an ihn erinnern?","example_en":"Can you remember him?","show_switch":"true"},{"id":"632","word_de":"Kultur","word_en":"Culture","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"633","word_de":"schlagen","word_en":"beat","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"634","word_de":"Diskussion","word_en":"Discussion","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"635","word_de":"ändern","word_en":"change","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"636","word_de":"aussehen","word_en":"look","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"637","word_de":"teuer","word_en":"expensive","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"638","word_de":"Parlament","word_en":"Parliament","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"639","word_de":"geraten","word_en":"advised","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"640","word_de":"unterstützen","word_en":"support","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"641","word_de":"technisch","word_en":"technically","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"642","word_de":"Angst","word_en":"Fear","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"643","word_de":"verletzen","word_en":"hurt","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"644","word_de":"Museum","word_en":"Museum","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"645","word_de":"innerhalb","word_en":"within","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"646","word_de":"Lüsung","word_en":"Solution","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"648","word_de":"leisten","word_en":"afford","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"649","word_de":"Tochter","word_en":"Daughter","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"650","word_de":"Erfahrung","word_en":"Experience","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"651","word_de":"Franken","word_en":"Francs","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"652","word_de":"weiterhin","word_en":"continue","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"653","word_de":"sofort","word_en":"immediately","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"655","word_de":"Künstler","word_en":"Artist","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"657","word_de":"wirtschaftlich","word_en":"economically","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG"},{"id":"658","word_de":"bedeuten","word_en":"mean","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"659","word_de":"Beamter","word_en":"Official","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"660","word_de":"positiv","word_en":"positive","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"661","word_de":"freuen","word_en":"happy","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"662","word_de":"Prozess","word_en":"Process","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"663","word_de":"Behörde","word_en":"Authority","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"664","word_de":"falsch","word_en":"wrong","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"665","word_de":"Band","word_en":"Volume","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"666","word_de":"Mehrheit","word_en":"Majority","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"667","word_de":"entwickelt","word_en":"develops","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"668","word_de":"Konzern","word_en":"Group","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"669","word_de":"tot","word_en":"dead","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"670","word_de":"Bühne","word_en":"Stage","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"671","word_de":"verantwortlich","word_en":"responsible","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG"},{"id":"672","word_de":"Veranstaltung","word_en":"Event","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG"},{"id":"673","word_de":"genug","word_en":"enough","example_de":"Ich habe nicht genug getrunken","example_en":"I haven't drunk enough","show_switch":"true"},{"id":"674","word_de":"Vertreter","word_en":"Representative","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"675","word_de":"immerhin","word_en":"at least","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"676","word_de":"erfahren","word_en":"experience","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"677","word_de":"erster","word_en":"first","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"678","word_de":"vorsehen","word_en":"to provide","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"679","word_de":"Wie spät ist es?","word_en":"What time is it?","example_de":"Wie spät ist es?","example_en":"what time  is it?","show_switch":"true"},{"id":"680","word_de":"Rahmen","word_en":"Frame","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"681","word_de":"notwendig","word_en":"necessary","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"682","word_de":"finanziell","word_en":"financially","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"683","word_de":"Arbeitsplatz","word_en":"Workplace","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"684","word_de":"Zuschauer","word_en":"Audience","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"685","word_de":"darin","word_en":"in it","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"686","word_de":"tief","word_en":"deep","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"687","word_de":"trotzdem","word_en":"anyway","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"688","word_de":"Druck","word_en":"Pressure","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"689","word_de":"Weise","word_en":"Way","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"690","word_de":"Tier","word_en":"Animal","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"691","word_de":"feststellen","word_en":"determine","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"693","word_de":"ausgehen","word_en":"go out","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"694","word_de":"modern","word_en":"modern","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"695","word_de":"lesen","word_en":"read","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"696","word_de":"Sicherheit","word_en":"Security","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"697","word_de":"Gebiet","word_en":"Area","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"698","word_de":"beispielsweise","word_en":"for example","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG"},{"id":"699","word_de":"Autor","word_en":"Author","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"700","word_de":"Medium","word_en":"Medium","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"701","word_de":"aktuell","word_en":"currently","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"702","word_de":"Italien","word_en":"Italy","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"703","word_de":"täglich","word_en":"daily","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"704","word_de":"Klasse","word_en":"grade","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"705","word_de":"berichtet","word_en":"reported","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"706","word_de":"wesentlich","word_en":"essentially","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"707","word_de":"per","word_en":"by","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"708","word_de":"Walter","word_en":"Walter","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"709","word_de":"Bad","word_en":"Bath","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"710","word_de":"Soldat","word_en":"Soldier","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"711","word_de":"schwierig","word_en":"difficult","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"712","word_de":"Rede","word_en":"Speech","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"713","word_de":"Verhandlung","word_en":"Negotiation","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"714","word_de":"wachsen","word_en":"grow","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"715","word_de":"treten","word_en":"step","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"717","word_de":"öffnen","word_en":"open","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"718","word_de":"heutig","word_en":"today","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"719","word_de":"starten","word_en":"start","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"720","word_de":"verhindern","word_en":"prevent","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"721","word_de":"Gefahr","word_en":"Danger","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"723","word_de":"dadurch","word_en":"by","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"724","word_de":"weltweit","word_en":"worldwide","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"725","word_de":"Führung","word_en":"Leadership","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"726","word_de":"Konzept","word_en":"Concept","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"727","word_de":"Meinung","word_en":"Opinion","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"728","word_de":"historisch","word_en":"historically","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"729","word_de":"Vorschlag","word_en":"Proposal","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"730","word_de":"Forderung","word_en":"Claim","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"731","word_de":"Kommission","word_en":"Commission","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"732","word_de":"weder","word_en":"neither","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"733","word_de":"jedenfalls","word_en":"at least","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"734","word_de":"Vorjahr","word_en":"Previous year","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"735","word_de":"beschliessen","word_en":"decide","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"736","word_de":"Organisation","word_en":"Organization","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"737","word_de":"holen","word_en":"pick","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"738","word_de":"Hälfte","word_en":"Half","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"739","word_de":"eng","word_en":"tight","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"740","word_de":"Müller","word_en":"Miller","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"741","word_de":"Richter","word_en":"Judge","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"742","word_de":"melden","word_en":"Report","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"743","word_de":"Verlag","word_en":"Publisher","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"744","word_de":"allgemein","word_en":"general","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"745","word_de":"Umsatz","word_en":"Turnover","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"746","word_de":"lediglich","word_en":"only","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"747","word_de":"vertreten","word_en":"represented","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"748","word_de":"präsentieren","word_en":"present","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"749","word_de":"zuständig","word_en":"responsible","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"750","word_de":"sogenannt","word_en":"so-called","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"751","word_de":"zwälf","word_en":"twelve","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"752","word_de":"London","word_en":"London","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"753","word_de":"Koalition","word_en":"Coalition","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"754","word_de":"Ministerpräsid","word_en":"Prime Minister","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG"},{"id":"755","word_de":"Leiter","word_en":"Ladder","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"756","word_de":"neun","word_en":"nine","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"758","word_de":"jährlich","word_en":"annually","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"759","word_de":"Herz","word_en":"Heart","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"760","word_de":"erkennen","word_en":"recognize","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"761","word_de":"bilden","word_en":"make up","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"762","word_de":"Bremen","word_en":"Bremen","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"763","word_de":"Verband","word_en":"Association","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"764","word_de":"plötzlich","word_en":"suddenly","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"765","word_de":"häufig","word_en":"often","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"766","word_de":"Zusammenarbeit","word_en":"Cooperation","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG"},{"id":"767","word_de":"stammen","word_en":"come","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"768","word_de":"heiss","word_en":"hot","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"769","word_de":"kaufen","word_en":"buy","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"770","word_de":"Experte","word_en":"Expert","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"771","word_de":"Unterstützung","word_en":"Support","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG"},{"id":"772","word_de":"Boden","word_en":"Floor","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"773","word_de":"ex","word_en":"ex","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"774","word_de":"gewiss","word_en":"certainly","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"775","word_de":"darstellen","word_en":"represent","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"776","word_de":"Fan","word_en":"Fan","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"777","word_de":"scheitern","word_en":"fail","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"778","word_de":"Volk","word_en":"People","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"779","word_de":"Sprache","word_en":"Language","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"780","word_de":"vorliegen","word_en":"present","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"781","word_de":"Aktie","word_en":"Share","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"782","word_de":"Urteil","word_en":"Judgment","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"783","word_de":"Hoffnung","word_en":"Hope","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"784","word_de":"ergeben","word_en":"yield","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"785","word_de":"überraschen","word_en":"surprise","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"786","word_de":"Vorstand","word_en":"Board","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"787","word_de":"dauern","word_en":"take","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"788","word_de":"durchaus","word_en":"definitely","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"789","word_de":"Dienst","word_en":"Service","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"790","word_de":"Anteil","word_en":"Share","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"791","word_de":"verkauft","word_en":"sold","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"792","word_de":"Gegner","word_en":"Opponent","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"793","word_de":"Linie","word_en":"Line","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"794","word_de":"Verhältnis","word_en":"Ratio","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"795","word_de":"unterschiedlich","word_en":"different","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG"},{"id":"796","word_de":"Verfahren","word_en":"Method","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"797","word_de":"betragen","word_en":"amount to","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"798","word_de":"Streit","word_en":"Quarrel","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"799","word_de":"darunter","word_en":"including","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"800","word_de":"selten","word_en":"rarely","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"801","word_de":"Hotel","word_en":"Hotel","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"802","word_de":"warnen","word_en":"warn","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"803","word_de":"Massnahme","word_en":"Measure","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"804","word_de":"zugleich","word_en":"at the same time","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"805","word_de":"Modell","word_en":"Model","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"806","word_de":"Vergleich","word_en":"Comparison","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"808","word_de":"übrig","word_en":"leftover, remaining","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"809","word_de":"fällen","word_en":"fall","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"810","word_de":"sowohl","word_en":"both","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"811","word_de":"Beitrag","word_en":"Contribution","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"812","word_de":"aktiv","word_en":"active","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"813","word_de":"nötig","word_en":"necessary","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"814","word_de":"Produkt","word_en":"Product","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"815","word_de":"Text","word_en":"Text","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"816","word_de":"Reise","word_en":"Trip","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"817","word_de":"Sport","word_en":"Sports","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"818","word_de":"mittlerweile","word_en":"now","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"819","word_de":"verbinden","word_en":"connect","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"820","word_de":"Mehr","word_en":"More","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"821","word_de":"Gebäude","word_en":"Building","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"822","word_de":"Junge","word_en":"Boy","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"823","word_de":"versprechen","word_en":"promise","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"824","word_de":"Nato","word_en":"Nato","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"825","word_de":"beteiligen","word_en":"participate","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"826","word_de":"Bundesregierun","word_en":"Federal Government","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG"},{"id":"827","word_de":"China","word_en":"China","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"828","word_de":"Liebe","word_en":"Love","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"829","word_de":"Ding","word_en":"Thing","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"830","word_de":"hingegen","word_en":"however,","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"831","word_de":"eröffnen","word_en":"open","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"832","word_de":"gelt","word_en":"","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"833","word_de":"bestätigen","word_en":"confirm","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"834","word_de":"Israel","word_en":"Israel","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"835","word_de":"gelangen","word_en":"arrive","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"836","word_de":"Täter","word_en":"Offender","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"837","word_de":"Alter","word_en":"Age","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"838","word_de":"Partner","word_en":"Partner","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"839","word_de":"Lehrer","word_en":"Teacher","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"840","word_de":"Zentrum","word_en":"Center","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"841","word_de":"Abgeordnete","word_en":"Deputies","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"842","word_de":"Macht","word_en":"Power","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"843","word_de":"Wunsch","word_en":"Wish","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"844","word_de":"darum","word_en":"therefore","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"845","word_de":"bezahlen","word_en":"pay","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"846","word_de":"Vorwurf","word_en":"Reproach","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"847","word_de":"staatlich","word_en":"State","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"848","word_de":"kämpfen","word_en":"fight","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"849","word_de":"Geschäftsführe","word_en":"CEO","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG"},{"id":"850","word_de":"Besuch","word_en":"Visit","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"851","word_de":"gründen","word_en":"found","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"852","word_de":"Oder","word_en":"Or","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"853","word_de":"Auftrag","word_en":"Order","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"854","word_de":"Versuch","word_en":"Trial","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"855","word_de":"Fischer","word_en":"Fisherman","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"856","word_de":"Satz","word_en":"Sentence","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"857","word_de":"fest","word_en":"fixed","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"858","word_de":"verzichten","word_en":"renounce","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"859","word_de":"Reihe","word_en":"Row","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"860","word_de":"Reform","word_en":"Reform","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"861","word_de":"verlangen","word_en":"ask for","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"862","word_de":"Antrag","word_en":"Application","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"863","word_de":"Bezirk","word_en":"District","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"864","word_de":"Konzert","word_en":"Concert","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"865","word_de":"Szene","word_en":"Scene","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"866","word_de":"sinken","word_en":"sink","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"867","word_de":"teilnehmen","word_en":"participate","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"868","word_de":"diesmal","word_en":"this time","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"869","word_de":"Vorstellung","word_en":"Presentation","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"870","word_de":"Zusammenhang","word_en":"Connection","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"871","word_de":"Schaden","word_en":"Damage","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"872","word_de":"breit","word_en":"wide","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"873","word_de":"stimmen","word_en":"vote","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"874","word_de":"entschieden","word_en":"decided","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"875","word_de":"bereit","word_en":"ready","example_de":"Ich bin bereit zu gehen","example_en":"I'm ready to go","show_switch":"true"},{"id":"876","word_de":"Fraktion","word_en":"Fraction","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"877","word_de":"ständig","word_en":"constantly","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"878","word_de":"bezeichnen","word_en":"denote","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"879","word_de":"Wettbewerb","word_en":"Competition","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"880","word_de":"italienisch","word_en":"Italian","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"881","word_de":"Bedeutung","word_en":"word_en","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"882","word_de":"abschliessen","word_en":"complete","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"883","word_de":"Innsbruck","word_en":"Innsbruck","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"884","word_de":"Gesicht","word_en":"Face","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"885","word_de":"Antwort","word_en":"Answer","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"886","word_de":"Glück","word_en":"Luck","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"887","word_de":"Trotz","word_en":"Despite","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"888","word_de":"bevor","word_en":"before","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"889","word_de":"herrschen","word_en":"rule","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"890","word_de":"Kandidat","word_en":"Candidate","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"891","word_de":"aufgrund","word_en":"due to","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"892","word_de":"Position","word_en":"Position","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"893","word_de":"Student","word_en":"Student","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"894","word_de":"vergessen","word_en":"forget","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"895","word_de":"Gewerkschaft","word_en":"Union","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"896","word_de":"manchmal","word_en":"sometimes","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"897","word_de":"Gefühl","word_en":"Feeling","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"898","word_de":"Ernst","word_en":"Ernst","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"899","word_de":"Westen","word_en":"West","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"900","word_de":"betroffen","word_en":"affected","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"901","word_de":"abend","word_en":"evening","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"902","word_de":"passieren","word_en":"happen","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"903","word_de":"Patient","word_en":"Patient","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"904","word_de":"Ansicht","word_en":"View","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"905","word_de":"erhöhen","word_en":"increase","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"906","word_de":"dienen","word_en":"serve","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"907","word_de":"überzeugen","word_en":"convince","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"908","word_de":"Ausland","word_en":"Foreign","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"909","word_de":"Karte","word_en":"Card","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"910","word_de":"Gewinn","word_en":"Profit","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"911","word_de":"sichern","word_en":"secure","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"912","word_de":"Bauer","word_en":"Farmer","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"913","word_de":"jemand","word_en":"someone","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"914","word_de":"Luft","word_en":"Air","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"915","word_de":"Kontakt","word_en":"Contact","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"916","word_de":"stossen","word_en":"bump","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"917","word_de":"geschlossen","word_en":"closed","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"918","word_de":"konkret","word_en":"specifically","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"919","word_de":"vorwerfen","word_en":"accuse","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"920","word_de":"öffentlichkeit","word_en":"Public","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG"},{"id":"921","word_de":"antreten","word_en":"compete","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"922","word_de":"Washington","word_en":"Washington","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"923","word_de":"gesetzt","word_en":"set","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"924","word_de":"Gott","word_en":"God","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"925","word_de":"auftreten","word_en":"occur","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"926","word_de":"Vergangenheit","word_en":"Past","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG"},{"id":"927","word_de":"Osten","word_en":"East","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"928","word_de":"Start","word_en":"Start","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"929","word_de":"angeblich","word_en":"allegedly","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"930","word_de":"äussern","word_en":"to express","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"931","word_de":"Manager","word_en":"Manager","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"932","word_de":"Jugend","word_en":"Youth","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"933","word_de":"Heinz","word_en":"Heinz","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"934","word_de":"ausser","word_en":"except","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"935","word_de":"beschäftigt","word_en":"busy","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"936","word_de":"Fahrzeug","word_en":"Vehicle","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"937","word_de":"stets","word_en":"always","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"938","word_de":"Tür","word_en":"Door","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"939","word_de":"unbekannt","word_en":"unknown","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"940","word_de":"Gewalt","word_en":"Violence","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"942","word_de":"Hinweis","word_en":"Note","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"943","word_de":"Anspruch","word_en":"Claim","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"944","word_de":"Spitze","word_en":"Tip","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"945","word_de":"wahr","word_en":"true","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"946","word_de":"Anlage","word_en":"Annex","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"947","word_de":"Regel","word_en":"Rule","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"948","word_de":"Initiative","word_en":"Initiative","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"949","word_de":"Nummer","word_en":"Number","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"950","word_de":"verbessern","word_en":"improve","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"951","word_de":"Konflikt","word_en":"Conflict","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"952","word_de":"verdienen","word_en":"earn","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"953","word_de":"Tat","word_en":"Act","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"954","word_de":"anschliessend","word_en":"then, subsequently","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG"},{"id":"955","word_de":"Bewegung","word_en":"Movement","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"956","word_de":"Dame","word_en":"Lady","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"957","word_de":"Nachricht","word_en":"Message","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"958","word_de":"Brief","word_en":"Letter","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"959","word_de":"geboren","word_en":"born","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"960","word_de":"viert","word_en":"fourth","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"961","word_de":"Teilnehmer","word_en":"Participant","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"962","word_de":"Kohl","word_en":"Cabbage","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"963","word_de":"reich","word_en":"rich","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"964","word_de":"liefern","word_en":"deliver","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"965","word_de":"umfassen","word_en":"include","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"966","word_de":"grün","word_en":"green","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"967","word_de":"Krankenhaus","word_en":"Hospital","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"968","word_de":"Industrie","word_en":"Industry","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"969","word_de":"durchsetzen","word_en":"prevail","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"970","word_de":"Fernsehen","word_en":"Television","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"971","word_de":"Star","word_en":"Star","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"972","word_de":"Fuss","word_en":"Foot","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"973","word_de":"hin","word_en":"towards","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"974","word_de":"Licht","word_en":"Light","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"975","word_de":"Tisch","word_en":"Table","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"976","word_de":"wänschen","word_en":"wish","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"977","word_de":"Niederlage","word_en":"Defeat","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"978","word_de":"stecken","word_en":"stuck","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"979","word_de":"erleben","word_en":"experience","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"980","word_de":"zufrieden","word_en":"satisfied","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"982","word_de":"bitten","word_en":"ask","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"983","word_de":"Runde","word_en":"Round","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"984","word_de":"morgen","word_en":"tomorrow","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"985","word_de":"singen","word_en":"sing","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"986","word_de":"Nein","word_en":"No","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"987","word_de":"Verlust","word_en":"Loss","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"988","word_de":"Aussage","word_en":"Statement","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"989","word_de":"Produktion","word_en":"Production","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"990","word_de":"Unfall","word_en":"Accident","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"991","word_de":"leider","word_en":"unfortunately","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"992","word_de":"heftig","word_en":"violently","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"993","word_de":"rein","word_en":"purely","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"994","word_de":"oben","word_en":"above","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"995","word_de":"Anlass","word_en":"Occasion","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"996","word_de":"freilich","word_en":"of course","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"998","word_de":"traditionell","word_en":"traditional","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"999","word_de":"Moskau","word_en":"Moscow","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"1000","word_de":"Journalist","word_en":"Journalist","example_de":"EXAMPLEDE","example_en":"EXAMPLEENG","show_switch":"true"},{"id":"1001","word_de":"Besorgungen","word_en":"Errands","example_de":"Katrina macht Besorgungen","example_en":"Katrina is running errands","show_switch":"true"},{"id":"1002","word_de":"mögen","word_en":"to like","example_de":"I like fish","example_en":"Ich mag Fisch","show_switch":"true"},{"id":"1003","word_de":"besonders","word_en":"especially","example_de":"Ich mag besonders die Farbe","example_en":"I especially like the color","show_switch":"true"},{"id":"1004","word_de":"das Einkaufszentrum","word_en":"the shopping center/mall","example_de":"Sie geht in das Einkaufszentrum","example_en":"She's going to the mall","show_switch":"true"},{"id":"1005","word_de":"Da drüben","word_en":"Over there","example_de":"mein Handy ist da drüben","example_en":"My cellphone is over there","show_switch":"true"},{"id":"1006","word_de":"zu anprobieren","word_en":"to try on","example_de":"Katrin probiert ein Paar Schuhe an","example_en":"Katrin tries on a pair of shoes","show_switch":"true"},{"id":"1007","word_de":"zu passen","word_en":"to fit","example_de":"passen sie?","example_en":"Do they fit?","show_switch":"true"},{"id":"1008","word_de":"prima/grossartig","word_en":"great","example_de":"Das war grossartig!","example_en":"That was great!","show_switch":"true"},{"id":"1009","word_de":"billig","word_en":"cheap","example_de":"Das ist nicht billig","example_en":"That is not cheap","show_switch":"true"},{"id":"1010","word_de":"die Anleitung","word_en":"the instructions","example_de":"Ich verstehe die Anleitung","example_en":"I understand the instructions","show_switch":"true"},{"id":"1011","word_de":"noch","word_en":"yet","example_de":"Wir haben uns noch nicht getroffen","example_en":"We have not yet met","show_switch":"true"},{"id":"1012","word_de":"Dieser","word_en":"This","example_de":"Dieser Cheeseburger schmeckt gut","example_en":"This cheesburger tastes good","show_switch":"true"},{"id":"1013","word_de":"jeden Tag","word_en":"every day","example_de":"Ich versuche jeden Tag zu lachen","example_en":"I try to laugh every day","show_switch":"true"},{"id":"1014","word_de":"spät dran","word_en":"late","example_de":"Ich bin spät dran","example_en":"I'm late.","show_switch":"true"},{"id":"1015","word_de":"vor (time)","word_en":"before (time)","example_de":"drei vor Elf","example_en":"It's three minutes to eleven am","show_switch":"true"},{"id":"1016","word_de":"Viertel","word_en":"quarter","example_de":"Viertel nach Fünf","example_en":"A quarter after 5","show_switch":"true"},{"id":"1017","word_de":"Dreiviertel","word_en":"3 quarters","example_de":"Dreiviertel secs / Viertel vor Sechs","example_en":"5:45 (two ways)","show_switch":"true"},{"id":"1018","word_de":"ungebraüchlich","word_en":"awkward/unused (word)","example_de":"Dieses Wort hört sich ungebräuchlich an","example_en":"That word sounds awkward","show_switch":"true"},{"id":"1020","word_de":"nach","word_en":"to","example_de":"wann kommst du nach hause","example_en":"When will you come home?","show_switch":"true"},{"id":"1001","word_de":"gern/gerne","word_en":"would like","example_de":" Ich hätte gern(e)","example_en":"I would like to have","show_switch":"true"},{"id":"100X","word_de":"beeinflüssen","word_en":"to influence","example_de":"Du beginnst mich zu beeinflüssen","example_en":"You are beginning to influence me","show_switch":"true"},{"id":"100X","word_de":"Miserabel","word_en":"Miserable","example_de":"EXAMPLEDE","example_en":"EXAMPLEEN","show_switch":"true"},{"id":"10X","word_de":"Welchen","word_en":"Which","example_de":"Welchen Wein willst du?","example_en":"Which wine do you want?","show_switch":"true"},{"id":"10X","word_de":"Gedanken","word_en":"Thou","example_de":"Du hast meine Gedanken gelesen","example_en":"You've read my thoughts","show_switch":"true"},{"id":"10X","word_de":"TEMPLATE","word_en":"TEMPLATE","example_de":"TEMPLATEEXAMPLEDE","example_en":"TEMPLATEEXAMPLEENG","show_switch":"true"},{"id":"10X","word_de":"TEMPLATE","word_en":"TEMPLATE","example_de":"TEMPLATEEXAMPLEDE","example_en":"TEMPLATEEXAMPLEENG","show_switch":"true"},{"id":"10X","word_de":"TEMPLATE","word_en":"TEMPLATE","example_de":"TEMPLATEEXAMPLEDE","example_en":"TEMPLATEEXAMPLEENG","show_switch":"true"},{"id":"10X","word_de":"TEMPLATE","word_en":"TEMPLATE","example_de":"TEMPLATEEXAMPLEDE","example_en":"TEMPLATEEXAMPLEENG","show_switch":"true"}]
+module.exports = function(originalModule) {
+	if(!originalModule.webpackPolyfill) {
+		var module = Object.create(originalModule);
+		// module.parent = undefined by default
+		if(!module.children) module.children = [];
+		Object.defineProperty(module, "loaded", {
+			enumerable: true,
+			get: function() {
+				return module.l;
+			}
+		});
+		Object.defineProperty(module, "id", {
+			enumerable: true,
+			get: function() {
+				return module.i;
+			}
+		});
+		Object.defineProperty(module, "exports", {
+			enumerable: true,
+		});
+		module.webpackPolyfill = 1;
+	}
+	return module;
+};
+
+
+/***/ }),
+/* 198 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _Modal = __webpack_require__(199);
+
+var _Modal2 = _interopRequireDefault(_Modal);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _Modal2.default;
+
+/***/ }),
+/* 199 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.bodyOpenClassName = exports.portalClassName = undefined;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(12);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(59);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _propTypes = __webpack_require__(85);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _ModalPortal = __webpack_require__(201);
+
+var _ModalPortal2 = _interopRequireDefault(_ModalPortal);
+
+var _ariaAppHider = __webpack_require__(87);
+
+var ariaAppHider = _interopRequireWildcard(_ariaAppHider);
+
+var _safeHTMLElement = __webpack_require__(89);
+
+var _safeHTMLElement2 = _interopRequireDefault(_safeHTMLElement);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var portalClassName = exports.portalClassName = 'ReactModalPortal';
+var bodyOpenClassName = exports.bodyOpenClassName = 'ReactModal__Body--open';
+
+var renderSubtreeIntoContainer = _reactDom2.default.unstable_renderSubtreeIntoContainer;
+
+function getParentElement(parentSelector) {
+  return parentSelector();
+}
+
+var Modal = function (_Component) {
+  _inherits(Modal, _Component);
+
+  function Modal() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, Modal);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Modal.__proto__ || Object.getPrototypeOf(Modal)).call.apply(_ref, [this].concat(args))), _this), _this.removePortal = function () {
+      _reactDom2.default.unmountComponentAtNode(_this.node);
+      var parent = getParentElement(_this.props.parentSelector);
+      parent.removeChild(_this.node);
+    }, _this.renderPortal = function (props) {
+      _this.portal = renderSubtreeIntoContainer(_this, _react2.default.createElement(_ModalPortal2.default, _extends({ defaultStyles: Modal.defaultStyles }, props)), _this.node);
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(Modal, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.node = document.createElement('div');
+      this.node.className = this.props.portalClassName;
+
+      var parent = getParentElement(this.props.parentSelector);
+      parent.appendChild(this.node);
+
+      this.renderPortal(this.props);
+    }
+  }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(newProps) {
+      var isOpen = newProps.isOpen;
+      // Stop unnecessary renders if modal is remaining closed
+
+      if (!this.props.isOpen && !isOpen) return;
+
+      var currentParent = getParentElement(this.props.parentSelector);
+      var newParent = getParentElement(newProps.parentSelector);
+
+      if (newParent !== currentParent) {
+        currentParent.removeChild(this.node);
+        newParent.appendChild(this.node);
+      }
+
+      this.renderPortal(newProps);
+    }
+  }, {
+    key: 'componentWillUpdate',
+    value: function componentWillUpdate(newProps) {
+      if (newProps.portalClassName !== this.props.portalClassName) {
+        this.node.className = newProps.portalClassName;
+      }
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      if (!this.node) return;
+
+      var state = this.portal.state;
+      var now = Date.now();
+      var closesAt = state.isOpen && this.props.closeTimeoutMS && (state.closesAt || now + this.props.closeTimeoutMS);
+
+      if (closesAt) {
+        if (!state.beforeClose) {
+          this.portal.closeWithTimeout();
+        }
+
+        setTimeout(this.removePortal, closesAt - now);
+      } else {
+        this.removePortal();
+      }
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return null;
+    }
+  }], [{
+    key: 'setAppElement',
+    value: function setAppElement(element) {
+      ariaAppHider.setElement(element);
+    }
+
+    /* eslint-disable no-console */
+
+  }, {
+    key: 'injectCSS',
+    value: function injectCSS() {
+      process.env.NODE_ENV !== "production" && console.warn('React-Modal: injectCSS has been deprecated ' + 'and no longer has any effect. It will be removed in a later version');
+    }
+    /* eslint-enable no-console */
+
+    /* eslint-disable react/no-unused-prop-types */
+
+    /* eslint-enable react/no-unused-prop-types */
+
+  }]);
+
+  return Modal;
+}(_react.Component);
+
+Modal.propTypes = {
+  isOpen: _propTypes2.default.bool.isRequired,
+  style: _propTypes2.default.shape({
+    content: _propTypes2.default.object,
+    overlay: _propTypes2.default.object
+  }),
+  portalClassName: _propTypes2.default.string,
+  bodyOpenClassName: _propTypes2.default.string,
+  className: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.object]),
+  overlayClassName: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.object]),
+  appElement: _propTypes2.default.instanceOf(_safeHTMLElement2.default),
+  onAfterOpen: _propTypes2.default.func,
+  onRequestClose: _propTypes2.default.func,
+  closeTimeoutMS: _propTypes2.default.number,
+  ariaHideApp: _propTypes2.default.bool,
+  shouldCloseOnOverlayClick: _propTypes2.default.bool,
+  parentSelector: _propTypes2.default.func,
+  aria: _propTypes2.default.object,
+  role: _propTypes2.default.string,
+  contentLabel: _propTypes2.default.string.isRequired
+};
+Modal.defaultProps = {
+  isOpen: false,
+  portalClassName: portalClassName,
+  bodyOpenClassName: bodyOpenClassName,
+  ariaHideApp: true,
+  closeTimeoutMS: 0,
+  shouldCloseOnOverlayClick: true,
+  parentSelector: function parentSelector() {
+    return document.body;
+  }
+};
+Modal.defaultStyles = {
+  overlay: {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(255, 255, 255, 0.75)'
+  },
+  content: {
+    position: 'absolute',
+    top: '40px',
+    left: '40px',
+    right: '40px',
+    bottom: '40px',
+    border: '1px solid #ccc',
+    background: '#fff',
+    overflow: 'auto',
+    WebkitOverflowScrolling: 'touch',
+    borderRadius: '4px',
+    outline: 'none',
+    padding: '20px'
+  }
+};
+exports.default = Modal;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 200 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+var emptyFunction = __webpack_require__(8);
+var invariant = __webpack_require__(1);
+var ReactPropTypesSecret = __webpack_require__(34);
+
+module.exports = function() {
+  function shim(props, propName, componentName, location, propFullName, secret) {
+    if (secret === ReactPropTypesSecret) {
+      // It is still safe when called from React.
+      return;
+    }
+    invariant(
+      false,
+      'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
+      'Use PropTypes.checkPropTypes() to call them. ' +
+      'Read more at http://fb.me/use-check-prop-types'
+    );
+  };
+  shim.isRequired = shim;
+  function getShim() {
+    return shim;
+  };
+  // Important!
+  // Keep this list in sync with production version in `./factoryWithTypeCheckers.js`.
+  var ReactPropTypes = {
+    array: shim,
+    bool: shim,
+    func: shim,
+    number: shim,
+    object: shim,
+    string: shim,
+    symbol: shim,
+
+    any: shim,
+    arrayOf: getShim,
+    element: shim,
+    instanceOf: getShim,
+    node: shim,
+    objectOf: getShim,
+    oneOf: getShim,
+    oneOfType: getShim,
+    shape: getShim,
+    exact: getShim
+  };
+
+  ReactPropTypes.checkPropTypes = emptyFunction;
+  ReactPropTypes.PropTypes = ReactPropTypes;
+
+  return ReactPropTypes;
+};
+
+
+/***/ }),
+/* 201 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(12);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(85);
+
+var _focusManager = __webpack_require__(202);
+
+var focusManager = _interopRequireWildcard(_focusManager);
+
+var _scopeTab = __webpack_require__(203);
+
+var _scopeTab2 = _interopRequireDefault(_scopeTab);
+
+var _ariaAppHider = __webpack_require__(87);
+
+var ariaAppHider = _interopRequireWildcard(_ariaAppHider);
+
+var _refCount = __webpack_require__(88);
+
+var refCount = _interopRequireWildcard(_refCount);
+
+var _bodyClassList = __webpack_require__(204);
+
+var bodyClassList = _interopRequireWildcard(_bodyClassList);
+
+var _safeHTMLElement = __webpack_require__(89);
+
+var _safeHTMLElement2 = _interopRequireDefault(_safeHTMLElement);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+// so that our CSS is statically analyzable
+var CLASS_NAMES = {
+  overlay: 'ReactModal__Overlay',
+  content: 'ReactModal__Content'
+};
+
+var TAB_KEY = 9;
+var ESC_KEY = 27;
+
+var ModalPortal = function (_Component) {
+  _inherits(ModalPortal, _Component);
+
+  function ModalPortal(props) {
+    _classCallCheck(this, ModalPortal);
+
+    var _this = _possibleConstructorReturn(this, (ModalPortal.__proto__ || Object.getPrototypeOf(ModalPortal)).call(this, props));
+
+    _this.setFocusAfterRender = function (focus) {
+      _this.focusAfterRender = focus;
+    };
+
+    _this.setOverlayRef = function (overlay) {
+      _this.overlay = overlay;
+    };
+
+    _this.setContentRef = function (content) {
+      _this.content = content;
+    };
+
+    _this.afterClose = function () {
+      focusManager.returnFocus();
+      focusManager.teardownScopedFocus();
+    };
+
+    _this.open = function () {
+      _this.beforeOpen();
+      if (_this.state.afterOpen && _this.state.beforeClose) {
+        clearTimeout(_this.closeTimer);
+        _this.setState({ beforeClose: false });
+      } else {
+        focusManager.setupScopedFocus(_this.node);
+        focusManager.markForFocusLater();
+        _this.setState({ isOpen: true }, function () {
+          _this.setState({ afterOpen: true });
+
+          if (_this.props.isOpen && _this.props.onAfterOpen) {
+            _this.props.onAfterOpen();
+          }
+        });
+      }
+    };
+
+    _this.close = function () {
+      _this.beforeClose();
+      if (_this.props.closeTimeoutMS > 0) {
+        _this.closeWithTimeout();
+      } else {
+        _this.closeWithoutTimeout();
+      }
+    };
+
+    _this.focusContent = function () {
+      return _this.content && !_this.contentHasFocus() && _this.content.focus();
+    };
+
+    _this.closeWithTimeout = function () {
+      var closesAt = Date.now() + _this.props.closeTimeoutMS;
+      _this.setState({ beforeClose: true, closesAt: closesAt }, function () {
+        _this.closeTimer = setTimeout(_this.closeWithoutTimeout, _this.state.closesAt - Date.now());
+      });
+    };
+
+    _this.closeWithoutTimeout = function () {
+      _this.setState({
+        beforeClose: false,
+        isOpen: false,
+        afterOpen: false,
+        closesAt: null
+      }, _this.afterClose);
+    };
+
+    _this.handleKeyDown = function (event) {
+      if (event.keyCode === TAB_KEY) {
+        (0, _scopeTab2.default)(_this.content, event);
+      }
+      if (event.keyCode === ESC_KEY) {
+        event.preventDefault();
+        _this.requestClose(event);
+      }
+    };
+
+    _this.handleOverlayOnClick = function (event) {
+      if (_this.shouldClose === null) {
+        _this.shouldClose = true;
+      }
+
+      if (_this.shouldClose && _this.props.shouldCloseOnOverlayClick) {
+        if (_this.ownerHandlesClose()) {
+          _this.requestClose(event);
+        } else {
+          _this.focusContent();
+        }
+      }
+      _this.shouldClose = null;
+    };
+
+    _this.handleContentOnClick = function () {
+      _this.shouldClose = false;
+    };
+
+    _this.requestClose = function (event) {
+      return _this.ownerHandlesClose() && _this.props.onRequestClose(event);
+    };
+
+    _this.ownerHandlesClose = function () {
+      return _this.props.onRequestClose;
+    };
+
+    _this.shouldBeClosed = function () {
+      return !_this.state.isOpen && !_this.state.beforeClose;
+    };
+
+    _this.contentHasFocus = function () {
+      return document.activeElement === _this.content || _this.content.contains(document.activeElement);
+    };
+
+    _this.buildClassName = function (which, additional) {
+      var classNames = (typeof additional === 'undefined' ? 'undefined' : _typeof(additional)) === 'object' ? additional : {
+        base: CLASS_NAMES[which],
+        afterOpen: CLASS_NAMES[which] + '--after-open',
+        beforeClose: CLASS_NAMES[which] + '--before-close'
+      };
+      var className = classNames.base;
+      if (_this.state.afterOpen) {
+        className = className + ' ' + classNames.afterOpen;
+      }
+      if (_this.state.beforeClose) {
+        className = className + ' ' + classNames.beforeClose;
+      }
+      return typeof additional === 'string' && additional ? className + ' ' + additional : className;
+    };
+
+    _this.ariaAttributes = function (items) {
+      return Object.keys(items).reduce(function (acc, name) {
+        acc['aria-' + name] = items[name];
+        return acc;
+      }, {});
+    };
+
+    _this.state = {
+      afterOpen: false,
+      beforeClose: false
+    };
+
+    _this.shouldClose = null;
+    return _this;
+  }
+
+  _createClass(ModalPortal, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      // Focus needs to be set when mounting and already open
+      if (this.props.isOpen) {
+        this.setFocusAfterRender(true);
+        this.open();
+      }
+    }
+  }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(newProps) {
+      if (process.env.NODE_ENV !== "production") {
+        if (newProps.bodyOpenClassName !== this.props.bodyOpenClassName) {
+          // eslint-disable-next-line no-console
+          console.warn('React-Modal: "bodyOpenClassName" prop has been modified. ' + 'This may cause unexpected behavior when multiple modals are open.');
+        }
+      }
+      // Focus only needs to be set once when the modal is being opened
+      if (!this.props.isOpen && newProps.isOpen) {
+        this.setFocusAfterRender(true);
+        this.open();
+      } else if (this.props.isOpen && !newProps.isOpen) {
+        this.close();
+      }
+    }
+  }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate() {
+      if (this.focusAfterRender) {
+        this.focusContent();
+        this.setFocusAfterRender(false);
+      }
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      this.beforeClose();
+      clearTimeout(this.closeTimer);
+    }
+  }, {
+    key: 'beforeOpen',
+    value: function beforeOpen() {
+      var _props = this.props,
+          appElement = _props.appElement,
+          ariaHideApp = _props.ariaHideApp,
+          bodyOpenClassName = _props.bodyOpenClassName;
+      // Add body class
+
+      bodyClassList.add(bodyOpenClassName);
+      // Add aria-hidden to appElement
+      if (ariaHideApp) {
+        ariaAppHider.hide(appElement);
+      }
+    }
+  }, {
+    key: 'beforeClose',
+    value: function beforeClose() {
+      var _props2 = this.props,
+          appElement = _props2.appElement,
+          ariaHideApp = _props2.ariaHideApp,
+          bodyOpenClassName = _props2.bodyOpenClassName;
+      // Remove class if no more modals are open
+
+      bodyClassList.remove(bodyOpenClassName);
+      // Reset aria-hidden attribute if all modals have been removed
+      if (ariaHideApp && refCount.totalCount() < 1) {
+        ariaAppHider.show(appElement);
+      }
+    }
+
+    // Don't steal focus from inner elements
+
+  }, {
+    key: 'render',
+    value: function render() {
+      var _props3 = this.props,
+          className = _props3.className,
+          overlayClassName = _props3.overlayClassName,
+          defaultStyles = _props3.defaultStyles;
+
+      var contentStyles = className ? {} : defaultStyles.content;
+      var overlayStyles = overlayClassName ? {} : defaultStyles.overlay;
+
+      return this.shouldBeClosed() ? null : _react2.default.createElement(
+        'div',
+        {
+          ref: this.setOverlayRef,
+          className: this.buildClassName('overlay', overlayClassName),
+          style: _extends({}, overlayStyles, this.props.style.overlay),
+          onClick: this.handleOverlayOnClick },
+        _react2.default.createElement(
+          'div',
+          _extends({
+            ref: this.setContentRef,
+            style: _extends({}, contentStyles, this.props.style.content),
+            className: this.buildClassName('content', className),
+            tabIndex: '-1',
+            onKeyDown: this.handleKeyDown,
+            onClick: this.handleContentOnClick,
+            role: this.props.role,
+            'aria-label': this.props.contentLabel
+          }, this.ariaAttributes(this.props.aria || {})),
+          this.props.children
+        )
+      );
+    }
+  }]);
+
+  return ModalPortal;
+}(_react.Component);
+
+ModalPortal.defaultProps = {
+  style: {
+    overlay: {},
+    content: {}
+  }
+};
+ModalPortal.propTypes = {
+  isOpen: _propTypes.PropTypes.bool.isRequired,
+  defaultStyles: _propTypes.PropTypes.shape({
+    content: _propTypes.PropTypes.object,
+    overlay: _propTypes.PropTypes.object
+  }),
+  style: _propTypes.PropTypes.shape({
+    content: _propTypes.PropTypes.object,
+    overlay: _propTypes.PropTypes.object
+  }),
+  className: _propTypes.PropTypes.oneOfType([_propTypes.PropTypes.string, _propTypes.PropTypes.object]),
+  overlayClassName: _propTypes.PropTypes.oneOfType([_propTypes.PropTypes.string, _propTypes.PropTypes.object]),
+  bodyOpenClassName: _propTypes.PropTypes.string,
+  ariaHideApp: _propTypes.PropTypes.bool,
+  appElement: _propTypes.PropTypes.instanceOf(_safeHTMLElement2.default),
+  onAfterOpen: _propTypes.PropTypes.func,
+  onRequestClose: _propTypes.PropTypes.func,
+  closeTimeoutMS: _propTypes.PropTypes.number,
+  shouldCloseOnOverlayClick: _propTypes.PropTypes.bool,
+  role: _propTypes.PropTypes.string,
+  contentLabel: _propTypes.PropTypes.string,
+  aria: _propTypes.PropTypes.object,
+  children: _propTypes.PropTypes.node
+};
+exports.default = ModalPortal;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 202 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.handleBlur = handleBlur;
+exports.handleFocus = handleFocus;
+exports.markForFocusLater = markForFocusLater;
+exports.returnFocus = returnFocus;
+exports.setupScopedFocus = setupScopedFocus;
+exports.teardownScopedFocus = teardownScopedFocus;
+
+var _tabbable = __webpack_require__(86);
+
+var _tabbable2 = _interopRequireDefault(_tabbable);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var focusLaterElements = [];
+var modalElement = null;
+var needToFocus = false;
+
+function handleBlur() {
+  needToFocus = true;
+}
+
+function handleFocus() {
+  if (needToFocus) {
+    needToFocus = false;
+    if (!modalElement) {
+      return;
+    }
+    // need to see how jQuery shims document.on('focusin') so we don't need the
+    // setTimeout, firefox doesn't support focusin, if it did, we could focus
+    // the element outside of a setTimeout. Side-effect of this implementation
+    // is that the document.body gets focus, and then we focus our element right
+    // after, seems fine.
+    setTimeout(function () {
+      if (modalElement.contains(document.activeElement)) {
+        return;
+      }
+      var el = (0, _tabbable2.default)(modalElement)[0] || modalElement;
+      el.focus();
+    }, 0);
+  }
+}
+
+function markForFocusLater() {
+  focusLaterElements.push(document.activeElement);
+}
+
+/* eslint-disable no-console */
+function returnFocus() {
+  var toFocus = null;
+  try {
+    toFocus = focusLaterElements.pop();
+    toFocus.focus();
+    return;
+  } catch (e) {
+    console.warn(['You tried to return focus to', toFocus, 'but it is not in the DOM anymore'].join(" "));
+  }
+}
+/* eslint-enable no-console */
+
+function setupScopedFocus(element) {
+  modalElement = element;
+
+  if (window.addEventListener) {
+    window.addEventListener('blur', handleBlur, false);
+    document.addEventListener('focus', handleFocus, true);
+  } else {
+    window.attachEvent('onBlur', handleBlur);
+    document.attachEvent('onFocus', handleFocus);
+  }
+}
+
+function teardownScopedFocus() {
+  modalElement = null;
+
+  if (window.addEventListener) {
+    window.removeEventListener('blur', handleBlur);
+    document.removeEventListener('focus', handleFocus);
+  } else {
+    window.detachEvent('onBlur', handleBlur);
+    document.detachEvent('onFocus', handleFocus);
+  }
+}
+
+/***/ }),
+/* 203 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = scopeTab;
+
+var _tabbable = __webpack_require__(86);
+
+var _tabbable2 = _interopRequireDefault(_tabbable);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function scopeTab(node, event) {
+  var tabbable = (0, _tabbable2.default)(node);
+  if (!tabbable.length) {
+    event.preventDefault();
+    return;
+  }
+  var finalTabbable = tabbable[event.shiftKey ? 0 : tabbable.length - 1];
+  var leavingFinalTabbable = finalTabbable === document.activeElement ||
+  // handle immediate shift+tab after opening with mouse
+  node === document.activeElement;
+  if (!leavingFinalTabbable) return;
+  event.preventDefault();
+  var target = tabbable[event.shiftKey ? tabbable.length - 1 : 0];
+  target.focus();
+}
+
+/***/ }),
+/* 204 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.add = add;
+exports.remove = remove;
+
+var _refCount = __webpack_require__(88);
+
+var refCount = _interopRequireWildcard(_refCount);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function add(bodyClass) {
+  // Increment class(es) on refCount tracker and add class(es) to body
+  bodyClass.split(' ').map(refCount.add).forEach(function (className) {
+    return document.body.classList.add(className);
+  });
+}
+
+function remove(bodyClass) {
+  var classListMap = refCount.get();
+  // Decrement class(es) from the refCount tracker
+  // and remove unused class(es) from body
+  bodyClass.split(' ').map(refCount.remove).filter(function (className) {
+    return classListMap[className] === 0;
+  }).forEach(function (className) {
+    return document.body.classList.remove(className);
+  });
+}
+
+/***/ }),
+/* 205 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;/*!
+  Copyright (c) 2015 Jed Watson.
+  Based on code that is Copyright 2013-2015, Facebook, Inc.
+  All rights reserved.
+*/
+
+(function () {
+	'use strict';
+
+	var canUseDOM = !!(
+		typeof window !== 'undefined' &&
+		window.document &&
+		window.document.createElement
+	);
+
+	var ExecutionEnvironment = {
+
+		canUseDOM: canUseDOM,
+
+		canUseWorkers: typeof Worker !== 'undefined',
+
+		canUseEventListeners:
+			canUseDOM && !!(window.addEventListener || window.attachEvent),
+
+		canUseViewport: canUseDOM && !!window.screen
+
+	};
+
+	if (true) {
+		!(__WEBPACK_AMD_DEFINE_RESULT__ = (function () {
+			return ExecutionEnvironment;
+		}).call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	} else if (typeof module !== 'undefined' && module.exports) {
+		module.exports = ExecutionEnvironment;
+	} else {
+		window.ExecutionEnvironment = ExecutionEnvironment;
+	}
+
+}());
+
 
 /***/ })
 /******/ ]);

@@ -1,27 +1,32 @@
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path')
 
+// console.log(path.join(__dirname, 'public'));
+// ABSOLUTE PATH : "/Users/beau/Desktop/deutsche-cards-glossary"
 module.exports = {
-  // Everything flows from this file
-  entry: "./app/index.js",
-  // Once Webpack is done, it assembles the file and deposits it
-  // in the current directory in the build subdirectory, with a name of build.js
+  entry: './src/app.js',
+  mode: 'none',
+
   output: {
-    path: __dirname + "/build",
-    filename: "build.js"
+    path: path.join(__dirname, 'public'),
+    filename: 'bundle.js'
   },
   module: {
-    rules: [
+    rules:[
+    //   {
+    //   test: /\.m?js$/,
+    //   exclude: /(node_modules|bower_components)/,
+    //   use: {
+    //     loader: 'babel-loader',
+    //     options: {
+    //       presets: ['react','@babel/preset-env']
+    //     }
+    //   }
+    // }
       {
-        // Watch all files that end in .js
-        test: /\.jsx?$/,
-        // Unless it's in the node_modules directory
-        exclude: /node_modules/,
-        // And run it through the babel loader
-        loader: 'babel-loader'
-      }
-    ]
-  },
-  plugins: [new HtmlWebpackPlugin({
-    template: './app/index.html'
-  })]
+      loader:'babel-loader',
+      test: /\.js$/,
+      exclude: /node_modules/
+    }
+  ]
+  }
 }

@@ -1,4 +1,5 @@
 var React = require('react');
+const utils = require("../utils/utils.js");
 
 class Bounds extends React.Component {
     constructor(props) {
@@ -10,31 +11,35 @@ class Bounds extends React.Component {
         }
         this.firstHundredClickHandler = this.firstHundredClickHandler.bind(this);
         this.secondHundredClickHandler = this.secondHundredClickHandler.bind(this);
-          }
+        this.thirdHundredClickHandler = this.thirdHundredClickHandler.bind(this);
+        this.fourthHundredClickHandler = this.fourthHundredClickHandler.bind(this);
+    }
 
 
     firstHundredClickHandler() {
-        this.setState((prevState) => ({
-            lowerbound: 0,
-            upperbound: 99
-        })
-        )
+        utils.ctrl(utils.getPartialLS, 0, 99);
     }
 
     secondHundredClickHandler() {
-        this.setState((prevState) => ({
-            lowerbound: 100,
-            upperbound: 199
-        })
-        )
+        utils.ctrl(utils.getPartialLS, 100, 199);
     }
+    thirdHundredClickHandler() {
+        utils.ctrl(utils.getPartialLS, 200, 299);
+    }
+
+    fourthHundredClickHandler() {
+        utils.ctrl(utils.getPartialLS, 300, 399);
+    }
+
     render() {
-        const {upperbound, lowerbound} = this.state;
+        const { upperbound, lowerbound } = this.state;
         return (
             <div id="bounds-box">
                 <h1>Range: <span>{lowerbound}</span>–<span>{upperbound}</span></h1>
                 <button onClick={this.firstHundredClickHandler}>0-99</button>
                 <button onClick={this.secondHundredClickHandler}>100-199</button>
+                <button onClick={this.thirdHundredClickHandler}>200-299</button>
+                <button onClick={this.fourthHundredClickHandler}>300-399</button>
             </div>
         );
     }
@@ -44,8 +49,6 @@ module.exports = Bounds;
 
 
 /*
-  this.thirdHundredClickHandler = this.thirdHundredClickHandler.bind(this);
-        this.fourthHundredClickHandler = this.fourthHundredClickHandler.bind(this);
         this.fifthHundredClickHandler = this.fifthHundredClickHandler.bind(this);
         this.sixthHundredClickHandler = this.sixthHundredClickHandler.bind(this);
         this.seventhHundredClickHandler = this.seventhHundredClickHandler.bind(this);
@@ -129,8 +132,6 @@ module.exports = Bounds;
 
 
 
- <button onClick={this.thirdHundredClickHandler}>200-299</button>
-                <button onClick={this.fourthHundredClickHandler}>300-399</button>
                 <button onClick={this.fifthHundredClickHandler}>400-499</button>
                 <button onClick={this.sixthHundredClickHandler}>500-599</button>
                 <button onClick={this.seventhHundredClickHandler}>600-699</button>
