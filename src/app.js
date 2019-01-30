@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Landing from './components/Landing';
 
-
-// import {food, hello, ctrl }  from './utils/utils.js';
+import {food, hello, ctrl, log }  from './utils/utils.js';   /* NB: Synchronous calls to utils*/
 // ctrl(food, "snack", "pie")
 // ctrl(hello, "Ms", "Perlich")
-// React.createElement('h1', null, 'testing123')
-const template = <h1>TeST</h1>;
-ReactDOM.render(template, document.getElementById('app'));
+
+
+ReactDOM.render(<Landing/>, document.getElementById('app'));

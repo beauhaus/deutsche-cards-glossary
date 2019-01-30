@@ -2,9 +2,22 @@ const path = require('path')
 
 // console.log(path.join(__dirname, 'public'));
 // ABSOLUTE PATH : "/Users/beau/Desktop/deutsche-cards-glossary"
+
+
+/**
+ * node: {
+  fs: 'empty'
+}, 
+
+is to enable fs with webpack
+*/
+
 module.exports = {
   entry: './src/app.js',
   mode: 'none',
+  node: {
+  fs: 'empty'
+},
 
   output: {
     path: path.join(__dirname, 'public'),
@@ -12,16 +25,6 @@ module.exports = {
   },
   module: {
     rules:[
-    //   {
-    //   test: /\.m?js$/,
-    //   exclude: /(node_modules|bower_components)/,
-    //   use: {
-    //     loader: 'babel-loader',
-    //     options: {
-    //       presets: ['react','@babel/preset-env']
-    //     }
-    //   }
-    // }
       {
       loader:'babel-loader',
       test: /\.js$/,

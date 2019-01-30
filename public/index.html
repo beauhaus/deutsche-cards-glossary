@@ -4,6 +4,109 @@
   <meta charset="UTF-8">
 	<title>React Glossary</title>
 	<link rel="stylesheet" href="./css/styles.css">
+	<style>
+	body {
+    background: #222;
+}
+html {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+#app {
+    margin: 0 auto;
+    width: 500px;
+    background: burlywood; 
+    border-radius: 5px;
+    padding: 20px;
+}
+details {
+    margin-bottom: 50px;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+}
+
+a {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 30px;
+  text-decoration: none !important;
+}
+
+#result-box {
+    border: 1px solid coral;
+    position: relative;
+}
+
+#de-example::before {
+content: '🇩🇪'
+}
+
+#en-example::before {
+    content: '🇺🇸'
+}
+
+#search-field {
+    width: 50%;
+    height: 5vh;
+    border: 3px solid orange;
+}
+.search-bar {
+    text-align: center;
+}
+input[type="text"] {
+    width: 100%;
+    font-size: 20px;
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    font-size: 25px;
+        text-align: center;
+
+  }
+  ::-moz-placeholder { /* Firefox 19+ */
+    font-size: 25px;
+        text-align: center;
+
+  }
+  :-ms-input-placeholder { /* IE 10+ */
+    font-size: 25px;
+        text-align: center;
+
+  }
+  :-moz-placeholder { /* Firefox 18- */
+    font-size: 25px;
+        text-align: center;
+
+	}
+	form {
+		border: 1px solid orange;
+		width: 20vw;
+		float: left;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: 5vh;
+	}
+	#upperBounds-input {
+        box-shadow: inset 2px 2px 5px 0px rgba(0, 0, 0, 0.5);
+		border: 1px solid grey;
+		grid-column: 1;
+		width: 3vw;
+	}
+  #lowerBounds-input{
+    box-shadow: inset 2px 2px 5px 0px rgba(0, 0, 0, 0.5);
+		border: 1px solid grey;
+		grid-column: 2;
+		width: 3vw;
+	}
+	form button {
+        box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.5);
+		border: 1px solid black;
+		grid-column: 3;
+		width: 7vw;
+	}
+	</style>
 </head>
 <body>
 	<div id="app"></div>
