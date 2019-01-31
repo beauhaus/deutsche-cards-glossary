@@ -103,14 +103,7 @@ var _Landing = __webpack_require__(13);
 
 var _Landing2 = _interopRequireDefault(_Landing);
 
-var _utils = __webpack_require__(14);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/* NB: Synchronous calls to utils*/
-// ctrl(food, "snack", "pie")
-// ctrl(hello, "Ms", "Perlich")
-
 
 _reactDom2.default.render(_react2.default.createElement(_Landing2.default, null), document.getElementById('app'));
 
@@ -23604,6 +23597,11 @@ var Landing = function (_Component) {
     }
 
     _createClass(Landing, [{
+        key: 'componentWillMount',
+        value: function componentWillMount() {
+            (0, _utils.setLS)();
+        }
+    }, {
         key: 'componentWillUpdate',
         value: function componentWillUpdate(nextProps, nextState) {
             // console.log("Land update: \nLow: ", this.state.lowerBounds, "\n up: ", this.state.upperBounds )
@@ -23638,9 +23636,9 @@ var Landing = function (_Component) {
     }, {
         key: 'onRangeSubmit',
         value: function onRangeSubmit(e) {
-            (0, _utils.setLS)();
             e.preventDefault();
             this.setRange(e);
+            (0, _utils.getLS)();
         }
     }, {
         key: 'render',
@@ -23714,6 +23712,7 @@ var getLS = function getLS() {
     var retrievedDB = localStorage.getItem("dictionaryDB");
     var parsedResult = JSON.parse(retrievedDB);
     // (parsed)
+    console.log("getLS called");
     return parsedResult;
 };
 
@@ -23913,7 +23912,7 @@ var DisplayCtrl = function (_Component) {
 
             return _react2.default.createElement(
                 'div',
-                { id: 'displayCtrl-box' },
+                { className: 'displayCtrl-box' },
                 dbPayload.map(function (entry, idx) {
                     return payloadLower - 1 <= idx && payloadUpper >= idx && _react2.default.createElement(_VocabCard2.default, { key: idx, entry: entry });
                 })
@@ -23976,28 +23975,41 @@ var VocabCard = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
+            var _props$entry = this.props.entry,
+                id = _props$entry.id,
+                word_en = _props$entry.word_en,
+                word_de = _props$entry.word_de,
+                example_en = _props$entry.example_en,
+                example_de = _props$entry.example_de;
+
             return _react2.default.createElement(
                 'div',
                 { id: 'vocab-card', className: 'vocab-card' },
                 _react2.default.createElement(
                     'h1',
-                    { className: 'card-property' },
-                    this.props.entry.word_en
-                ),
-                _react2.default.createElement(
-                    'h3',
-                    { className: 'card-property' },
-                    this.props.entry.word_de
+                    { className: 'card-property', id: 'card-idx' },
+                    id,
+                    ' \u258F'
                 ),
                 _react2.default.createElement(
                     'h1',
-                    { className: 'card-property' },
-                    this.props.entry.example_en
+                    { className: 'card-property', id: 'word-en' },
+                    word_en
                 ),
                 _react2.default.createElement(
                     'h3',
-                    { className: 'card-property' },
-                    this.props.entry.example_de
+                    { className: 'card-property', id: 'word-de' },
+                    word_de
+                ),
+                _react2.default.createElement(
+                    'h1',
+                    { className: 'card-property', id: 'example-en' },
+                    example_en
+                ),
+                _react2.default.createElement(
+                    'h3',
+                    { className: 'card-property', id: 'example-de' },
+                    example_de
                 ),
                 _react2.default.createElement('hr', null)
             );

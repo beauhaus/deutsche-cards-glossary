@@ -22,10 +22,10 @@ class DisplayCtrl extends Component {
         const {payloadLower, payloadUpper, dbPayload} = this.props;
         
         return (
-            <div id="displayCtrl-box">
+            <div className="displayCtrl-box">
                 {dbPayload.map((entry, idx) => (
                     ((payloadLower-1 <= idx  && payloadUpper >= idx) ) &&
-                    <VocabCard key={idx} entry={entry}/>
+                    <VocabCard key={idx} entry={entry} />
                     ))}
             </div>
         );

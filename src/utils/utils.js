@@ -33,6 +33,7 @@ const getLS = () => {
     const retrievedDB = localStorage.getItem("dictionaryDB");
     const parsedResult = JSON.parse(retrievedDB);
     // (parsed)
+    console.log("getLS called")
     return parsedResult;
 }
 

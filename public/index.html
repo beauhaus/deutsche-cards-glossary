@@ -14,54 +14,53 @@
         }
 
         body {
-            background: fuchsia;
+            background: #60665A;
             font-family: 'Montserrat', sans-serif;            
         }
         #app {
             background: #60665A;
             width: 100vw;
-            height: 100vh;
+            /* position: relative; */
+            /* border: 1px solid coral; */
         }
-
-        details {
-            margin-bottom: 50px;
-            font-family: 'Montserrat', sans-serif;
-            text-align: center;
-        }
-
-        a {
-            position: absolute;
-            right: 0;
+        .landing-comp {
+            width: 100vw;
+            /* height: 100vh; */
+            display: grid;
+            grid-template-columns: 20vw 40vw 40vw;
+            grid-template-rows: 1fr;
+            /* position: relative;
             top: 0;
-            font-size: 30px;
-            text-decoration: none !important;
+            left: 0; */
         }
+        .menu-comp { /*30vw*/
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 20vw;
+            height: 100vh;
 
-        #result-box {
-            border: 1px solid coral;
-            position: relative;
-        }
-
-        #de-example::before {
-            content: '🇩🇪'
-        }
-
-        #en-example::before {
-            content: '🇺🇸'
-        }
-
-        #search-field {
-            width: 50%;
-            height: 5vh;
-            border: 3px solid orange;
-        }
-
-        .search-bar {
+            display: grid;
+            grid-template-columns: 100%;
+            grid-template-rows: repeat(3, 33.33vh); 
             text-align: center;
+            /* border: 1px dashed rgb(223, 223, 147); */
+            /* overflow: hidden; */
         }
-
-        /****above is for DICTIONARY SEARCH ****/
-
+        .menu-options {
+            grid-column: 1;
+            grid-row: 2;
+            display: grid;
+            grid-template-rows: repeat(6, 1fr);
+            grid-template-columns: 1fr;
+        }
+        .displayCtrl-box {
+            grid-column: 2/4;
+            border: 1px solid orangered;
+            display: grid;
+            width: 100%;
+        }
+/* Layout end */
 
         input[type="text"] {
             /* width: 100%; */
@@ -122,27 +121,6 @@
             height: 2vw;
             font-size: 10px;
         }
-        .landing-comp {
-            width: 100vw;
-            height: 100vh;
-            display: grid;
-            grid-template-columns: 20vw 40vw 40vw;
-            grid-template-rows: 1fr; 
-        }
-        .menu-comp { /*30vw*/
-            grid-column: 1;
-            grid-row: 1;
-            display: grid;
-            grid-template-columns: 1fr;
-            grid-template-rows: repeat(3, 1fr); 
-            text-align: center;
-        }
-        .menu-options {
-            grid-row: 2;
-            display: grid;
-            grid-template-rows: repeat(6, 1fr);
-            grid-template-columns: 1fr;
-        }
         .menu-options h1 {
             font-family: 'Times New Roman', Times, serif, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;   
         }
@@ -173,10 +151,46 @@
             display: block;
             margin: 10px auto;
         }
-        .displayCtrl-box {
-            grid-column: 2/4;
-            border: 1px solid orangered; 
+    /************ search dictionary stuff *******************/
+        details {
+            margin-bottom: 50px;
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
         }
+
+        a {
+            position: absolute;
+            right: 0;
+            top: 0;
+            font-size: 30px;
+            text-decoration: none !important;
+        }
+
+        #result-box {
+            border: 1px solid coral;
+            position: relative;
+        }
+
+        #example-de::before {
+            content: '🇩🇪'
+        }
+
+        #example-en::before {
+            content: '🇺🇸'
+        }
+
+        #search-field {
+            width: 50%;
+            height: 5vh;
+            border: 3px solid orange;
+        }
+
+        .search-bar {
+            text-align: center;
+        }
+
+/****above is for DICTIONARY SEARCH ****/
+
     </style>
 </head>
 
