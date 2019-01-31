@@ -1,11 +1,9 @@
 import React, {Component} from 'react'
-import {setLS, getLS, ctrl, getPartialLS} from '../utils/utils';
+import {setLS, getLS, utilCtrl, getPartialLS} from '../utils/utils';
 
 import Menu from './Menu'
 import DisplayCtrl from './DisplayCtrl'
 
-
-// import db from '../data/vocabDB.json'
 
 
 
@@ -14,46 +12,50 @@ class Landing extends Component {
         super(props)
         this.state = {
             init: 'state',
-            currentDisplay: []
+            ls: []
         }
-    // this.currentDisplayHandler = this.currentDisplayHandler.bind(this);
     this.setLSClick = this.setLSClick.bind(this);
-    this.getLSClick = this.getLSClick.bind(this);
-    this.getTenClick = this.getTenClick.bind(this);
-    this.getMoreClick = this.getMoreClick.bind(this);
-
+    this.getLS = this.getLS.bind(this);
+    this.onRangeSubmit = this.onRangeSubmit.bind(this);
+    this.setRange = this.setRange.bind(this);
     }
-    getTenClick() {
-        this.setState((prevState) =>(
-            {
-                lowerBounds: 0,
-                upperBounds: 9
-            }
-        ))
+    componentWillUpdate(nextProps, nextState) {
+        // console.log("Land update: \nLow: ", this.state.lowerBounds, "\n up: ", this.state.upperBounds )
     }
     setLSClick() {
         setLS();
     }
-    getLSClick() {
+    getLS() {
         const payload = getLS();
-        // console.log("from LANDING: ", payload)
+        this.setState((prevState) => ({
+            ls: payload
+        }))
     }
-    getMoreClick() {
-        // const more = getLS();
-        console.log("getMore from LANDING: ")
+    setRange(e) {
+        const lowerBounds = parseInt(e.target.lowerBounds.value);
+        const upperBounds = parseInt(e.target.upperBounds.value);
+        this.setState((prevState) =>(
+            {
+                lowerBounds,
+                upperBounds
+            }
+        ))
     }
-    componentWillUpdate(nextProps, nextState) {
-        console.log("component updated")
-
+    onRangeSubmit(e) {
+        setLS();
+        e.preventDefault();
+        this.setRange(e);
     }
 
 
     render() {
+        const {lowerBounds, upperBounds, ls} = this.state;
         return (
-            <div>
-            <h1>Landing with form</h1>
-            <Menu setLS ={this.setLSClick} getLS={this.getLSClick} getTen={this.getTenClick} getMore={this.getMoreClick}/>
-            <DisplayCtrl lower={this.state.lowerBounds} upper={this.state.upperBounds}/>
+            <div className="landing-comp">
+            <Menu setLS ={this.setLSClick} getLS={this.getLS}  onRangeSubmit={this.onRangeSubmit}/>
+        {/* 
+        */}
+        <DisplayCtrl payloadLower={lowerBounds} payloadUpper={upperBounds} dbPayload={ls}/> 
             </div>
         )
     }

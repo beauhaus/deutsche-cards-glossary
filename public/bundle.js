@@ -23584,9 +23584,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-// import db from '../data/vocabDB.json'
-
-
 var Landing = function (_Component) {
     _inherits(Landing, _Component);
 
@@ -23597,25 +23594,19 @@ var Landing = function (_Component) {
 
         _this.state = {
             init: 'state',
-            currentDisplay: []
-            // this.currentDisplayHandler = this.currentDisplayHandler.bind(this);
-        };_this.setLSClick = _this.setLSClick.bind(_this);
-        _this.getLSClick = _this.getLSClick.bind(_this);
-        _this.getTenClick = _this.getTenClick.bind(_this);
-        _this.getMoreClick = _this.getMoreClick.bind(_this);
-
+            ls: []
+        };
+        _this.setLSClick = _this.setLSClick.bind(_this);
+        _this.getLS = _this.getLS.bind(_this);
+        _this.onRangeSubmit = _this.onRangeSubmit.bind(_this);
+        _this.setRange = _this.setRange.bind(_this);
         return _this;
     }
 
     _createClass(Landing, [{
-        key: 'getTenClick',
-        value: function getTenClick() {
-            this.setState(function (prevState) {
-                return {
-                    lowerBounds: 0,
-                    upperBounds: 9
-                };
-            });
+        key: 'componentWillUpdate',
+        value: function componentWillUpdate(nextProps, nextState) {
+            // console.log("Land update: \nLow: ", this.state.lowerBounds, "\n up: ", this.state.upperBounds )
         }
     }, {
         key: 'setLSClick',
@@ -23623,35 +23614,47 @@ var Landing = function (_Component) {
             (0, _utils.setLS)();
         }
     }, {
-        key: 'getLSClick',
-        value: function getLSClick() {
+        key: 'getLS',
+        value: function getLS() {
             var payload = (0, _utils.getLS)();
-            // console.log("from LANDING: ", payload)
+            this.setState(function (prevState) {
+                return {
+                    ls: payload
+                };
+            });
         }
     }, {
-        key: 'getMoreClick',
-        value: function getMoreClick() {
-            // const more = getLS();
-            console.log("getMore from LANDING: ");
+        key: 'setRange',
+        value: function setRange(e) {
+            var lowerBounds = parseInt(e.target.lowerBounds.value);
+            var upperBounds = parseInt(e.target.upperBounds.value);
+            this.setState(function (prevState) {
+                return {
+                    lowerBounds: lowerBounds,
+                    upperBounds: upperBounds
+                };
+            });
         }
     }, {
-        key: 'componentWillUpdate',
-        value: function componentWillUpdate(nextProps, nextState) {
-            console.log("component updated");
+        key: 'onRangeSubmit',
+        value: function onRangeSubmit(e) {
+            (0, _utils.setLS)();
+            e.preventDefault();
+            this.setRange(e);
         }
     }, {
         key: 'render',
         value: function render() {
+            var _state = this.state,
+                lowerBounds = _state.lowerBounds,
+                upperBounds = _state.upperBounds,
+                ls = _state.ls;
+
             return _react2.default.createElement(
                 'div',
-                null,
-                _react2.default.createElement(
-                    'h1',
-                    null,
-                    'Landing with form'
-                ),
-                _react2.default.createElement(_Menu2.default, { setLS: this.setLSClick, getLS: this.getLSClick, getTen: this.getTenClick, getMore: this.getMoreClick }),
-                _react2.default.createElement(_DisplayCtrl2.default, { lower: this.state.lowerBounds, upper: this.state.upperBounds })
+                { className: 'landing-comp' },
+                _react2.default.createElement(_Menu2.default, { setLS: this.setLSClick, getLS: this.getLS, onRangeSubmit: this.onRangeSubmit }),
+                _react2.default.createElement(_DisplayCtrl2.default, { payloadLower: lowerBounds, payloadUpper: upperBounds, dbPayload: ls })
             );
         }
     }]);
@@ -23671,7 +23674,7 @@ module.exports = Landing;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.getPartialLS = exports.setLS = exports.getLS = exports.ctrl = exports.clearLS = undefined;
+exports.getPartialLS = exports.setLS = exports.getLS = exports.utilCtrl = exports.clearLS = undefined;
 
 var _vocabDB = __webpack_require__(15);
 
@@ -23720,7 +23723,8 @@ var getPartialLS = function getPartialLS(lower, upper) {
     var partialArray = parsedResult.filter(function (item, idx) {
         return idx >= lower && idx <= upper;
     });
-    console.log("partialArray: ", partialArray);
+    // console.log("partialArray: ", partialArray)
+    // console.log("is partialArray an Array?: ", Array.isArray(partialArray))
     return partialArray;
 };
 
@@ -23732,11 +23736,11 @@ var food = function food(meal, dishName) {
     console.log("My favorite " + meal + " is " + dishName + ".");
 };
 
-var ctrl = function ctrl(callback, param1, param2) {
+var utilCtrl = function utilCtrl(callback, param1, param2) {
     // console.log("ctr ran with: ", arguments[0])
     return callback(param1, param2);
 };
-exports.ctrl = ctrl;
+exports.utilCtrl = utilCtrl;
 exports.getLS = getLS;
 exports.setLS = setLS;
 exports.getPartialLS = getPartialLS;
@@ -23779,23 +23783,18 @@ var Menu = function (_Component) {
         _this.state = {
             init: ""
         };
-        _this.onRangeSubmit = _this.onRangeSubmit.bind(_this);
+
         return _this;
     }
 
     _createClass(Menu, [{
-        key: "onRangeSubmit",
-        value: function onRangeSubmit(e) {
-            e.preventDefault();
-            var lowerBounds = e.target.lowerBounds.value;
-            var upperBounds = e.target.upperBounds.value;
-            console.log("upper/lower: ", upperBounds, lowerBounds);
-        }
-    }, {
         key: "componentDidMount",
-        value: function componentDidMount() {
-            console.log("p>Menu: ", this.props);
-        }
+        value: function componentDidMount() {}
+        // console.log("p>Menu: ", this.props)
+
+
+        // <button onClick={getTen}>Get 10</button>
+
     }, {
         key: "render",
         value: function render() {
@@ -23803,46 +23802,44 @@ var Menu = function (_Component) {
                 setLS = _props.setLS,
                 getLS = _props.getLS,
                 getTen = _props.getTen,
-                getMore = _props.getMore;
+                getMore = _props.getMore,
+                onRangeSubmit = _props.onRangeSubmit;
 
             return _react2.default.createElement(
                 "div",
-                { id: "Menu-box" },
+                { className: "menu-comp" },
                 _react2.default.createElement(
-                    "h1",
-                    null,
-                    "MENU:"
-                ),
-                _react2.default.createElement(
-                    "button",
-                    { onClick: setLS },
-                    "setLS"
-                ),
-                _react2.default.createElement(
-                    "button",
-                    { onClick: getLS },
-                    "GetLS"
-                ),
-                _react2.default.createElement(
-                    "button",
-                    { onClick: getTen },
-                    "Get 10"
-                ),
-                _react2.default.createElement(
-                    "button",
-                    { onClick: getMore },
-                    "Get More"
-                ),
-                _react2.default.createElement("hr", null),
-                _react2.default.createElement(
-                    "form",
-                    { onSubmit: this.onRangeSubmit },
-                    _react2.default.createElement("input", { id: "upperBounds-input", type: "text", name: "lowerBounds", placeholder: "[" }),
-                    _react2.default.createElement("input", { id: "lowerBounds-input", type: "text", name: "upperBounds", placeholder: "]" }),
+                    "div",
+                    { className: "menu-options" },
                     _react2.default.createElement(
-                        "button",
+                        "h1",
                         null,
-                        "Submit Bounds"
+                        "Deutsch"
+                    ),
+                    _react2.default.createElement(
+                        "div",
+                        { className: "menu-btns" },
+                        _react2.default.createElement(
+                            "button",
+                            { className: "menu-btn", onClick: setLS },
+                            "setLS"
+                        ),
+                        _react2.default.createElement(
+                            "button",
+                            { className: "menu-btn", onClick: getLS },
+                            "GetLS"
+                        )
+                    ),
+                    _react2.default.createElement(
+                        "form",
+                        { className: "menu-form", onSubmit: onRangeSubmit },
+                        _react2.default.createElement("input", { id: "upperBounds-input", type: "text", name: "lowerBounds", placeholder: "[" }),
+                        _react2.default.createElement("input", { id: "lowerBounds-input", type: "text", name: "upperBounds", placeholder: "]" }),
+                        _react2.default.createElement(
+                            "button",
+                            null,
+                            "Submit Bounds"
+                        )
                     )
                 )
             );
@@ -23867,6 +23864,10 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _VocabCard = __webpack_require__(18);
+
+var _VocabCard2 = _interopRequireDefault(_VocabCard);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -23874,8 +23875,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-// import {setLS, getLS, ctrl} from '../utils/utils';
 
 var DisplayCtrl = function (_Component) {
     _inherits(DisplayCtrl, _Component);
@@ -23886,23 +23885,38 @@ var DisplayCtrl = function (_Component) {
         var _this = _possibleConstructorReturn(this, (DisplayCtrl.__proto__ || Object.getPrototypeOf(DisplayCtrl)).call(this, props));
 
         _this.state = {
-            init: ""
+            init: "",
+            payloadLower: "init",
+            payloadUpper: "init"
             // this.buttonSetLSClick = this.buttonSetLSClick.bind(this);
         };return _this;
     }
 
     _createClass(DisplayCtrl, [{
-        key: "render",
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            console.log("DisplayCTRL  loaded");
+        }
+    }, {
+        key: 'componentWillUpdate',
+        value: function componentWillUpdate(nextProps, nextState) {
+            console.log("DisplayCTRL  updated");
+        }
+    }, {
+        key: 'render',
         value: function render() {
-            console.log("p> DisplCtrl: ", this.props);
+            var _props = this.props,
+                payloadLower = _props.payloadLower,
+                payloadUpper = _props.payloadUpper,
+                dbPayload = _props.dbPayload;
+
+
             return _react2.default.createElement(
-                "div",
-                { id: "displayCtrl-box" },
-                _react2.default.createElement(
-                    "h1",
-                    null,
-                    "displayCtrl:"
-                )
+                'div',
+                { id: 'displayCtrl-box' },
+                dbPayload.map(function (entry, idx) {
+                    return payloadLower - 1 <= idx && payloadUpper >= idx && _react2.default.createElement(_VocabCard2.default, { key: idx, entry: entry });
+                })
             );
         }
     }]);
@@ -23911,6 +23925,89 @@ var DisplayCtrl = function (_Component) {
 }(_react.Component);
 
 module.exports = DisplayCtrl;
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _utils = __webpack_require__(14);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var VocabCard = function (_Component) {
+    _inherits(VocabCard, _Component);
+
+    function VocabCard(props) {
+        _classCallCheck(this, VocabCard);
+
+        var _this = _possibleConstructorReturn(this, (VocabCard.__proto__ || Object.getPrototypeOf(VocabCard)).call(this, props));
+
+        _this.state = {
+            init: ""
+            // this.buttonSetLSClick = this.buttonSetLSClick.bind(this);
+        };return _this;
+    }
+
+    _createClass(VocabCard, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            console.log("VocabCard  loaded");
+        }
+    }, {
+        key: 'componentWillUpdate',
+        value: function componentWillUpdate(nextProps, nextState) {
+            console.log("VocabCard  updated");
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                { id: 'vocab-card', className: 'vocab-card' },
+                _react2.default.createElement(
+                    'h1',
+                    { className: 'card-property' },
+                    this.props.entry.word_en
+                ),
+                _react2.default.createElement(
+                    'h3',
+                    { className: 'card-property' },
+                    this.props.entry.word_de
+                ),
+                _react2.default.createElement(
+                    'h1',
+                    { className: 'card-property' },
+                    this.props.entry.example_en
+                ),
+                _react2.default.createElement(
+                    'h3',
+                    { className: 'card-property' },
+                    this.props.entry.example_de
+                ),
+                _react2.default.createElement('hr', null)
+            );
+        }
+    }]);
+
+    return VocabCard;
+}(_react.Component);
+
+module.exports = VocabCard;
 
 /***/ })
 /******/ ]);

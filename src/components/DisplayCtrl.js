@@ -1,19 +1,32 @@
 import React, {Component} from 'react';
-// import {setLS, getLS, ctrl} from '../utils/utils';
+import VocabCard from './VocabCard';
 
 class DisplayCtrl extends Component {
     constructor(props) {
         super(props)
         this.state = {
             init: "",
+            payloadLower: "init",
+            payloadUpper: "init"
         }
         // this.buttonSetLSClick = this.buttonSetLSClick.bind(this);
     }
+    componentDidMount() {
+        console.log("DisplayCTRL  loaded")
+    }
+    componentWillUpdate(nextProps, nextState) {
+        console.log("DisplayCTRL  updated")
+    }
+
     render() {
-        console.log("p> DisplCtrl: ", this.props)
+        const {payloadLower, payloadUpper, dbPayload} = this.props;
+        
         return (
             <div id="displayCtrl-box">
-                <h1>displayCtrl:</h1>
+                {dbPayload.map((entry, idx) => (
+                    ((payloadLower-1 <= idx  && payloadUpper >= idx) ) &&
+                    <VocabCard key={idx} entry={entry}/>
+                    ))}
             </div>
         );
     }

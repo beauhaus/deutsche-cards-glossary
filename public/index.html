@@ -1,115 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-	<title>React Glossary</title>
-	<link rel="stylesheet" href="./css/styles.css">
-	<style>
-	body {
-    background: #222;
-}
-html {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
-#app {
-    margin: 0 auto;
-    width: 500px;
-    background: burlywood; 
-    border-radius: 5px;
-    padding: 20px;
-}
-details {
-    margin-bottom: 50px;
-    font-family: 'Montserrat', sans-serif;
-    text-align: center;
-}
+    <meta charset="UTF-8">
+    <title>React Glossary</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Montserrat:200,300,400');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-a {
-  position: absolute;
-  right: 0;
-  top: 0;
-  font-size: 30px;
-  text-decoration: none !important;
-}
+        body {
+            background: fuchsia;
+            font-family: 'Montserrat', sans-serif;            
+        }
+        #app {
+            background: #60665A;
+            width: 100vw;
+            height: 100vh;
+        }
 
-#result-box {
-    border: 1px solid coral;
-    position: relative;
-}
+        details {
+            margin-bottom: 50px;
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+        }
 
-#de-example::before {
-content: '🇩🇪'
-}
+        a {
+            position: absolute;
+            right: 0;
+            top: 0;
+            font-size: 30px;
+            text-decoration: none !important;
+        }
 
-#en-example::before {
-    content: '🇺🇸'
-}
+        #result-box {
+            border: 1px solid coral;
+            position: relative;
+        }
 
-#search-field {
-    width: 50%;
-    height: 5vh;
-    border: 3px solid orange;
-}
-.search-bar {
-    text-align: center;
-}
-input[type="text"] {
-    width: 100%;
-    font-size: 20px;
-}
+        #de-example::before {
+            content: '🇩🇪'
+        }
 
-::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-    font-size: 25px;
-        text-align: center;
+        #en-example::before {
+            content: '🇺🇸'
+        }
 
-  }
-  ::-moz-placeholder { /* Firefox 19+ */
-    font-size: 25px;
-        text-align: center;
+        #search-field {
+            width: 50%;
+            height: 5vh;
+            border: 3px solid orange;
+        }
 
-  }
-  :-ms-input-placeholder { /* IE 10+ */
-    font-size: 25px;
-        text-align: center;
+        .search-bar {
+            text-align: center;
+        }
 
-  }
-  :-moz-placeholder { /* Firefox 18- */
-    font-size: 25px;
-        text-align: center;
+        /****above is for DICTIONARY SEARCH ****/
 
-	}
-	form {
-		border: 1px solid orange;
-		width: 20vw;
-		float: left;
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: 5vh;
-	}
-	#upperBounds-input {
-        box-shadow: inset 2px 2px 5px 0px rgba(0, 0, 0, 0.5);
-		border: 1px solid grey;
-		grid-column: 1;
-		width: 3vw;
-	}
-  #lowerBounds-input{
-    box-shadow: inset 2px 2px 5px 0px rgba(0, 0, 0, 0.5);
-		border: 1px solid grey;
-		grid-column: 2;
-		width: 3vw;
-	}
-	form button {
-        box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.5);
-		border: 1px solid black;
-		grid-column: 3;
-		width: 7vw;
-	}
-	</style>
+
+        input[type="text"] {
+            /* width: 100%; */
+            font-size: 20px;
+        }
+
+        ::-webkit-input-placeholder {
+            /* Chrome/Opera/Safari */
+            font-size: 25px;
+            text-align: center;
+
+        }
+
+        ::-moz-placeholder {
+            /* Firefox 19+ */
+            font-size: 25px;
+            text-align: center;
+
+        }
+
+        :-ms-input-placeholder {
+            /* IE 10+ */
+            font-size: 25px;
+            text-align: center;
+
+        }
+
+        :-moz-placeholder {
+            /* Firefox 18- */
+            font-size: 25px;
+            text-align: center;
+
+        }
+
+        #upperBounds-input {
+            box-shadow: inset 2px 2px 5px 0px rgba(0, 0, 0, 0.5);
+            border: 1px solid grey;
+            
+            width: 3vw;
+        }
+
+        #lowerBounds-input {
+            box-shadow: inset 2px 2px 5px 0px rgba(0, 0, 0, 0.5);
+            border: 1px solid grey;
+            
+            width: 3vw;
+        }
+
+        button {
+            box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.5);
+            border: 1px solid black;
+            border-radius: 4px;
+        }
+
+        .card-property {
+            background: #EFE9E1;
+            width: 20vw;
+            height: 2vw;
+            font-size: 10px;
+        }
+        .landing-comp {
+            width: 100vw;
+            height: 100vh;
+            display: grid;
+            grid-template-columns: 20vw 40vw 40vw;
+            grid-template-rows: 1fr; 
+        }
+        .menu-comp { /*30vw*/
+            grid-column: 1;
+            grid-row: 1;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: repeat(3, 1fr); 
+            text-align: center;
+        }
+        .menu-options {
+            grid-row: 2;
+            display: grid;
+            grid-template-rows: repeat(6, 1fr);
+            grid-template-columns: 1fr;
+        }
+        .menu-options h1 {
+            font-family: 'Times New Roman', Times, serif, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;   
+        }
+        .menu-btns {
+            color: #000;
+            grid-row: 2;
+        }
+        .menu-btn {
+            width: 6vw;
+            margin: 10px;
+            height: 2vh;
+            color: #000;
+            background: #EFE9E1;
+        }
+        .menu-btn:hover {
+            color: #fff;
+            background: sandybrown;
+            border: 1px solid #EFE9E1;
+        }
+        .menu-form {
+            grid-row: 4/6;
+            
+        }
+        .menu-form input {
+            margin: 5px 20px;
+        }
+        .menu-form button {
+            display: block;
+            margin: 10px auto;
+        }
+        .displayCtrl-box {
+            grid-column: 2/4;
+            border: 1px solid orangered; 
+        }
+    </style>
 </head>
+
 <body>
-	<div id="app"></div>
-	<script src="./bundle.js"></script>
+    <div id="app"></div>
+    <script src="./bundle.js"></script>
 </body>
+
 </html>

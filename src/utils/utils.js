@@ -40,7 +40,8 @@ const getPartialLS = (lower, upper) => {
     const retrievedDB = localStorage.getItem("dictionaryDB");
     const parsedResult = JSON.parse(retrievedDB);
     const partialArray = parsedResult.filter((item, idx) => (idx >=lower && idx <=upper));
-    console.log("partialArray: ", partialArray)
+    // console.log("partialArray: ", partialArray)
+    // console.log("is partialArray an Array?: ", Array.isArray(partialArray))
     return partialArray;
 }
 
@@ -52,12 +53,12 @@ const food = (meal, dishName ) => {
     console.log(`My favorite ${meal} is ${dishName}.`)
 }
 
-const ctrl = (callback, param1, param2) => {
+const utilCtrl = (callback, param1, param2) => {
     // console.log("ctr ran with: ", arguments[0])
     return callback(param1, param2);
 };
 export {
-    ctrl,
+    utilCtrl,
     getLS,
     setLS,
     getPartialLS
