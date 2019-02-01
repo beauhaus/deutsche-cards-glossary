@@ -25,7 +25,7 @@ class VocabCard extends Component {
                 <h3 className="card-property" id="word-de">{word_de}</h3>
                 <h1 className="card-property" id="example-en">{example_en}</h1>
                 <h3 className="card-property" id="example-de">{example_de}</h3>
-                <hr />
+                
             </div>
         );
     }

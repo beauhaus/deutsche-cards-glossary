@@ -24010,8 +24010,7 @@ var VocabCard = function (_Component) {
                     'h3',
                     { className: 'card-property', id: 'example-de' },
                     example_de
-                ),
-                _react2.default.createElement('hr', null)
+                )
             );
         }
     }]);
