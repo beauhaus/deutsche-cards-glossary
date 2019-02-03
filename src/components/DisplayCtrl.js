@@ -25,7 +25,7 @@ class DisplayCtrl extends Component {
             <div className="displayCtrl-box">
                 {dbPayload.map((entry, idx) => (
                     ((payloadLower-1 <= idx  && payloadUpper >= idx) ) &&
-                    <VocabCard key={idx} entry={entry} />
+                    <VocabCard key={idx} entry={entry} idx={idx} />
                     ))}
             </div>
         );

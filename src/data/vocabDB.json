@@ -7737,18 +7737,18 @@
 	},
 	{
 		"id": "10X",
-		"word_de": "TEMPLATE",
-		"word_en": "TEMPLATE",
+		"word_de": "käuflich",
+		"word_en": "venal",
 		"example_de": "TEMPLATEEXAMPLEDE",
 		"example_en": "TEMPLATEEXAMPLEENG",
 		"show_switch": "true"
 	},
 	{
 		"id": "10X",
-		"word_de": "TEMPLATE",
-		"word_en": "TEMPLATE",
-		"example_de": "TEMPLATEEXAMPLEDE",
-		"example_en": "TEMPLATEEXAMPLEENG",
+		"word_de": "Ich sehne mich nach",
+		"word_en": "I long for/ I crave",
+		"example_de": "Ich sehne mich nach Glühwein",
+		"example_en": "I'm craving Glühwein",
 		"show_switch": "true"
 	},
 	{
