@@ -71,36 +71,120 @@
             width: 100%;
             margin-top: 1vh;
         }
+        .slide-card-en, .slide-card-de {
+            text-align: center;
+        }
 
         .vocab-card-left {
-            background: #EFE9E1;
+            background: #60665A;
             grid-column: 2/8;
             width: 100%;
             height: 30vh;
             box-shadow: -30px 30px 30px 0px black;
-            padding: 2%;
+            /* padding: 2%; */
             margin-top: 15vh;
         }
         .vocab-card-right {
-            background: #EFE9E1;
+            background: #60665A;
             grid-column: 9/15;
             width: 100%;
             height: 30vh;
             box-shadow: -30px 30px 30px 0px black;
-            padding: 2%;
+            /* padding: 2%; */
         }
 
         .card-property {
             /* background: #EFE9E1; */
             font-size: 30px;
             font-weight: 100;
+            
         }
 
         #card-idx {
             float: right;
         }
 
-        /* Layout end */
+        #word-de {
+            font-weight: bold;
+            grid-column: 1;
+            grid-row: 1;
+            margin: auto;
+
+        }
+        #word-en {
+            font-weight: bold;
+            grid-column: 1;
+            grid-row: 1;
+            margin: auto;
+
+        }
+        #example-de {
+            grid-column: 1;
+            grid-row: 2;
+        }
+        #example-en {
+            grid-column: 1;
+            grid-row: 2;
+        }
+
+
+
+        .card-border{
+        fill: transparent;
+        position: absolute;
+        top: 0;
+        left: -1px;
+        height: 102%;
+        width: 100%;
+        stroke-width: 4px;
+        stroke-dasharray: 1590px;
+        fill: transparent;
+        animation: 0.5s infinite forwards drawSVG;
+        animation-iteration-count: 1;
+  }
+  
+  @keyframes drawSVG {
+    0% {
+      stroke-dashoffset: -1590px;
+    }
+    100% {
+      stroke-dashoffset: 0px;
+    }
+  }
+  svg {
+      /* border: 1px solid teal; */
+  }
+                /*****CARD ANIMATION****/
+                #vocab-card {
+            display: grid;
+            grid-template-rows: 100%;
+            grid-template-columns: 100%;
+        }
+        .card-hint{
+            grid-row: 1;
+            grid-column: 1;
+            background: #60665A;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: repeat(2, 1fr);
+        }
+.card-reveal{
+    grid-row: 1;
+    grid-column: 1;
+    opacity: 0;
+    background: #60665A;
+    position: relative;
+    width: 100%;
+    height: 102%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr);
+}
+.card-reveal:hover {
+    opacity: 1;
+}
+
+        /*************** Layout end ***************/
 
         input[type="text"] {
             /* width: 100%; */
@@ -153,6 +237,7 @@
             box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.5);
             border: 1px solid black;
             border-radius: 4px;
+            display: none;
         }
 
 
@@ -163,6 +248,7 @@
         .menu-btns {
             color: #000;
             grid-row: 2;
+            
         }
 
         .menu-btn {
@@ -213,13 +299,13 @@
             position: relative;
         }
 
-        #example-de::before {
+        /* #example-de::before {
             content: '🇩🇪'
         }
 
         #example-en::before {
             content: '🇺🇸'
-        }
+        } */
 
         #search-field {
             width: 50%;
@@ -232,6 +318,8 @@
         }
 
         /****above is for DICTIONARY SEARCH ****/
+
+
     </style>
 </head>
 
@@ -241,3 +329,24 @@
 </body>
 
 </html>
+
+
+<!-- svg {
+    width: 400px;
+    height: 300px;
+    stroke-dasharray: 1580px;
+    fill: transparent;
+    animation: 3s infinite forwards drawSVG;
+    animation-iteration-count: 1;
+  }
+  
+  @keyframes drawSVG {
+    0% {
+      stroke-dashoffset: -1580px;
+    }
+    ,
+    100% {
+      stroke-dashoffset: 0px;
+    }
+  }
+   -->

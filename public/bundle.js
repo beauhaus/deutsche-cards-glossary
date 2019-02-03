@@ -23636,9 +23636,9 @@ var Landing = function (_Component) {
     }, {
         key: 'onRangeSubmit',
         value: function onRangeSubmit(e) {
+            this.getLS();
             e.preventDefault();
             this.setRange(e);
-            (0, _utils.getLS)();
         }
     }, {
         key: 'render',
@@ -23867,6 +23867,8 @@ var _VocabCard = __webpack_require__(18);
 
 var _VocabCard2 = _interopRequireDefault(_VocabCard);
 
+var _utils = __webpack_require__(14);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -23895,11 +23897,13 @@ var DisplayCtrl = function (_Component) {
         key: 'componentDidMount',
         value: function componentDidMount() {
             console.log("DisplayCTRL  loaded");
+            // getLS();
         }
     }, {
         key: 'componentWillUpdate',
         value: function componentWillUpdate(nextProps, nextState) {
             console.log("DisplayCTRL  updated");
+            // getLS();
         }
     }, {
         key: 'render',
@@ -23940,6 +23944,10 @@ var _react2 = _interopRequireDefault(_react);
 
 var _utils = __webpack_require__(14);
 
+var _CardBorder = __webpack_require__(19);
+
+var _CardBorder2 = _interopRequireDefault(_CardBorder);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -23957,9 +23965,11 @@ var VocabCard = function (_Component) {
         var _this = _possibleConstructorReturn(this, (VocabCard.__proto__ || Object.getPrototypeOf(VocabCard)).call(this, props));
 
         _this.state = {
-            init: ""
-            // this.buttonSetLSClick = this.buttonSetLSClick.bind(this);
-        };return _this;
+            init: "",
+            showSolution: false
+        };
+        _this.mouseDownHandler = _this.mouseDownHandler.bind(_this);
+        return _this;
     }
 
     _createClass(VocabCard, [{
@@ -23973,6 +23983,15 @@ var VocabCard = function (_Component) {
             console.log("VocabCard  updated");
         }
     }, {
+        key: 'mouseDownHandler',
+        value: function mouseDownHandler() {
+            this.setState(function (prevState) {
+                return {
+                    showSolution: !prevState.showSolution
+                };
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
             var _props$entry = this.props.entry,
@@ -23983,10 +24002,9 @@ var VocabCard = function (_Component) {
                 example_de = _props$entry.example_de;
             var idx = this.props.idx;
 
-
             return _react2.default.createElement(
                 'div',
-                { id: 'vocab-card', className: id === 0 || id % 2 ? 'vocab-card-left' : 'vocab-card-right' },
+                { id: 'vocab-card', className: id === 0 || id % 2 ? 'vocab-card-left' : 'vocab-card-right', onMouseDown: this.mouseDownHandler },
                 _react2.default.createElement(
                     'h1',
                     { className: 'card-property', id: 'card-idx' },
@@ -23994,24 +24012,33 @@ var VocabCard = function (_Component) {
                     ' '
                 ),
                 _react2.default.createElement(
-                    'h1',
-                    { className: 'card-property', id: 'word-en' },
-                    word_en
+                    'div',
+                    { className: 'slide-card-en card-hint' },
+                    _react2.default.createElement(
+                        'h1',
+                        { className: 'card-property card-word', id: 'word-en' },
+                        word_en
+                    ),
+                    _react2.default.createElement(
+                        'h1',
+                        { className: 'card-property', id: 'example-en' },
+                        example_en
+                    )
                 ),
-                _react2.default.createElement(
-                    'h3',
-                    { className: 'card-property', id: 'word-de' },
-                    word_de
-                ),
-                _react2.default.createElement(
-                    'h1',
-                    { className: 'card-property', id: 'example-en' },
-                    example_en
-                ),
-                _react2.default.createElement(
-                    'h3',
-                    { className: 'card-property', id: 'example-de' },
-                    example_de
+                this.state.showSolution && _react2.default.createElement(
+                    'div',
+                    { className: 'slide-card-de card-reveal' },
+                    _react2.default.createElement(
+                        'h3',
+                        { className: 'card-property', id: 'word-de' },
+                        word_de
+                    ),
+                    _react2.default.createElement(
+                        'h3',
+                        { className: 'card-property', id: 'example-de' },
+                        example_de
+                    ),
+                    _react2.default.createElement(_CardBorder2.default, null)
                 )
             );
         }
@@ -24021,6 +24048,73 @@ var VocabCard = function (_Component) {
 }(_react.Component);
 
 module.exports = VocabCard;
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var CardBorder = function (_Component) {
+    _inherits(CardBorder, _Component);
+
+    function CardBorder(props) {
+        _classCallCheck(this, CardBorder);
+
+        var _this = _possibleConstructorReturn(this, (CardBorder.__proto__ || Object.getPrototypeOf(CardBorder)).call(this, props));
+
+        _this.state = {
+            init: ""
+        };
+
+        return _this;
+    }
+
+    _createClass(CardBorder, [{
+        key: "componentDidMount",
+        value: function componentDidMount() {
+            console.log("p>CardBorder: did mount ");
+        }
+    }, {
+        key: "render",
+        value: function render() {
+            // const { setLS, getLS, getTen, getMore, onRangeSubmit } = this.props;
+            return _react2.default.createElement(
+                "svg",
+                { className: "card-border card-border-de", viewBox: "0 0 405 405", preserveAspectRatio: "none" },
+                _react2.default.createElement(
+                    "linearGradient",
+                    { id: "card-border-grad", x1: "200", x2: "200", y2: "400", gradientUnits: "userSpaceOnUse" },
+                    _react2.default.createElement("stop", { offset: ".1302" }),
+                    _react2.default.createElement("stop", { offset: ".3785", stopColor: "#69001e" }),
+                    _react2.default.createElement("stop", { offset: ".4992", stopColor: "#97002b" }),
+                    _react2.default.createElement("stop", { offset: ".7395", stopColor: "#d27d0d" }),
+                    _react2.default.createElement("stop", { offset: ".8502", stopColor: "#ebb100" })
+                ),
+                _react2.default.createElement("rect", { width: "400", height: "395", x: "2.5", y: "2.5", stroke: "url(#card-border-grad)" })
+            );
+        }
+    }]);
+
+    return CardBorder;
+}(_react.Component);
+
+module.exports = CardBorder;
 
 /***/ })
 /******/ ]);

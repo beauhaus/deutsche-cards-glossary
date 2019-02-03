@@ -25,7 +25,7 @@ class Menu extends Component {
                     </div>
                     <form className="menu-form" onSubmit={onRangeSubmit}>
                         <input id="upperBounds-input" type="text" name="lowerBounds" placeholder="["></input>
-                        <input id="lowerBounds-input" type="text" name="upperBounds" placeholder="]"></input>
+                        <input id="lowerBounds-input" type="text" name="upperBounds" placeholder="]" ></input>
                         <button>Submit Bounds</button>
                     </form>
                 </div>

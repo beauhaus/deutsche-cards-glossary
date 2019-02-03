@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import VocabCard from './VocabCard';
+import {setLS, getLS, utilCtrl, getPartialLS} from '../utils/utils';
 
 class DisplayCtrl extends Component {
     constructor(props) {
@@ -13,9 +14,11 @@ class DisplayCtrl extends Component {
     }
     componentDidMount() {
         console.log("DisplayCTRL  loaded")
+        // getLS();
     }
     componentWillUpdate(nextProps, nextState) {
         console.log("DisplayCTRL  updated")
+        // getLS();
     }
 
     render() {

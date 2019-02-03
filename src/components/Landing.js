@@ -45,9 +45,9 @@ class Landing extends Component {
         ))
     }
     onRangeSubmit(e) {
+        this.getLS();
         e.preventDefault();
         this.setRange(e);
-        getLS();
     }
 
 
