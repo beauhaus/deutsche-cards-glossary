@@ -35,7 +35,7 @@
 		"id": "5",
 		"word_de": "ein",
 		"word_en": "a",
-		"example_de": "Sie ist Mitglied der Gruppe",
+		"example_de": "Sie ist ein Mitglied der Gruppe",
 		"example_en": "She is a member of the group",
 		"show_switch": "true"
 	},
@@ -7763,8 +7763,8 @@
 		"id": "10X",
 		"word_de": "TEMPLATE",
 		"word_en": "TEMPLATE",
-		"example_de": "TEMPLATEEXAMPLEDE",
-		"example_en": "TEMPLATEEXAMPLEENG",
+		"example_de": "darauf freue ich mich schon",
+		"example_en": "I'm looking forward to it",
 		"show_switch": "true"
 	}
 ]

@@ -4,35 +4,32 @@ class Menu extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            init: "",
+            init: ""
+
         }
-        
     }
     componentDidMount() {
-        // console.log("p>Menu: ", this.props)
     }
+    
 
-    // <button onClick={getTen}>Get 10</button>
     render() {
-        const { setLS, getLS, getTen, getMore, onRangeSubmit } = this.props;
+        const { onRangeSubmit, handleInputChange } = this.props;
         return (
             <div className="menu-comp">
                 <div className="menu-options">
                     <h1>Deutsch</h1>
-                    <div className="menu-btns">
-                        <button className="menu-btn" onClick={setLS}>setLS</button>
-                        <button className="menu-btn" onClick={getLS}>GetLS</button>
-                    </div>
+                    <h2>{this.state.lowBound}</h2>
+                    <h2>{this.state.upBound}</h2>
                     <form className="menu-form" onSubmit={onRangeSubmit}>
-                        <input id="upperBounds-input" type="text" name="lowerBounds" placeholder="["></input>
-                        <input id="lowerBounds-input" type="text" name="upperBounds" placeholder="]" ></input>
-                        <button>Submit Bounds</button>
-                    </form>
-                </div>
-
-            </div>
-        );
-    }
+                        <input id="lowerBounds-input" type="text" onChange={handleInputChange} name="lowBound" placeholder="["></input>
+                        <input id="upperBounds-input" type="text" onChange={handleInputChange} name="upBound" placeholder="]" ></input>
+                        </form>
+                        </div>
+                        
+                        </div>
+                        );
+                    }
+                    // <button>Submit Bounds</button>
 }
 
 module.exports = Menu;

@@ -1,9 +1,7 @@
 import React, {Component} from 'react'
-import {setLS, getLS, utilCtrl, getPartialLS} from '../utils/utils';
-
 import Menu from './Menu'
 import DisplayCtrl from './DisplayCtrl'
-
+// import {getLS} from '../utils/utils'
 
 
 
@@ -12,55 +10,102 @@ class Landing extends Component {
         super(props)
         this.state = {
             init: 'state',
-            ls: []
+            dbArray: props.db,
+            lowBound: null,
+            upBound: null
         }
-    this.setLSClick = this.setLSClick.bind(this);
-    this.getLS = this.getLS.bind(this);
-    this.onRangeSubmit = this.onRangeSubmit.bind(this);
-    this.setRange = this.setRange.bind(this);
+    
+    
+        this.onRangeSubmit = this.onRangeSubmit.bind(this);
+        this.setRange = this.setRange.bind(this);
+        // this.getLS = this.getLS.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this)
     }
+ componentDidMount() {
+    // console.log("landing DID mnt")
+    // const dbStore = getLS();        
+//   this.setState(() => {
+//       arrayMod: dbStore
+//   })
+//   console.log("t.s.arr: ", this.state.arrayMod.length)
+
+ }
     componentWillMount() {
-        setLS();
+        // console.log("landing WILL mnt")
     }
     componentWillUpdate(nextProps, nextState) {
-        // console.log("Land update: \nLow: ", this.state.lowerBounds, "\n up: ", this.state.upperBounds )
+        // console.log("landing UPDATED")
+
+        // console.log("Land update: \nLow: ", this.state.lowBound, "\n up: ", this.state.upBound, "\n len: ", this.state.arrayMod.length)
     }
-    setLSClick() {
-        setLS();
+    setRange() {
+        console.log("landing setRange RUN")
+
+        const {lowBound, upBound} = this.state;
+        // console.log("setRange: e.target", lowBound, upBound)
     }
-    getLS() {
-        const payload = getLS();
-        this.setState((prevState) => ({
-            ls: payload
-        }))
-    }
-    setRange(e) {
-        const lowerBounds = parseInt(e.target.lowerBounds.value);
-        const upperBounds = parseInt(e.target.upperBounds.value);
-        this.setState((prevState) =>(
-            {
-                lowerBounds,
-                upperBounds
-            }
-        ))
-    }
+    handleInputChange(e) {
+        const tgt = e.target;
+        const value = tgt.value;
+        const name = tgt.name;
+        // console.log(`hInpChange: ${name}: ${value}`)
+        // console.log("arrmodLength: ", this.state.arrayMod.length)
+        this.setState( {
+          [name]: value}
+          );
+      }
     onRangeSubmit(e) {
-        this.getLS();
         e.preventDefault();
-        this.setRange(e);
+        this.setRange();
     }
+    // getLS() {
+    //     const dbStore = getLS();
+    //     console.log("dbStore: ", dbStore)
+    // }
 
 
     render() {
-        const {lowerBounds, upperBounds, ls} = this.state;
+        // <span>{`${lowBound}, ${upBound}, ${arrayMod.length}`}</span>
+        const {lowBound, upBound, dbArray} = this.state;
         return (
             <div className="landing-comp">
-            <Menu setLS ={this.setLSClick} getLS={this.getLS}  onRangeSubmit={this.onRangeSubmit}/>
-        
-        <DisplayCtrl payloadLower={lowerBounds} payloadUpper={upperBounds} dbPayload={ls}/> 
+            
+            <Menu  handleInputChange={this.handleInputChange} onRangeSubmit={this.onRangeSubmit}/>
+        {
+            (lowBound && upBound) &&
+            <DisplayCtrl 
+                lowBound={lowBound} 
+                upBound={upBound} 
+                dbPayload={dbArray}
+            /> }
             </div>
         )
     }
 }
 
 module.exports = Landing;
+
+/*
+
+ constructor(props) {
+    super(props);
+    this.state = {
+      isGoing: true,
+      numberOfGuests: 2
+    };
+
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  handleInputChange(e) {
+    const target = e.target;
+    const value = target.value;
+    const name = target.name;
+    console.log("targ, name, val: ", target, name, value)
+
+    this.setState({
+      [name]: value
+    });
+  }
+
+  */
