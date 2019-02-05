@@ -22,7 +22,8 @@ module.exports = {
       exclude: /node_modules/
     }
   ]
-  }
+  },
+  devtool: 'cheap-module-eval-source-map'
 }
 
 // you need to add `import './manifest.json'` to any of your javascript files

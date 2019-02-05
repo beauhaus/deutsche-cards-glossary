@@ -16,7 +16,6 @@ import dictDB from "../data/vocabDB.json"  //DB is required in this one file
 
 //PUT (update/modify)
 
-
 //DELETE (clear LS completely)
 export const clearLS =() => {
     localStorage.clear();

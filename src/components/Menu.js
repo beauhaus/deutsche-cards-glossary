@@ -15,6 +15,7 @@ class Menu extends Component {
             refs[x].onkeypress = (e) =>
             handleKeyPress(e, refs[x]);
         }
+        console.log(tessting)
     }
     /* uses ENTER key to focus on next INPUT */
     handleKeyPress(e, field) {
