@@ -15,16 +15,13 @@ class DisplayCtrl extends Component {
 
     render() {
         const {lowBound, upBound, dbPayload} = this.props;
-        const arrayMod = dbPayload.filter((item, idx)=>((idx>lowBound)&&(idx<upBound)))
+        const arrayMod = dbPayload.filter((item, idx)=>((idx+1>=lowBound)&&(idx<upBound)))
         // const {counter, arrayMod} = this.state;
         // console.log("arrayMod: ", arrayMod)
         return (
-            <div className="displayCtrl-box">
-            {console.log("P> DSPCTRL low, up, db.length", lowBound, upBound, arrayMod.length)}
-                
+            <div className="displayCtrl-box">                
                 {arrayMod.map((entry, idx) => (
-                    
-                    <VocabCard key={idx} entry={entry} idx={idx}/>
+                    <VocabCard key={idx} entry={entry} idx={idx+1} parity={idx%2?"right-col":"left-col"}/>
                 ))}
             </div>
         );

@@ -25,14 +25,14 @@ class VocabCard extends Component {
 
 
     render() {
-        const {id, word_en, word_de, example_en, example_de} = this.props.entry;
-        const {idx} = this.props;
+        const {word_en, word_de, example_en, example_de} = this.props.entry;
+        const {parity, idx} = this.props;
         
         return (
             
-            <div id="vocab-card" className={((idx%2) ? `vocab-card-left` : `vocab-card-right`)} onMouseDown={this.mouseDownHandler}>
-                <h1 className="card-property" id="card-idx">{idx} </h1>
-                <div className="slide-card-en card-clue">
+            <div id="vocab-card" className={parity} onMouseDown={this.mouseDownHandler}>
+            <div className="slide-card-en card-clue">
+            <h1 className="card-property" id="card-idx">{idx} </h1>
                     <h1 className="card-property card-word" id="word-en">{word_en}</h1>
                     <h1 className="card-property" id="example-en">{example_en}</h1>
                 </div>

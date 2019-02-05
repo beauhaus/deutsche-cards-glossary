@@ -23599,23 +23599,13 @@ var Landing = function (_Component) {
         };
 
         _this.onRangeSubmit = _this.onRangeSubmit.bind(_this);
-        _this.setRange = _this.setRange.bind(_this);
-        // this.getLS = this.getLS.bind(this);
         _this.handleInputChange = _this.handleInputChange.bind(_this);
         return _this;
     }
 
     _createClass(Landing, [{
         key: 'componentDidMount',
-        value: function componentDidMount() {
-            // console.log("landing DID mnt")
-            // const dbStore = getLS();        
-            //   this.setState(() => {
-            //       arrayMod: dbStore
-            //   })
-            //   console.log("t.s.arr: ", this.state.arrayMod.length)
-
-        }
+        value: function componentDidMount() {}
     }, {
         key: 'componentWillMount',
         value: function componentWillMount() {
@@ -23627,16 +23617,6 @@ var Landing = function (_Component) {
             // console.log("landing UPDATED")
 
             // console.log("Land update: \nLow: ", this.state.lowBound, "\n up: ", this.state.upBound, "\n len: ", this.state.arrayMod.length)
-        }
-    }, {
-        key: 'setRange',
-        value: function setRange() {
-            console.log("landing setRange RUN");
-
-            var _state = this.state,
-                lowBound = _state.lowBound,
-                upBound = _state.upBound;
-            // console.log("setRange: e.target", lowBound, upBound)
         }
     }, {
         key: 'handleInputChange',
@@ -23652,22 +23632,15 @@ var Landing = function (_Component) {
         key: 'onRangeSubmit',
         value: function onRangeSubmit(e) {
             e.preventDefault();
-            this.setRange();
         }
-        // getLS() {
-        //     const dbStore = getLS();
-        //     console.log("dbStore: ", dbStore)
-        // }
-
-
     }, {
         key: 'render',
         value: function render() {
             // <span>{`${lowBound}, ${upBound}, ${arrayMod.length}`}</span>
-            var _state2 = this.state,
-                lowBound = _state2.lowBound,
-                upBound = _state2.upBound,
-                dbArray = _state2.dbArray;
+            var _state = this.state,
+                lowBound = _state.lowBound,
+                upBound = _state.upBound,
+                dbArray = _state.dbArray;
 
             return _react2.default.createElement(
                 'div',
@@ -23686,31 +23659,6 @@ var Landing = function (_Component) {
 }(_react.Component);
 
 module.exports = Landing;
-
-/*
-
- constructor(props) {
-    super(props);
-    this.state = {
-      isGoing: true,
-      numberOfGuests: 2
-    };
-
-    this.handleInputChange = this.handleInputChange.bind(this);
-  }
-
-  handleInputChange(e) {
-    const target = e.target;
-    const value = target.value;
-    const name = target.name;
-    console.log("targ, name, val: ", target, name, value)
-
-    this.setState({
-      [name]: value
-    });
-  }
-
-  */
 
 /***/ }),
 /* 14 */
@@ -23936,16 +23884,15 @@ var DisplayCtrl = function (_Component) {
                 dbPayload = _props.dbPayload;
 
             var arrayMod = dbPayload.filter(function (item, idx) {
-                return idx > lowBound && idx < upBound;
+                return idx + 1 >= lowBound && idx < upBound;
             });
             // const {counter, arrayMod} = this.state;
             // console.log("arrayMod: ", arrayMod)
             return _react2.default.createElement(
                 'div',
                 { className: 'displayCtrl-box' },
-                console.log("P> DSPCTRL low, up, db.length", lowBound, upBound, arrayMod.length),
                 arrayMod.map(function (entry, idx) {
-                    return _react2.default.createElement(_VocabCard2.default, { key: idx, entry: entry, idx: idx });
+                    return _react2.default.createElement(_VocabCard2.default, { key: idx, entry: entry, idx: idx + 1, parity: idx % 2 ? "right-col" : "left-col" });
                 })
             );
         }
@@ -24029,26 +23976,27 @@ var VocabCard = function (_Component) {
         key: 'render',
         value: function render() {
             var _props$entry = this.props.entry,
-                id = _props$entry.id,
                 word_en = _props$entry.word_en,
                 word_de = _props$entry.word_de,
                 example_en = _props$entry.example_en,
                 example_de = _props$entry.example_de;
-            var idx = this.props.idx;
+            var _props = this.props,
+                parity = _props.parity,
+                idx = _props.idx;
 
 
             return _react2.default.createElement(
                 'div',
-                { id: 'vocab-card', className: idx % 2 ? 'vocab-card-left' : 'vocab-card-right', onMouseDown: this.mouseDownHandler },
-                _react2.default.createElement(
-                    'h1',
-                    { className: 'card-property', id: 'card-idx' },
-                    idx,
-                    ' '
-                ),
+                { id: 'vocab-card', className: parity, onMouseDown: this.mouseDownHandler },
                 _react2.default.createElement(
                     'div',
                     { className: 'slide-card-en card-clue' },
+                    _react2.default.createElement(
+                        'h1',
+                        { className: 'card-property', id: 'card-idx' },
+                        idx,
+                        ' '
+                    ),
                     _react2.default.createElement(
                         'h1',
                         { className: 'card-property card-word', id: 'word-en' },
