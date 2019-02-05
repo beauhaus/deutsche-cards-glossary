@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 // import {getPartialLS, utilCtrl} from '../utils/utils';
 import CardBorder from './CardBorder';
 
@@ -25,14 +25,14 @@ class VocabCard extends Component {
 
 
     render() {
-        const {word_en, word_de, example_en, example_de} = this.props.entry;
-        const {parity, idx} = this.props;
-        
+        const { word_en, word_de, example_en, example_de } = this.props.entry;
+        const { parity, idx } = this.props;
+
         return (
-            
+
             <div id="vocab-card" className={parity} onMouseDown={this.mouseDownHandler}>
-            <div className="slide-card-en card-clue">
-            <h1 className="card-property" id="card-idx">{idx} </h1>
+                <div className="slide-card-en card-clue">
+                    <h1 className="card-property" id="card-idx">{idx} </h1>
                     <h1 className="card-property card-word" id="word-en">{word_en}</h1>
                     <h1 className="card-property" id="example-en">{example_en}</h1>
                 </div>
@@ -40,7 +40,7 @@ class VocabCard extends Component {
                     <div className="slide-card-de card-solution">
                         <h3 className="card-property" id="word-de">{word_de}</h3>
                         <h3 className="card-property" id="example-de">{example_de}</h3>
-                        <CardBorder/>
+                        <CardBorder />
                     </div>
                 }
             </div>
@@ -49,5 +49,3 @@ class VocabCard extends Component {
 }
 
 module.exports = VocabCard;
-
-

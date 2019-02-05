@@ -2,7 +2,13 @@ import dictDB from "../data/vocabDB.json"  //DB is required in this one file
 
 
 // const fs = require('file-system')
+// import fs from 'file-system'
 // console.log("fs: ", fs);
+// var wordsData = fs.readFileSync('./wordsRepo.json');
+
+// https://youtu.be/6iZiqQZBQJY  (fs files system video)
+
+// console.log("FS: ", wordsRepo)
 /* TODO: https://gist.github.com/bronson/163d7d4dde2a845ea3d6af3a0d86d174 */
 
 
