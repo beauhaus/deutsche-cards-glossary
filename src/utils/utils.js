@@ -24,7 +24,7 @@ const setLS = () => {
     //defaultkey for DB is "dictionaryDB";
     const dbKey = "dictionaryDB";
     localStorage.setItem(dbKey, dictDBString);
-    console.log("setLS ran")
+    console.log("utils 'setLS' ran")
 }
 
 //GET (read)
@@ -33,10 +33,11 @@ const getLS = () => {
     const retrievedDB = localStorage.getItem("dictionaryDB");
     const parsedResult = JSON.parse(retrievedDB);
     // (parsed)
-    console.log("getLS called")
+    console.log("utils 'getLS' ran")
     return parsedResult;
 }
 
+/*
 const getPartialLS = (lower, upper) => {
     const retrievedDB = localStorage.getItem("dictionaryDB");
     const parsedResult = JSON.parse(retrievedDB);
@@ -45,15 +46,7 @@ const getPartialLS = (lower, upper) => {
     // console.log("is partialArray an Array?: ", Array.isArray(partialArray))
     return partialArray;
 }
-
-const hello = (title, name ) => {
-    console.log(`Hello ${title}. ${name}. How are you?`)
-}
-
-const food = (meal, dishName ) => {
-    console.log(`My favorite ${meal} is ${dishName}.`)
-}
-
+*/
 const utilCtrl = (callback, param1, param2) => {
     // console.log("ctr ran with: ", arguments[0])
     return callback(param1, param2);
@@ -62,6 +55,6 @@ export {
     utilCtrl,
     getLS,
     setLS,
-    getPartialLS
+    // getPartialLS
 }
 

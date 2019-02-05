@@ -7753,10 +7753,50 @@
 	},
 	{
 		"id": "10X",
+		"word_de": "other",
+		"word_en": "other",
+		"example_de": "OTHEREXAMPLE",
+		"example_en": "OTHEREXAMPLE",
+		"show_switch": "true"
+	},
+	{
+		"id": "10X",
 		"word_de": "TEMPLATE",
 		"word_en": "TEMPLATE",
 		"example_de": "TEMPLATEEXAMPLEDE",
 		"example_en": "TEMPLATEEXAMPLEENG",
+		"show_switch": "true"
+	},
+	{
+		"id": "10X",
+		"word_de": "TEMPLATE",
+		"word_en": "TEMPLATE",
+		"example_de": "TEMPLATEEXAMPLEDE",
+		"example_en": "TEMPLATEEXAMPLEENG",
+		"show_switch": "true"
+	},
+	{
+		"id": "10X",
+		"word_de": "TEMPLATE",
+		"word_en": "TEMPLATE",
+		"example_de": "TEMPLATEEXAMPLEDE",
+		"example_en": "TEMPLATEEXAMPLEENG",
+		"show_switch": "true"
+	},
+	{
+		"id": "10X",
+		"word_de": "TEMPLATE",
+		"word_en": "TEMPLATE",
+		"example_de": "TEMPLATEEXAMPLE",
+		"example_en": "TEMPLATEEXAMPLE",
+		"show_switch": "true"
+	},
+	{
+		"id": "10X",
+		"word_de": "Erinnerungen",
+		"word_en": "Memories",
+		"example_de": "es weckt Erinnerungen",
+		"example_en": "It awakens (brings back) memories",
 		"show_switch": "true"
 	},
 	{
