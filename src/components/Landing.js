@@ -11,7 +11,8 @@ class Landing extends Component {
             init: 'state',
             dbArray: props.db,
             lowBound: null,
-            upBound: null
+            upBound: null,
+            valid_flag: ''
         }
         this.onRangeSubmit = this.onRangeSubmit.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this)
@@ -26,18 +27,38 @@ class Landing extends Component {
         const value = tgt.value;
         const name = tgt.name;
 
-        try {
-            let valCheck = validator.isInt(value);
-            if (!'' && !valCheck) {
-                throw new SyntaxError(`${value} is NOT an integer`)
-            }
+        console.log("value: ", value);
+        console.log("arrLen", this.state.dbArray.length);
+
+        const rangeCheck = validator.isInt(value, { gt: 0, lt: this.state.dbArray.length+1 })
+        console.log("rangeCheck: ", rangeCheck);
+        
+        const symbolCheck =  validator.isNumeric(value, {no_symbols: true})
+        console.log("symbolCheck: ", symbolCheck);
+        
+        const valid_flag = symbolCheck && rangeCheck;
+
+        console.log("valid_flag: ", valid_flag)
+
+
+            this.setState({
+                valid_flag
+            })
+        
+        // console.log("rangeCheck: ", rangeCheck)
+
+        // try {
+        //     let valCheck = validator.isInt(value);
+        //     if (!'' && !valCheck) {
+        //         throw new SyntaxError(`${value} is NOT an integer`)
+        //     }
             this.setState({
                 [name]: value
-            }
-            );
-        } catch (err) {
-            console.log(`${value} is not an Integer`, err)
-        } 
+            });
+
+        // } catch (err) {
+        //     console.log(`${value} is not an Integer`, err)
+        // } 
 
     }
     onRangeSubmit(e) {
@@ -45,11 +66,11 @@ class Landing extends Component {
     }
 
     render() {
-        const { lowBound, upBound, dbArray } = this.state;
+        const { valid_flag,lowBound, upBound, dbArray } = this.state;
         return (
             <div className="landing-comp">
-                <Menu handleInputChange={this.handleInputChange} onRangeSubmit={this.onRangeSubmit} />
-                {(lowBound && upBound) &&
+                <Menu handleInputChange={this.handleInputChange} onRangeSubmit={this.onRangeSubmit} dbLen={dbArray.length} validate={valid_flag}/>
+                {(lowBound && upBound && valid_flag) &&
                     <DisplayCtrl
                         lowBound={lowBound}
                         upBound={upBound}

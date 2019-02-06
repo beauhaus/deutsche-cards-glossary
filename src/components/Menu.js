@@ -14,8 +14,9 @@ class Menu extends Component {
         for (let x in refs) {
             refs[x].onkeypress = (e) =>
             handleKeyPress(e, refs[x]);
+            console.log("p> menu: ", this.props)
         }
-        console.log(tessting)
+        // console.log(tessting)
     }
     /* uses ENTER key to focus on next INPUT */
     handleKeyPress(e, field) {
@@ -29,11 +30,12 @@ class Menu extends Component {
     }
 
     render() {
-        const { onRangeSubmit, handleInputChange } = this.props;
+        const { dbLen,onRangeSubmit, handleInputChange, validate } = this.props;
         return (
             <div className="menu-comp">
                 <div className="menu-options">
                     <h1>Deutsch</h1>
+                    <h2 className={validate?"params":"params invalid"}>(1-{dbLen})</h2>
                     <form className="menu-form" onSubmit={onRangeSubmit}>
                         <input id="lowerBounds-input"
                             autoFocus type="text"
