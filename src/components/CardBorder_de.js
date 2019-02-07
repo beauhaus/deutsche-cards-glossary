@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class CardBorder extends Component {
+class CardBorder_de extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -29,4 +29,4 @@ class CardBorder extends Component {
     }
 }
 
-module.exports = CardBorder;
+module.exports = CardBorder_de;

@@ -14,9 +14,7 @@ class ParamsInput extends Component {
         for (let x in refs) {
             refs[x].onkeypress = (e) =>
             handleKeyPress(e, refs[x]);
-            console.log("p> ParamsInput: ", this.props)
         }
-        // console.log(tessting)
     }
     /* uses ENTER key to focus on next INPUT */
     handleKeyPress(e, field) {

@@ -16,8 +16,7 @@ class Menu extends Component {
         return (
             <div className={validate ? "menu-comp" : "menu-comp invalid"}>
                 <div className="menu-options">
-                    <h1>Deutsch</h1>
-                    <button className="lang-switch-btn menu-btn" onClick={langSwitchHandler}> {langSwitchFlag?"🇩🇪to 🇺🇸":"🇺🇸 to 🇩🇪"}</button>
+                    <button className="lang-switch-btn menu-btn" onClick={langSwitchHandler}> {langSwitchFlag?"🇩🇪 ➡️ 🇺🇸":"🇺🇸 ➡️ 🇩🇪"}</button>
                     <h2 className="params-display">(1-{dbLen})</h2>
                     <ParamsInput onRangeSubmit={onRangeSubmit} handleInputChange={handleInputChange} />
                 </div>
