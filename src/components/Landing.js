@@ -12,10 +12,12 @@ class Landing extends Component {
             dbArray: props.db,
             lowBound: null,
             upBound: null,
-            valid_flag: ''
+            valid_flag: '',
+            de_en_flag: true
         }
         this.onRangeSubmit = this.onRangeSubmit.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this)
+        this.languageSwitch = this.languageSwitch.bind(this)
     }
     componentWillUpdate(nextProps, nextState) {
         // console.log("landing UPDATED")
@@ -60,18 +62,26 @@ class Landing extends Component {
         //     console.log(`${value} is not an Integer`, err)
         // } 
 
+
+    }
+    languageSwitch() {
+        this.setState((prevState)=>({
+            de_en_flag: !prevState.de_en_flag
+        }));
     }
     onRangeSubmit(e) {
         e.preventDefault();
     }
 
     render() {
-        const { valid_flag,lowBound, upBound, dbArray } = this.state;
+        const { de_en_flag, valid_flag,lowBound, upBound, dbArray } = this.state;
+        const {handleInputChange, onRangeSubmit, languageSwitch } = this;
         return (
             <div className="landing-comp">
-                <Menu handleInputChange={this.handleInputChange} onRangeSubmit={this.onRangeSubmit} dbLen={dbArray.length} validate={valid_flag}/>
+                <Menu handleInputChange={handleInputChange} onRangeSubmit={onRangeSubmit}  langSwitch={languageSwitch} dbLen={dbArray.length} validate={valid_flag}/>
                 {(lowBound && upBound && valid_flag) &&
                     <DisplayCtrl
+                        langSwitch={de_en_flag}
                         lowBound={lowBound}
                         upBound={upBound}
                         dbPayload={dbArray}
