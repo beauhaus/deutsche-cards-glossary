@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-// import {getPartialLS, utilCtrl} from '../utils/utils';
-import CardBorder_de from './CardBorder_de';
+
+import CardBorder_en from './CardBorder_en';
 
 class VocabCard_de2en extends Component {
     constructor(props) {
@@ -40,7 +40,7 @@ class VocabCard_de2en extends Component {
                     <div className="slide-card-de card-solution">
                         <h3 className="card-property" id="word-de">{word_de}</h3>
                         <h3 className="card-property" id="example-de">{example_de}</h3>
-                        <CardBorder_de />
+                        <CardBorder_en />
                     </div>
                 }
             </div>

@@ -62,7 +62,9 @@
             width: 100%;
             margin-top: 1vh;
         }
-        .slide-card-en, .slide-card-de {
+
+        .slide-card-en,
+        .slide-card-de {
             text-align: center;
         }
 
@@ -74,6 +76,7 @@
             box-shadow: -30px 30px 30px 0px black;
             /* padding: 2%; */
         }
+
         .right-col {
             background: #60665A;
             grid-column: 9/15;
@@ -86,7 +89,7 @@
 
         .card-property {
             font-size: 30px;
-            font-weight: 100;            
+            font-weight: 100;
         }
 
         #card-idx {
@@ -101,6 +104,7 @@
             margin: auto;
 
         }
+
         #word-en {
             font-weight: bold;
             grid-column: 1;
@@ -108,47 +112,52 @@
             margin: auto;
 
         }
+
         #example-de {
             grid-column: 1;
             grid-row: 2;
         }
+
         #example-en {
             grid-column: 1;
             grid-row: 2;
         }
 
-        .card-border{
-        fill: transparent;
-        position: absolute;
-        top: 0;
-        left: -1px;
-        height: 102%;
-        width: 100%;
-        stroke-width: 4px;
-        stroke-dasharray: 1590px;
-        fill: transparent;
-        animation: 0.3s infinite forwards drawSVG;
-        animation-iteration-count: 1;
-  }
-  
-  @keyframes drawSVG {
-    0% {
-      stroke-dashoffset: -1590px;
-    }
-    100% {
-      stroke-dashoffset: 0px;
-    }
-  }
-  /* svg {
+        .card-border {
+            fill: transparent;
+            position: absolute;
+            top: 0;
+            left: -1px;
+            height: 102%;
+            width: 100%;
+            stroke-width: 4px;
+            stroke-dasharray: 1590px;
+            fill: transparent;
+            animation: 0.3s infinite forwards drawSVG;
+            animation-iteration-count: 1;
+        }
+
+        @keyframes drawSVG {
+            0% {
+                stroke-dashoffset: -1590px;
+            }
+
+            100% {
+                stroke-dashoffset: 0px;
+            }
+        }
+
+        /* svg {
       border: 1px solid teal;
   } */
-            /*****CARD ANIMATION****/
+        /*****CARD ANIMATION****/
         #vocab-card {
             display: grid;
             grid-template-rows: 100%;
             grid-template-columns: 100%;
         }
-        .card-clue{
+
+        .card-clue {
             grid-row: 1;
             grid-column: 1;
             background: #60665A;
@@ -156,7 +165,8 @@
             grid-template-columns: 1fr;
             grid-template-rows: repeat(2, 1fr);
         }
-        .card-solution{
+
+        .card-solution {
             grid-row: 1;
             grid-column: 1;
             opacity: 0;
@@ -168,6 +178,7 @@
             grid-template-columns: 1fr;
             grid-template-rows: repeat(2, 1fr);
         }
+
         .card-solution {
             opacity: 1;
         }
@@ -260,18 +271,21 @@
             width: 10vw;
             background: grey;
         }
+
         .params-display {
             color: #9cad85;
             text-shadow: 1px 1px 0px #000;
         }
+
         .invalid input {
-            background:#ffd289;
-            background:rgb(255, 210, 137);
-            
+            background: #ffd289;
+            background: rgb(255, 210, 137);
+
         }
+
         .invalid .params-display {
             color: #852a00;
-            text-shadow: 1px 1px 1px rgba(255,255,255,0.4);
+            text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.4);
         }
 
 
@@ -314,8 +328,6 @@
         }
 
         /****above is for DICTIONARY SEARCH ****/
-
-
     </style>
 </head>
 

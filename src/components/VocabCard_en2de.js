@@ -40,11 +40,11 @@ class VocabCard_en2de extends Component {
                     <div className="slide-card-de card-solution">
                         <h3 className="card-property" id="word-de">{word_en}</h3>
                         <h3 className="card-property" id="example-de">{example_en}</h3>
+                        <CardBorder_de />
                         </div>
                     }
                     </div>
                     );
-                    // <CardBorder_de />
     }
 }
 
