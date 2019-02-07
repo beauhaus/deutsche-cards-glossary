@@ -23,7 +23,10 @@ module.exports = {
     }
   ]
   },
-  devtool: 'cheap-module-eval-source-map'
+  devtool: 'cheap-module-eval-source-map',
+  devServer: {
+    contentBase: path.join(__dirname, 'public')
+  }
 }
 
 // you need to add `import './manifest.json'` to any of your javascript files

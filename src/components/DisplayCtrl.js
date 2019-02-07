@@ -12,6 +12,7 @@ class DisplayCtrl extends Component {
 
     render() {
         const {lowBound, upBound, dbPayload} = this.props;
+        console.log("p> DisC: ", this.props)
         const arrayMod = dbPayload.filter((item, idx)=>((idx+1>=lowBound)&&(idx<upBound)))
         return (
             <div className="displayCtrl-box">                
