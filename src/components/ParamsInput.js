@@ -6,7 +6,6 @@ class ParamsInput extends Component {
         this.state = {
             init: ""
         }
-        this.handleKeyPress = this.handleKeyPress.bind(this);
     }
     /* loops thru refs object and binds each to onkeypress */
     componentDidMount() {
@@ -17,7 +16,7 @@ class ParamsInput extends Component {
         }
     }
     /* uses ENTER key to focus on next INPUT */
-    handleKeyPress(e, field) {
+    handleKeyPress = (e, field) =>{
         if (e.keyCode === 13) {
             e.preventDefault(); // Prevent form submission if button present
             let next = this.refs[field.name].nextSibling;

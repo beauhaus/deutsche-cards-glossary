@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Modal from 'react-modal';
 
 const XModal = (props) => (
     <Modal
         className="xmodal"
         isOpen={props.xModalOpen}
+        onRequestClose={props.xModalSwitchClickHandler}
         contentLabel="xmodal"
     >
         <p>xmodal</p>

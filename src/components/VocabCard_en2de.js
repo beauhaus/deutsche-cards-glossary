@@ -30,10 +30,9 @@ class VocabCard_en2de extends Component {
         const { parity, idx } = this.props;
 
         return (
-
             <div id="vocab-card" className={parity} onMouseDown={this.mouseDownHandler}>
                 <div className="slide-card-en card-clue">
-                    <h1 className="card-property" id="card-idx">{idx} </h1>
+                    <p className="card-property" id="card-idx">{idx}</p>
                     <h1 className="card-property card-word" id="word-en">{word_de}</h1>
                     <h1 className="card-property" id="example-en">{example_de}</h1>
                 </div>

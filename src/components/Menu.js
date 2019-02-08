@@ -4,7 +4,6 @@ import XModal from './XModal';
 
 const Menu = (props) => {
     const { xModalSwitchClickHandler, xModalOpen, dbLen, onRangeSubmit, langSwitchHandler, handleInputChange, validate, langSwitchFlag } = props;
-    {console.log("menu", xModalOpen)}
     return (
         <div className={validate ? "menu-comp" : "menu-comp invalid"}>
         <div className="top-rt-placeholder">
