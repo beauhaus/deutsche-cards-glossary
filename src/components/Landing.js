@@ -25,30 +25,35 @@ class Landing extends Component {
         const name = tgt.name;
 
         const rangeCheck = validator.isInt(value, { gt: 0, lt: this.state.dbArray.length+1 })
-        
-        const symbolCheck =  validator.isNumeric(value, {no_symbols: true})
-        
+        const symbolCheck =  validator.isNumeric(value, {no_symbols: true})        
         const valid_flag = symbolCheck && rangeCheck;
 
-            this.setState({
-                valid_flag,
-                [name]: value
-            })
+        this.setState({
+            valid_flag,
+            [name]: value
+        })
     }
+
+    xModalSwitchClickHandler=() => {
+        this.setState((prevState)=>(
+            {xModalOpen: !prevState.xModalOpen}
+        ))
+    }
+
     langSwitchHandler= () =>{
-        console.log("switched")
         this.setState((prevState)=>({
             de_en_flag: !prevState.de_en_flag
         }));
     }
+
     onRangeSubmit =(e) =>{
         e.preventDefault();
     }
 
     render() {
         console.log("stateObj: ", this.state);
-        const { de_en_flag, valid_flag,lowBound, upBound, dbArray } = this.state;
-        const {handleInputChange, onRangeSubmit, langSwitchHandler } = this;
+        const { xModalOpen, de_en_flag, valid_flag,lowBound, upBound, dbArray } = this.state;
+        const { xModalSwitchClickHandler, handleInputChange, onRangeSubmit, langSwitchHandler } = this;
         return (
             <div className="landing-comp">
                 <Menu 
@@ -58,6 +63,8 @@ class Landing extends Component {
                 dbLen={dbArray.length} 
                 validate={valid_flag}  
                 langSwitchFlag={de_en_flag}
+                xModalOpen={xModalOpen}
+                xModalSwitchClickHandler={xModalSwitchClickHandler}
                 />
                 {(lowBound && upBound && valid_flag) &&
                     <DisplayCtrl
@@ -72,17 +79,3 @@ class Landing extends Component {
 }
 
 module.exports = Landing;
-
-/*
-
-<Menu 
-                handleInputChange={handleInputChange} 
-                onRangeSubmit={onRangeSubmit}
-                langSwitchHandler={langSwitchHandler}
-                langSwitchFlag={de_en_flag}
-                dbLen={dbArray.length} 
-                validate={valid_flag}  
-                langSwitchFlag={de_en_flag}
-                />
-                
-                */
