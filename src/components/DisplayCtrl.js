@@ -10,22 +10,21 @@ class DisplayCtrl extends Component {
             init: "",
         }
     }
-  
 
     render() {
-        const {langSwitchFlag, lowBound, upBound, dbPayload} = this.props;
+        const { langSwitchFlag, lowBound, upBound, dbPayload } = this.props;
         console.log("p> DisC: ", this.props)
-        const arrayMod = dbPayload.filter((item, idx)=>((idx+1>=lowBound)&&(idx<upBound)))
+        const arrayMod = dbPayload.filter((item, idx) => ((idx + 1 >= lowBound) && (idx < upBound)))
         return (
-            <div className="displayCtrl-box">                
-                {langSwitchFlag?
+            <div className="displayCtrl-box">
+                {langSwitchFlag ?
                     arrayMod.map((entry, idx) => (
-                    <VocabCard_de2en key={idx} entry={entry} idx={idx+1} parity={idx%2?"right-col":"left-col"}/>
-                )):
-                arrayMod.map((entry, idx) => (
-                    <VocabCard_en2de key={idx} entry={entry} idx={idx+1} parity={idx%2?"right-col":"left-col"}/>
-                ))
-            }
+                        <VocabCard_de2en key={idx} entry={entry} idx={idx + 1} parity={idx % 2 ? "right-col" : "left-col"} />
+                    )) :
+                    arrayMod.map((entry, idx) => (
+                        <VocabCard_en2de key={idx} entry={entry} idx={idx + 1} parity={idx % 2 ? "right-col" : "left-col"} />
+                    ))
+                }
             </div>
         );
     }

@@ -13,7 +13,7 @@ class ParamsInput extends Component {
         let { refs, handleKeyPress } = this;
         for (let x in refs) {
             refs[x].onkeypress = (e) =>
-            handleKeyPress(e, refs[x]);
+                handleKeyPress(e, refs[x]);
         }
     }
     /* uses ENTER key to focus on next INPUT */
@@ -29,22 +29,22 @@ class ParamsInput extends Component {
 
 
     render() {
-        const { onRangeSubmit, handleInputChange} = this.props;
+        const { onRangeSubmit, handleInputChange } = this.props;
         return (
-                    <form className="menu-form" onSubmit={onRangeSubmit}>
-                        <input id="lowerBounds-input"
-                            autoFocus type="text"
-                            onChange={handleInputChange}
-                            name="lowBound"
-                            ref="lowBound"
-                            placeholder="[" />
-                        <input id="upperBounds-input"
-                            type="text"
-                            onChange={handleInputChange}
-                            name="upBound"
-                            ref="upBound"
-                            placeholder="]" />
-                    </form>
+            <form className="menu-form" onSubmit={onRangeSubmit}>
+                <input id="lowerBounds-input"
+                    autoFocus type="text"
+                    onChange={handleInputChange}
+                    name="lowBound"
+                    ref="lowBound"
+                    placeholder="[" />
+                <input id="upperBounds-input"
+                    type="text"
+                    onChange={handleInputChange}
+                    name="upBound"
+                    ref="upBound"
+                    placeholder="]" />
+            </form>
         );
     }
 }

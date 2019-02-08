@@ -31,18 +31,21 @@
             grid-template-rows: 1fr;
         }
 
-        .menu-comp {
-            /*30vw*/
+        .menu-comp { /*20vw*/
             position: fixed;
             top: 0;
             left: 0;
             width: 20vw;
             height: 100vh;
-
             display: grid;
             grid-template-columns: 100%;
             grid-template-rows: repeat(3, 33.33vh);
             text-align: center;
+        }
+        .top-rt-placeholder {
+            grid-column: 1;
+            grid-row: 1;
+            background: #58564c;
         }
 
         .menu-options {
@@ -130,7 +133,7 @@
             left: -1px;
             height: 102%;
             width: 100%;
-            stroke-width: 4px;
+            stroke-width: 2px;
             stroke-dasharray: 1590px;
             fill: transparent;
             animation: 0.3s infinite forwards drawSVG;
@@ -239,15 +242,9 @@
             /* display: none; */
         }
 
-
         .menu-options h1 {
             font-family: 'Times New Roman', Times, serif, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: #fff;
-        }
-
-        .menu-btn {
-            /* color: #000;
-            grid-row: 2; */
         }
 
         .menu-btn:hover {
@@ -309,14 +306,6 @@
             position: relative;
         }
 
-        /* #example-de::before {
-            content: '🇩🇪'
-        }
-
-        #example-en::before {
-            content: '🇺🇸'
-        } */
-
         #search-field {
             width: 50%;
             height: 5vh;
@@ -337,24 +326,3 @@
 </body>
 
 </html>
-
-
-<!-- svg {
-    width: 400px;
-    height: 300px;
-    stroke-dasharray: 1580px;
-    fill: transparent;
-    animation: 3s infinite forwards drawSVG;
-    animation-iteration-count: 1;
-  }
-  
-  @keyframes drawSVG {
-    0% {
-      stroke-dashoffset: -1580px;
-    }
-    ,
-    100% {
-      stroke-dashoffset: 0px;
-    }
-  }
-   -->

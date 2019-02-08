@@ -1,20 +1,13 @@
 import React, { Component } from 'react';
-
 import ParamsInput from './ParamsInput';
+import XModal from './XModal';
 
 class Menu extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            init: ""
-        }
-    }
-
     render() {
-        console.log("P>Menu: ", this.props)
         const { dbLen, onRangeSubmit,langSwitchHandler, handleInputChange, validate, langSwitchFlag } = this.props;
         return (
             <div className={validate ? "menu-comp" : "menu-comp invalid"}>
+            <XModal/>
                 <div className="menu-options">
                     <button className="lang-switch-btn menu-btn" onClick={langSwitchHandler}> {langSwitchFlag?"🇩🇪 ➡️ 🇺🇸":"🇺🇸 ➡️ 🇩🇪"}</button>
                     <h2 className="params-display">(1-{dbLen})</h2>

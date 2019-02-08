@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-// import {getPartialLS, utilCtrl} from '../utils/utils';
-import CardBorder_de from './CardBorder_de';
+
+import CardBorder_en from './CardBorder_en';
 
 class VocabCard_en2de extends Component {
     constructor(props) {
@@ -9,20 +9,21 @@ class VocabCard_en2de extends Component {
             init: "",
             showSolution: false
         }
-        this.mouseDownHandler = this.mouseDownHandler.bind(this);
     }
+
     componentDidMount() {
         console.log("VocabCard  loaded")
     }
+
     componentWillUpdate(nextProps, nextState) {
         console.log("VocabCard  updated")
     }
-    mouseDownHandler() {
+
+    mouseDownHandler = () => {
         this.setState((prevState) => ({
             showSolution: !prevState.showSolution
         }))
     }
-
 
     render() {
         const { word_en, word_de, example_en, example_de } = this.props.entry;
@@ -40,11 +41,11 @@ class VocabCard_en2de extends Component {
                     <div className="slide-card-de card-solution">
                         <h3 className="card-property" id="word-de">{word_en}</h3>
                         <h3 className="card-property" id="example-de">{example_en}</h3>
-                        <CardBorder_de />
-                        </div>
-                    }
+                        <CardBorder_en />
                     </div>
-                    );
+                }
+            </div>
+        );
     }
 }
 

@@ -1,0 +1,42 @@
+[
+	{
+		"id": "1",
+		"word_de": "der/die/das",
+		"word_en": "the",
+		"example_de": "Der Sonnenaufgang ist wunderschön",
+		"example_en": "The sunrise is beautiful",
+		"show_switch": "true"
+	},
+	{
+		"id": "2",
+		"word_de": "in",
+		"word_en": "in",
+		"example_de": "Der Himmel ist in grau Deutschland",
+		"example_en": "The sky is grey in Germany",
+		"show_switch": "true"
+	},
+	{
+		"id": "3",
+		"word_de": "und",
+		"word_en": "and ",
+		"example_de": "Peter und Kate frühstücken",
+		"example_en": "Peter and Kate are eating breakfast",
+		"show_switch": "true"
+	},
+	{
+		"id": "4",
+		"word_de": "sein",
+		"word_en": "his",
+		"example_de": "sein Buch ist im Auto",
+		"example_en": "His book is in the car",
+		"show_switch": "true"
+	},
+	{
+		"id": "5",
+		"word_de": "ein",
+		"word_en": "a",
+		"example_de": "Sie ist ein Mitglied der Gruppe",
+		"example_en": "She is a member of the group",
+		"show_switch": "true"
+	}
+]

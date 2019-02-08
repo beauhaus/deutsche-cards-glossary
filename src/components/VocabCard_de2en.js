@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import CardBorder_en from './CardBorder_en';
+import CardBorder_de from './CardBorder_de';
 
 class VocabCard_de2en extends Component {
     constructor(props) {
@@ -9,7 +9,6 @@ class VocabCard_de2en extends Component {
             init: "",
             showSolution: false
         }
-        this.mouseDownHandler = this.mouseDownHandler.bind(this);
     }
     componentDidMount() {
         console.log("VocabCard  loaded")
@@ -17,7 +16,7 @@ class VocabCard_de2en extends Component {
     componentWillUpdate(nextProps, nextState) {
         console.log("VocabCard  updated")
     }
-    mouseDownHandler() {
+    mouseDownHandler =() =>{
         this.setState((prevState) => ({
             showSolution: !prevState.showSolution
         }))
@@ -40,7 +39,7 @@ class VocabCard_de2en extends Component {
                     <div className="slide-card-de card-solution">
                         <h3 className="card-property" id="word-de">{word_de}</h3>
                         <h3 className="card-property" id="example-de">{example_de}</h3>
-                        <CardBorder_en />
+                        <CardBorder_de />
                     </div>
                 }
             </div>
