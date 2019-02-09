@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import VocabCard_de2en from './VocabCard_de2en';
 import VocabCard_en2de from './VocabCard_en2de';
 

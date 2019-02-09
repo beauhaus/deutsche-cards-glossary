@@ -7,7 +7,7 @@ const Menu = (props) => {
     return (
         <div className={validate ? "menu-comp" : "menu-comp invalid"}>
         <div className="top-rt-placeholder">
-            <button className="x-modal-open-btn" onClick={xModalSwitchClickHandler}>XModal Open</button>
+            <button className="x-modal-open-btn" onClick={xModalSwitchClickHandler}>DB Maintenance</button>
             <XModal xModalOpen={xModalOpen} xModalSwitchClickHandler={xModalSwitchClickHandler} />
         </div>
             <div className="menu-options">

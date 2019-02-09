@@ -51,7 +51,6 @@ class Landing extends Component {
     }
 
     render() {
-        console.log("stateObj: ", this.state);
         const { xModalOpen, de_en_flag, valid_flag,lowBound, upBound, dbArray } = this.state;
         const { xModalSwitchClickHandler, handleInputChange, onRangeSubmit, langSwitchHandler } = this;
         return (

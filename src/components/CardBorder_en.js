@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 const CardBorder_en = () => (
     <svg className="card-border card-border-en" viewBox="0 0 405 405" preserveAspectRatio="none">

@@ -37,7 +37,6 @@ const getLS = () => {
     //retrieves & places LSDB onto variable
     const retrievedDB = localStorage.getItem("dictionaryDB");
     const parsedResult = JSON.parse(retrievedDB);
-    // (parsed)
     console.log("utils 'getLS' ran")
     return parsedResult;
 }
