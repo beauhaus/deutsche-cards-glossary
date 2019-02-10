@@ -1,8 +1,19 @@
 import React, { Component } from 'react'
+import styled from 'styled-components';
+import validator from 'validator';
+
 import Menu from './Menu'
 import DisplayCtrl from './DisplayCtrl'
 
-import validator from 'validator';
+const StyledLanding = styled.div`
+    grid-column: 1/4;
+    grid-row: 1/4;
+    display: grid;
+    grid-template-columns: 20vw 40vw 40vw;
+    grid-template-rows: repeat(3, 1fr);
+    height: auto;
+    min-height: 100vh;
+`;
 
 class Landing extends Component {
     state = {
@@ -54,7 +65,7 @@ class Landing extends Component {
         const { xModalOpen, de_en_flag, valid_flag,lowBound, upBound, dbArray } = this.state;
         const { xModalSwitchClickHandler, handleInputChange, onRangeSubmit, langSwitchHandler } = this;
         return (
-            <div className="landing-comp">
+            <StyledLanding className="landing-comp">
                 <Menu 
                 handleInputChange={handleInputChange} 
                 onRangeSubmit={onRangeSubmit}
@@ -72,7 +83,7 @@ class Landing extends Component {
                         upBound={upBound}
                         dbPayload={dbArray}
                     />}
-            </div>
+            </StyledLanding>
         )
     }
 }

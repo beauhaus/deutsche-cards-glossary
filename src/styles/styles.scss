@@ -13,55 +13,62 @@ html {
 body {
     font-family: 'Montserrat', sans-serif;
     font-size: 1.6rem;
-    background: fuchsia;
     width: 100vw;
-    height: 100vh;
-    display: grid;
-    grid-template-columns: repeat(3, 33.33vw);
-    grid-template-rows: repeat(3, 33.33vh);
-    // position: relative;
+    height: auto;
+    min-height: 100vh;
+    position: relative;
 }
 
 #app {
-    grid-column: 1/4;
-    grid-row: 1/4;
-    background: #60665A;
+    height: 100vh;
     width: 100vw;
-}
-
-.landing-comp {
-    width: 100vw;
-    display: grid;
-    grid-template-columns: 20vw 40vw 40vw;
-    grid-template-rows: 1fr;
-}
-
-.menu-comp {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
-    width: 20vw;
-    height: 100vh;
+    background: #60665A;
     display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: repeat(3, 33.33vh);
-    text-align: center;
+    grid-template-columns: 20vw 40vw 40vw;
+    grid-template-rows: repeat(3, 1fr);
+    min-height: 100%;
+    height: auto;
 }
 
-.top-rt-placeholder {
-    grid-column: 1;
-    grid-row: 1;
-    background: #58564c;
-}
+// .landing-comp {
+    // grid-column: 1/4;
+    // grid-row: 1/4;
+    // display: grid;
+    // grid-template-columns: 20vw 40vw 40vw;
+    // grid-template-rows: repeat(3, 1fr);
+    // height: auto;
+    // border: 1px solid coral;
+// }
 
-.x-modal-open-btn {
-    height: 3vh;
-    width: 12vw;
-    border: 1px solid sandybrown;
-    background: rgb(37, 9, 9);
-    color: antiquewhite;
-    font-weight: 100;
-}
+// .menu-comp {
+    // position: fixed;
+    // top: 0;
+    // left: 0;
+    // width: 20vw;
+    // height: 100vh;
+    // display: grid;
+    // grid-template-columns: 100%;
+    // grid-template-rows: repeat(3, 33.33vh);
+    // text-align: center;
+// }
+
+// .top-rt-placeholder {
+    // grid-column: 1;
+    // grid-row: 1;
+    // background: #58564c;
+// }
+
+// .x-modal-open-btn {
+    // height: 3vh;
+    // width: 12vw;
+    // border: 1px solid sandybrown;
+    // background: rgb(37, 9, 9);
+    // color: antiquewhite;
+    // font-weight: 100;
+// }
 
 .menu-options {
     grid-column: 1;
@@ -76,7 +83,6 @@ body {
     display: grid;
     grid-template-columns: repeat(16, 5vw);
     grid-template-rows: auto;
-    /* grid-gap: 10px; */
     width: 100%;
     margin-top: 1vh;
 }
@@ -92,7 +98,6 @@ body {
     width: 100%;
     height: 30vh;
     box-shadow: -30px 30px 30px 0px black;
-    /* padding: 2%; */
 }
 
 .right-col {
@@ -101,7 +106,6 @@ body {
     width: 100%;
     height: 30vh;
     box-shadow: -30px 30px 30px 0px black;
-    /* padding: 2%; */
     margin-top: 12vh;
 }
 
@@ -166,9 +170,6 @@ body {
     }
 }
 
-/* svg {
-border: 1px solid teal;
-} */
 /*****CARD ANIMATION****/
 #vocab-card {
     display: grid;
@@ -208,15 +209,6 @@ border: 1px solid teal;
 
 div.ReactModalPortal {
     position: absolute;
-    // top: 0;
-    // left: 0;
-    // width: 100vw;
-    // height: 100vh;
-    // opacity: 1;
-    // border: 5px solid blueviolet;
-    // display: grid;
-    // grid-template-columns: 20vw 40vw 40vw;
-    // grid-template-rows: repeat(3, 33.33vh);
 }
 
 .ReactModalPortal > div {
@@ -245,10 +237,10 @@ div.ReactModalPortal {
     // filter: blur(12px);
 }
 
-.ReactModalPortal > div {
+// .ReactModalPortal > div {
     // background: #000;
     // filter: blur(20px);
-}
+// }
 
 .ReactModalPortal .ReactModal__Overlay--before-close {
     opacity: 0;
@@ -258,17 +250,18 @@ div.ReactModalPortal {
     opacity: 1;
     background: green;
     text-align: center;
+    & button {
+        background: grey;
+        display: block;
+        margin: 0.3vh auto;
+        width: 6vw;
+        height: 4vh;
+    }
 }
 
 .Overlay {
     background-color: rgba(0, 0, 0, 0.5);
   }
-
-.x-modal-close-btn {
-    width: 6vw;
-    height: 4vh;
-}
-
 
 
 /*MODAL STYLING END*/
@@ -333,11 +326,11 @@ button {
     color: #fff;
 }
 
-.menu-btn:hover {
-    color: #fff;
-    background: sandybrown;
-    border: 1px solid #EFE9E1;
-}
+// .menu-btn:hover {
+    // color: #fff;
+    // background: sandybrown;
+    // border: 1px solid #EFE9E1;
+// }
 
 .menu-form {
     grid-row: 4/6;
@@ -347,18 +340,18 @@ button {
     margin: 5px 20px;
 }
 
-.lang-switch-btn {
-    margin: 10px auto;
-    font-size: 18px;
-    height: 5vh;
-    width: 10vw;
-    background: grey;
-}
+// .lang-switch-btn {
+//     margin: 10px auto;
+//     font-size: 18px;
+//     height: 5vh;
+//     width: 10vw;
+//     background: grey;
+// }
 
-.params-display {
-    color: #9cad85;
-    text-shadow: 1px 1px 0px #000;
-}
+// .params-display {
+//     color: #9cad85;
+//     text-shadow: 1px 1px 0px #000;
+// }
 
 .invalid input {
     background: #ffd289;
