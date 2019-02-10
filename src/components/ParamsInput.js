@@ -1,5 +1,26 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 
+
+const StyledParamsForm = styled.form`
+    grid-row: 4/6;
+
+    & input {
+        margin: 5px 20px;
+    }
+
+    #upperBounds-input {
+        box-shadow: inset 2px 2px 5px 0px rgba(0, 0, 0, 0.5);
+        border: 1px solid grey;
+        width: 3vw;
+    }
+
+    #lowerBounds-input {
+        box-shadow: inset 2px 2px 5px 0px rgba(0, 0, 0, 0.5);
+        border: 1px solid grey;
+        width: 3vw;
+    }
+`;
 class ParamsInput extends Component {
     constructor(props) {
         super(props)
@@ -16,7 +37,7 @@ class ParamsInput extends Component {
         }
     }
     /* uses ENTER key to focus on next INPUT */
-    handleKeyPress = (e, field) =>{
+    handleKeyPress = (e, field) => {
         if (e.keyCode === 13) {
             e.preventDefault(); // Prevent form submission if button present
             let next = this.refs[field.name].nextSibling;
@@ -30,7 +51,7 @@ class ParamsInput extends Component {
     render() {
         const { onRangeSubmit, handleInputChange } = this.props;
         return (
-            <form className="menu-form" onSubmit={onRangeSubmit}>
+            <StyledParamsForm className="menu-form" onSubmit={onRangeSubmit}>
                 <input id="lowerBounds-input"
                     autoFocus type="text"
                     onChange={handleInputChange}
@@ -43,7 +64,7 @@ class ParamsInput extends Component {
                     name="upBound"
                     ref="upBound"
                     placeholder="]" />
-            </form>
+            </StyledParamsForm>
         );
     }
 }
