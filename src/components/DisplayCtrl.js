@@ -11,6 +11,24 @@ const StyledDisplay = styled.div`
     grid-template-rows: auto;
     width: 100%;
     margin-top: 1vh;
+
+    & .left-col {
+        background: #60665A;
+        grid-column: 2/8;
+        width: 100%;
+        height: 30vh;
+        box-shadow: -30px 30px 30px 0px black;
+    }
+
+    & .right-col {
+        background: #60665A;
+        grid-column: 9/15;
+        width: 100%;
+        height: 30vh;
+        box-shadow: -30px 30px 30px 0px black;
+        margin-top: 12vh;
+    }
+
 `;
 
 const DisplayCtrl =(props) => {

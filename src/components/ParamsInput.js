@@ -20,7 +20,37 @@ const StyledParamsForm = styled.form`
         border: 1px solid grey;
         width: 3vw;
     }
+    &.invalid input {
+        background: #ffd289;
+        
+    }
+    input[type="text"] {
+        font-size: 2rem;
+        color: fuchsia;
+        &::-webkit-input-placeholder {
+            /* Chrome/Opera/Safari */
+            font-size: 2rem;
+            text-align: center;
+            color: orangered;
+        }
+        &::-moz-placeholder {
+            /* Firefox 19+ */
+            font-size: 25px;
+            text-align: center;
+        }
+        &:-ms-input-placeholder {
+        /* IE 10+ */
+        font-size: 25px;
+        text-align: center;
+        }
+        &:-moz-placeholder {
+        /* Firefox 18- */
+        font-size: 25px;
+        text-align: center;
+        }
+    }
 `;
+
 class ParamsInput extends Component {
     constructor(props) {
         super(props)

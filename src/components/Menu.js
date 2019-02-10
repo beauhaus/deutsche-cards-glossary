@@ -50,6 +50,15 @@ const StyledMenu = styled.div`
         background: sandybrown;
         border: 1px solid #EFE9E1;
     }
+
+    &.invalid form > input {
+        background: #ffd289;
+    }
+
+    &.invalid .params-display {
+        color: #852a00;
+        text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.4);
+    }
 `;
 
 const Menu = (props) => {
