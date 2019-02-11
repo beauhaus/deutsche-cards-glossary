@@ -120,25 +120,9 @@ div.ReactModalPortal {
     transition: opacity 200ms ease-in-out;
 }
 
-// .ReactModal__Overlay.ReactModal__Overlay--after-open {
-//     background-color: #000;
-// }
-
-// .ReactModalPortal > div {
-//     opacity: .5;
-    // grid-row: 1;
-    // grid-column: 1;
-// }
-
 .ReactModalPortal > .ReactModal__Overlay--after-open {
     opacity: 1;
-    // filter: blur(12px);
 }
-
-// .ReactModalPortal > div {
-    // background: #000;
-    // filter: blur(20px);
-// }
 
 .ReactModalPortal .ReactModal__Overlay--before-close {
     opacity: 0;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components'
 
-import CardBorder_de from './CardBorder_de';
+import CardBorder from './CardBorder';
 
 
 const StyledVocabCard = styled.div`
@@ -88,7 +88,7 @@ class VocabCard_de2en extends Component {
 
     render() {
         const { word_en, word_de, example_en, example_de } = this.props.entry;
-        const { parity, idx } = this.props;
+        const { langSwitch, parity, idx } = this.props;
 
         return (
 
@@ -102,7 +102,7 @@ class VocabCard_de2en extends Component {
                     <div className="slide-card-de card-solution">
                         <h3 className="card-property" id="word-de">{word_de}</h3>
                         <h3 className="card-property" id="example-de">{example_de}</h3>
-                        <CardBorder_de />
+                        <CardBorder langSwitch={langSwitch}/>
                     </div>
                 }
             </StyledVocabCard>

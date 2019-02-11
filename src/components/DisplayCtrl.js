@@ -38,10 +38,20 @@ const DisplayCtrl =(props) => {
         <StyledDisplay className="displayCtrl-box">
             {langSwitchFlag ?
                 arrayMod.map((entry, idx) => (
-                    <VocabCard_de2en key={idx} entry={entry} idx={idx + 1} parity={idx % 2 ? "right-col" : "left-col"} />
+                    <VocabCard_de2en key={idx}
+                     langSwitch={langSwitchFlag}
+                     entry={entry}
+                     idx={idx + 1}
+                     parity={idx % 2 ? "right-col" : "left-col"}
+                     />
                 )) :
                 arrayMod.map((entry, idx) => (
-                    <VocabCard_en2de key={idx} entry={entry} idx={idx + 1} parity={idx % 2 ? "right-col" : "left-col"} />
+                    <VocabCard_en2de key={idx}
+                    langSwitch={langSwitchFlag}
+                    entry={entry}
+                     idx={idx + 1}
+                     parity={idx % 2 ? "right-col" : "left-col"}
+                     />
                 ))
             }
         </StyledDisplay>

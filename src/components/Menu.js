@@ -59,6 +59,9 @@ const StyledMenu = styled.div`
         color: #852a00;
         text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.4);
     }
+    & .top-rt-placeholder {
+        /* display: none; */
+    }
 `;
 
 const Menu = (props) => {
