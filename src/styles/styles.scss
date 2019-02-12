@@ -25,6 +25,8 @@ body {
     position: absolute;
     top: 0;
     left: 0;
+    bottom: 0;
+    right: 0;
     background: #60665A;
     display: grid;
     grid-template-columns: 20vw 40vw 40vw;
@@ -121,3 +123,31 @@ a {
 }
 
 /****above is for DICTIONARY SEARCH ****/
+
+
+/***ROUTER & LINKS***/
+.router-liner {
+    grid-row: 1;
+    grid-column: 1/4;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: repeat(3, 1fr);
+    border: 1px solid yellow;
+    header {
+        grid-row: 1;
+        grid-column: 1;
+        border: 2px solid grey;
+        text-align: center;
+        a {
+            color: lightgreen;
+            display: inline;
+            position: relative;
+            margin: 1rem auto;
+        }
+    }
+}
+
+a.is-active {
+    margin: 4vh auto;
+    display: block;
+}

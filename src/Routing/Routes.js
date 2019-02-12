@@ -1,9 +1,10 @@
 import React from 'react';
-import {BrowserRouter, Route, Switch, Link, NavLink} from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-import Landing from '../components/Landing';
+// import Landing from '../components/Landing';
 import Template from '../components/Template';
+import Template2 from '../components/Template2';
 import FourOhFour from './FourOhFour';
 
 // const db = getLS();
@@ -17,23 +18,33 @@ const StyledHeader = styled.header`
         background: grey;
     }
 `;
-const MainNav = () => (
+const MainNav = (props) => (
     <StyledHeader>
-    <NavLink to="/" activeClassName="is-active">Landing</NavLink>
-{/* 
+        <NavLink to="/" activeClassName="is-active">Home</NavLink>
+        <NavLink to="/template" activeClassName="is-active">Template</NavLink>
+        <NavLink to="/template2" activeClassName="is-active">Template2</NavLink>
+        {/* 
     <NavLink to="/a" activeClassName="is-active">a</NavLink>
     <NavLink to="/b" activeClassName="is-active">b</NavLink>
 */}
     </StyledHeader>
 )
-const Routes = () => (
+const Routes = (props) => (
     <BrowserRouter>
-    <Switch>
-    <Route path="/" exact={true} component={Landing}/>
-    <Route path="/template"  component={Template}/>
-    {/*TODO: exact = exact={true}??? */}
-    <Route component={FourOhFour}/>
-    </Switch>
+        <div className="router-liner">
+            <MainNav />
+            <Switch>
+                {/*
+        <Route path="/" exact={true} component={Landing}/>
+    */}
+                <Route path="/" exact={true} />
+                <Route path="/template" component={Template} />
+                <Route path="/template2" component={Template2} />
+
+                {/*TODO: exact = exact={true}??? */}
+                <Route component={FourOhFour} />
+            </Switch>
+        </div>
     </BrowserRouter>
 )
 
