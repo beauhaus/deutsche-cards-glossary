@@ -41,66 +41,6 @@ button {
 }
 
 
-
-
-// #card-idx {
-//     font-size: 8px;
-//     grid-column: 1;
-//     grid-row: 1;
-// }
-
-// #word-de {
-//     font-weight: bold;
-//     grid-column: 1;
-//     grid-row: 1;
-//     margin: auto;
-
-// }
-
-// #word-en {
-//     font-weight: bold;
-//     grid-column: 1;
-//     grid-row: 1;
-//     margin: auto;
-
-// }
-
-// #example-de {
-//     grid-column: 1;
-//     grid-row: 2;
-// }
-
-// #example-en {
-//     grid-column: 1;
-//     grid-row: 2;
-// }
-
-.card-border {
-    fill: transparent;
-    position: absolute;
-    top: 0;
-    left: -1px;
-    height: 102%;
-    width: 100%;
-    stroke-width: 2px;
-    stroke-dasharray: 1590px;
-    fill: transparent;
-    animation: 0.3s infinite forwards drawSVG;
-    animation-iteration-count: 1;
-}
-
-@keyframes drawSVG {
-    0% {
-        stroke-dashoffset: -1590px;
-    }
-
-    100% {
-        stroke-dashoffset: 0px;
-    }
-}
-
-/*****CARD ANIMATION****/
-
 /*************** Layout end ***************/
 
 /*MODAL STYLING*/
