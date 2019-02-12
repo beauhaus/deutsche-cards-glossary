@@ -2,49 +2,42 @@ import React from 'react';
 import { BrowserRouter, Route, Switch, Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-// import Landing from '../components/Landing';
+import MainNav from './MainNav';
 import Template from '../components/Template';
 import Template2 from '../components/Template2';
+import Template3 from '../components/Template3';
+import Template4 from '../components/Template4';
 import FourOhFour from './FourOhFour';
 
 // const db = getLS();
 
 // ReactDOM.render(<Landing db={db}/>, document.getElementById('app'));
-
-const StyledHeader = styled.header`
-    & .is-active {
-        font-weight: bold;
-        color: fuchsia;
-        background: grey;
-    }
+const RouterLiner = styled.div`
+    width: 100wv;
+    min-height: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(20, 1fr);
+    /* border: 1px solid orange; */
 `;
-const MainNav = (props) => (
-    <StyledHeader>
-        <NavLink to="/" activeClassName="is-active">Home</NavLink>
-        <NavLink to="/template" activeClassName="is-active">Template</NavLink>
-        <NavLink to="/template2" activeClassName="is-active">Template2</NavLink>
-        {/* 
-    <NavLink to="/a" activeClassName="is-active">a</NavLink>
-    <NavLink to="/b" activeClassName="is-active">b</NavLink>
-*/}
-    </StyledHeader>
-)
+
+
 const Routes = (props) => (
     <BrowserRouter>
-        <div className="router-liner">
+        <RouterLiner className="router-liner">
             <MainNav />
-            <Switch>
-                {/*
-        <Route path="/" exact={true} component={Landing}/>
-    */}
+            {/*
+            */}
+                <Switch>
                 <Route path="/" exact={true} />
                 <Route path="/template" component={Template} />
                 <Route path="/template2" component={Template2} />
-
-                {/*TODO: exact = exact={true}??? */}
+                <Route path="/template3" component={Template3} />
+                <Route path="/template4" component={Template4} />
                 <Route component={FourOhFour} />
-            </Switch>
-        </div>
+                </Switch>
+        </RouterLiner>
     </BrowserRouter>
 )
 

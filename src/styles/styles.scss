@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:200,300,400');
 
+/**color vars **/
+$color-moss: #C9e4ca;
+$color-grass: #87bba2;
+$color-sea: #55828b;
+$color-forest: #3b6064;
+$color-slate: #364958;
+
+// p { color: $color-green; }
+
 * {
     margin: 0;
     padding: 0;
@@ -10,6 +19,8 @@ html {
     font-size: 62.5%;
 }
 
+
+
 body {
     font-family: 'Montserrat', sans-serif;
     font-size: 1.6rem;
@@ -17,23 +28,40 @@ body {
     height: auto;
     min-height: 100vh;
     position: relative;
+    background-color: fuchsia;
 }
 
 #app {
-    height: 100vh;
-    width: 100vw;
     position: absolute;
     top: 0;
     left: 0;
     bottom: 0;
     right: 0;
-    background: #60665A;
-    display: grid;
-    grid-template-columns: 20vw 40vw 40vw;
-    grid-template-rows: repeat(3, 1fr);
+    background: linear-gradient(145deg, #272727 0%,  #818181 100%, );
+    width: 100wv;
     min-height: 100%;
     height: auto;
+    // display: grid;
+    // grid-template-columns: 20vw 40vw 40vw;
+    // grid-template-rows: repeat(3, 1fr);
 }
+
+
+/***ROUTER & LINKS***/
+// .router-liner {
+    // width: 100wv;
+    // min-height: 100%;
+    // height: auto;
+    // display: grid;
+    // grid-template-columns: 1fr;
+    // grid-template-rows: repeat(20, 1fr);    
+// }
+
+// a.is-active {
+    // margin: 4vh auto;
+    // display: block;
+// }
+
 
 button {
     box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.5);
@@ -99,23 +127,16 @@ details {
     text-align: center;
 }
 
-a {
-    position: absolute;
-    right: 0;
-    top: 0;
-    font-size: 30px;
-    text-decoration: none !important;
-}
 
 #result-box {
-    border: 1px solid coral;
+    // border: 1px solid coral;
     position: relative;
 }
 
 #search-field {
     width: 50%;
     height: 5vh;
-    border: 3px solid orange;
+    // border: 3px solid orange;
 }
 
 .search-bar {
@@ -124,30 +145,3 @@ a {
 
 /****above is for DICTIONARY SEARCH ****/
 
-
-/***ROUTER & LINKS***/
-.router-liner {
-    grid-row: 1;
-    grid-column: 1/4;
-    display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: repeat(3, 1fr);
-    border: 1px solid yellow;
-    header {
-        grid-row: 1;
-        grid-column: 1;
-        border: 2px solid grey;
-        text-align: center;
-        a {
-            color: lightgreen;
-            display: inline;
-            position: relative;
-            margin: 1rem auto;
-        }
-    }
-}
-
-a.is-active {
-    margin: 4vh auto;
-    display: block;
-}

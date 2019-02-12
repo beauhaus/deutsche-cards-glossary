@@ -22,7 +22,7 @@ const StyledMenu = styled.div`
     & .x-modal-open-btn {
         height: 3vh;
         width: 12vw;
-        border: 1px solid sandybrown;
+        /* border: 1px solid sandybrown; */
         background: rgb(37, 9, 9);
         color: antiquewhite;
         font-weight: 100;
@@ -48,7 +48,7 @@ const StyledMenu = styled.div`
     & .menu-btn:hover {
         color: #fff;
         background: sandybrown;
-        border: 1px solid #EFE9E1;
+        /* border: 1px solid #EFE9E1; */
     }
 
     &.invalid form > input {

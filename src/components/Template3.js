@@ -7,11 +7,11 @@ const Styled_Template = styled.div`
     height: 100vh;
 `;
 
-const Template2 = (props) => (
+const Template3 = (props) => (
     <Styled_Template>
     {console.log("P> Template: ", props)}
-        <h1>Template2</h1>
+        <h1>Template3</h1>
     </Styled_Template>
 )
 
-module.exports = Template2;
+module.exports = Template3;
