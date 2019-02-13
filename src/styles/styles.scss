@@ -25,8 +25,7 @@ body {
     font-family: 'Montserrat', sans-serif;
     font-size: 1.6rem;
     width: 100vw;
-    height: auto;
-    min-height: 100vh;
+    height: 100vh;
     position: relative;
     background-color: fuchsia;
 }
@@ -39,28 +38,13 @@ body {
     right: 0;
     background: linear-gradient(145deg, #272727 0%,  #818181 100%, );
     width: 100wv;
-    min-height: 100%;
-    height: auto;
+    height: 100vh;
+    overflow: hidden;
     // display: grid;
     // grid-template-columns: 20vw 40vw 40vw;
     // grid-template-rows: repeat(3, 1fr);
 }
 
-
-/***ROUTER & LINKS***/
-// .router-liner {
-    // width: 100wv;
-    // min-height: 100%;
-    // height: auto;
-    // display: grid;
-    // grid-template-columns: 1fr;
-    // grid-template-rows: repeat(20, 1fr);    
-// }
-
-// a.is-active {
-    // margin: 4vh auto;
-    // display: block;
-// }
 
 
 button {

@@ -14,8 +14,8 @@ import FourOhFour from './FourOhFour';
 // ReactDOM.render(<Landing db={db}/>, document.getElementById('app'));
 const RouterLiner = styled.div`
     width: 100wv;
-    min-height: 100%;
-    height: auto;
+    height: 100vh;
+    /* height: auto; */
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(20, 1fr);
@@ -27,16 +27,14 @@ const Routes = (props) => (
     <BrowserRouter>
         <RouterLiner className="router-liner">
             <MainNav />
-            {/*
-            */}
-                <Switch>
+            <Switch>
                 <Route path="/" exact={true} />
                 <Route path="/template" component={Template} />
                 <Route path="/template2" component={Template2} />
                 <Route path="/template3" component={Template3} />
                 <Route path="/template4" component={Template4} />
                 <Route component={FourOhFour} />
-                </Switch>
+            </Switch>
         </RouterLiner>
     </BrowserRouter>
 )

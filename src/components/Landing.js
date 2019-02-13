@@ -11,7 +11,7 @@ const StyledLanding = styled.div`
     display: grid;
     grid-template-columns: 20vw 40vw 40vw;
     grid-template-rows: repeat(3, 1fr);
-    height: auto;
+    /* height: auto; */
     min-height: 100vh;
 `;
 

@@ -2,15 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Styled_Template = styled.div`
-    background: burlywood;
     width: 100vw;
     height: 100vh;
+    grid-column: 1;
+    grid-row: 2/-1;
+    background: #3b6064;
 `;
 
 const Template3 = (props) => (
     <Styled_Template>
-    {console.log("P> Template: ", props)}
-        <h1>Template3</h1>
+        <h1>Template 3</h1>
     </Styled_Template>
 )
 
