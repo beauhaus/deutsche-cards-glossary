@@ -1,69 +1,57 @@
 import { createStore } from 'redux';
 
+
 const store = createStore((state = { count: 0 }, action) => {
-
-    switch (action.type) {
-        case "INCREMENT":
-            const incrementBy = typeof action.incrementBy === 'number' ? action.incrementBy : 1;
-            return {
-                count: state.count + incrementBy
-            };
-        case "DECREMENT":
-            const decrementBy = typeof action.decrementBy === 'number' ? action.decrementBy : 1;
-            return {
-                count: state.count - decrementBy
-            };
-            case "RESET":
-            return {
-                count: 0
-            };
-            case "SET":
-            return {
-                count: action.count
-            };
+    switch(action.type) {
+        case 'SET':
+        return {
+            count: action.count
+        }
+        case 'INCREMENT':
+        const incrementBy = typeof action.incrementBy==='number'? action.incrementBy: 1; //default incrementer
+        return {
+            count: state.count + incrementBy
+        }
+        case 'DECREMENT':
+        const decrementBy = typeof action.decrementBy==='number'? action.decrementBy: 1; //default decrementer
+        return {
+            count: state.count - decrementBy
+        }
+        case 'RESET':
+        return {
+            count: 0
+        }
         default:
-            return state;
+        return state;
     }
-});
 
+})
 
+const unsubscribe = store.subscribe(()=>( // This is a "watch" function
+    console.log(store.getState())
+))
+
+// unsubscribe();
 store.dispatch({
     type: "INCREMENT",
+    incrementBy: 5
 });
 
 store.dispatch({
     type: "DECREMENT",
-    decrementBy: 5
+    decrementBy: 14
 });
+
 store.dispatch({
-    type: "INCREMENT",
-    incrementBy: 5
+    type: "DECREMENT",
 });
+
 store.dispatch({
     type: "RESET",
-});
-store.dispatch({
-    type: "INCREMENT",
-    incrementBy: 5
 });
 
 store.dispatch({
     type: "SET",
-    count: 101
+    count: 20
 });
-
-var storeLog = store.getState();
-console.table(storeLog)
-
-
-// store.dispatch({
-//     type: "DECREMENT"
-// });
-// var storeLog = store.getState();
-// console.table(storeLog)
-
-// store.dispatch({
-//     type: "RESET"
-// });
-// console.table(storeLog)
 
