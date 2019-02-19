@@ -36,11 +36,16 @@ const addVocabItem = ({
 
 // REMOVE VOCAB
 
-
-
 const removeVocabItem = ({id}={}) =>({
     type: 'REMOVE_VOCAB_ITEM',
     id
+});
+
+// EDIT VOCAB
+const editVocabItem = (id, updates) =>({
+    type: 'EDIT_VOCAB_ITEM',
+    id,
+    updates
 });
 
 
@@ -53,47 +58,23 @@ const vocabReducer = (state = vocabReducerDefaultState, action) => {
             ...state,
             action.vocab
         ]
+        case 'EDIT_VOCAB_ITEM':
+        return state.map((vocab)=>{
+            if(vocab.id === action.id) {
+                return {
+                    ...vocab,
+                    ...action.updates
+                }
+            } else {
+                return vocab;
+            }
+        })
         case 'REMOVE_VOCAB_ITEM':
         return state.filter(({id})=>id !== action.id)
         default:
             return state;
     }
 }
-
-// const REMOVE_VOCAB_ITEM = () => ({
-//     type: 'REMOVE_VOCAB_ITEM',
-//     vocab: {}
-// })
-
-
-// const SET_TEXT_FILTER = () => ({
-//     type: 'SET_TEXT_FILTER',
-//     vocab: {}
-// })
-
-
-// const SORT_BY_DATE = () => ({
-//     type: 'SORT_BY_DATE',
-//     vocab: {}
-// })
-
-
-// const FILTER_BY_SHOW_HIDE = () => ({
-//     type: 'FILTER_BY_SHOW_HIDE',
-//     vocab: {}
-// })
-
-
-// const SET_START_DATE = () => ({
-//     type: 'SET_START_DATE',
-//     vocab: {}
-// })
-
-
-// const SET_END_DATE = () => ({
-//     type: 'SET_END_DATE',
-//     vocab: {}
-// })
 
 const filtersReducerDefaultState = {
     'text': '',
@@ -137,6 +118,10 @@ store.dispatch(addVocabItem({
 const vocabOne= store.dispatch(addVocabItem({word_de:"Ak!", word_en: "Ugh!"}))
 const vocabTwo= store.dispatch(addVocabItem({word_de:"FOO", word_en: "BAR!"}))
 store.dispatch(removeVocabItem({id:vocabOne.vocab.id}))
+
+
+store.dispatch(editVocabItem(vocabTwo.vocab.id, {word_de: "erstellen", word_en: "create"})) 
+//2nd arg is updates to object
 
 
 
