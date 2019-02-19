@@ -158,6 +158,9 @@ const getVisibleVocab = (vocabItems, {text, isShowing, sortBy, startDate, endDat
 
         //if all of the below is true then the filter func will return true
         return startDateMatch && endDateMatch && textMatch
+    }).sort((a, b)=> {
+        if(sortBy ==="date")
+        return a.createdAt < b.createdAt? 1: -1;
     });
 }
 
@@ -190,13 +193,13 @@ store.subscribe(() => {
 // })
 // )
 
-const vocabOne= store.dispatch(addVocabItem({word_de:"Ak!", word_en: "Ugh!", createdAt: 1000}))
-const vocabTwo= store.dispatch(addVocabItem({word_de:"FOO", word_en: "BAR!", createdAt: -2000, note: "FUCK"}))
+const vocabOne= store.dispatch(addVocabItem({word_de:"Ak!", word_en: "Ugh!", createdAt: -2000}))
+const vocabTwo= store.dispatch(addVocabItem({word_de:"FOO", word_en: "BAR!", createdAt: -4000, note: "WONDERFUL!"}))
 // store.dispatch(removeVocabItem({id:vocabOne.vocab.id}))
 
 
 // store.dispatch(editVocabItem(vocabTwo.vocab.id, {word_de: "erstellen", word_en: "create"})) 
-store.dispatch(setTextFilter('gh')) 
+// store.dispatch(setTextFilter('gh')) 
 // store.dispatch(isShowingFilter(true))
 
 // store.dispatch(sortByDate())
