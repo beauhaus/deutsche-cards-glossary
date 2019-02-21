@@ -28,9 +28,9 @@ store.dispatch(addVocabItem({"word_en": "Sister", 'word_de':"Schwester", 'exampl
 store.dispatch(setTextFilter("wes"))
 
 
-// setTimeout(() => {
-//     store.dispatch(setTextFilter("der"))
-// }, 3000);
+setTimeout(() => {
+    store.dispatch(setTextFilter("der"))
+}, 3000);
 
 
 const state = store.getState();
