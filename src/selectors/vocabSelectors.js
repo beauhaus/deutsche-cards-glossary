@@ -3,7 +3,7 @@
 
 const getVisibleVocab = (vocabItems, {text,sortBy, startDate, endDate}) => {
     return vocabItems.filter((vocabItem)=>{
-        console.log("vocabItem:", vocabItem)
+        
         const startDateMatch = typeof startDate !== 'number' || vocabItem.createdAt >= startDate;
         const endDateMatch = typeof endDate !== 'number' || vocabItem.createdAt <= endDate;
 

@@ -73,7 +73,7 @@ const MainNav = (props) => (
                 <NavLink to="/template3" activeClassName="is-active">Template3</NavLink>
             </li>
             <li>
-                <NavLink to="/template4" activeClassName="is-active">Template4</NavLink>
+                <NavLink to="/WordListDashboard" activeClassName="is-active">WordListDashboard</NavLink>
             </li>
         </ul>
 
