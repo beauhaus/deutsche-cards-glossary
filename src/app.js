@@ -23,14 +23,9 @@ const store = configureStore;
 // store.dispatch(addVocabItem({"note": "Hello World"}))
 // store.dispatch(addVocabItem({"word_en": "Hey, what's up?"}))
 
-store.dispatch(addVocabItem({"word_en": "Brother", 'word_de':"Bruder", 'example_de':'Ich habe ein Bruder'}))
-store.dispatch(addVocabItem({"word_en": "Sister", 'word_de':"Schwester", 'example_de':'Ich habe eine Schwester'}))
-store.dispatch(setTextFilter("wes"))
-
-
-setTimeout(() => {
-    store.dispatch(setTextFilter("der"))
-}, 3000);
+store.dispatch(addVocabItem({"word_en": "Brother", 'word_de':"Bruder", 'example_de':'Ich habe ein Bruder', "createdAt": 1000}))
+store.dispatch(addVocabItem({"word_en": "Sister", 'word_de':"Schwester", 'example_de':'Ich habe eine Schwester', "createdAt": -4000}))
+store.dispatch(addVocabItem({"word_en": "Mother", 'word_de':"Mütter", 'example_de':'Ich liebe dich, meine Mütter', "createdAt": 24000}))
 
 
 const state = store.getState();

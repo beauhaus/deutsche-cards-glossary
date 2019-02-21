@@ -26,7 +26,6 @@ export const addVocabItem = ({
 })
 
 // REMOVE VOCAB
-
 export const removeVocabItem = ({ id } = {}) => ({
     type: 'REMOVE_VOCAB_ITEM',
     id

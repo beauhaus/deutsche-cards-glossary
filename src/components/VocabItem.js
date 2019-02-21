@@ -10,11 +10,8 @@ const VocabItem = ({dispatch, id,note, word_de, word_en, example_en, example_de}
        <h2>{example_en}</h2>
        <h3>Note{note}</h3>
        <button onClick={() => {
-        //    console.log("Dis:", dispatch)
               dispatch(removeVocabItem({id}))
         }}>Remove</button>
-    {/*
-    */}
        </div>
 )
 

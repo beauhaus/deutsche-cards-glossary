@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { setTextFilter } from '../actions/filters';
+import { setTextFilter, sortByDate } from '../actions/filters';
 
 const VocabListFilters = (props) => (
     <div>
@@ -12,6 +12,10 @@ const VocabListFilters = (props) => (
                     props.dispatch(setTextFilter(e.target.value))
                 }}
         />
+        <select >
+        <option value="date">date</option>
+        <option value="x">Date Created</option>
+        </select>
     </div>
 );
 
