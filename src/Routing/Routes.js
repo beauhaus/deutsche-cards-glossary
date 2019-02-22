@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import MainNav from './MainNav';
 import Template from '../components/Template';
 import Template2 from '../components/Template2';
-import Template3 from '../components/Template3';
+import AddVocabPage from '../components/AddVocabPage';
 import WordListDashboard from '../components/WordListDashboard';
 import FourOhFour from './FourOhFour';
 
@@ -28,7 +28,7 @@ const Routes = (props) => (
                 <Route path="/" exact={true} />
                 <Route path="/template" component={Template} />
                 <Route path="/template2" component={Template2} />
-                <Route path="/template3" component={Template3} />
+                <Route path="/AddVocabPage" component={AddVocabPage} />
                 <Route path="/WordListDashboard" component={WordListDashboard} />
                 <Route component={FourOhFour} />
             </Switch>

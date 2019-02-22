@@ -3,13 +3,22 @@ export const setTextFilter = (text = '') => ({
     text
 });
 
-export const isShowingFilter = (isShowing = '') => ({
+// export const isShowingFilter = (isShowing = true) => ({
+//     type: 'IS_SHOWING_FILTER',
+//     isShowing
+// });
+
+export const isShowingFilter = () => ({
     type: 'IS_SHOWING_FILTER',
-    isShowing
+    // isShowing
 });
 
 export const sortByDate = () => ({
     type: 'SORT_BY_DATE'
+});
+
+export const sortByAmount = () => ({
+    type: 'SORT_BY_AMOUNT'
 });
 
 export const setStartDate = (startDate) => ({

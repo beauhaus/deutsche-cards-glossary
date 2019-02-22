@@ -29,7 +29,7 @@ const setLS = () => {
     //defaultkey for DB is "dictionaryDB";
     const dbKey = "dictionaryDB";
     localStorage.setItem(dbKey, dictDBString);
-    console.log("utils 'setLS' ran")
+    // console.log("utils 'setLS' ran")
 }
 
 //GET (read)
@@ -37,7 +37,7 @@ const getLS = () => {
     //retrieves & places LSDB onto variable
     const retrievedDB = localStorage.getItem("dictionaryDB");
     const parsedResult = JSON.parse(retrievedDB);
-    console.log("utils 'getLS' ran")
+    // console.log("utils 'getLS' ran")
     return parsedResult;
 }
 

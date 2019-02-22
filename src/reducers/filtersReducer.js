@@ -21,12 +21,18 @@ const filtersReducer = (state = filtersReducerDefaultState, action) => {
         case 'IS_SHOWING_FILTER':
             return {
                 ...state,
-                isShowing: action.isShowing
+                // isShowing: action.isShowing
+                sortBy: action.isShowing
             }
         case 'SORT_BY_DATE':
             return {
                 ...state,
                 sortBy: 'date'
+            }
+        case 'SORT_BY_AMOUNT':
+            return {
+                ...state,
+                sortBy: 'amount'
             }
         case 'SET_START_DATE':
             return {

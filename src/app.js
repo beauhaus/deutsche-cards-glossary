@@ -23,14 +23,14 @@ const store = configureStore;
 // store.dispatch(addVocabItem({"note": "Hello World"}))
 // store.dispatch(addVocabItem({"word_en": "Hey, what's up?"}))
 
-store.dispatch(addVocabItem({"word_en": "Brother", 'word_de':"Bruder", 'example_de':'Ich habe ein Bruder', "createdAt": 1000}))
-store.dispatch(addVocabItem({"word_en": "Sister", 'word_de':"Schwester", 'example_de':'Ich habe eine Schwester', "createdAt": -4000}))
-store.dispatch(addVocabItem({"word_en": "Mother", 'word_de':"Mütter", 'example_de':'Ich liebe dich, meine Mütter', "createdAt": 24000}))
+store.dispatch(addVocabItem({"amount": 400,"word_en": "Brother", 'word_de':"Bruder", 'example_de':'Ich habe ein Bruder', "createdAt": 1000, "isShowing": false}))
+store.dispatch(addVocabItem({"amount": 2200,"word_en": "Sister", 'word_de':"Schwester", 'example_de':'Ich habe eine Schwester', "createdAt": -4000, "isShowing": true}))
+store.dispatch(addVocabItem({"amount": 0,"word_en": "Mother", 'word_de':"Mütter", 'example_de':'Ich liebe dich, meine Mütter', "createdAt": 24000, "isShowing": false}))
 
 
 const state = store.getState();
-console.log("state: ", state)
-console.log("s.filters ", state.filters)
+// console.log("state: ", state)
+// console.log("s.filters ", state.filters)
 // console.log("s.vocabItems ", state.vocabItems)
 const visibleVocab= getVisibleVocab(state.vocabItems, state.filters);
 // console.log("visVocab: ")

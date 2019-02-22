@@ -1,3 +1,4 @@
+import { Z_ASCII } from "zlib";
 
 // VOCABITEMS SELECTOR
 
@@ -19,8 +20,13 @@ const getVisibleVocab = (vocabItems, { text, sortBy, startDate, endDate }) => {
         //if all of the below is true then the filter func will return true
         return startDateMatch && endDateMatch && textMatch
     }).sort((a, b) => {
-        if (sortBy === "date")
+        if (sortBy === "date"){
             return a.createdAt < b.createdAt ? 1 : -1;
+        } else if (sortBy === "amount"){
+            return a.amount < b.amount ? 1: -1;
+        } else if (sortBy === "isShowing"){
+            return a.isShowing < b.isShowing ? 1: -1;
+        }
     });
 }
 

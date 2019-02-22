@@ -18,4 +18,4 @@ const WordListDashboard = (props) => (
     </Styled_Template>
 )
 
-module.exports = WordListDashboard;
+export default WordListDashboard;
