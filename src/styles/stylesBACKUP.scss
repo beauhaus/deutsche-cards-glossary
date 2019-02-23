@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:200,300,400');
+
+/**color vars **/
+$color-moss: #C9e4ca;
+$color-grass: #87bba2;
+$color-sea: #55828b;
+$color-forest: #3b6064;
+$color-slate: #364958;
+
+// p { color: $color-green; }
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.6rem;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    background-color: fuchsia;
+}
+
+#app {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(145deg, #272727 0%,  #818181 100%, );
+    width: 100wv;
+    height: 100vh;
+    overflow: hidden;
+    // display: grid;
+    // grid-template-columns: 20vw 40vw 40vw;
+    // grid-template-rows: repeat(3, 1fr);
+}
+
+
+
+button {
+    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.5);
+    border: 1px solid black;
+    border-radius: 2px;
+    /* display: none; */
+}
+
+
+/*************** Layout end ***************/
+
+/*MODAL STYLING*/
+
+div.ReactModalPortal {
+    position: absolute;
+}
+
+.ReactModalPortal > div {
+    opacity: 0;
+}
+
+.ReactModalPortal .ReactModal__Overlay {
+    display: grid;
+    grid-template-columns: 20vw 40vw 40vw;
+    grid-template-rows: repeat(3, 33.33vh);
+    transition: opacity 200ms ease-in-out;
+}
+
+.ReactModalPortal > .ReactModal__Overlay--after-open {
+    opacity: 1;
+}
+
+.ReactModalPortal .ReactModal__Overlay--before-close {
+    opacity: 0;
+}
+
+.x-modal {
+    opacity: 1;
+    background: green;
+    text-align: center;
+    & button {
+        background: grey;
+        display: block;
+        margin: 0.3vh auto;
+        width: 6vw;
+        height: 4vh;
+    }
+}
+
+.Overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+
+/*MODAL STYLING END*/
+
+
+
+/************ search dictionary stuff *******************/
+details {
+    margin-bottom: 50px;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+}
+
+
+#result-box {
+    // border: 1px solid coral;
+    position: relative;
+}
+
+#search-field {
+    width: 50%;
+    height: 5vh;
+    // border: 3px solid orange;
+}
+
+.search-bar {
+    text-align: center;
+}
+
+/****above is for DICTIONARY SEARCH ****/
+
