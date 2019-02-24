@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
+import { th } from 'date-fns/esm/locale';
 
 /*
 http://momentjs.com/docs/#/displaying/
@@ -22,25 +23,40 @@ class VocabForm extends Component {
     }
     handleSubmit = (e) => {
         e.preventDefault();
-        const raw = this.state.createdAt.valueOf();
-        console.log("Raw: ", raw)
+        // const raw = this.state.createdAt.valueOf();
+        // console.log("Raw: ", raw)
+        const { word_de, word_en, example_de, example_en } = this.state;
+        const required = word_de && word_en && example_de && example_en;
+        if (required) {
+            console.log("submit OK! : ", !!required);
+            this.props.onSubmit(
+                {
+                    word_de,
+                    word_en,
+                    example_de,
+                    example_en,
+                    note: this.state.note,
+                    isShowing: this.state.isShowing,
+                    createdAt: this.state.createdAt.valueOf()
+                }
+            )
+        } else {
+            alert("Complete the form, DUMMY")
+        }
     }
-    //DATEPICKER START
 
-    handleDateChange=(date) => {
-        // console.log("arg>Change", date)
-        console.log("arg>dateValueOf(): ", date.valueOf())
-        this.setState({
-            createdAt: date
-          });
+    handleDateChange = (date) => {
+        if (date) {
+            this.setState({
+                createdAt: date
+            });
+        }
     }
 
     handleDateSelect = (date) => {
-        console.log("select", date)
+        // console.log("select", date)
     }
 
-
-    //DATEPICKER END
     onWord_deChange = (e) => {
         console.log("onWord_deChange ran")
         const word_de = e.target.value;
@@ -94,42 +110,42 @@ class VocabForm extends Component {
                         placeholder="Eng Word"
                         value={this.state.word_en}
                     />
-                    
+
                     <br />
                     <input
-                    onChange={this.onExample_deChange}
-                    type="text"
-                    placeholder="German Sentence"
-                    value={this.state.example_de}
+                        onChange={this.onExample_deChange}
+                        type="text"
+                        placeholder="German Sentence"
+                        value={this.state.example_de}
                     />
                     <input
-                    onChange={this.onExample_enChange}
-                    type="text"
-                    placeholder="English Sentence"
-                    value={this.state.example_en}
+                        onChange={this.onExample_enChange}
+                        type="text"
+                        placeholder="English Sentence"
+                        value={this.state.example_en}
                     />
-                   
-                    
+
+
                     <hr />
                     <textarea placeholder="Add Note" onChange={this.onNoteChange}></textarea>
                     <br />
                     <label>
-                    Is showing:
+                        Is showing:
                     <input
-                    name="isShowing"
-                    type="checkbox"
-                    value={this.state.isShowing}
-                    checked={this.state.isShowing}
-                    onChange={this.onIsShowingChange} />
+                            name="isShowing"
+                            type="checkbox"
+                            value={this.state.isShowing}
+                            checked={this.state.isShowing}
+                            onChange={this.onIsShowingChange} />
                     </label>
                     <br />
                     <DatePicker
-                    onChange={ this.handleDateChange }
-                    onSelect={this.handleDateSelect}
-                    selected={ this.state.createdAt }
-                    placeholderText="click to create date"
-                    dateFormat="MM–dd–yy"
-                    />                   
+                        onChange={this.handleDateChange}
+                        onSelect={this.handleDateSelect}
+                        selected={this.state.createdAt}
+                        placeholderText="click to create date"
+                        dateFormat="MM–dd–yy"
+                    />
                     <button type="submit">Add VocabItem</button>
                 </form>
             </div>

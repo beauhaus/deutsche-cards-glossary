@@ -13,7 +13,10 @@ const StyledAddVocabPage = styled.div`
 const AddVocabPage = (props) => (
     <StyledAddVocabPage>
     <h1>Add Vocab</h1>
-    <VocabForm/>
+    <VocabForm 
+        onSubmit={(vocabItem)=>{
+            console.log("vocabItemObj: ", vocabItem)
+        }}/>
     </StyledAddVocabPage>
 )
 
