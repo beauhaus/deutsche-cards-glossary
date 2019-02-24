@@ -1,6 +1,9 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import styled from 'styled-components';
 import VocabForm from './VocabForm';
+import {addVocabItem} from '../actions/vocabItems';
+
 
 const StyledAddVocabPage = styled.div`
     width: 100vw;
@@ -15,12 +18,14 @@ const AddVocabPage = (props) => (
     <h1>Add Vocab</h1>
     <VocabForm 
         onSubmit={(vocabItem)=>{
-            console.log("vocabItemObj: ", vocabItem)
+            // console.log("vocabItemObj: ", vocabItem)
+            props.dispatch(addVocabItem(vocabItem))
+            props.history.push('/WordListDashboard')
         }}/>
     </StyledAddVocabPage>
 )
 
-export default AddVocabPage;
+export default connect()(AddVocabPage);
 
 /*
 class AddVocabPage extends Component {
