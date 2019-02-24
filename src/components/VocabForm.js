@@ -6,9 +6,9 @@ import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 
-const now = moment();
+// const now = moment();
 // const now = moment()._locale._longDateFormat;
-console.log("now: ", now)
+// console.log("now: ", now)
 /*
 http://momentjs.com/docs/#/displaying/
 
@@ -25,33 +25,30 @@ class VocabForm extends Component {
         note: '',
         isShowing: false,
         startDate: new Date(),
-        createdAt: moment(),
+        createdAt: ''
         // focused: false,
         // createdAt: new Date()
 
     }
-    handleDateChange=(createdAt) => {
-
+    handleDateChange=(date) => {
+        console.log("arg>Change", date)
         this.setState({
-            createdAt: createdAt,
-            startDate: createdAt
+            startDate: date
           });
     }
+    handleSubmit = (e) => {
+        e.preventDefault();
+        const dateSub = this.state.startDate
+        console.log("startDate", dateSub)
+    }
     handleDateSelect = (createdAt) => {
-        this.setState = (() => ({ startDate: createdAt }))
+        console.log("select", createdAt)
+        this.setState = (() => ({ 
+            startDate: createdAt,
+            createdAt: createdAt
+         }))
         // console.log("createdAt: ", createdAt)
     }
-    // onChange={this.handleDateChange}
-    // onSelect={this.handleDateSelect}
-    
-    // onDateChange = (createdAt) => {
-    //     this.setState = (() => ({ createdAt }))
-    // }
- 
- 
-    // onFocusChange = ({ focused }) => {
-    //     this.setState = (() => ({ focused }))
-    // }
 
     onWord_deChange = (e) => {
         console.log("onWord_deChange ran")
@@ -84,9 +81,7 @@ class VocabForm extends Component {
 
     onIsShowingChange = (e) => {
         console.log("isShowing ran")
-
         const isShowing = e.target.value;
-
         this.setState((prevState) => ({
             isShowing: !prevState.isShowing
         }))
@@ -95,7 +90,7 @@ class VocabForm extends Component {
     render() {
         return (
             <div>
-                <form>
+                <form onSubmit={this.handleSubmit}>
                     <input
                         onChange={this.onWord_deChange}
                         type="text"
@@ -139,11 +134,14 @@ class VocabForm extends Component {
                     </label>
                     <br />
                     <DatePicker
-                    selected={this.state.startDate}
-                    onChange={this.handleDateChange}
-                    onSelect={this.handleDateSelect}
+                    selected={ this.state.startDate }
+                    onChange={ this.handleDateChange }
+                    // selected={this.state.startDate}
+                    
+                    // onSelect={this.handleDateSelect}
                     placeholderText="click to create date"
                     // dateFormat="MM•dd•yy"
+                    // value={this.state.createdAt}
                     />                   
                 
                     <button type="submit">Add VocabItem</button>
