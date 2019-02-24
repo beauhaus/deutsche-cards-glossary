@@ -1,14 +1,8 @@
 import React, { Component } from 'react'
-import moment from 'moment';
-// import { SingleDatePicker } from 'react-dates';
-// import 'react-dates/lib/css/_datepicker.css';
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 
-// const now = moment();
-// const now = moment()._locale._longDateFormat;
-// console.log("now: ", now)
 /*
 http://momentjs.com/docs/#/displaying/
 
@@ -23,33 +17,30 @@ class VocabForm extends Component {
         example_de: '',
         example_en: '',
         note: '',
-        isShowing: false,
-        startDate: new Date(),
-        createdAt: ''
-        // focused: false,
-        // createdAt: new Date()
-
-    }
-    handleDateChange=(date) => {
-        console.log("arg>Change", date)
-        this.setState({
-            startDate: date
-          });
+        isShowing: true,
+        createdAt: new Date()
     }
     handleSubmit = (e) => {
         e.preventDefault();
-        const dateSub = this.state.startDate
-        console.log("startDate", dateSub)
+        const raw = this.state.createdAt.valueOf();
+        console.log("Raw: ", raw)
     }
-    handleDateSelect = (createdAt) => {
-        console.log("select", createdAt)
-        this.setState = (() => ({ 
-            startDate: createdAt,
-            createdAt: createdAt
-         }))
-        // console.log("createdAt: ", createdAt)
+    //DATEPICKER START
+
+    handleDateChange=(date) => {
+        // console.log("arg>Change", date)
+        console.log("arg>dateValueOf(): ", date.valueOf())
+        this.setState({
+            createdAt: date
+          });
     }
 
+    handleDateSelect = (date) => {
+        console.log("select", date)
+    }
+
+
+    //DATEPICKER END
     onWord_deChange = (e) => {
         console.log("onWord_deChange ran")
         const word_de = e.target.value;
@@ -80,8 +71,7 @@ class VocabForm extends Component {
     }
 
     onIsShowingChange = (e) => {
-        console.log("isShowing ran")
-        const isShowing = e.target.value;
+        // const isShowing = e.target.value;
         this.setState((prevState) => ({
             isShowing: !prevState.isShowing
         }))
@@ -134,16 +124,12 @@ class VocabForm extends Component {
                     </label>
                     <br />
                     <DatePicker
-                    selected={ this.state.startDate }
                     onChange={ this.handleDateChange }
-                    // selected={this.state.startDate}
-                    
-                    // onSelect={this.handleDateSelect}
+                    onSelect={this.handleDateSelect}
+                    selected={ this.state.createdAt }
                     placeholderText="click to create date"
-                    // dateFormat="MM•dd•yy"
-                    // value={this.state.createdAt}
+                    dateFormat="MM–dd–yy"
                     />                   
-                
                     <button type="submit">Add VocabItem</button>
                 </form>
             </div>
