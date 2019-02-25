@@ -23,8 +23,8 @@ class VocabForm extends Component {
     }
     handleSubmit = (e) => {
         e.preventDefault();
-        // const raw = this.state.createdAt.valueOf();
-        // console.log("Raw: ", raw)
+        const raw = this.state.createdAt.valueOf();
+        console.log("Raw: ", raw)
         const { word_de, word_en, example_de, example_en } = this.state;
         const required = word_de && word_en && example_de && example_en;
         if (required) {
