@@ -11,10 +11,6 @@ const WordList = (props) =>(
            return <VocabItem key={vocab.id} {...vocab}/>
        })}
        </h2>
-      {/*
-        <br/>
-        <h2>{props.filters.text}</h2>
-    */}
     </div>
 
 )

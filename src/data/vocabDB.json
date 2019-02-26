@@ -7800,6 +7800,14 @@
 		"show_switch": "true"
 	},
 	{
+		"id": "203X",
+		"word_de": "möglichkeit",
+		"word_en": "possiblity",
+		"example_de": "EXAMPLEDE",
+		"example_en": "EXAMPLEENG",
+		"show_switch": "true"
+	},
+	{
 		"id": "10X",
 		"word_de": "TEMPLATE",
 		"word_en": "TEMPLATE",

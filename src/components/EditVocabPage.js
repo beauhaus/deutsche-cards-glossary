@@ -14,16 +14,17 @@ const StyledEditVocabPage = styled.div`
 
 // const EditVocabPage = ({ id, word_de, word_en, note,example_en, example_de, createdAt }) => {
 const EditVocabPage = (props) => {
-    console.log(props)
+    console.log("EditVocabProps: ", props)
     return (
         <StyledEditVocabPage>
             <h1>style Edit vocab page</h1>
             <br />
             <p>editing the word with id of {props.match.params.id}</p>
-            <VocabForm 
+            
+            <VocabForm  
             vocabItem = {props.vocabItem}
             onSubmit = {(vocabItem) =>{
-                console.log("subbed VocabItem", props.match.params.id)
+                // console.log("subbed VocabItem", vocabItem)
                 // props.dispatch(editVocabItem(props.vocabItem.id, vocabItem))
 
             }}
@@ -34,10 +35,17 @@ const EditVocabPage = (props) => {
 
 const mapStateToProps = ((state, props) => {
     return { 
-        //TODO: check key of this key/val pair
-        vocabItem: state.vocabItem.find((vocabItem) => vocabItem.id === props.match.params.id)
+        vocabItem: state.vocabItems.find((vocabItem) => {
+            return {
+                vocabItem: state.vocabItems.find((vocabItem) => vocabItem.id ===props.match.params.id)
+                    // console.log("st.vocabItem.id ",vocabItem.id )
+                    // console.log("PropsMatchParams.id: ",props.match.params.id )
+                    // return true;
+                // })
+            }
+        })
+        
     }
 })
 
-module.exports = EditVocabPage;
 export default connect(mapStateToProps)(EditVocabPage)

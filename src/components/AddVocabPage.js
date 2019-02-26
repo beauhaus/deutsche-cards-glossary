@@ -14,7 +14,8 @@ const StyledAddVocabPage = styled.div`
 `;
 
 const AddVocabPage = (props) => {
-
+    // console.log("props: ", props)
+    
     return (<StyledAddVocabPage>
         <h1>Add Vocab</h1>
         <VocabForm
@@ -27,20 +28,3 @@ const AddVocabPage = (props) => {
 }
 
 export default connect()(AddVocabPage);
-
-/*
-class AddVocabPage extends Component {
-    render() {
-        return (
-            <div>
-            <h1>AddVocabPage</h1>
-            <VocabForm/>
-            </div>
-        )
-    }
-
-}
-
-export default AddVocabPage;
-
-*/

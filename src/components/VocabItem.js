@@ -1,13 +1,15 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { removeVocabItem } from '../actions/vocabItems';
 import { connect } from 'react-redux';
 
 const VocabItem = ({ dispatch, id, note, word_de, word_en, example_en, example_de }) => (
        <div>
-       <Link to={`/edit:${id}`}>
-          <h1>{word_de} – {word_en}</h1>
-       </Link>
+              <Link to={`/edit:${id}`}>
+                     <h1>{word_de} – {word_en}</h1>
+                     <hr />
+              </Link>
+              <p><b>ID:{id}</b></p>
               <hr />
               <h2>{example_de}</h2>
               <h2>{example_en}</h2>

@@ -67,3 +67,4 @@ const JSX = () => (
     </Provider>
 )
 ReactDOM.render(<JSX/>, document.getElementById('app'));
+
