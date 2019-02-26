@@ -69,13 +69,13 @@ const MainNav = (props) => (
             {/**
             */}
                 <li>
-                <NavLink to="/edit:0" activeClassName="is-active">Edit Word</NavLink>
+                <NavLink to="/edit:0" activeClassName="is-active">Edit</NavLink>
                 </li>
             <li>
-                <NavLink to="/AddVocabPage" activeClassName="is-active">Add Word</NavLink>
+                <NavLink to="/AddVocabPage" activeClassName="is-active">Add</NavLink>
             </li>
             <li>
-                <NavLink to="/WordListDashboard" activeClassName="is-active">WordListDashboard</NavLink>
+                <NavLink to="/WordListDashboard" activeClassName="is-active">List</NavLink>
             </li>
         </ul>
 
