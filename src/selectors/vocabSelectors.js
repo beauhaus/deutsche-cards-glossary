@@ -1,5 +1,3 @@
-import { Z_ASCII } from "zlib";
-
 // VOCABITEMS SELECTOR
 
 const getVisibleVocab = (vocabItems, { text, sortBy, startDate, endDate }) => {

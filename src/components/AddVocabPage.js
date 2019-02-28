@@ -13,18 +13,16 @@ const StyledAddVocabPage = styled.div`
     background: #3b6064;
 `;
 
-const AddVocabPage = (props) => {
-    // console.log("props: ", props)
-    
-    return (<StyledAddVocabPage>
-        <h1>Add Vocab</h1>
+const AddVocabPage = (props) => (
+    <StyledAddVocabPage>
+        {console.log("+VocPROPS: ", props)}
         <VocabForm
             onSubmit={(vocabItem) => {
                 console.log("vocabItemObj: ", vocabItem)
                 props.dispatch(addVocabItem(vocabItem))
                 props.history.push('/WordListDashboard')
             }} />
-    </StyledAddVocabPage>)
-}
+    </StyledAddVocabPage>
+)
 
 export default connect()(AddVocabPage);
