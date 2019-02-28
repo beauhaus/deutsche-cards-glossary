@@ -21,13 +21,10 @@ const resetCount = (() => ({
     type: "RESET"
 }))
 
-
-
 /** THIS FUNCITON BELOW IS A REDUCER: 
 Actions Describe THAT something happened
 REDUCERS describe the response to the action
  */
-
 
 const countReducer = (state = { count: 0 }, action) => {
     switch (action.type) {
@@ -54,17 +51,18 @@ const countReducer = (state = { count: 0 }, action) => {
 }
 const store = createStore(countReducer)
 
-//Dispatching Actions: ways to change the redux-store values
-// ACTION => an obj that gets sent to the store
-// Action objects need to be sent off to the store
+// DISPATCHING ACTIONS: ways to change redux-store values
+// ACTION => an OBJECT that gets sent to the store
 
 // store.subscribe is a way to WATCH the store (for re-rendering)
+
+/***** "UNSubscribing" works like this ***********
 const unsubscribe = store.subscribe(() => {
     console.log(store.getState())
 })
 
-// "UNSubscribing" works like this
-// unsubscribe()
+unsubscribe()
+******/
 
 store.dispatch(addCount({ addBy: 33 }))
 store.dispatch(addCount())
