@@ -1,97 +1,150 @@
 import { createStore, combineReducers } from 'redux';
+import uuid from 'uuid';
 
+// ADD_VOCAB_ITEM
+// REMOVE_WORD
+// EDIT_WORD
+// SET_TEXT_FILTER
+// IS_SHOWING_FILTER
+// SORT_BY_DATE
+// SORT_BY_DIFFICULTY
 
+const addVocabItem = ({ word_de='', word_en='', note='', isShowing=true, example_de='', example_en='', createdAt=0}={}) => ({
+    type: 'ADD_VOCAB_ITEM',
+    vocabItem: {
+        _id: uuid(),
+        word_de,
+        word_en,
+        note,
+        example_de,
+        example_en,
+        createdAt,
+        isShowing
+    }    
+})
 
+const removeVocabItem = ({_id}={}) => ({
+    type: 'REMOVE_VOCAB_ITEM',
+    _id
+})
 
-/*FINAL STATE*/
-const demoState= {
-    vocabItems:[{  // vocabItems = "expenses" 
-        id: 'lkjasdf',
-        word_de: '',
-        word_en: '',
-        example_de: '',
-        example_en: '',
-        note: '',
-        createdAt: 0
-    }],
-    filters: {
-        text: 'one',
-        sortBy: '', // date or amount
-        isShowing: false //boolean
-    }
+const editVocabItem = (_id, updates) =>({
+    type: 'EDIT_VOCAB_ITEM',
+    _id,
+    updates 
+})
+
+const vocabItemsReducerDefaultState = [];
+
+const vocabItemsReducer = (state=vocabItemsReducerDefaultState, action) => {
+switch (action.type) {   
+    case 'ADD_VOCAB_ITEM':
+    return [...state, action.vocabItem]
+    case 'REMOVE_VOCAB_ITEM':
+    return state.filter(({_id})=> _id !== action._id)
+    case 'EDIT_VOCAB_ITEM':
+    return state.map((vocabItem)=>{
+        console.log("match? ", vocabItem._id, action._id._id)
+        // console.log("true? ", typeof vocabItem._id === typeof action._id._id)
+        if(vocabItem._id === action._id) {
+            console.log("woo-hoo")
+            return {
+                ...vocabItem,
+                ...action.updates
+            }
+        } else {
+            console.log("boo!")
+            return vocabItem;
+        }
+    })
+    default: 
+       return state;
+  }
 }
 
-/*ACTION GENERATORS=> functions that return ACTION OBJECTS*/
+const filtersReducerDefaultState = {
+    text: '',
+    sortBy: 'date', // date or amount changeable via UI
+    isShowing: true, //boolean 
+    startDate: null, //changeable via UI
+    endDate: null  // changeable via UI
+};
 
-const addCount = (({ addBy = 1 } = {}) => ({
-    type: "ADD",
-    addBy
-}))
-
-const subCount = (({ subBy = 1 } = {}) => ({
-    type: "SUB",
-    subBy
-}))
-
-const setCount = (({ count } = {}) => ({
-    type: "SET",
-    count
-}))
-
-const resetCount = (() => ({
-    type: "RESET"
-}))
-
-/** THIS FUNCITON BELOW IS A REDUCER: 
-Actions Describe THAT something happened
-REDUCERS describe the response to the action
- */
-
-const countReducer = (state = { count: 0 }, action) => {
-    switch (action.type) {
-        case "ADD":
-            return {
-                count: state.count + action.addBy
-            }
-        case "SUB":
-            return {
-                count: state.count - action.subBy
-            }
-        case "RESET":
-            return {
-                count: 0
-            }
-        case "SET":
-            // set can be a "required Type"
-            return {
-                count: action.count
-            }
-        default:
-            return state;
+const filtersReducer = (state=filtersReducerDefaultState, action) => {
+    switch (action.type) {   
+        default: 
+           return state;
+      }
     }
-}
-const store = createStore(countReducer)
+    
+// store creation
 
-// DISPATCHING ACTIONS: ways to change redux-store values
-// ACTION => an OBJECT that gets sent to the store
+const store = createStore(combineReducers(
+  {
+    vocabItems: vocabItemsReducer,
+    filters: filtersReducer
+  }    
+));
 
-// store.subscribe is a way to WATCH the store (for re-rendering)
-
-/***** "UNSubscribing" works like this ***********
-const unsubscribe = store.subscribe(() => {
+store.subscribe(() =>{
     console.log(store.getState())
 })
 
-unsubscribe()
-******/
+/*****************************************/
+/*************DISPATCHING*****************/
+/*****************************************/
+const vocabItemOne = store.dispatch(addVocabItem({
+    word_de:"glücklich",
+    word_en:"happy",
+    example_de:'Ich bin glücklich',
+    example_en: 'I am happy',
+    note: 'happy note',
+    createdAt: 0,
+    isShowing: true
+}))
+const vocabItemTwo = store.dispatch(addVocabItem({
+    word_de:"müde",
+    word_en:"tire",
+    example_de:'du bist müde',
+    example_en: 'you are tired',
+    note: 'tired note',
+    createdAt: 0,
+    isShowing: true
+}))
+const vocabItemThree = store.dispatch(addVocabItem({
+    word_de:"zehn",
+    word_en:"ten",
+    example_de:'es ist zehn Uhr',
+    example_en: "It's ten O'Clock",
+    note: "Ten O'Clock note",
+    createdAt: 0,
+    isShowing: true
+}))
 
-store.dispatch(addCount({ addBy: 33 }))
-store.dispatch(addCount())
-store.dispatch(subCount({ subBy: 10 }))
-store.dispatch(resetCount())
-store.dispatch(setCount({ count: -100 }))
+// store.dispatch(removeVocabItem({_id: vocabItemOne.vocabItem._id}))
+store.dispatch(editVocabItem(vocabItemOne.vocabItem._id, {note: 'HAPPY NOTE'}))
 
+/****************FINAL STATE**************/
 
-const currentState = store.getState();
-console.log(`Current State 
-`, currentState)
+// const demoState= {
+//     vocabItems:[{  // vocabItems = "expenses" 
+//         id: 'lkjasdf',
+//         word_de: '',
+//         word_en: '',
+//         example_de: '',
+//         example_en: '',
+//         note: '',
+//         createdAt: 0,
+//         isShowing: true
+//     }],
+//     filters: {
+//         text: 'one',
+//         sortBy: '', // date or amount
+//         isShowing: false, //boolean
+//         startDate: null,
+//         endDate: null
+    
+//     }
+// }
+
+/*ACTION GENERATORS=> functions that return ACTION OBJECTS*/

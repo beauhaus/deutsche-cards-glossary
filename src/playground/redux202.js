@@ -21,7 +21,7 @@ const resetCount = (() => ({
     type: "RESET"
 }))
 
-/** THIS FUNCITON BELOW IS A REDUCER: 
+/** THIS FUNCTION BELOW IS A REDUCER: 
 Actions Describe THAT something happened
 REDUCERS describe the response to the action
  */
