@@ -34,6 +34,12 @@ const editVocabItem = (_id, updates) =>({
     updates 
 })
 
+const setTextFilter = (text='') =>({
+    type: 'SET_TEXT_FILTER',
+    text
+})
+
+
 const vocabItemsReducerDefaultState = [];
 
 const vocabItemsReducer = (state=vocabItemsReducerDefaultState, action) => {
@@ -44,16 +50,12 @@ switch (action.type) {
     return state.filter(({_id})=> _id !== action._id)
     case 'EDIT_VOCAB_ITEM':
     return state.map((vocabItem)=>{
-        console.log("match? ", vocabItem._id, action._id._id)
-        // console.log("true? ", typeof vocabItem._id === typeof action._id._id)
         if(vocabItem._id === action._id) {
-            console.log("woo-hoo")
             return {
                 ...vocabItem,
                 ...action.updates
             }
         } else {
-            console.log("boo!")
             return vocabItem;
         }
     })
@@ -72,6 +74,11 @@ const filtersReducerDefaultState = {
 
 const filtersReducer = (state=filtersReducerDefaultState, action) => {
     switch (action.type) {   
+        case 'SET_TEXT_FILTER':
+        return {
+            ...state,
+            text: action.text
+        }
         default: 
            return state;
       }
@@ -123,6 +130,8 @@ const vocabItemThree = store.dispatch(addVocabItem({
 
 // store.dispatch(removeVocabItem({_id: vocabItemOne.vocabItem._id}))
 store.dispatch(editVocabItem(vocabItemOne.vocabItem._id, {note: 'HAPPY NOTE'}))
+store.dispatch(setTextFilter('happy'))
+
 
 /****************FINAL STATE**************/
 
