@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { setTextFilter, sortByDate, isShowingFilter, sortByAmount } from '../actions/filters';
+import { setTextFilter, sortByDate, isShowingFilter, sortByAmount } from '../reduxUtils/actions/filters';
 
 const VocabListFilters = (props) => (
     <div>

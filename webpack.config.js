@@ -5,10 +5,8 @@ const path = require('path')
 
 // manifest loader //https://gist.github.com/bronson/163d7d4dde2a845ea3d6af3a0d86d174
 module.exports = {
-  // entry: './src/app.js',
-  // entry: './src/playground/redux202.js',
-  entry: './src/playground/redux-vocab.js',  
-  // entry: './src/playground/HOC.js',
+  entry: './src/app.js',
+  // entry: './src/playground/redux-vocab.js',  
 
   mode: 'none',
   node: {

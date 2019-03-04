@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { removeVocabItem } from '../actions/vocabItems';
+import { removeVocabItem } from '../reduxUtils/actions/vocabItems';
 import { connect } from 'react-redux';
 
 const VocabItem = ({ dispatch, id, note, word_de, word_en, example_en, example_de }) => (

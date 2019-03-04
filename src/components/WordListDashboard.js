@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import WordList from './WordList';
-import VocabListFilters from './VocabListfilters'
+// import VocabListFilters from './VocabListfilters'
 
 const Styled_Template = styled.div`
      width: 100vw;

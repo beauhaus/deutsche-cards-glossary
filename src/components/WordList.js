@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import VocabItem from './VocabItem';
-import selectVocab from '../selectors/vocabSelectors';
+// import selectVocab from '../reduxUtils/selectors/vocabSelectors';
 
 
 const WordList = (props) =>(
@@ -17,7 +17,7 @@ const WordList = (props) =>(
 
 const MapStateToProps = (state) =>{
     return {
-        vocabItems: selectVocab(state.vocabItems, state.filters)
+        // vocabItems: selectVocab(state.vocabItems, state.filters)
     }
 };
 

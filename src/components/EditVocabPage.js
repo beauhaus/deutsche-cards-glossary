@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {editVocabItem} from '../actions/vocabItems'
+// import {editVocabItem} from '../reduxUtils/actions/vocabItems'
 import VocabForm from './VocabForm';
 
 import {connect} from 'react-redux'
@@ -23,7 +23,7 @@ const EditVocabPage = (props) => {
 
 const mapStateToProps = ((state, props) => {
     return { 
-        vocabItem: state.vocabItems.find((item) => item.id ===props.match.params.id)
+        // vocabItem: state.vocabItems.find((item) => item.id ===props.match.params.id)
     }
 })
 
