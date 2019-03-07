@@ -4,22 +4,24 @@ import VocabItem from './VocabItem';
 // import selectVocab from '../reduxUtils/selectors/vocabSelectors';
 
 
-const WordList = (props) =>(
+const VocabItemList = (props) =>(
     <div>
-       <h1>WordList</h1>
+       <h1>VocabItemList</h1>
+       <h2><em>{props.vocabItems.length}</em></h2>
+       {/**
        <h2>{props.vocabItems.map(vocab => {
            return <VocabItem key={vocab.id} {...vocab}/>
        })}
        </h2>
+     */}
     </div>
 
 )
 
-const MapStateToProps = (state) =>{
+const MapStateToProps =(state)=> {
     return {
-        // vocabItems: selectVocab(state.vocabItems, state.filters)
+        vocabItems: state.vocabItems
     }
-};
+} 
 
-export default connect(MapStateToProps)(WordList);
-
+export default connect(MapStateToProps)(VocabItemList)

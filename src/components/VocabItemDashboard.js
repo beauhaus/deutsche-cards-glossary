@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import WordList from './WordList';
+import VocabItemList from './VocabItemList';
 // import VocabListFilters from './VocabListfilters'
 
 const Styled_Template = styled.div`
@@ -11,11 +11,13 @@ const Styled_Template = styled.div`
     background: #364958;
 `;
 
-const WordListDashboard = (props) => (
+const VocabItemDashboard = (props) => (
     <Styled_Template>
+    {/* 
         <VocabListFilters />
-        <WordList />
+        */}
+        <VocabItemList />
     </Styled_Template>
 )
 
-export default WordListDashboard;
+export default VocabItemDashboard;

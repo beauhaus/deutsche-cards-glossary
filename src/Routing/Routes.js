@@ -6,7 +6,7 @@ import MainNav from './MainNav';
 import Template from '../components/Template';
 import EditVocabPage from '../components/EditVocabPage';
 import AddVocabPage from '../components/AddVocabPage';
-import WordListDashboard from '../components/WordListDashboard';
+import VocabItemDashboard from '../components/VocabItemDashboard';
 import FourOhFour from './FourOhFour';
 
 //height: auto;
@@ -28,8 +28,8 @@ const Routes = (props) => (
                 <Route path="/" exact={true} />
                 <Route path="/template" component={Template} />
                 <Route path="/edit:id" component={EditVocabPage} />
-                <Route path="/AddVocabPage" component={AddVocabPage} />
-                <Route path="/WordListDashboard" component={WordListDashboard} />
+                <Route path="/addVocabPage" component={AddVocabPage} />
+                <Route path="/vocabItemDashboard" component={VocabItemDashboard} />
                 <Route component={FourOhFour} />
             </Switch>
         </RouterLiner>
