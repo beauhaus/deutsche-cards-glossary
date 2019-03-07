@@ -6,7 +6,7 @@ import {Provider} from 'react-redux';
 import configureStore from './reduxUtils/store/configureStore';
 import {addVocabItem} from './reduxUtils/actions/vocabItems';
 import {setTextFilter} from './reduxUtils/actions/filters';
-import getVisibleVocabItems from './reduxUtils/selectors/vocabItems';
+import getVisibleVocabItems from './reduxUtils/selectors/vocabSelectors';
 
 
 import 'normalize.css/normalize.css'
@@ -30,7 +30,7 @@ const vocabItemOne = store.dispatch(addVocabItem({
 }))
 const vocabItemTwo = store.dispatch(addVocabItem({
     word_de: "müde",
-    word_en: "tire",
+    word_en: "tired",
     example_de: 'du bist müde',
     example_en: 'you are tired',
     note: 'tired note',
@@ -39,7 +39,11 @@ const vocabItemTwo = store.dispatch(addVocabItem({
     isShowing: true
 }))
 
-store.dispatch(setTextFilter("müde"))
+store.dispatch(setTextFilter("tired"))
+
+setTimeout(() => {
+    store.dispatch(setTextFilter("happy"))
+}, 3000);
 
 const state = store.getState();
 const visibleVocabItems = getVisibleVocabItems(state.vocabItems, state.filters);

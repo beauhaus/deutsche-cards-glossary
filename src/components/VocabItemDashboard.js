@@ -20,4 +20,5 @@ const VocabItemDashboard = (props) => (
     </Styled_Template>
 )
 
+
 export default VocabItemDashboard;

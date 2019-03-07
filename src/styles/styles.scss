@@ -129,3 +129,19 @@ details {
 
 /****above is for DICTIONARY SEARCH ****/
 
+
+
+/*TODO: this is to be turned to styled comp*/
+
+.temp-voc-item {
+    color: #fff;
+    font-weight: 100 !important;
+    // text-align: center;
+    & a {
+        color: #deeef0;
+    }
+    & p {
+        color: coral;
+        margin: 10px auto 5px 10vw;
+    }
+}
