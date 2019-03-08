@@ -3,13 +3,13 @@
 
 //FILTERS REDUCER
 
-const filtersReducerDefaultState = {
-    'text': '',
-    'isShowing': '',
-    'sortBy': 'date',
-    'startDate': null,
-    'endDate': null,
-}
+// const filtersReducerDefaultState = {
+//     'text': '',
+//     'isShowing': '',
+//     'sortBy': 'date',
+//     'startDate': 'null', //TODO: Check viability of using 'null' value
+//     'endDate': 'null', //TODO: Check viability of using 'null' value
+// }
 
 const filtersReducer = (state = filtersReducerDefaultState, action) => {
     switch (action.type) {

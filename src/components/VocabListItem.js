@@ -7,7 +7,6 @@ const VocabListItem = ({ dispatch, _id, note,difficulty, word_de, word_en, examp
        <div className="temp-voc-item">
               <Link to={`/edit:${_id}`}>
                      <h1>{word_de} – {word_en}</h1>
-                     <hr />
               </Link>
               <p>ID:{_id}</p>
               <hr />

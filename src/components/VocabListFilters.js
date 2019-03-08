@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { setTextFilter, sortByDate, isShowingFilter, sortByAmount } from '../reduxUtils/actions/filters';
+import { setTextFilter, sortByDate, sortByDifficulty } from '../reduxUtils/actions/filters';
 
 const VocabListFilters = (props) => (
     <div>
@@ -15,18 +15,22 @@ const VocabListFilters = (props) => (
         <select value={props.filters.sortBy}
          onChange={(e) =>{
              if (e.target.value === 'date') {
+                 console.log('by date')
                  props.dispatch(sortByDate())
-             } else if ( e.target.value === 'showing') {
+            //  } else if ( e.target.value === 'isShowing') {
+            //      console.log('by isShowing')
+            //     // TODO: not vital
+            //     props.dispatch(isShowingFilter())
+            } else if ( e.target.value === 'difficulty') {
+                console.log('by difficulty')
                 // TODO: not vital
-                props.dispatch(isShowingFilter())
-            } else if ( e.target.value === 'amount') {
-                // TODO: not vital
-                props.dispatch(sortByAmount())
+                console.log("props.filters.sortBy", props.filters)
+                props.dispatch(sortByDifficulty())
             }
                   }}>
                   <option value="date">date</option>
-                  <option value="amount">amount</option>
-                  <option value="showing">Is Showing</option>
+                  <option value="difficulty">difficulty</option>
+                  <option value="isShowing">Is Showing</option>
         </select>
     </div>
 );

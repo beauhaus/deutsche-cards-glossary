@@ -1,11 +1,12 @@
 const filtersReducerDefaultState = {
     text: '',
-    sortBy: null, // date or amount changeable via UI
+    sortBy: 'date', // date or amount changeable via UI
     isShowing: true, //boolean 
     difficulty: 10, // 1-10 
-    startDate: null, //changeable via UI
-    endDate: null  // changeable via UI
+    startDate: -50000, //changeable via UI
+    endDate: 550000  // changeable via UI
 };
+
 
 const filtersReducer = (state = filtersReducerDefaultState, action) => {
     switch (action.type) {

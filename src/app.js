@@ -38,12 +38,17 @@ const vocabItemTwo = store.dispatch(addVocabItem({
     createdAt: -200,
     isShowing: true
 }))
+const vocabItemThree = store.dispatch(addVocabItem({
+    word_de: "verstärken",
+    word_en: "strengthen",
+    example_de: 'Wir müssen die Wände verstärken.',
+    example_en: 'We must strengthen the walls',
+    note: 'strengthen note',
+    difficulty: 8,
+    createdAt: -900,
+    isShowing: true
+}))
 
-store.dispatch(setTextFilter("tired"))
-
-setTimeout(() => {
-    store.dispatch(setTextFilter("happy"))
-}, 3000);
 
 const state = store.getState();
 const visibleVocabItems = getVisibleVocabItems(state.vocabItems, state.filters);
