@@ -15,7 +15,6 @@ const StyledAddVocabPage = styled.div`
 
 const AddVocabPage = (props) => (
     <StyledAddVocabPage>
-        {console.log("+VocPROPS: ", props)}
         <VocabForm
             onSubmit={(vocabItem) => {
                 console.log("vocabItemObj: ", vocabItem)

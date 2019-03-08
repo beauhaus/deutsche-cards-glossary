@@ -7,8 +7,9 @@ class VocabForm extends Component {
         'example_de': '',
         'example_en': '',
         'difficulty': 1,
-        'createdAt': new Date(),
+        'createdAt': new Date().valueOf(),
         'note': '',
+        'isShowing': false,
         'error':''
     }
     onWord_deChange = (e) => {
@@ -38,6 +39,12 @@ class VocabForm extends Component {
         const difficulty = e.target.value;
         this.setState(() => ({ difficulty }))
     }
+    onCheckboxChange = (e) => {
+        const isShowing = e.target.value;
+        this.setState((prevState) => ({ isShowing: !prevState.isShowing }))
+    }
+    
+
     onSubmit =(e) => {
         e.preventDefault();
         if(!this.state.word_de||!this.state.word_en) {
@@ -51,7 +58,8 @@ class VocabForm extends Component {
                 example_en: this.state.example_en,
                 note: this.state.note,
                 difficulty: this.state.difficulty,
-                isShowing: this.state.isShowing
+                isShowing: this.state.isShowing,
+                createdAt: this.state.createdAt
             })
         }
 
@@ -99,6 +107,13 @@ class VocabForm extends Component {
                         min="1" 
                         max="10"
                     />
+                    <input
+                    onChange={this.onCheckboxChange}
+                    type="checkbox"
+                    name="isShowing"
+                    value={this.state.isShowing}
+                    />
+
                     <textarea placeholder="Add Note" onChange={this.onNoteChange}></textarea>
                     <button type="submit">Add VocabItem</button>
                 </form>
