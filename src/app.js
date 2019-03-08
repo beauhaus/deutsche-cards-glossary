@@ -26,7 +26,7 @@ const vocabItemOne = store.dispatch(addVocabItem({
     note: 'happy note',
     difficulty: 10,
     createdAt: 200,
-    isShowing: true
+    isShowing: false
 }))
 const vocabItemTwo = store.dispatch(addVocabItem({
     word_de: "müde",
@@ -46,13 +46,13 @@ const vocabItemThree = store.dispatch(addVocabItem({
     note: 'strengthen note',
     difficulty: 8,
     createdAt: -900,
-    isShowing: true
+    isShowing: false
 }))
 
 
 const state = store.getState();
 const visibleVocabItems = getVisibleVocabItems(state.vocabItems, state.filters);
-// console.log("state", state)
+
 console.log("visibleVocabItems", visibleVocabItems)
 
 const JSX = () => (

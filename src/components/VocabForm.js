@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
-// import DatePicker from "react-datepicker";
-// import "react-datepicker/dist/react-datepicker.css";
 
 class VocabForm extends Component {
     state = {
-        "word_en": "",
-        'word_de': "",
+        'word_en': '',
+        'word_de': '',
         'example_de': '',
         'example_en': '',
+        'difficulty': 1,
+        'createdAt': new Date(),
+        'note': '',
+        'error':''
     }
     onWord_deChange = (e) => {
         const word_de = e.target.value;
@@ -32,26 +34,32 @@ class VocabForm extends Component {
         const note = e.target.value;
         this.setState(() => ({ note }))
     }
+    onDiffChange = (e) => {
+        const difficulty = e.target.value;
+        this.setState(() => ({ difficulty }))
+    }
     onSubmit =(e) => {
         e.preventDefault();
-        // add Error Handling Here
-
-        if(false) {
-
+        if(!this.state.word_de||!this.state.word_en) {
+            this.setState(()=>({error: "Please enter words"}))
         } else {
+            this.setState(()=> ({error: ''}))
             this.props.onSubmit({
                 word_de: this.state.word_de,
                 word_en: this.state.word_en,
                 example_de: this.state.example_de,
                 example_en: this.state.example_en,
-                note: this.state.note
+                note: this.state.note,
+                difficulty: this.state.difficulty,
+                isShowing: this.state.isShowing
             })
         }
 
     }
     render() {
         return (
-            <div>
+            <div className="vocab-form">
+            {this.state.error && <p className="form-error">{this.state.error}</p>}
                 <form onSubmit={this.onSubmit}>
                     <input
                         onChange={this.onWord_deChange}
@@ -81,6 +89,16 @@ class VocabForm extends Component {
                         value={this.state.example_en}
                     />
                     <hr />
+                    <label htmlFor="difficulty">difficulty:</label>
+                    <input
+                        onChange={this.onDiffChange}
+                        type="number"
+                        placeholder="1"
+                        id="difficulty"
+                        value={this.state.difficulty}
+                        min="1" 
+                        max="10"
+                    />
                     <textarea placeholder="Add Note" onChange={this.onNoteChange}></textarea>
                     <button type="submit">Add VocabItem</button>
                 </form>

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import VocabForm from './VocabForm';
-// import { addVocabItem } from '../actions/vocabItems';
+import { addVocabItem } from '../reduxUtils/actions/vocabItems';
 
 
 const StyledAddVocabPage = styled.div`
@@ -19,8 +19,8 @@ const AddVocabPage = (props) => (
         <VocabForm
             onSubmit={(vocabItem) => {
                 console.log("vocabItemObj: ", vocabItem)
-                // props.dispatch(addVocabItem(vocabItem))
-                // props.history.push('/WordListDashboard')
+                props.dispatch(addVocabItem(vocabItem))
+                props.history.push('/vocabItemDashboard')
             }} />
     </StyledAddVocabPage>
 )

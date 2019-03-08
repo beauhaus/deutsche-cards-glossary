@@ -9,7 +9,9 @@ export const setTextFilter = (text = '') => ({
 export const sortByDifficulty = () => ({   //instead of sort by amount
     type: 'SORT_BY_DIFFICULTY'
 })
-
+export const isShowingFilter = () => ({   //instead of sort by amount
+    type: 'SORT_BY_IS_SHOWING'
+})
 export const sortByDate = () => ({
     type: 'SORT_BY_DATE'
 })

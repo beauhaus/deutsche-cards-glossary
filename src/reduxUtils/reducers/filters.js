@@ -20,11 +20,17 @@ const filtersReducer = (state = filtersReducerDefaultState, action) => {
                 ...state,
                 sortBy: 'difficulty'
             }
+        case 'SORT_BY_IS_SHOWING':
+            return {
+                ...state,
+                sortBy: 'isShowing'
+            }
         case 'SORT_BY_DATE':
             return {
                 ...state,
                 sortBy: 'date'
             }
+            
         case 'SET_START_DATE':
             return {
                 ...state,
