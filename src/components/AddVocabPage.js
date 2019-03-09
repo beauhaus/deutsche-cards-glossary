@@ -13,11 +13,11 @@ const StyledAddVocabPage = styled.div`
     background: #3b6064;
 `;
 
+
 const AddVocabPage = (props) => (
     <StyledAddVocabPage>
         <VocabForm
             onSubmit={(vocabItem) => {
-                console.log("vocabItemObj: ", vocabItem)
                 props.dispatch(addVocabItem(vocabItem))
                 props.history.push('/vocabItemDashboard')
             }} />

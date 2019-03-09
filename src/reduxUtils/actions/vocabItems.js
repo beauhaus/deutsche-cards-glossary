@@ -1,9 +1,19 @@
 import uuid from 'uuid';
 
-export const addVocabItem = ({ word_de = '', word_en = '', note = '', difficulty = 10, isShowing = true, example_de = '', example_en = '', createdAt = 0 } = {}) => ({
+export const addVocabItem = (
+    { word_de = '', 
+    word_en = '', 
+    note = '', 
+    difficulty = 0, 
+    isShowing = true, 
+    example_de = '', 
+    example_en = '', 
+    createdAt = 0 } = {}
+    ) => {
+     return   {
     type: 'ADD_VOCAB_ITEM',
     vocabItem: {
-        _id: uuid(),
+        id: uuid(),
         word_de,
         word_en,
         note,
@@ -13,15 +23,15 @@ export const addVocabItem = ({ word_de = '', word_en = '', note = '', difficulty
         createdAt,
         isShowing
     }
-})
+}}
 
-export const removeVocabItem = ({ _id } = {}) => ({
+export const removeVocabItem = ({ id } = {}) => ({
     type: 'REMOVE_VOCAB_ITEM',
-    _id
+    id
 })
 
-export const editVocabItem = (_id, updates) => ({
+export const editVocabItem = (id, updates) => ({
     type: 'EDIT_VOCAB_ITEM',
-    _id,
+    id,
     updates
 })

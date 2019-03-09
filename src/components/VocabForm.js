@@ -1,16 +1,21 @@
 import React, { Component } from 'react'
 
 class VocabForm extends Component {
-    state = {
-        'word_en': '',
-        'word_de': '',
-        'example_de': '',
-        'example_en': '',
-        'difficulty': 1,
-        'createdAt': new Date().valueOf(),
-        'note': '',
-        'isShowing': false,
-        'error':''
+    constructor(props) {
+        super(props)
+        // console.log("p>Vform: ", props)
+        this.state = {
+            'word_en': props.vocabItem?props.vocabItem.word_de:'',
+            'word_de': props.vocabItem?props.vocabItem.word_de:'',
+            'example_de': props.vocabItem?props.vocabItem.example_de:'',
+            'example_en': props.vocabItem?props.vocabItem.example_en:'',
+            //TODO: does difficulty need to be a string?
+            'difficulty': props.vocabItem?props.vocabItem.difficulty.toString():1,
+            'createdAt': new Date().valueOf(), // lec 108 11min
+            'note': props.vocabItem?props.vocabItem.note:'',
+            'isShowing': true,
+            'error':''
+        }
     }
     onWord_deChange = (e) => {
         const word_de = e.target.value;
@@ -59,10 +64,9 @@ class VocabForm extends Component {
                 note: this.state.note,
                 difficulty: this.state.difficulty,
                 isShowing: this.state.isShowing,
-                createdAt: this.state.createdAt
+                createdAt: this.state.createdAt.valueOf()
             })
         }
-
     }
     render() {
         return (

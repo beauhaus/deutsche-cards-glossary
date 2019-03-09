@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import { removeVocabItem } from '../reduxUtils/actions/vocabItems';
 import { connect } from 'react-redux';
 
-const VocabListItem = ({ dispatch, _id, note,difficulty, word_de, word_en, example_en, example_de, createdAt }) => (
+const VocabListItem = ({ dispatch, id, note,difficulty, word_de, word_en, example_en, example_de, createdAt }) => (
        <div className="temp-voc-item">
-              <Link to={`/edit:${_id}`}>
+              <Link to={`/edit:${id}`}>
                      <h1>{word_de} – {word_en}</h1>
               </Link>
-              <p>ID:{_id}</p>
+              <p>ID:{id}</p>
               <hr />
               <h2>{example_de}</h2>
               <h2>{example_en}</h2>
@@ -16,7 +16,7 @@ const VocabListItem = ({ dispatch, _id, note,difficulty, word_de, word_en, examp
               <h4>Difficulty: {difficulty}</h4>
               <h5>CreatedAt: {createdAt}</h5>
               <button onClick={() => {
-                     dispatch(removeVocabItem({ _id }))
+                     dispatch(removeVocabItem({ id }))
               }}>Remove</button>
        </div>
 )

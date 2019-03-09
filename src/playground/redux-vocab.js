@@ -15,7 +15,7 @@ import { createStore, combineReducers } from 'redux';
 // const addVocabItem = ({ word_de = '', word_en = '', note = '', difficulty = 10, isShowing = true, example_de = '', example_en = '', createdAt = 0 } = {}) => ({
 //     type: 'ADD_VOCAB_ITEM',
 //     vocabItem: {
-//         _id: uuid(),
+//         id: uuid(),
 //         word_de,
 //         word_en,
 //         note,
@@ -27,14 +27,14 @@ import { createStore, combineReducers } from 'redux';
 //     }
 // })
 
-// const removeVocabItem = ({ _id } = {}) => ({
+// const removeVocabItem = ({ id } = {}) => ({
 //     type: 'REMOVE_VOCAB_ITEM',
-//     _id
+//     id
 // })
 
-// const editVocabItem = (_id, updates) => ({
+// const editVocabItem = (id, updates) => ({
 //     type: 'EDIT_VOCAB_ITEM',
-//     _id,
+//     id,
 //     updates
 // })
 
@@ -69,10 +69,10 @@ import { createStore, combineReducers } from 'redux';
 //         case 'ADD_VOCAB_ITEM':
 //             return [...state, action.vocabItem]
 //         case 'REMOVE_VOCAB_ITEM':
-//             return state.filter(({ _id }) => _id !== action._id)
+//             return state.filter(({ id }) => id !== action.id)
 //         case 'EDIT_VOCAB_ITEM':
 //             return state.map((vocabItem) => {
-//                 if (vocabItem._id === action._id) {
+//                 if (vocabItem.id === action.id) {
 //                     return {
 //                         ...vocabItem,
 //                         ...action.updates
@@ -213,8 +213,8 @@ const vocabItemThree = store.dispatch(addVocabItem({
     isShowing: true
 }))
 
-// store.dispatch(removeVocabItem({_id: vocabItemOne.vocabItem._id}))
-// store.dispatch(editVocabItem(vocabItemOne.vocabItem._id, { note: 'HAPPY NOTE' }))
+// store.dispatch(removeVocabItem({id: vocabItemOne.vocabItem.id}))
+// store.dispatch(editVocabItem(vocabItemOne.vocabItem.id, { note: 'HAPPY NOTE' }))
 // store.dispatch(setTextFilter('ten'))
 // store.dispatch(sortByDifficulty())
 // store.dispatch(sortByDate())
