@@ -148,10 +148,23 @@ details {
 }
 
 .form-error {
-    // position: absolute;
-    // right: 0;
-    // top: 2vh;
-    // float: right;
     color: #ff966f;
     font-size: 2rem;
+}
+.temp-voc-item{
+
+    a:link, a:visited, a:active {
+        position: absolute;
+        // top: 0;
+        display: inline-block;
+        font-size: 1rem;
+        margin-top: -2vh;
+        margin-left: 16vw;
+        color: orange;
+        text-decoration: none;
+    }
+    a:hover {
+        text-decoration: underline;
+        color: #87bba2;
+    }
 }

@@ -3,18 +3,17 @@ import React, { Component } from 'react'
 class VocabForm extends Component {
     constructor(props) {
         super(props)
-        // console.log("p>Vform: ", props)
+
         this.state = {
-            'word_en': props.vocabItem?props.vocabItem.word_de:'',
-            'word_de': props.vocabItem?props.vocabItem.word_de:'',
-            'example_de': props.vocabItem?props.vocabItem.example_de:'',
-            'example_en': props.vocabItem?props.vocabItem.example_en:'',
-            //TODO: does difficulty need to be a string?
-            'difficulty': props.vocabItem?props.vocabItem.difficulty.toString():1,
-            'createdAt': new Date().valueOf(), // lec 108 11min
-            'note': props.vocabItem?props.vocabItem.note:'',
-            'isShowing': true,
-            'error':''
+            'word_en': props.vocabItem ? props.vocabItem.word_en : '',
+            'word_de': props.vocabItem ? props.vocabItem.word_de : '',
+            'example_de': props.vocabItem ? props.vocabItem.example_de : '',
+            'example_en': props.vocabItem ? props.vocabItem.example_en : '',
+            'difficulty': props.vocabItem ? props.vocabItem.difficulty.toString() : 1,
+            'createdAt': new Date().valueOf(),
+            'note': props.vocabItem ? props.vocabItem.note : '',
+            'isShowing': props.vocabItem ? props.vocabItem.isShowing:'false',
+            'error': ''
         }
     }
     onWord_deChange = (e) => {
@@ -45,17 +44,16 @@ class VocabForm extends Component {
         this.setState(() => ({ difficulty }))
     }
     onCheckboxChange = (e) => {
-        const isShowing = e.target.value;
         this.setState((prevState) => ({ isShowing: !prevState.isShowing }))
     }
-    
 
-    onSubmit =(e) => {
+
+    onSubmit = (e) => {
         e.preventDefault();
-        if(!this.state.word_de||!this.state.word_en) {
-            this.setState(()=>({error: "Please enter words"}))
+        if (!this.state.word_de || !this.state.word_en) {
+            this.setState(() => ({ error: "Please enter words" }))
         } else {
-            this.setState(()=> ({error: ''}))
+            this.setState(() => ({ error: '' }))
             this.props.onSubmit({
                 word_de: this.state.word_de,
                 word_en: this.state.word_en,
@@ -71,7 +69,7 @@ class VocabForm extends Component {
     render() {
         return (
             <div className="vocab-form">
-            {this.state.error && <p className="form-error">{this.state.error}</p>}
+                {this.state.error && <p className="form-error">{this.state.error}</p>}
                 <form onSubmit={this.onSubmit}>
                     <input
                         onChange={this.onWord_deChange}
@@ -106,18 +104,18 @@ class VocabForm extends Component {
                         onChange={this.onDiffChange}
                         type="number"
                         placeholder="1"
-                        id="difficulty"
+                        name="difficulty"
                         value={this.state.difficulty}
-                        min="1" 
+                        min="1"
                         max="10"
                     />
                     <input
-                    onChange={this.onCheckboxChange}
-                    type="checkbox"
-                    name="isShowing"
-                    value={this.state.isShowing}
+                        onChange={this.onCheckboxChange}
+                        type="checkbox"
+                        name="isShowing"
+                        // value={this.state.isShowing}
+                        checked={this.state.isShowing}
                     />
-
                     <textarea placeholder="Add Note" onChange={this.onNoteChange}></textarea>
                     <button type="submit">Add VocabItem</button>
                 </form>

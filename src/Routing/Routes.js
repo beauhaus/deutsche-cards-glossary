@@ -19,7 +19,7 @@ const RouterLiner = styled.div`
     `;
     //border: 1px solid orange;
 
-
+// TODO: dynamic routing refusing "/" for some reason on edit page
 const Routes = (props) => (
     <BrowserRouter>
         <RouterLiner className="router-liner">
@@ -27,7 +27,7 @@ const Routes = (props) => (
             <Switch>
                 <Route path="/" exact={true} />
                 <Route path="/template" component={Template} />
-                <Route path="/edit/:id" component={EditVocabPage} />
+                <Route path="/edit:id" component={EditVocabPage} />
                 <Route path="/addVocabPage" component={AddVocabPage} />
                 <Route path="/vocabItemDashboard" component={VocabItemDashboard} />
                 <Route component={FourOhFour} />
