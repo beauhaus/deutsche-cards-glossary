@@ -4,7 +4,6 @@ import VocabListItem from './VocabListItem';
 import selectVocabItems from '../reduxUtils/selectors/vocabSelectors';
 
 const VocabItemList = (props) =>{
-    console.log("VOCITEMLIST", props.vocabItems)
     return (
     <div>
        <h1>VocabItemList</h1>
@@ -14,11 +13,9 @@ const VocabItemList = (props) =>{
         })}
         </h2>
     </div>
-
 )}
 // http://localhost:8080/VocabItemDashboard
 const MapStateToProps =(state)=> {
-    console.log("MS-P: ", state.vocabItems)
     return {
         vocabItems: selectVocabItems(state.vocabItems, state.filters)
     }
