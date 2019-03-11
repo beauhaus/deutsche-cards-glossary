@@ -13,8 +13,6 @@ const Styled_Template = styled.div`
 
 const VocabItemDashboard = (props) => (
     <Styled_Template>
-    {/* 
-    */}
         <VocabListFilters />
         <VocabItemList />
     </Styled_Template>

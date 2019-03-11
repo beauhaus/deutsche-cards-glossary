@@ -44,6 +44,7 @@ class VocabForm extends Component {
         this.setState(() => ({ difficulty }))
     }
     onCheckboxChange = (e) => {
+        // const checked = e.target.checked;
         this.setState((prevState) => ({ isShowing: !prevState.isShowing }))
     }
 
@@ -114,7 +115,7 @@ class VocabForm extends Component {
                         type="checkbox"
                         name="isShowing"
                         // value={this.state.isShowing}
-                        checked={this.state.isShowing}
+                        checked={!!this.state.isShowing}
                     />
                     <textarea placeholder="Add Note" onChange={this.onNoteChange}></textarea>
                     <button type="submit">Add VocabItem</button>

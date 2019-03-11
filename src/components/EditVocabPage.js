@@ -16,19 +16,18 @@ const EditVocabPage = (props) => {
     console.log("EditVocabProps: ", props)
     return (
         <StyledEditVocabPage>
-            <h1>ID OF {props.match.params.id}</h1>
-            <VocabForm
-                vocabItem={props.vocabItem}
-                onSubmit={(vocabItem) => {
-                    props.dispatch(editVocabItem(props.vocabItem.id, vocabItem));
-                    props.history.push('/vocabItemDashboard')
-                }}
-            />
-            <button onClick={() => {
-                props.dispatch(removeVocabItem({id: props.vocabItem.id}))
-                props.history.push('/vocabItemDashboard')
-            }}>
-            </button>
+        <VocabForm
+        vocabItem={props.vocabItem}
+        onSubmit={(vocabItem) => {
+            props.dispatch(editVocabItem(props.vocabItem.id, vocabItem));
+            props.history.push('/vocabItemDashboard')
+        }}
+        />
+        <button onClick={() => {
+            props.dispatch(removeVocabItem({id: props.vocabItem.id}))
+            props.history.push('/vocabItemDashboard')
+        }}>
+        </button>
         </StyledEditVocabPage>
     )
 }
