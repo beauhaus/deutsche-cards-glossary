@@ -59,7 +59,6 @@ test('should setup addVocabItem action object with DEFAULT values', () =>{
             vocabItem: {
                 id: expect.any(String),
                 // next... default values
-                
                     word_de: '', 
                     word_en: '', 
                     note: '', 
