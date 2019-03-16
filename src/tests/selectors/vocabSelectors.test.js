@@ -42,14 +42,12 @@ test('should filter by text value', ()=> {
     expect(result).toEqual([vocabItems[1]])
 })
 
-
 test('should sort by date', () => {
     const filters = {
         text: '',
-        sortBy: 'date',
-        startDate: -10000,
-        endDate: undefined
+        sortBy: 'date'
     }
     const result = vocabSelectors(vocabItems, filters)
-    expect(result).toEqual([vocabItems[2],vocabItems[0], vocabItems[1]])
+    expect(result).toEqual([vocabItems[0],vocabItems[1], vocabItems[2]])
 })
+

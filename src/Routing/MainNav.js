@@ -82,7 +82,7 @@ module.exports = MainNav;
 
 
 /*
-        <li>
+    <li>
         <NavLink to="/edit/0" activeClassName="is-active">Edit</NavLink>
-        </li>
-        */
+    </li>
+*/
