@@ -467,8 +467,8 @@
 		"id": "61",
 		"word_de": "kein-",
 		"word_en": "none-",
-		"example_de": "EXAMPLEDE",
-		"example_en": "EXAMPLEENG",
+		"example_de": "Das spielt keine rolle",
+		"example_en": "That doesn't matter",
 		"show_switch": "true"
 	},
 	{
@@ -7777,18 +7777,18 @@
 	},
 	{
 		"id": "10X",
-		"word_de": "TEMPLATE",
-		"word_en": "TEMPLATE",
-		"example_de": "TEMPLATEEXAMPLEDE",
-		"example_en": "TEMPLATEEXAMPLEENG",
+		"word_de": "Glück",
+		"word_en": "Luck",
+		"example_de": "Ihr habt aber glück",
+		"example_en": "But, you are in luck! (you have luck)",
 		"show_switch": "true"
 	},
 	{
 		"id": "10X",
-		"word_de": "TEMPLATE",
+		"word_de": "rolle",
 		"word_en": "TEMPLATE",
-		"example_de": "TEMPLATEEXAMPLE",
-		"example_en": "TEMPLATEEXAMPLE",
+		"example_de": "das spielt keine rolle",
+		"example_en": "that doesn't matter",
 		"show_switch": "true"
 	},
 	{

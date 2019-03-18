@@ -28,3 +28,23 @@ test('should NOT remove vocabItem if ID not found', () => {
     
     expect(state).toEqual(vocabItems)
 })
+
+test('should ADD a vocabItem', () => {
+    const vocabItem = {
+        word_de: "Deutchland",
+        word_en: "Germany",
+        example_de: "Ich vermisse Deutschland",
+        example_en: "I miss Germany",
+        note: 'Germany Note',
+        difficulty: 2,
+        createdAt: 0,
+        isShowing: true
+    }
+    const action = {
+        type: 'ADD_VOCAB_ITEM', 
+        vocabItem
+    };
+    const state = vocabItemsReducer(vocabItems, action);
+    
+    expect(state).toEqual([...vocabItems, vocabItem])
+})
