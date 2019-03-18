@@ -48,3 +48,51 @@ test('should ADD a vocabItem', () => {
     
     expect(state).toEqual([...vocabItems, vocabItem])
 })
+
+test('should EDIT a vocabItem', () => {
+    const difficulty = 9;
+    const vocabItem = {
+        word_de: "Deutchland",
+        word_en: "Germany",
+        example_de: "Ich vermisse Deutschland",
+        example_en: "I miss Germany",
+        note: 'Germany Note',
+        difficulty: 2,
+        createdAt: 0,
+        isShowing: true
+    }
+    const action = {
+        type: 'EDIT_VOCAB_ITEM',
+        id: vocabItems[1].id,
+        updates: {
+            difficulty
+        }
+    };
+    const state = vocabItemsReducer(vocabItems, action);
+    
+    expect(state[1].difficulty).toBe(difficulty)
+})
+
+test('should NOT EDIT a vocabItem if ID not found', () => {
+    const difficulty = 9;
+    const vocabItem = {
+        word_de: "Deutchland",
+        word_en: "Germany",
+        example_de: "Ich vermisse Deutschland",
+        example_en: "I miss Germany",
+        note: 'Germany Note',
+        difficulty: 2,
+        createdAt: 0,
+        isShowing: true
+    }
+    const action = {
+        type: 'EDIT_VOCAB_ITEM',
+        id: '-1',
+        updates: {
+            difficulty
+        }
+    };
+    const state = vocabItemsReducer(vocabItems, action);
+    
+    expect(state).toEqual(vocabItems)
+})
