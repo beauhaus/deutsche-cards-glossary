@@ -5,7 +5,7 @@ import {Provider} from 'react-redux';
 
 import configureStore from './reduxUtils/store/configureStore';
 import {addVocabItem} from './reduxUtils/actions/vocabItems';
-import {setTextFilter} from './reduxUtils/actions/filters';
+// import {setTextFilter} from './reduxUtils/actions/filters';
 import getVisibleVocabItems from './reduxUtils/selectors/vocabSelectors';
 
 
