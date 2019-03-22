@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render routes correctly 1`] = `
+<BrowserRouter>
+  <Unknown
+    className="router-liner"
+  >
+    <MainNav />
+    <Switch>
+      <Route
+        exact={true}
+        path="/"
+      />
+      <Route
+        component={[Function]}
+        path="/template"
+      />
+      <Route
+        component={[Function]}
+        path="/edit:id"
+      />
+      <Route
+        component={[Function]}
+        path="/addVocabPage"
+      />
+      <Route
+        component={[Function]}
+        path="/vocabItemDashboard"
+      />
+      <Route
+        component={[Function]}
+      />
+    </Switch>
+  </Unknown>
+</BrowserRouter>
+`;
