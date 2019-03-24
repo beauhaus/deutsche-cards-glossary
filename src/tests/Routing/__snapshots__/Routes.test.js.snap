@@ -2,10 +2,13 @@
 
 exports[`should render routes correctly 1`] = `
 <BrowserRouter>
-  <Unknown
+  <.sc-EHOje
     className="router-liner"
   >
     <MainNav />
+    <h1>
+      Hello
+    </h1>
     <Switch>
       <Route
         exact={true}
@@ -31,6 +34,6 @@ exports[`should render routes correctly 1`] = `
         component={[Function]}
       />
     </Switch>
-  </Unknown>
+  </.sc-EHOje>
 </BrowserRouter>
 `;
