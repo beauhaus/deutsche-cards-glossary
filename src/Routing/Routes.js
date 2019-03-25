@@ -24,7 +24,6 @@ const Routes = (props) => (
     <BrowserRouter>
         <RouterLiner className="router-liner">
             <MainNav />
-            <h1>Hello</h1>
             <Switch>
                 <Route path="/" exact={true} />
                 <Route path="/template" component={Template} />

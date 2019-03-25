@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render vocab list item correctly 1`] = `
+<div
+  className="temp-voc-item"
+>
+  <Link
+    replace={false}
+    to="/edit1"
+  >
+    <h1
+      className="vocab-edit-link"
+    >
+      ✎
+    </h1>
+  </Link>
+  <h2>
+    Erinnerungen
+     – 
+    Memories
+     
+    <span>
+      👁
+    </span>
+  </h2>
+  <h2>
+    es weckt Erinnerungen
+  </h2>
+  <h2>
+    It awakens (brings back) memories
+  </h2>
+  <h2>
+    Note: 
+    memory note
+  </h2>
+  <h2>
+    Difficulty: 
+    8
+  </h2>
+  <h2>
+    CreatedAt: 
+    1970•1•1 21:46:40
+  </h2>
+  <br />
+  <br />
+  <hr />
+  <br />
+</div>
+`;

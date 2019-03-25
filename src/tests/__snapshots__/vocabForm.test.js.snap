@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders expense form properly 1`] = `
+<div
+  className="vocab-form"
+>
+  <form
+    onSubmit={[Function]}
+  >
+    <input
+      autoFocus={true}
+      onChange={[Function]}
+      placeholder="German Word"
+      type="text"
+      value=""
+    />
+    <input
+      onChange={[Function]}
+      placeholder="Eng Word"
+      type="text"
+      value=""
+    />
+    <br />
+    <input
+      onChange={[Function]}
+      placeholder="German Sentence"
+      type="text"
+      value=""
+    />
+    <input
+      onChange={[Function]}
+      placeholder="English Sentence"
+      type="text"
+      value=""
+    />
+    <hr />
+    <label
+      htmlFor="difficulty"
+    >
+      difficulty:
+    </label>
+    <input
+      max="10"
+      min="1"
+      name="difficulty"
+      onChange={[Function]}
+      placeholder="1"
+      type="number"
+      value={1}
+    />
+    <input
+      checked={true}
+      name="isShowing"
+      onChange={[Function]}
+      type="checkbox"
+    />
+    <textarea
+      onChange={[Function]}
+      placeholder="Add Note"
+    />
+    <button
+      type="submit"
+    >
+      Add VocabItem
+    </button>
+  </form>
+</div>
+`;

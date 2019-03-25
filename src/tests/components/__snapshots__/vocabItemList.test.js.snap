@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render message if no vocab items exist 1`] = `
+<div>
+  <h1>
+    VocabItemList
+  </h1>
+  <h2>
+    (length: 
+    <em>
+      0
+    </em>
+    )
+  </h2>
+  <p>
+    Sorry. I have no words.
+  </p>
+</div>
+`;
+
+exports[`should render vocabItems list with vocab items 1`] = `
+<div>
+  <h1>
+    VocabItemList
+  </h1>
+  <h2>
+    (length: 
+    <em>
+      3
+    </em>
+    )
+  </h2>
+  <h2>
+    <VocabListItem
+      createdAt={10000}
+      difficulty={8}
+      example_de="es weckt Erinnerungen"
+      example_en="It awakens (brings back) memories"
+      id={1}
+      isShowing={true}
+      key="1"
+      note="memory note"
+      word_de="Erinnerungen"
+      word_en="Memories"
+    />
+    <VocabListItem
+      createdAt={0}
+      difficulty={5}
+      example_de="Ich sehne mich nach Glühwein"
+      example_en="I'm craving Glühwein"
+      id={2}
+      isShowing={true}
+      key="2"
+      note="wine note"
+      word_de="Ich sehne mich nach"
+      word_en="I long for/ I crave"
+    />
+    <VocabListItem
+      createdAt={-10000}
+      difficulty={8}
+      example_de="Du hast meine Gedanken gelesen"
+      example_en="You've read my thoughts"
+      id={3}
+      isShowing={false}
+      key="3"
+      note="thought note"
+      word_de="Gedanken"
+      word_en="Thought"
+    />
+  </h2>
+</div>
+`;

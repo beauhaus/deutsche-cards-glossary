@@ -6,9 +6,6 @@ exports[`should render routes correctly 1`] = `
     className="router-liner"
   >
     <MainNav />
-    <h1>
-      Hello
-    </h1>
     <Switch>
       <Route
         exact={true}

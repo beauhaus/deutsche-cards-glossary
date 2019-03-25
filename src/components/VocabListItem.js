@@ -5,7 +5,7 @@ const VocabListItem = ({ dispatch, id, note, difficulty, isShowing, word_de, wor
        
 // multiplied by 1000 so that the argument is in milliseconds, not seconds.
 var vocabDate = new Date(createdAt*1000);
-console.log("createdDate", vocabDate)
+// console.log("createdDate", vocabDate)
 var vocabHours = vocabDate.getHours();
 var vocabMinutes = "0" + vocabDate.getMinutes();
 var vocabSeconds = "0" + vocabDate.getSeconds();
