@@ -13,11 +13,7 @@ var vocabMonth = vocabDate.getUTCMonth() + 1; //months from 1-12
 var vocabDay = vocabDate.getUTCDate();
 var vocabYear = vocabDate.getUTCFullYear();
 var vocabFormatted_Month_Day_Year = vocabYear + "•" + vocabMonth + "•" + vocabDay;
-
-
 var vocabFormattedTime = vocabHours + ':' + vocabMinutes.substr(-2) + ':' + vocabSeconds.substr(-2);
-       
-       
        return (
               <div className="temp-voc-item">
                      <Link to={`/edit${id}`}>

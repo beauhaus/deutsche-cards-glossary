@@ -7761,10 +7761,10 @@
 	},
 	{
 		"id": "10X",
-		"word_de": "TEMPLATE",
-		"word_en": "TEMPLATE",
-		"example_de": "TEMPLATEEXAMPLEDE",
-		"example_en": "TEMPLATEEXAMPLEENG",
+		"word_de": "somehow",
+		"word_en": "irgendwie",
+		"example_de": "Geht es ihm irgendwie nicht gut?",
+		"example_en": "Is he somehow unwell? (Is it not going well for him somehow?)",
 		"show_switch": "true"
 	},
 	{

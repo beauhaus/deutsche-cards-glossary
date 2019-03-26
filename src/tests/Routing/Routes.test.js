@@ -14,9 +14,5 @@ https://airbnb.io/enzyme/docs/api/shallow.html
 test('should render routes correctly',() => {
     const wrapper = shallow(<Routes/>)
     expect(wrapper).toMatchSnapshot();
-    // expect(wrapper.find('h1').text()).toBe("Hello")
-    // const renderer = new ReactShallowRenderer;
-    // renderer.render(<Routes/>)
-    // expect(renderer.getRenderOutput()).toMatchSnapshot();
-    // console.log("R: \n", renderer.getRenderOutput())
+
 })
