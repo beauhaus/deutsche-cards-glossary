@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render routes correctly 1`] = `
+<.sc-bdVaJa
+  className="main-nav"
+>
+  <ul>
+    <li>
+      <NavLink
+        activeClassName="is-active"
+        ariaCurrent="true"
+        to="/"
+      >
+        Home
+      </NavLink>
+    </li>
+    <li>
+      <NavLink
+        activeClassName="is-active"
+        ariaCurrent="true"
+        to="/template"
+      >
+        Template
+      </NavLink>
+    </li>
+    <li>
+      <NavLink
+        activeClassName="is-active"
+        ariaCurrent="true"
+        to="/AddVocabPage"
+      >
+        Add
+      </NavLink>
+    </li>
+    <li>
+      <NavLink
+        activeClassName="is-active"
+        ariaCurrent="true"
+        to="/vocabItemDashboard"
+      >
+        List
+      </NavLink>
+    </li>
+  </ul>
+</.sc-bdVaJa>
+`;
