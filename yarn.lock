@@ -1188,6 +1188,12 @@ basic-auth-connect@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/basic-auth-connect/-/basic-auth-connect-1.0.0.tgz#fdb0b43962ca7b40456a7c2bb48fe173da2d2122"
 
+basic-auth@~2.0.0:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/basic-auth/-/basic-auth-2.0.1.tgz#b998279bf47ce38344b4f3cf916d4679bbf51e3a"
+  dependencies:
+    safe-buffer "5.1.2"
+
 batch@0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/batch/-/batch-0.5.0.tgz#fd2e05a7a5d696b4db9314013e285d8ff3557ec3"
@@ -4597,9 +4603,9 @@ mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0:
   dependencies:
     minimist "0.0.8"
 
-moment@2.18.1:
-  version "2.18.1"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.18.1.tgz#c36193dd3ce1c2eed2adb7c802dbbc77a81b1c0f"
+moment@^2.24.0:
+  version "2.24.0"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
 
 moo@^0.4.3:
   version "0.4.3"
@@ -4610,6 +4616,16 @@ morgan@1.0.0:
   resolved "https://registry.yarnpkg.com/morgan/-/morgan-1.0.0.tgz#83cf74b9f2d841901f1a9a6b8fa7a468d2e47a8d"
   dependencies:
     bytes "~0.2.0"
+
+morgan@^1.9.1:
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/morgan/-/morgan-1.9.1.tgz#0a8d16734a1d9afbc824b99df87e738e58e2da59"
+  dependencies:
+    basic-auth "~2.0.0"
+    debug "2.6.9"
+    depd "~1.1.2"
+    on-finished "~2.3.0"
+    on-headers "~1.0.1"
 
 move-concurrently@^1.0.1:
   version "1.0.1"
