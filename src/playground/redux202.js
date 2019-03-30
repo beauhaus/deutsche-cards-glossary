@@ -1,76 +1,35 @@
-import { createStore } from 'redux';
+// Reduce
+// iterates all over your array
+// takes a cb function for each element in the array
+// FOREACH doesn't return anything MAP & FILTER return a new array
 
-/*ACTION GENERATORS=> functions that return ACTION OBJECTS*/
+// REDUCE returns a single value to which the array is "reduced"
 
-const addCount = (({ addBy = 1 } = {}) => ({
-    type: "ADD",
-    addBy
-}))
-
-const subCount = (({ subBy = 1 } = {}) => ({
-    type: "SUB",
-    subBy
-}))
-
-const setCount = (({ count } = {}) => ({
-    type: "SET",
-    count
-}))
-
-const resetCount = (() => ({
-    type: "RESET"
-}))
-
-/** THIS FUNCTION BELOW IS A REDUCER: 
-Actions Describe THAT something happened
-REDUCERS describe the response to the action
- */
-
-const countReducer = (state = { count: 0 }, action) => {
-    switch (action.type) {
-        case "ADD":
-            return {
-                count: state.count + action.addBy
-            }
-        case "SUB":
-            return {
-                count: state.count - action.subBy
-            }
-        case "RESET":
-            return {
-                count: 0
-            }
-        case "SET":
-            // set can be a "required Type"
-            return {
-                count: action.count
-            }
-        default:
-            return state;
-    }
-}
-const store = createStore(countReducer)
-
-// DISPATCHING ACTIONS: ways to change redux-store values
-// ACTION => an OBJECT that gets sent to the store
-
-// store.subscribe is a way to WATCH the store (for re-rendering)
-
-/***** "UNSubscribing" works like this ***********
-const unsubscribe = store.subscribe(() => {
-    console.log(store.getState())
-})
-
-unsubscribe()
-******/
-
-store.dispatch(addCount({ addBy: 33 }))
-store.dispatch(addCount())
-store.dispatch(subCount({ subBy: 10 }))
-store.dispatch(resetCount())
-store.dispatch(setCount({ count: -100 }))
+var arr = [1,2,3,4,5];
 
 
-const currentState = store.getState();
-console.log(`Current State 
-`, currentState)
+/* "sum" is going to equal what that total parameter is */
+// var sum = arr.reduce((total, elem, idx, array) => {
+//     //first iteration "total" is going to be 1 and elem will be 2
+//     console.log(`T: ${total}
+//     E: ${elem}`)
+//     return total + elem;
+// }, 0)
+// console.log("sum: ", sum)
+
+
+//ES6 FOR LOOP
+
+// let cume = 0;
+// for(let val of arr) {
+//     cume += val
+// }
+
+// console.log(cume);
+
+// cb outside the reduce method
+var nuArr = [10, 20]
+let sum = (acc, elem, idx) => acc + elem;
+let answer = nuArr.reduce(sum, 1);
+
+console.log(answer)

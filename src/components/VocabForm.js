@@ -10,7 +10,7 @@ class VocabForm extends Component {
             'example_de': props.vocabItem ? props.vocabItem.example_de : '',
             'example_en': props.vocabItem ? props.vocabItem.example_en : '',
             'difficulty': props.vocabItem ? props.vocabItem.difficulty.toString() : 1,
-            'createdAt': new Date().valueOf(),
+            'createdAt': new Date(),
             'note': props.vocabItem ? props.vocabItem.note : '',
             'isShowing': props.vocabItem ? props.vocabItem.isShowing:'false',
             'error': ''
@@ -50,6 +50,7 @@ class VocabForm extends Component {
 
 
     onSubmit = (e) => {
+        console.log("Created @: ", this.state.createdAt)
         e.preventDefault();
         if (!this.state.word_de || !this.state.word_en) {
             this.setState(() => ({ error: "Please enter words" }))
@@ -63,7 +64,7 @@ class VocabForm extends Component {
                 note: this.state.note,
                 difficulty: this.state.difficulty,
                 isShowing: this.state.isShowing,
-                createdAt: this.state.createdAt.valueOf()
+                createdAt: this.state.createdAt
             })
         }
     }
