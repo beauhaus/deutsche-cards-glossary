@@ -1,25 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 const VocabListItem = ({ dispatch, id, note, difficulty, isShowing, word_de, word_en, example_en, example_de, createdAt }) => {
+// console.log("createdAt prop", createdAt.toString())
+/* createdAt comes in as new Date() 
+ * (e.g. "Sat Mar 30 2019 12:13:58 GMT-0400 (Eastern Daylight Time)"
+ * 
+ */
+// console.log("crAt: ", moment(createdAt).format("dddd, MMMM Do YYYY, h:mm:ss a"))
+createdAt = moment(createdAt).format("dddd, MMMM Do YYYY, h:mm:ss a")
+// var form = createdAt.format("dddd, MMMM Do YYYY, h:mm:ss a")
+// console.log("formed: ", form)
 
-
-// multiplied by 1000 so that the argument is in milliseconds, not seconds.
-var dateStr = createdAt.toString();
-
-// console.log("dateStr: ", dateStr)
-var gmt =dateStr.indexOf("GMT");
-var slicedDateStr = dateStr.slice(0, (gmt-4));
-console.log("sliced Str: ", slicedDateStr)
-
-// var vocabHours = vocabDate.getHours();
-// var vocabMinutes = "0" + vocabDate.getMinutes();
-// var vocabSeconds = "0" + vocabDate.getSeconds();
-// var vocabMonth = vocabDate.getUTCMonth() + 1; //months from 1-12
-// var vocabDay = vocabDate.getUTCDate();
-// var vocabYear = vocabDate.getUTCFullYear();
-// var vocabFormatted_Month_Day_Year = vocabYear + "•" + vocabMonth + "•" + vocabDay;
-// var vocabFormattedTime = vocabHours + ':' + vocabMinutes.substr(-2) + ':' + vocabSeconds.substr(-2);
+const slicedDateStr = "test";
        return (
               <div className="temp-voc-item">
                      <Link to={`/edit${id}`}>
@@ -30,8 +24,7 @@ console.log("sliced Str: ", slicedDateStr)
                      <h2>{example_en}</h2>
                      <h2>Note: {note}</h2>
                      <h2>Difficulty: {difficulty}</h2>
-                     {/*<h2>CreatedAt: {vocabFormatted_Month_Day_Year+' '+vocabFormattedTime}</h2>*/}
-                     <h2>Created: {slicedDateStr}</h2>
+                     <h2>Created: {createdAt}</h2>
                      <br /><br />
                      <hr />
                      <br />

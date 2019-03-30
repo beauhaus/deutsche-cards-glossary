@@ -25,7 +25,7 @@ const vocabItemOne = store.dispatch(addVocabItem({
     example_en: 'I am happy',
     note: 'happy note',
     difficulty: 10,
-    createdAt: 200,
+    createdAt: 33333320000,
     isShowing: false
 }))
 const vocabItemTwo = store.dispatch(addVocabItem({
@@ -35,7 +35,7 @@ const vocabItemTwo = store.dispatch(addVocabItem({
     example_en: 'you are tired',
     note: 'tired note',
     difficulty: 3,
-    createdAt: -200,
+    createdAt: 100,
     isShowing: true
 }))
 const vocabItemThree = store.dispatch(addVocabItem({
@@ -45,7 +45,7 @@ const vocabItemThree = store.dispatch(addVocabItem({
     example_en: 'We must strengthen the walls',
     note: 'strengthen note',
     difficulty: 8,
-    createdAt: -900,
+    createdAt: 99995552000,
     isShowing: false
 }))
 

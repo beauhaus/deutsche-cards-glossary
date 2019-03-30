@@ -38,8 +38,8 @@ exports[`should render vocab list item correctly 1`] = `
     8
   </h2>
   <h2>
-    CreatedAt: 
-    1970•1•1 21:46:40
+    Created: 
+    10000
   </h2>
   <br />
   <br />

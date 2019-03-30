@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import moment from 'moment';
+
 
 class VocabForm extends Component {
     constructor(props) {
@@ -10,7 +12,7 @@ class VocabForm extends Component {
             'example_de': props.vocabItem ? props.vocabItem.example_de : '',
             'example_en': props.vocabItem ? props.vocabItem.example_en : '',
             'difficulty': props.vocabItem ? props.vocabItem.difficulty.toString() : 1,
-            'createdAt': new Date(),
+            'createdAt': props.vocabItem? moment(props.vocabItem.createdAt): moment(),
             'note': props.vocabItem ? props.vocabItem.note : '',
             'isShowing': props.vocabItem ? props.vocabItem.isShowing:'false',
             'error': ''
@@ -64,8 +66,9 @@ class VocabForm extends Component {
                 note: this.state.note,
                 difficulty: this.state.difficulty,
                 isShowing: this.state.isShowing,
-                createdAt: this.state.createdAt
+                createdAt: moment()
             })
+            // console.log("Form> moment() formatted:  ", moment().format("dddd, MMMM Do YYYY, h:mm:ss a"))
         }
     }
     render() {
