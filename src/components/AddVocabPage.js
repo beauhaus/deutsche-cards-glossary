@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import VocabForm from './VocabForm';
 import { addVocabItem } from '../reduxUtils/actions/vocabItems';
 
-
 const StyledAddVocabPage = styled.div`
     width: 100vw;
     height: 100vh;

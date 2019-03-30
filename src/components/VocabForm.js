@@ -50,7 +50,7 @@ class VocabForm extends Component {
 
 
     onSubmit = (e) => {
-        console.log("Created @: ", this.state.createdAt)
+        // console.log("Created @: ", this.state.createdAt)
         e.preventDefault();
         if (!this.state.word_de || !this.state.word_en) {
             this.setState(() => ({ error: "Please enter words" }))

@@ -30,6 +30,6 @@ var arr = [1,2,3,4,5];
 // cb outside the reduce method
 var nuArr = [10, 20]
 let sum = (acc, elem, idx) => acc + elem;
-let answer = nuArr.reduce(sum, 1);
+let answer = nuArr.reduce(sum, 10);
 
 console.log(answer)
