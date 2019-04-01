@@ -1,3 +1,5 @@
+import moment from 'moment'
+
 const vocabItems = [
     {
         id: 1,
@@ -6,8 +8,8 @@ const vocabItems = [
         example_de: "es weckt Erinnerungen",
         example_en: "It awakens (brings back) memories",
         note: 'memory note',
-        difficulty: 8,
-        createdAt: 10000,
+        difficulty: "8",
+        createdAt: moment(10000),
         isShowing: true
     },{
         id: 2,

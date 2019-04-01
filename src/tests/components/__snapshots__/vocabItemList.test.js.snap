@@ -32,8 +32,8 @@ exports[`should render vocabItems list with vocab items 1`] = `
   </h2>
   <h2>
     <VocabListItem
-      createdAt={10000}
-      difficulty={8}
+      createdAt={"1970-01-01T00:00:10.000Z"}
+      difficulty="8"
       example_de="es weckt Erinnerungen"
       example_en="It awakens (brings back) memories"
       id={1}
