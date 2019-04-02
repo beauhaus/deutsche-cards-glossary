@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "iterate over a words db",
   "main": "webpack.config.js",
+  "engines": {
+    "node": "10.15.0"
+  },
   "scripts": {
     "serve": "live-server public/",
     "build": "webpack",
