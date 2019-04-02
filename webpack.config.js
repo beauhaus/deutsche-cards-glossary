@@ -8,11 +8,10 @@ module.exports = (env) => {
 
   return {
     entry: './src/app.js',
-    // entry: './src/playground/redux-vocab.js',  
 
     mode: 'none',
     node: {
-      fs: 'empty'  //is to enable fs with webpack
+      fs: 'empty'  //in order to enable fs with webpack
     },
     output: {
       path: path.join(__dirname, 'public'),

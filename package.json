@@ -8,7 +8,9 @@
     "build": "webpack",
     "dev-server": "webpack-dev-server",
     "test": "jest --config=jest.config.json",
-    "build:prod": "webpack -p --env production"
+    "build:prod": "webpack -p --env production",
+    "start": "node server/server.js ",
+    "heroku-postbuild": "yarn run build:prod"
   },
   "author": "",
   "license": "ISC",
@@ -33,6 +35,7 @@
     "enzyme": "3.0.0",
     "enzyme-adapter-react-16": "1.0.0",
     "enzyme-to-json": "3.0.1",
+    "express": "4.16.4",
     "file-system": "^2.2.2",
     "handlebars": "^4.1.1",
     "moment": "^2.24.0",
