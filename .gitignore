@@ -1,7 +1,4 @@
 DS_Store
 node_modules
 assets
-public/bundle.js
-public/bundle.js.map
-public/styles.css.map
-public/styles.css
+public/dist
