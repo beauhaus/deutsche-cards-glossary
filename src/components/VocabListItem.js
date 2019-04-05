@@ -3,15 +3,8 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 
 const VocabListItem = ({ dispatch, id, note, difficulty, isShowing, word_de, word_en, example_en, example_de, createdAt }) => {
-// console.log("createdAt prop", createdAt.toString())
-/* createdAt comes in as new Date() 
- * (e.g. "Sat Mar 30 2019 12:13:58 GMT-0400 (Eastern Daylight Time)"
- * 
- */
-// console.log("crAt: ", moment(createdAt).format("dddd, MMMM Do YYYY, h:mm:ss a"))
-createdAt = moment(createdAt).format("dddd, MMMM Do YYYY, h:mm:ss a")
-// var form = createdAt.format("dddd, MMMM Do YYYY, h:mm:ss a")
-// console.log("formed: ", form)
+
+createdAt = moment(createdAt).format("M•D•YY ddd h:mma")
 
 const slicedDateStr = "test";
        return (
@@ -24,7 +17,7 @@ const slicedDateStr = "test";
                      <h2>{example_en}</h2>
                      <h2>Note: {note}</h2>
                      <h2>Difficulty: {difficulty}</h2>
-                     <h2>Created: {createdAt}</h2>
+                     <h2>{createdAt}</h2>
                      <br /><br />
                      <hr />
                      <br />
