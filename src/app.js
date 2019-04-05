@@ -52,7 +52,7 @@ const vocabItemThree = store.dispatch(addVocabItem({
 
 const state = store.getState();
 const visibleVocabItems = getVisibleVocabItems(state.vocabItems, state.filters);
-console.log("visibleVocabItems", visibleVocabItems)
+
 // console.log("Store: ", store)
 const JSX = () => (
     <Provider store={store}>

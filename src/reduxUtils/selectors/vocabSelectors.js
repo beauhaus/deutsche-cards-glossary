@@ -1,4 +1,3 @@
-
 export default (vocabItems, { text, sortBy, startDate, endDate }) => {
     
     return vocabItems.filter((vocabItem) => {
@@ -14,7 +13,6 @@ export default (vocabItems, { text, sortBy, startDate, endDate }) => {
             || vocabItem.note.toLowerCase().includes(text.toLowerCase())
         return startDateMatch && endDateMatch && textMatch;
     }).sort((a,b) => {
-        // console.log(sortBy?"":"not sorting")
         if(sortBy ==='date') {
             return a.createdAt < b.createdAt ? 1: -1; // returns MOST RECENT vocab up top
         } else if(sortBy ==='difficulty') {
@@ -26,5 +24,3 @@ export default (vocabItems, { text, sortBy, startDate, endDate }) => {
         }
     })
 }
-
-// export default getVisibleVocabItems;
