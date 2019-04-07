@@ -2,11 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 
-const VocabListItem = ({ dispatch, id, note, difficulty, isShowing, word_de, word_en, example_en, example_de, createdAt }) => {
+const VocabListItem = ({ id, note, difficulty, isShowing, word_de, word_en, example_en, example_de, createdAt }) => {
 
 createdAt = moment(createdAt).format("M•D•YY ddd h:mma")
 
-const slicedDateStr = "test";
        return (
               <div className="temp-voc-item">
                      <Link to={`/edit${id}`}>

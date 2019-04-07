@@ -1,6 +1,6 @@
 import React , {Component} from 'react';
 import Modal from 'react-modal';
-import {getLS, setLS} from '../utils/utils'
+// import {getLS, setLS} from '../../utils/utils'
 
 class XModal extends Component {
 

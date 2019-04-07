@@ -64,14 +64,13 @@ const MainNav = (props) => (
                 <NavLink to="/" activeClassName="is-active">Home</NavLink>
             </li>
             <li>
-                <NavLink to="/template" activeClassName="is-active">Template</NavLink>
-            </li>
-            
-            <li>
-                <NavLink to="/AddVocabPage" activeClassName="is-active">Add</NavLink>
+            <NavLink to="/AddVocabPage" activeClassName="is-active">Add</NavLink>
             </li>
             <li>
-                <NavLink to="/vocabItemDashboard" activeClassName="is-active">List</NavLink>
+            <NavLink to="/vocabItemDashboard" activeClassName="is-active">List</NavLink>
+            </li>
+            <li>
+                <NavLink to="/landing" activeClassName="is-active">Landing</NavLink>
             </li>
         </ul>
 

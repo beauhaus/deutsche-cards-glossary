@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch, Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 import MainNav from './MainNav';
-import Template from '../components/Template';
+// import Landing from '../components/quizWork/Landing';
 import EditVocabPage from '../components/EditVocabPage';
 import AddVocabPage from '../components/AddVocabPage';
 import VocabItemDashboard from '../components/VocabItemDashboard';
@@ -26,10 +26,11 @@ const Routes = (props) => (
             <MainNav />
             <Switch>
                 <Route path="/" exact={true} />
-                <Route path="/template" component={Template} />
+                
                 <Route path="/edit:id" component={EditVocabPage} />
                 <Route path="/addVocabPage" component={AddVocabPage} />
                 <Route path="/vocabItemDashboard" component={VocabItemDashboard} />
+                {/*<Route path="/landing" component={Landing} />*/}
                 <Route component={FourOhFour} />
             </Switch>
         </RouterLiner>

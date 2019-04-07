@@ -1,4 +1,4 @@
-import dictDB from "../data/vocabDB.json"  //DB is required in this one file
+// import dictDB from "../data/vocabDB.json"  //DB is required in this one file
 
 
 // const fs = require('file-system')
