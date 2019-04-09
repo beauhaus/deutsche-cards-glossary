@@ -21,8 +21,7 @@ export class AddVocabPage extends Component {
     render() {
         return (
             <StyledAddVocabPage>
-                <VocabForm
-                    onSubmit={this.onSubmit} />
+                <VocabForm onSubmit={this.onSubmit} />
             </StyledAddVocabPage>
         )
     }
