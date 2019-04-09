@@ -1,0 +1,8723 @@
+[
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "The sunrise is beautiful",
+		"example_de": "Der Sonnenaufgang ist wunderschön",
+		"word_de": "der/die/das",
+		"word_en": "the"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "The sky is grey in Germany",
+		"example_de": "Der Himmel ist in grau Deutschland",
+		"word_de": "in",
+		"word_en": "in"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "Peter and Kate are eating breakfast",
+		"example_de": "Peter und Kate frühstücken",
+		"word_de": "und",
+		"word_en": "and "
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "His book is in the car",
+		"example_de": "sein Buch ist im Auto",
+		"word_de": "sein",
+		"word_en": "his"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "She is a member of the group",
+		"example_de": "Sie ist Mitglied der Gruppe",
+		"word_de": "ein",
+		"word_en": "a"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "Nice to see you!",
+		"example_de": "Schön dich zu sehen!",
+		"word_de": "zu",
+		"word_en": "to"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "night becomes day",
+		"example_de": "Nacht wird Tag",
+		"word_de": "werden",
+		"word_en": "become"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "We have school from Monday to Friday",
+		"example_de": "Wir haben Schule von Montag bis Freitag",
+		"word_de": "von",
+		"word_en": "Of"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "Do you have your keys?",
+		"example_de": "Hast du deine Schlüssel?",
+		"word_de": "haben",
+		"word_en": "have"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "This week, my father is with my brother in the city",
+		"example_de": "Diese Woche ist mein Vater mit meinem Bruder in der Stadt",
+		"word_de": "mit",
+		"word_en": "with"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "He is ready for anything",
+		"example_de": "Er ist zu allem bereit",
+		"word_de": "er/sie/es/sie",
+		"word_en": "he / she / it / she / they"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "That is for her",
+		"example_de": "Das ist für ihr",
+		"word_de": "für",
+		"word_en": "for"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "I don't believe it",
+		"example_de": "Ich glaube es nicht",
+		"word_de": "nicht",
+		"word_en": "not"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG TBD",
+		"example_de": "EXAMPLEDE TBD",
+		"word_de": "an",
+		"word_en": "at"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "on the table",
+		"example_de": "auf den Tisch",
+		"word_de": "auf",
+		"word_en": "on"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "a request",
+		"example_de": "eine bitte",
+		"word_de": "eine",
+		"word_en": "a"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "Is it difficult?",
+		"example_de": "Ist es schwer?",
+		"word_de": "es",
+		"word_en": "it"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "I also got up early",
+		"example_de": "Ich bin auch früh aufgestanden",
+		"word_de": "auch",
+		"word_en": "also"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "sie",
+		"word_en": "she"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "als",
+		"word_en": "as"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "er",
+		"word_en": "he"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "bei",
+		"word_en": "at"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "dies",
+		"word_en": "this"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "dass",
+		"word_en": "that"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "nach",
+		"word_en": "after"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "ihr",
+		"word_en": "you"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "können",
+		"word_en": "to be able to (in the sense of ability)"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "aus",
+		"word_en": "from"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Jahr",
+		"word_en": "Year"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "so",
+		"word_en": ""
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "wie",
+		"word_en": "like"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "über",
+		"word_en": "over"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "nur",
+		"word_en": "Only"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "all-",
+		"word_en": "all"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "vor",
+		"word_en": "before"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "wir",
+		"word_en": "we"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "sollen",
+		"word_en": "to be supposed to"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "aber",
+		"word_en": "but"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "müssen",
+		"word_en": "need"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "ich",
+		"word_en": "I"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "neu",
+		"word_en": "new"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "bis",
+		"word_en": "until"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "wollen",
+		"word_en": "want"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "oder",
+		"word_en": "or"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "man",
+		"word_en": "man"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "mehr",
+		"word_en": "more"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "sagen",
+		"word_en": "say"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "erst",
+		"word_en": "only"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "geben",
+		"word_en": "give"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "durch",
+		"word_en": "through"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "wenn",
+		"word_en": "if"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "gegen",
+		"word_en": "against"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "kommen",
+		"word_en": "come"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "gross",
+		"word_en": "big"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "er/es",
+		"word_en": "he / it"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "ander-",
+		"word_en": "other"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "gut",
+		"word_en": "good"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "schon",
+		"word_en": "already"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "kein-",
+		"word_en": "none-"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "weit",
+		"word_en": "far"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "machen",
+		"word_en": "make"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "doch",
+		"word_en": "but"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "unter",
+		"word_en": "under"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "dann",
+		"word_en": "then"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "wieder",
+		"word_en": "again"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Prozent",
+		"word_en": "Percent"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "zwei",
+		"word_en": "two"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "immer",
+		"word_en": "always"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "gehen",
+		"word_en": "go"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "seit",
+		"word_en": "since"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "da",
+		"word_en": "there"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "stehen",
+		"word_en": "stand"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Million",
+		"word_en": "Million"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "damit",
+		"word_en": "with it"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "was",
+		"word_en": "what"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Zeit",
+		"word_en": "Time"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "jed-",
+		"word_en": "each"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "zwischen",
+		"word_en": "between"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "sehen",
+		"word_en": "see"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Land",
+		"word_en": "Country"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "drei",
+		"word_en": "three"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Frau",
+		"word_en": "Mrs."
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Ich",
+		"word_en": "I"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Tag",
+		"word_en": "Day"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "deutsch",
+		"word_en": "word_de"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "denn",
+		"word_en": "because"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "bereits",
+		"word_en": "already"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "weil",
+		"word_en": "because"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Mensch",
+		"word_en": "Human"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "beid-",
+		"word_en": "both"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "bleiben",
+		"word_en": "stay"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "jetzt",
+		"word_en": "now"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Mann",
+		"word_en": "Man"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "ohne",
+		"word_en": "without"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "nun",
+		"word_en": "now"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "alt",
+		"word_en": "old"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Kind",
+		"word_en": "Child"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "dabei",
+		"word_en": ""
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "liegen",
+		"word_en": "lie"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "hoch",
+		"word_en": "high"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "Are you allowed to eat this?",
+		"example_de": "Darfst du das essen?",
+		"word_de": "dörfen",
+		"word_en": "allowed"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Berlin",
+		"word_en": "Berlin"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Mark",
+		"word_en": "Mark"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "hier",
+		"word_en": "here"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "heute",
+		"word_en": "today"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "finden",
+		"word_en": "find"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "sehr",
+		"word_en": "very"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "rund",
+		"word_en": "around"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Stadt",
+		"word_en": "City"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "selbst",
+		"word_en": "even"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "I have drunk too much",
+		"example_de": "Ich habe zu viel getrunken",
+		"word_de": "viel",
+		"word_en": "much"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "etwa",
+		"word_en": "about"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "klein",
+		"word_en": "small"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Deutschland",
+		"word_en": "word_dey"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "letzt-",
+		"word_en": "last"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "zeigen",
+		"word_en": "show"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Aber",
+		"word_en": "But"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "eigen",
+		"word_en": "own"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "kein",
+		"word_en": "no"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Ende",
+		"word_en": "End"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "bringen",
+		"word_en": "bring"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Woche",
+		"word_en": "Week"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "lassen",
+		"word_en": "leave"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "einmal",
+		"word_en": "once"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "viel",
+		"word_en": "a lot of"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "einig-",
+		"word_en": "unite"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "wenig",
+		"word_en": "little"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "sowie",
+		"word_en": "and"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "jung",
+		"word_en": "young"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "dort",
+		"word_en": "there"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "wer",
+		"word_en": "who"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "lass",
+		"word_en": "let"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "nah",
+		"word_en": "close to"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "Meanwhile, I'll wait for you",
+		"example_de": "währenddessen werde ich auf dich warten",
+		"word_de": "während",
+		"word_en": "during"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "wo",
+		"word_en": "where"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "halten",
+		"word_en": "hold"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Patentamt",
+		"word_en": "Patent Office"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "allerdings",
+		"word_en": "however"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "lang",
+		"word_en": "long"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "etwas",
+		"word_en": "something"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "sondern",
+		"word_en": "but"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Haus",
+		"word_en": "House"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "nichts",
+		"word_en": "nothing"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Euro",
+		"word_en": "Euro"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Frage",
+		"word_en": "Question"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "dazu",
+		"word_en": ""
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "vier",
+		"word_en": "four"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "nehmen",
+		"word_en": "take"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "zwar",
+		"word_en": "though"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "gestern",
+		"word_en": "yesterday"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "stellen",
+		"word_en": "put"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "dafür",
+		"word_en": "for"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "politisch",
+		"word_en": "politically"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "heissen",
+		"word_en": "to be called"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "jedoch",
+		"word_en": "however"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "wegen",
+		"word_en": "because of"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Leben",
+		"word_en": "Life"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "stark",
+		"word_en": "strong"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Seite",
+		"word_en": "page"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Welt",
+		"word_en": "World"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "vergangen",
+		"word_en": "passed"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "spielen",
+		"word_en": "play"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Fall",
+		"word_en": "Case"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "fast",
+		"word_en": "almost"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Weg",
+		"word_en": "Way"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "ob",
+		"word_en": "whether"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "ab",
+		"word_en": "from"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "wichtig",
+		"word_en": "important"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Präsident",
+		"word_en": "President"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "kurz",
+		"word_en": "short"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "also",
+		"word_en": "So"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "beginnen",
+		"word_en": "start"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "gleich",
+		"word_en": "equal to"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "tun",
+		"word_en": "do"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Arbeit",
+		"word_en": "Work"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "fünf",
+		"word_en": "five"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Bild",
+		"word_en": "Picture"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "erhalten",
+		"word_en": "get"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Monat",
+		"word_en": "Month"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Unternehmen",
+		"word_en": "Company"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Regierung",
+		"word_en": "Government"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Teil",
+		"word_en": "Part"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "unser-",
+		"word_en": "ours"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Wien",
+		"word_en": "Vienna"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "solch-",
+		"word_en": "such"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "ja",
+		"word_en": "yes"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "Is it difficult?",
+		"example_de": "Ist es schwer?",
+		"word_de": "schwer",
+		"word_en": "difficult"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "international",
+		"word_en": "international"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "sprechen",
+		"word_en": "speak"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "gehören",
+		"word_en": "belong"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "weiss",
+		"word_en": "white"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Spiel",
+		"word_en": "Game"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "mögen",
+		"word_en": "like"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "möglich",
+		"word_en": "possible"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Geld",
+		"word_en": "Money"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Grund",
+		"word_en": "Reason"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "fahren",
+		"word_en": "drive"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "bisher",
+		"word_en": "previously"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Problem",
+		"word_en": "Problem"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Partei",
+		"word_en": "Party"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "österreich",
+		"word_en": "Austria"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "d-halber",
+		"word_en": "d-half"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Peter",
+		"word_en": "Peter"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "sogar",
+		"word_en": "even"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "davon",
+		"word_en": "of which"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "welch-",
+		"word_en": "which"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "zehn",
+		"word_en": "ten"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "gar",
+		"word_en": "even"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "gelten",
+		"word_en": "apply"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "einfach",
+		"word_en": "easy"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "führen",
+		"word_en": "lead"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "bekommen",
+		"word_en": "get"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "gemeinsam",
+		"word_en": "together"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "weniger",
+		"word_en": "less"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "kaum",
+		"word_en": "barely"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Milliarde",
+		"word_en": "Billion"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Polizei",
+		"word_en": "Police"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "neben",
+		"word_en": "next to"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Geschichte",
+		"word_en": "Story"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Staat",
+		"word_en": "State"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "wissen",
+		"word_en": "know"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Strasse",
+		"word_en": "Road"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "später",
+		"word_en": "later"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "meist",
+		"word_en": "usually"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "bestehen",
+		"word_en": "exist"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "europäisch",
+		"word_en": "European"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "gewinnen",
+		"word_en": "win"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "derzeit",
+		"word_en": "currently"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "schnell",
+		"word_en": "fast"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Stunde",
+		"word_en": "Hour"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Berliner",
+		"word_en": "Berliner"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "wohl",
+		"word_en": "probably"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "darauf",
+		"word_en": "on it"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Thema",
+		"word_en": "Topic"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Man",
+		"word_en": "Man"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "früh",
+		"word_en": "early"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "schaffen",
+		"word_en": "create"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Gruppe",
+		"word_en": "Group"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "fordern",
+		"word_en": "call"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Deutsch",
+		"word_en": "word_de"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "öffentlich",
+		"word_en": "public"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Mitglied",
+		"word_en": "Member"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "schliesslich",
+		"word_en": "finally"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "der Film war nicht besonders",
+		"example_de": "the Film was nothing special",
+		"word_de": "besonders",
+		"word_en": "special"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Grüne",
+		"word_en": "Green"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Beispiel",
+		"word_en": "example"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "jen-",
+		"word_en": "jen-"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "natürlich",
+		"word_en": "of course"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Europa",
+		"word_en": "Europe"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "nennen",
+		"word_en": "call"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Chef",
+		"word_en": "Boss"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "setzen",
+		"word_en": "put"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Wort",
+		"word_en": "word_de"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "bekannt",
+		"word_en": "known"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Film",
+		"word_en": "Movie"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "frei",
+		"word_en": "free"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "deutlich",
+		"word_en": "clearly"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "nie",
+		"word_en": "never"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Ziel",
+		"word_en": "Goal"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "folgen",
+		"word_en": "follow"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Familie",
+		"word_en": "Family"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "arbeiten",
+		"word_en": "work"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Zahl",
+		"word_en": "Number"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Schule",
+		"word_en": "School"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Erfolg",
+		"word_en": "Success"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "sechs",
+		"word_en": "six"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Leute",
+		"word_en": "People"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "treffen",
+		"word_en": "meet"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Projekt",
+		"word_en": "Project"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "mal",
+		"word_en": "times"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "schreiben",
+		"word_en": "write"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Punkt",
+		"word_en": "Point"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Minute",
+		"word_en": "Minute"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "erklären",
+		"word_en": "explain"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "eigentlich",
+		"word_en": "actually"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "klar",
+		"word_en": "clear"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "hinter",
+		"word_en": "behind"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "sicher",
+		"word_en": "sure"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "richtig",
+		"word_en": "right"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "genau",
+		"word_en": "exactly"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Preis",
+		"word_en": "Price"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "vielleicht",
+		"word_en": "maybe"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Hand",
+		"word_en": "Hand"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Name",
+		"word_en": "Name"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "schön",
+		"word_en": "nice"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "erwarten",
+		"word_en": "expect"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "allein",
+		"word_en": "alone"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Bank",
+		"word_en": "Bank"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "scheinen",
+		"word_en": "seem"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "denken",
+		"word_en": "think"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "leben",
+		"word_en": "live"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Mal",
+		"word_en": "Time"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Art",
+		"word_en": "Art"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "laufen",
+		"word_en": "run"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "einzig",
+		"word_en": "only"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Meter",
+		"word_en": "Meter"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "erklärt",
+		"word_en": "explains"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "insgesamt",
+		"word_en": "a total of"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Mitarbeiter",
+		"word_en": "Employees"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Gemeinde",
+		"word_en": "Community"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "brauchen",
+		"word_en": "need"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "pro",
+		"word_en": "per"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Gespräch",
+		"word_en": "Conversation"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Aus",
+		"word_en": "From"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "künftig",
+		"word_en": "in future"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "oft",
+		"word_en": "often"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "ausserdem",
+		"word_en": "also"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "steigen",
+		"word_en": "climb"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "mehrer-",
+		"word_en": "several"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "jährig",
+		"word_en": "year"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "bieten",
+		"word_en": "offer"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "suchen",
+		"word_en": "search"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Programm",
+		"word_en": "Program"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Anfang",
+		"word_en": "Beginning"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "erreichen",
+		"word_en": "reach"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "leicht",
+		"word_en": "easy"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "entscheiden",
+		"word_en": "decide"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Hans",
+		"word_en": "Hans"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "damals",
+		"word_en": "at that time"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "amerikanisch",
+		"word_en": "American"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Buch",
+		"word_en": "Book"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Zukunft",
+		"word_en": "Future"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Verein",
+		"word_en": "Club"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Firma",
+		"word_en": "Company"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "entstehen",
+		"word_en": "emerge"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Ergebnis",
+		"word_en": "Result"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "glauben",
+		"word_en": "believe"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Angabe",
+		"word_en": "Indication"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "dagegen",
+		"word_en": "against"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Auto",
+		"word_en": "Car"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Chance",
+		"word_en": "Chance"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Entscheidung",
+		"word_en": "Decision"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "ziehen",
+		"word_en": "pull"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Herr",
+		"word_en": "Mr."
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Team",
+		"word_en": "Team"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Schilling",
+		"word_en": "Shilling"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "ebenfalls",
+		"word_en": "also"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "München",
+		"word_en": "Munich"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "verschieden",
+		"word_en": "different"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Politik",
+		"word_en": "Politics"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "darüber",
+		"word_en": "about"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "stattfinden",
+		"word_en": "take place"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Dollar",
+		"word_en": "Dollars"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Wahl",
+		"word_en": "Election"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "fehlen",
+		"word_en": "missing"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "voll",
+		"word_en": "full"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "du",
+		"word_en": "you"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "schlecht",
+		"word_en": "bad"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "laut",
+		"word_en": "according to"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "übernehmen",
+		"word_en": "take over"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Markt",
+		"word_en": "Market"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Gesellschaft",
+		"word_en": "Society"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Bereich",
+		"word_en": "Area"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "sorgen",
+		"word_en": "take care"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "acht",
+		"word_en": "eight"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "tragen",
+		"word_en": "wear"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "zudem",
+		"word_en": "also"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "zunüchst",
+		"word_en": "first"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "eher",
+		"word_en": "rather"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Zeitung",
+		"word_en": "Newspaper"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "offen",
+		"word_en": "open"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "wirklich",
+		"word_en": "really"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Musik",
+		"word_en": "Music"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "gegenüber",
+		"word_en": "opposite"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "handeln",
+		"word_en": "act"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "knapp",
+		"word_en": "just"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "recht",
+		"word_en": "right"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Ag",
+		"word_en": "Ag"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "nachdem",
+		"word_en": "after"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "inzwischen",
+		"word_en": "now"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Trainer",
+		"word_en": "Trainer"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "entsprechen",
+		"word_en": "correspond to"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Krieg",
+		"word_en": "War"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Stelle",
+		"word_en": "Position"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "jugendlich",
+		"word_en": "teen"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Person",
+		"word_en": "Person"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Entwicklung",
+		"word_en": "Development"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Werk",
+		"word_en": "Work"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "ebenso",
+		"word_en": "also"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "sozial",
+		"word_en": "socially"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Sieg",
+		"word_en": "Victory"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "versuchen",
+		"word_en": "try"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Möglichkeit",
+		"word_en": "Option"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "fragen",
+		"word_en": "ask"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "anbieten",
+		"word_en": "offer"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Ort",
+		"word_en": "Place"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Stück",
+		"word_en": "Piece"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Gast",
+		"word_en": "Guest"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "sitzen",
+		"word_en": "sit"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Folge",
+		"word_en": "Episode"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "warum",
+		"word_en": "why"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "obwohl",
+		"word_en": "although"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "gerade",
+		"word_en": "straight"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "daran",
+		"word_en": "at this"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Hilfe",
+		"word_en": "Help"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Mutter",
+		"word_en": "Mother"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "rot",
+		"word_en": "red"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Bürgermeister",
+		"word_en": "Mayor"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Sache",
+		"word_en": "Thing"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "nämlich",
+		"word_en": "namely"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Politiker",
+		"word_en": "Politician"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Raum",
+		"word_en": "Room"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Mannschaft",
+		"word_en": "Team"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Freund",
+		"word_en": "Friend"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "erscheinen",
+		"word_en": "appear"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "zunehmen",
+		"word_en": "increase"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Rolle",
+		"word_en": "Roll"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Schüler",
+		"word_en": "Student"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "gegeben",
+		"word_en": "given"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "rechnen",
+		"word_en": "count"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "kennen",
+		"word_en": "know"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Kirche",
+		"word_en": "Church"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Interesse",
+		"word_en": "Interest"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Angebot",
+		"word_en": "Offer"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Fussball",
+		"word_en": "Soccer"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Abend",
+		"word_en": "Evening"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "gern",
+		"word_en": "like"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "österreichisch",
+		"word_en": "Austrian"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "manch-",
+		"word_en": "some"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "sieben",
+		"word_en": "seven"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "erstmals",
+		"word_en": "first time"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Stimme",
+		"word_en": "Vote"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Vater",
+		"word_en": "Father"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Eltern",
+		"word_en": "Parents"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Kunst",
+		"word_en": "Art"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "überhaupt",
+		"word_en": "at all"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Auge",
+		"word_en": "Eye"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Region",
+		"word_en": "Region"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Einsatz",
+		"word_en": "Use"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Jetzt",
+		"word_en": "Now"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Bericht",
+		"word_en": "Report"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Nacht",
+		"word_en": "Night"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "mitteilen",
+		"word_en": "communicate"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "zuvor",
+		"word_en": "before"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Opfer",
+		"word_en": "Victim"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Hamburg",
+		"word_en": "Hamburg"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "erfolgreich",
+		"word_en": "successful"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "daher",
+		"word_en": "therefore"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Kopf",
+		"word_en": "Head"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "She doesn't understand",
+		"example_de": "Sie versteht es nicht",
+		"word_de": "verstehen",
+		"word_en": "understand"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "berichten",
+		"word_en": "report"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Wochenende",
+		"word_en": "Weekend"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "unsr-",
+		"word_en": "our-"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "dennoch",
+		"word_en": "nevertheless"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Betrieb",
+		"word_en": "Operation"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Internet",
+		"word_en": "Internet"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "privat",
+		"word_en": "private"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "helfen",
+		"word_en": "help"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Blick",
+		"word_en": "View"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Frankreich",
+		"word_en": "France"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "vorstellen",
+		"word_en": "imagine"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "eben",
+		"word_en": "just"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "kosten",
+		"word_en": "cost"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Kosten",
+		"word_en": "Cost"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "lieb",
+		"word_en": "dear"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "zusätzlich",
+		"word_en": "additionally"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "bestimmt",
+		"word_en": "determined"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "französisch",
+		"word_en": "french"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Bund",
+		"word_en": "Covenant"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Bürger",
+		"word_en": "Citizen"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Titel",
+		"word_en": "Title"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "zurück",
+		"word_en": "back"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Foto",
+		"word_en": "Photo"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Kraft",
+		"word_en": "Force"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "zuletzt",
+		"word_en": "last"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "betont",
+		"word_en": "emphasizes"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "völlig",
+		"word_en": "totally"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "tatsächlich",
+		"word_en": "actually"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "statt",
+		"word_en": "instead of"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "danach",
+		"word_en": "after that"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Unter",
+		"word_en": "Under"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "einzeln",
+		"word_en": "individually"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Geschäft",
+		"word_en": "Business"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Wirtschaft",
+		"word_en": "Economy"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "legen",
+		"word_en": "put"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Tod",
+		"word_en": "Death"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "direkt",
+		"word_en": "directly"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "zahlreich",
+		"word_en": "numerous"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Aufgabe",
+		"word_en": "Task"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "drohen",
+		"word_en": "threaten"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Grenze",
+		"word_en": "Border"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Sprecher",
+		"word_en": "Speaker"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Idee",
+		"word_en": "Idea"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Gericht",
+		"word_en": "Court"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Information",
+		"word_en": "Information"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Bahn",
+		"word_en": "Track"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Kunde",
+		"word_en": "Customer"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "bald",
+		"word_en": "soon"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Zwei",
+		"word_en": "Two"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "hoffen",
+		"word_en": "hope"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "trotz",
+		"word_en": "despite"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Wasser",
+		"word_en": "Water"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Kritik",
+		"word_en": "Criticism"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Wählen",
+		"word_en": "choose"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "befinden",
+		"word_en": "are"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Gesetz",
+		"word_en": "Law"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "ähnlich",
+		"word_en": "similar to"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "ankündigen",
+		"word_en": "announce"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Spieler",
+		"word_en": "Player"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "nutzen",
+		"word_en": "use"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Höhe",
+		"word_en": "Height"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Wohnung",
+		"word_en": "Apartment"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "zählen",
+		"word_en": "count"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Wert",
+		"word_en": "Value"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "besonder-",
+		"word_en": "particular"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Situation",
+		"word_en": "Situation"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "sterben",
+		"word_en": "die"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Ausstellung",
+		"word_en": "Exhibition"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "offenbar",
+		"word_en": "apparently"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "gesamt",
+		"word_en": "total"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Amt",
+		"word_en": "Office"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Sinn",
+		"word_en": "Sense"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "erzählen",
+		"word_en": "tell"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Klaus",
+		"word_en": "Klaus"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Recht",
+		"word_en": "Right"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Kreis",
+		"word_en": "Circle"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Schweiz",
+		"word_en": "Switzerland"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "sonst",
+		"word_en": "otherwise"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Vorsitzende",
+		"word_en": "Chair"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Besucher",
+		"word_en": "Visitors"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "anders",
+		"word_en": "different"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "planen",
+		"word_en": "plan"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Tor",
+		"word_en": "Gate"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Universität",
+		"word_en": "University"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "einsetzen",
+		"word_en": "insert"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Kampf",
+		"word_en": "Fight"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Union",
+		"word_en": "Union"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "bislang",
+		"word_en": "so far"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "paar",
+		"word_en": "couple"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Lage",
+		"word_en": "Location"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "hören",
+		"word_en": "hear"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "verloren",
+		"word_en": "lost"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "zumindest",
+		"word_en": "at least"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "geplant",
+		"word_en": "planned"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Plan",
+		"word_en": "Plan"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "wirken",
+		"word_en": "act"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "aufnehmen",
+		"word_en": "to record"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "zusammen",
+		"word_en": "together"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "schwarz",
+		"word_en": "black"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "ablehnen",
+		"word_en": "reject"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "verlassen",
+		"word_en": "leave"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Publikum",
+		"word_en": "Audience"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Bau",
+		"word_en": "Construction"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "erneut",
+		"word_en": "again"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Franz",
+		"word_en": "Franz"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "früher",
+		"word_en": "earlier"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "System",
+		"word_en": "System"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Theater",
+		"word_en": "Theater"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Beginn",
+		"word_en": "Beginning"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Kollege",
+		"word_en": "Colleague"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "verlieren",
+		"word_en": "lose"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Vertrag",
+		"word_en": "Contract"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "fallen",
+		"word_en": "fall"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Kilometer",
+		"word_en": "Kilometer"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Schritt",
+		"word_en": "Step"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "bauen",
+		"word_en": "build"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Form",
+		"word_en": "Form"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "reden",
+		"word_en": "talk"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "hart",
+		"word_en": "hard"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "niemand",
+		"word_en": "nobody"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "offiziell",
+		"word_en": "officially"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Bevölkerung",
+		"word_en": "Population"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "persönlich",
+		"word_en": "personally"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "lernen",
+		"word_en": "learn"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "gleichzeitig",
+		"word_en": "at the same time"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Bayern",
+		"word_en": "Bavaria"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Arzt",
+		"word_en": "Doctor"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "fühlen",
+		"word_en": "feel"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "warten",
+		"word_en": "wait"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Institut",
+		"word_en": "Institute"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "zahlen",
+		"word_en": "pay"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Saison",
+		"word_en": "Season"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Mittel",
+		"word_en": "Mean"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Leistung",
+		"word_en": "Power"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "britisch",
+		"word_en": "British"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Zug",
+		"word_en": "Train"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "endlich",
+		"word_en": "finally"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Mädchen",
+		"word_en": "Girl"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Bonn",
+		"word_en": "Bonn"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Verfügung",
+		"word_en": "Available"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "mindestens",
+		"word_en": "at least"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "russisch",
+		"word_en": "Russian"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Richtung",
+		"word_en": "Direction"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Aktion",
+		"word_en": "Action"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "schliessen",
+		"word_en": "close"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "gering",
+		"word_en": "low"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "Can you remember him?",
+		"example_de": "Kannst du dich an ihn erinnern?",
+		"word_de": "erinnern",
+		"word_en": "remember"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Kultur",
+		"word_en": "Culture"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "schlagen",
+		"word_en": "beat"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Diskussion",
+		"word_en": "Discussion"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "ändern",
+		"word_en": "change"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "aussehen",
+		"word_en": "look"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "teuer",
+		"word_en": "expensive"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Parlament",
+		"word_en": "Parliament"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "geraten",
+		"word_en": "advised"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "unterstützen",
+		"word_en": "support"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "technisch",
+		"word_en": "technically"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Angst",
+		"word_en": "Fear"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "verletzen",
+		"word_en": "hurt"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Museum",
+		"word_en": "Museum"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "innerhalb",
+		"word_en": "within"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Lüsung",
+		"word_en": "Solution"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "leisten",
+		"word_en": "afford"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Tochter",
+		"word_en": "Daughter"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Erfahrung",
+		"word_en": "Experience"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Franken",
+		"word_en": "Francs"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "weiterhin",
+		"word_en": "continue"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "sofort",
+		"word_en": "immediately"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Künstler",
+		"word_en": "Artist"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "wirtschaftlich",
+		"word_en": "economically"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "bedeuten",
+		"word_en": "mean"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Beamter",
+		"word_en": "Official"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "positiv",
+		"word_en": "positive"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "freuen",
+		"word_en": "happy"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Prozess",
+		"word_en": "Process"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Behörde",
+		"word_en": "Authority"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "falsch",
+		"word_en": "wrong"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Band",
+		"word_en": "Volume"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Mehrheit",
+		"word_en": "Majority"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "entwickelt",
+		"word_en": "develops"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Konzern",
+		"word_en": "Group"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "tot",
+		"word_en": "dead"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Bühne",
+		"word_en": "Stage"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "verantwortlich",
+		"word_en": "responsible"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Veranstaltung",
+		"word_en": "Event"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "I haven't drunk enough",
+		"example_de": "Ich habe nicht genug getrunken",
+		"word_de": "genug",
+		"word_en": "enough"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Vertreter",
+		"word_en": "Representative"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "immerhin",
+		"word_en": "at least"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "erfahren",
+		"word_en": "experience"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "erster",
+		"word_en": "first"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "vorsehen",
+		"word_en": "to provide"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "what time  is it?",
+		"example_de": "Wie spät ist es?",
+		"word_de": "Wie spät ist es?",
+		"word_en": "What time is it?"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Rahmen",
+		"word_en": "Frame"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "notwendig",
+		"word_en": "necessary"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "finanziell",
+		"word_en": "financially"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Arbeitsplatz",
+		"word_en": "Workplace"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Zuschauer",
+		"word_en": "Audience"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "darin",
+		"word_en": "in it"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "tief",
+		"word_en": "deep"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "trotzdem",
+		"word_en": "anyway"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Druck",
+		"word_en": "Pressure"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Weise",
+		"word_en": "Way"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Tier",
+		"word_en": "Animal"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "feststellen",
+		"word_en": "determine"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "ausgehen",
+		"word_en": "go out"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "modern",
+		"word_en": "modern"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "lesen",
+		"word_en": "read"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Sicherheit",
+		"word_en": "Security"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Gebiet",
+		"word_en": "Area"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "beispielsweise",
+		"word_en": "for example"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Autor",
+		"word_en": "Author"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Medium",
+		"word_en": "Medium"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "aktuell",
+		"word_en": "currently"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Italien",
+		"word_en": "Italy"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "täglich",
+		"word_en": "daily"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Klasse",
+		"word_en": "grade"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "berichtet",
+		"word_en": "reported"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "wesentlich",
+		"word_en": "essentially"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "per",
+		"word_en": "by"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Walter",
+		"word_en": "Walter"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Bad",
+		"word_en": "Bath"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Soldat",
+		"word_en": "Soldier"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "schwierig",
+		"word_en": "difficult"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Rede",
+		"word_en": "Speech"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Verhandlung",
+		"word_en": "Negotiation"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "wachsen",
+		"word_en": "grow"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "treten",
+		"word_en": "step"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "öffnen",
+		"word_en": "open"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "heutig",
+		"word_en": "today"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "starten",
+		"word_en": "start"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "verhindern",
+		"word_en": "prevent"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Gefahr",
+		"word_en": "Danger"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "dadurch",
+		"word_en": "by"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "weltweit",
+		"word_en": "worldwide"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Führung",
+		"word_en": "Leadership"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Konzept",
+		"word_en": "Concept"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Meinung",
+		"word_en": "Opinion"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "historisch",
+		"word_en": "historically"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Vorschlag",
+		"word_en": "Proposal"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Forderung",
+		"word_en": "Claim"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Kommission",
+		"word_en": "Commission"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "weder",
+		"word_en": "neither"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "jedenfalls",
+		"word_en": "at least"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Vorjahr",
+		"word_en": "Previous year"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "beschliessen",
+		"word_en": "decide"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Organisation",
+		"word_en": "Organization"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "holen",
+		"word_en": "pick"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Hälfte",
+		"word_en": "Half"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "eng",
+		"word_en": "tight"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Müller",
+		"word_en": "Miller"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Richter",
+		"word_en": "Judge"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "melden",
+		"word_en": "Report"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Verlag",
+		"word_en": "Publisher"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "allgemein",
+		"word_en": "general"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Umsatz",
+		"word_en": "Turnover"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "lediglich",
+		"word_en": "only"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "vertreten",
+		"word_en": "represented"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "präsentieren",
+		"word_en": "present"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "zuständig",
+		"word_en": "responsible"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "sogenannt",
+		"word_en": "so-called"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "zwälf",
+		"word_en": "twelve"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "London",
+		"word_en": "London"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Koalition",
+		"word_en": "Coalition"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Ministerpräsident",
+		"word_en": "Prime Minister"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Leiter",
+		"word_en": "Ladder"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "neun",
+		"word_en": "nine"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "jährlich",
+		"word_en": "annually"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Herz",
+		"word_en": "Heart"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "erkennen",
+		"word_en": "recognize"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "bilden",
+		"word_en": "make up"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Bremen",
+		"word_en": "Bremen"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Verband",
+		"word_en": "Association"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "plötzlich",
+		"word_en": "suddenly"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "häufig",
+		"word_en": "often"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Zusammenarbeit",
+		"word_en": "Cooperation"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "stammen",
+		"word_en": "come"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "heiss",
+		"word_en": "hot"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "kaufen",
+		"word_en": "buy"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Experte",
+		"word_en": "Expert"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Unterstützung",
+		"word_en": "Support"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Boden",
+		"word_en": "Floor"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "ex",
+		"word_en": "ex"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "gewiss",
+		"word_en": "certainly"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "darstellen",
+		"word_en": "represent"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Fan",
+		"word_en": "Fan"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "scheitern",
+		"word_en": "fail"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Volk",
+		"word_en": "People"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Sprache",
+		"word_en": "Language"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "vorliegen",
+		"word_en": "present"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Aktie",
+		"word_en": "Share"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Urteil",
+		"word_en": "Judgment"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Hoffnung",
+		"word_en": "Hope"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "ergeben",
+		"word_en": "yield"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "überraschen",
+		"word_en": "surprise"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Vorstand",
+		"word_en": "Board"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "dauern",
+		"word_en": "take"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "durchaus",
+		"word_en": "definitely"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Dienst",
+		"word_en": "Service"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Anteil",
+		"word_en": "Share"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "verkauft",
+		"word_en": "sold"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Gegner",
+		"word_en": "Opponent"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Linie",
+		"word_en": "Line"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Verhältnis",
+		"word_en": "Ratio"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "unterschiedlich",
+		"word_en": "different"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Verfahren",
+		"word_en": "Method"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "betragen",
+		"word_en": "amount to"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Streit",
+		"word_en": "Quarrel"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "darunter",
+		"word_en": "including"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "selten",
+		"word_en": "rarely"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Hotel",
+		"word_en": "Hotel"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "warnen",
+		"word_en": "warn"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Massnahme",
+		"word_en": "Measure"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "zugleich",
+		"word_en": "at the same time"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Modell",
+		"word_en": "Model"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Vergleich",
+		"word_en": "Comparison"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "übrig",
+		"word_en": "leftover, remaining"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "fällen",
+		"word_en": "fall"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "sowohl",
+		"word_en": "both"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Beitrag",
+		"word_en": "Contribution"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "aktiv",
+		"word_en": "active"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "nötig",
+		"word_en": "necessary"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Produkt",
+		"word_en": "Product"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Text",
+		"word_en": "Text"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Reise",
+		"word_en": "Trip"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Sport",
+		"word_en": "Sports"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "mittlerweile",
+		"word_en": "now"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "verbinden",
+		"word_en": "connect"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Mehr",
+		"word_en": "More"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Gebäude",
+		"word_en": "Building"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Junge",
+		"word_en": "Boy"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "versprechen",
+		"word_en": "promise"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Nato",
+		"word_en": "Nato"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "beteiligen",
+		"word_en": "participate"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Bundesregierung",
+		"word_en": "Federal Government"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "China",
+		"word_en": "China"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Liebe",
+		"word_en": "Love"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Ding",
+		"word_en": "Thing"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "hingegen",
+		"word_en": "however,"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "eröffnen",
+		"word_en": "open"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "gelt",
+		"word_en": ""
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "bestätigen",
+		"word_en": "confirm"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Israel",
+		"word_en": "Israel"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "gelangen",
+		"word_en": "arrive"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Täter",
+		"word_en": "Offender"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Alter",
+		"word_en": "Age"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Partner",
+		"word_en": "Partner"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Lehrer",
+		"word_en": "Teacher"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Zentrum",
+		"word_en": "Center"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Abgeordnete",
+		"word_en": "Deputies"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Macht",
+		"word_en": "Power"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Wunsch",
+		"word_en": "Wish"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "darum",
+		"word_en": "therefore"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "bezahlen",
+		"word_en": "pay"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Vorwurf",
+		"word_en": "Reproach"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "staatlich",
+		"word_en": "State"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "kämpfen",
+		"word_en": "fight"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Geschäftsführer",
+		"word_en": "CEO"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Besuch",
+		"word_en": "Visit"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "gründen",
+		"word_en": "found"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Oder",
+		"word_en": "Or"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Auftrag",
+		"word_en": "Order"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Versuch",
+		"word_en": "Trial"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Fischer",
+		"word_en": "Fisherman"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Satz",
+		"word_en": "Sentence"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "fest",
+		"word_en": "fixed"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "verzichten",
+		"word_en": "renounce"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Reihe",
+		"word_en": "Row"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Reform",
+		"word_en": "Reform"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "verlangen",
+		"word_en": "ask for"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Antrag",
+		"word_en": "Application"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Bezirk",
+		"word_en": "District"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Konzert",
+		"word_en": "Concert"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Szene",
+		"word_en": "Scene"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "sinken",
+		"word_en": "sink"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "teilnehmen",
+		"word_en": "participate"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "diesmal",
+		"word_en": "this time"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Vorstellung",
+		"word_en": "Presentation"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Zusammenhang",
+		"word_en": "Connection"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Schaden",
+		"word_en": "Damage"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "breit",
+		"word_en": "wide"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "stimmen",
+		"word_en": "vote"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "entschieden",
+		"word_en": "decided"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "I'm ready to go",
+		"example_de": "Ich bin bereit zu gehen",
+		"word_de": "bereit",
+		"word_en": "ready"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Fraktion",
+		"word_en": "Fraction"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "ständig",
+		"word_en": "constantly"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "bezeichnen",
+		"word_en": "denote"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Wettbewerb",
+		"word_en": "Competition"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "italienisch",
+		"word_en": "Italian"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Bedeutung",
+		"word_en": "word_en"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "abschliessen",
+		"word_en": "complete"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Innsbruck",
+		"word_en": "Innsbruck"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Gesicht",
+		"word_en": "Face"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Antwort",
+		"word_en": "Answer"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Glück",
+		"word_en": "Luck"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Trotz",
+		"word_en": "Despite"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "bevor",
+		"word_en": "before"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "herrschen",
+		"word_en": "rule"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Kandidat",
+		"word_en": "Candidate"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "aufgrund",
+		"word_en": "due to"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Position",
+		"word_en": "Position"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Student",
+		"word_en": "Student"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "vergessen",
+		"word_en": "forget"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Gewerkschaft",
+		"word_en": "Union"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "manchmal",
+		"word_en": "sometimes"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Gefühl",
+		"word_en": "Feeling"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Ernst",
+		"word_en": "Ernst"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Westen",
+		"word_en": "West"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "betroffen",
+		"word_en": "affected"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "abend",
+		"word_en": "evening"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "passieren",
+		"word_en": "happen"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Patient",
+		"word_en": "Patient"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Ansicht",
+		"word_en": "View"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "erhöhen",
+		"word_en": "increase"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "dienen",
+		"word_en": "serve"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "überzeugen",
+		"word_en": "convince"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Ausland",
+		"word_en": "Foreign"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Karte",
+		"word_en": "Card"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Gewinn",
+		"word_en": "Profit"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "sichern",
+		"word_en": "secure"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Bauer",
+		"word_en": "Farmer"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "jemand",
+		"word_en": "someone"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Luft",
+		"word_en": "Air"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Kontakt",
+		"word_en": "Contact"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "stossen",
+		"word_en": "bump"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "geschlossen",
+		"word_en": "closed"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "konkret",
+		"word_en": "specifically"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "vorwerfen",
+		"word_en": "accuse"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "öffentlichkeit",
+		"word_en": "Public"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "antreten",
+		"word_en": "compete"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Washington",
+		"word_en": "Washington"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "gesetzt",
+		"word_en": "set"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Gott",
+		"word_en": "God"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "auftreten",
+		"word_en": "occur"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Vergangenheit",
+		"word_en": "Past"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Osten",
+		"word_en": "East"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Start",
+		"word_en": "Start"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "angeblich",
+		"word_en": "allegedly"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "äussern",
+		"word_en": "to express"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Manager",
+		"word_en": "Manager"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Jugend",
+		"word_en": "Youth"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Heinz",
+		"word_en": "Heinz"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "ausser",
+		"word_en": "except"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "beschäftigt",
+		"word_en": "busy"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Fahrzeug",
+		"word_en": "Vehicle"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "stets",
+		"word_en": "always"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Tür",
+		"word_en": "Door"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "unbekannt",
+		"word_en": "unknown"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Gewalt",
+		"word_en": "Violence"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Hinweis",
+		"word_en": "Note"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Anspruch",
+		"word_en": "Claim"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Spitze",
+		"word_en": "Tip"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "wahr",
+		"word_en": "true"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Anlage",
+		"word_en": "Annex"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Regel",
+		"word_en": "Rule"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Initiative",
+		"word_en": "Initiative"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Nummer",
+		"word_en": "Number"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "verbessern",
+		"word_en": "improve"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Konflikt",
+		"word_en": "Conflict"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "verdienen",
+		"word_en": "earn"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Tat",
+		"word_en": "Act"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "anschliessend",
+		"word_en": "then, subsequently"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Bewegung",
+		"word_en": "Movement"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Dame",
+		"word_en": "Lady"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Nachricht",
+		"word_en": "Message"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Brief",
+		"word_en": "Letter"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "geboren",
+		"word_en": "born"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "viert",
+		"word_en": "fourth"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Teilnehmer",
+		"word_en": "Participant"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Kohl",
+		"word_en": "Cabbage"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "reich",
+		"word_en": "rich"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "liefern",
+		"word_en": "deliver"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "umfassen",
+		"word_en": "include"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "grün",
+		"word_en": "green"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Krankenhaus",
+		"word_en": "Hospital"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Industrie",
+		"word_en": "Industry"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "durchsetzen",
+		"word_en": "prevail"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Fernsehen",
+		"word_en": "Television"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Star",
+		"word_en": "Star"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Fuss",
+		"word_en": "Foot"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "hin",
+		"word_en": "towards"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Licht",
+		"word_en": "Light"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Tisch",
+		"word_en": "Table"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "wänschen",
+		"word_en": "wish"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Niederlage",
+		"word_en": "Defeat"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "stecken",
+		"word_en": "stuck"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "erleben",
+		"word_en": "experience"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "zufrieden",
+		"word_en": "satisfied"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "bitten",
+		"word_en": "ask"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Runde",
+		"word_en": "Round"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "morgen",
+		"word_en": "tomorrow"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "singen",
+		"word_en": "sing"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Nein",
+		"word_en": "No"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Verlust",
+		"word_en": "Loss"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Aussage",
+		"word_en": "Statement"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Produktion",
+		"word_en": "Production"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Unfall",
+		"word_en": "Accident"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "leider",
+		"word_en": "unfortunately"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "heftig",
+		"word_en": "violently"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "rein",
+		"word_en": "purely"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "oben",
+		"word_en": "above"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Anlass",
+		"word_en": "Occasion"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "freilich",
+		"word_en": "of course"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "traditionell",
+		"word_en": "traditional"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Moskau",
+		"word_en": "Moscow"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEENG",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Journalist",
+		"word_en": "Journalist"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "Katrina is running errands",
+		"example_de": "Katrina macht Besorgungen",
+		"word_de": "Besorgungen",
+		"word_en": "Errands"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "Ich mag Fisch",
+		"example_de": "I like fish",
+		"word_de": "mögen",
+		"word_en": "to like"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "I especially like the color",
+		"example_de": "Ich mag besonders die Farbe",
+		"word_de": "besonders",
+		"word_en": "especially"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "She's going to the mall",
+		"example_de": "Sie geht in das Einkaufszentrum",
+		"word_de": "das Einkaufszentrum",
+		"word_en": "the shopping center/mall"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "My cellphone is over there",
+		"example_de": "mein Handy ist da drüben",
+		"word_de": "Da drüben",
+		"word_en": "Over there"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "Katrin tries on a pair of shoes",
+		"example_de": "Katrin probiert ein Paar Schuhe an",
+		"word_de": "zu anprobieren",
+		"word_en": "to try on"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "Do they fit?",
+		"example_de": "passen sie?",
+		"word_de": "zu passen",
+		"word_en": "to fit"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "That was great!",
+		"example_de": "Das war grossartig!",
+		"word_de": "prima/grossartig",
+		"word_en": "great"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "That is not cheap",
+		"example_de": "Das ist nicht billig",
+		"word_de": "billig",
+		"word_en": "cheap"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "I understand the instructions",
+		"example_de": "Ich verstehe die Anleitung",
+		"word_de": "die Anleitung",
+		"word_en": "the instructions"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "We have not yet met",
+		"example_de": "Wir haben uns noch nicht getroffen",
+		"word_de": "noch",
+		"word_en": "yet"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "This cheesburger tastes good",
+		"example_de": "Dieser Cheeseburger schmeckt gut",
+		"word_de": "Dieser",
+		"word_en": "This"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "I try to laugh every day",
+		"example_de": "Ich versuche jeden Tag zu lachen",
+		"word_de": "jeden Tag",
+		"word_en": "every day"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "I'm late.",
+		"example_de": "Ich bin spät dran",
+		"word_de": "spät dran",
+		"word_en": "late"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "It's three minutes to eleven am",
+		"example_de": "drei vor Elf",
+		"word_de": "vor (time)",
+		"word_en": "before (time)"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "A quarter after 5",
+		"example_de": "Viertel nach Fünf",
+		"word_de": "Viertel",
+		"word_en": "quarter"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "5:45 (two ways)",
+		"example_de": "Dreiviertel secs / Viertel vor Sechs",
+		"word_de": "Dreiviertel",
+		"word_en": "3 quarters"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "That word sounds awkward",
+		"example_de": "Dieses Wort hört sich ungebräuchlich an",
+		"word_de": "ungebraüchlich",
+		"word_en": "awkward/unused (word)"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "When will you come home?",
+		"example_de": "wann kommst du nach hause",
+		"word_de": "nach",
+		"word_en": "to"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "I would like to have",
+		"example_de": " Ich hätte gern(e)",
+		"word_de": "gern/gerne",
+		"word_en": "would like"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "You are beginning to influence me",
+		"example_de": "Du beginnst mich zu beeinflüssen",
+		"word_de": "beeinflüssen",
+		"word_en": "to influence"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "EXAMPLEEN",
+		"example_de": "EXAMPLEDE",
+		"word_de": "Miserabel",
+		"word_en": "Miserable"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "Which wine do you want?",
+		"example_de": "Welchen Wein willst du?",
+		"word_de": "Welchen",
+		"word_en": "Which"
+	},
+	{
+		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "TEMPLATEEXAMPLEENG",
+		"example_de": "TEMPLATEEXAMPLEDE",
+		"word_de": "TEMPLATE",
+		"word_en": "TEMPLATE"
+	}
+]
