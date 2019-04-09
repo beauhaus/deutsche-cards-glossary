@@ -42,6 +42,7 @@ const getLS = () => {
 }
 
 /*
+
 const getPartialLS = (lower, upper) => {
     const retrievedDB = localStorage.getItem("dictionaryDB");
     const parsedResult = JSON.parse(retrievedDB);
