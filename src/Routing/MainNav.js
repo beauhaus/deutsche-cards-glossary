@@ -72,16 +72,12 @@ const MainNav = (props) => (
             <li>
                 <NavLink to="/landing" activeClassName="is-active">Landing</NavLink>
             </li>
+            <li>
+                <NavLink to="/beauplate" activeClassName="is-active">beauplate</NavLink>
+            </li>
         </ul>
 
     </StyledNav>
 )
 
 module.exports = MainNav;
-
-
-/*
-    <li>
-        <NavLink to="/edit/0" activeClassName="is-active">Edit</NavLink>
-    </li>
-*/

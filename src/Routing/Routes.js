@@ -3,13 +3,13 @@ import { BrowserRouter, Route, Switch, Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 import MainNav from './MainNav';
-// import Landing from '../components/quizWork/Landing';
-import EditVocabPage from '../components/EditVocabPage';
+
 import AddVocabPage from '../components/AddVocabPage';
+import EditVocabPage from '../components/EditVocabPage';
 import VocabItemDashboard from '../components/VocabItemDashboard';
+import beauplate from '../components/beauplate';
 import FourOhFour from './FourOhFour';
 
-//height: auto;
 const RouterLiner = styled.div`
     width: 100wv;
     height: 100vh;
@@ -17,7 +17,6 @@ const RouterLiner = styled.div`
     grid-template-columns: 1fr;
     grid-template-rows: repeat(20, 1fr);
     `;
-    //border: 1px solid orange;
 
 // TODO: dynamic routing refusing "/" for some reason on edit page
 const Routes = (props) => (
@@ -30,7 +29,7 @@ const Routes = (props) => (
                 <Route path="/edit:id" component={EditVocabPage} />
                 <Route path="/addVocabPage" component={AddVocabPage} />
                 <Route path="/vocabItemDashboard" component={VocabItemDashboard} />
-                {/*<Route path="/landing" component={Landing} />*/}
+                <Route path="/beauplate" component={beauplate} />
                 <Route component={FourOhFour} />
             </Switch>
         </RouterLiner>
@@ -38,7 +37,3 @@ const Routes = (props) => (
 )
 
 module.exports = Routes;
-
-// const db = getLS();
-
-// ReactDOM.render(<Landing db={db}/>, document.getElementById('app'));

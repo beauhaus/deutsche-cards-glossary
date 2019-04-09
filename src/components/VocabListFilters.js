@@ -15,15 +15,15 @@ const VocabListFilters = (props) => (
         <select value={props.filters.sortBy}
             onChange={(e) => {
                 if (e.target.value === 'date') {
-                    console.log('by date')
+                    // console.log('by date')
                     props.dispatch(sortByDate())
                 } else if (e.target.value === 'isShowing') {
                     console.log('by isShowing')
                     // TODO: not vital
                     props.dispatch(isShowingFilter())
                 } else if (e.target.value === 'difficulty') {
-                    console.log('by difficulty')
-                    console.log("props.filters.sortBy", props.filters)
+                    // console.log('by difficulty')
+                    // console.log("props.filters.sortBy", props.filters)
                     props.dispatch(sortByDifficulty())
                 }
             }}>
