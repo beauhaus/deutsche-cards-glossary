@@ -61,16 +61,21 @@ button {
 
 div.ReactModalPortal {
     position: absolute;
+    width: 100vw;
 }
 
 .ReactModalPortal > div {
     opacity: 0;
+    // border: 1px solid greenyellow;
+    // box-shadow: inset 2px 2px 5px 15px red;
 }
 
 .ReactModalPortal .ReactModal__Overlay {
     display: grid;
-    grid-template-columns: 20vw 40vw 40vw;
-    grid-template-rows: repeat(3, 33.33vh);
+    // border: 1px dashed orange;
+    // box-shadow: inset 2px 2px 5px 5px yellow;
+    width: 100vw;
+    min-height: 100vh;
     transition: opacity 200ms ease-in-out;
 }
 
@@ -82,34 +87,20 @@ div.ReactModalPortal {
     opacity: 0;
 }
 
-.x-modal {
-    opacity: 1;
-    background: green;
-    text-align: center;
-    & button {
-        background: grey;
-        display: block;
-        margin: 0.3vh auto;
-        width: 6vw;
-        height: 4vh;
-    }
-}
-
 .Overlay {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.85);
   }
-
 
 /*MODAL STYLING END*/
 
 
 
 /************ search dictionary stuff *******************/
-details {
-    margin-bottom: 50px;
-    font-family: 'Montserrat', sans-serif;
-    text-align: center;
-}
+// details {
+//     margin-bottom: 50px;
+//     font-family: 'Montserrat', sans-serif;
+//     text-align: center;
+// }
 
 
 #result-box {

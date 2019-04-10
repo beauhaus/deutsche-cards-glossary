@@ -2,9 +2,21 @@ import React, {Component} from 'react';
 // import { connect } from 'react-redux';
 // import VocabListItem from './VocabListItem';
 // import selectVocabItems from '../reduxUtils/selectors/vocabSelectors';
-
+import styled from 'styled-components';
 import Modal from 'react-modal';
 
+
+const Styled50Modal = styled.div`
+    border: 1px solid white;
+    width: 90vw;
+    margin: 5vh auto;
+    min-height: 80vh;
+    height: auto;
+    font-family: "Montserrat", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 200;
+    color: whitesmoke;
+    display: grid;
+`
 
 class FiftyModal extends Component {
     componentWillMount() {
@@ -15,14 +27,18 @@ class FiftyModal extends Component {
     render(props) {
         return(
             <Modal 
-            className="ten-modal"
+            className="fifty-modal"
             isOpen={!!this.props.fiftyModalSample}
-            contentLabel="ten-modal"
+            contentLabel="fifty-modal"
             onRequestClose={this.props.fiftyModalClear}
+            closeTimeoutMS={1500}
+            overlayClassName="Overlay"
             >
-                <h1>Ten Modal</h1>
+            <Styled50Modal>
+                <h1>50 Modal</h1>
                 {this.props.fiftyModalSample && <p>{this.props.fiftyModalSample}</p>}
-                <button onClick={this.props.fiftyModalClear}>OK</button>
+                <button className="cancel-modal-btn" onClick={this.props.fiftyModalClear}>OK</button>
+            </Styled50Modal>
             </Modal>
         )
     }
