@@ -15,9 +15,6 @@ import './styles/styles.scss'
 import Routes from './Routing/Routes';
 import db from './data/wordsDB.JSON';
 
-console.log("db: ", db)
-// setLS();
-
 const store = configureStore();
 
 db.map(item => store.dispatch(addVocabItem(item)))

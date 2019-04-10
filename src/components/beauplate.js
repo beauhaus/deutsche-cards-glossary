@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import VocabListItem from './VocabListItem';
 import selectVocabItems from '../reduxUtils/selectors/vocabSelectors';
 import FiftyButton from './Modals/FiftyButton';
-import FiftyModal from './Modals/FiftyModal';
+import FiftyModalWrapper from './Modals/FiftyModalWrapper';
 import styled from 'styled-components';
 
 const Styled_BeauPlate = styled.div`
@@ -32,34 +32,37 @@ const Styled_BeauPlate = styled.div`
 
 export class beauplate extends Component {
     state = {
-        fiftyModalSample: null
+        arrayDispMinIndex: 0,
+        modalIsOpen: false
     }
     fiftyModalClickHandler=(e)=> {
         e.preventDefault();
-        const val = e.target.value;
-        console.log("val: ", val)
+        const val = parseInt(e.target.value);
         this.setState(() =>({
-            fiftyModalSample: val
+            arrayDispMinIndex: val,
+            modalIsOpen: true
         }))
     }
     fiftyModalClear=()=> {        
         this.setState(() =>({
-            fiftyModalSample: null
+            arrayDispMinIndex: null,
+            modalIsOpen: false
         }))
     }
     render() {
         const {vocabItems} = this.props;
         return (
             <Styled_BeauPlate className="styled-beauplate">
-                {vocabItems.map((item, idx, arr)=>{
+                {vocabItems.map((item, idx)=>{
                     return(
                         (idx%50 === 0)?
                         <FiftyButton key={idx} idx={idx} fiftyModalClickHandler={this.fiftyModalClickHandler}/>:
                      '');
                 })}
 
-                <FiftyModal 
-                fiftyModalSample={this.state.fiftyModalSample}
+                <FiftyModalWrapper
+                modalIsOpen={this.state.modalIsOpen}
+                arrayDispMinIndex={this.state.arrayDispMinIndex}
                 fiftyModalClear={this.fiftyModalClear}
                 />
             </Styled_BeauPlate>
