@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import selectVocabItems from '../../reduxUtils/selectors/vocabSelectors';
-import VocabDispCard from './VocabDispCard'
+import VocabDispCard from './VocabDispCard';
 
-const ModalInlay = styled.div`
+const StyledModalInlay = styled.div`
     width: 80vw;
     margin: 5vh auto;
     min-height: 80vh;
@@ -50,14 +50,14 @@ const ModalInlay = styled.div`
         }
     }
 `
-class FiftyModalInlay extends Component {
+class ModalInlay extends Component {
 
     render() {
         const { vocabItems, fiftyModalClear, arrayDispMinIndex } = this.props;
         const subArray = vocabItems.filter((item, idx) => ((idx >= arrayDispMinIndex && idx <= (arrayDispMinIndex + 50))));
 
         return (
-            <ModalInlay className="modal-inlay">
+            <StyledModalInlay className="modal-inlay">
             <button className="cancel-modal-btn" onClick={fiftyModalClear}>X</button>
             {arrayDispMinIndex+1 && 
                 <div className="display-array-container">
@@ -66,7 +66,7 @@ class FiftyModalInlay extends Component {
                     ))}
                     </div>
                 }
-            </ModalInlay>
+            </StyledModalInlay>
         )
     }
 }
@@ -76,4 +76,4 @@ const MapStateToProps = (state) => {
     }
 }
 
-export default connect(MapStateToProps)(FiftyModalInlay)
+export default connect(MapStateToProps)(ModalInlay)

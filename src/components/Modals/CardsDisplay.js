@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import selectVocabItems from '../reduxUtils/selectors/vocabSelectors';
-import FiftyButton from './Modals/FiftyButton';
-import FiftyModalWrapper from './Modals/FiftyModalWrapper';
+import selectVocabItems from '../../reduxUtils/selectors/vocabSelectors';
+import SubArrayUI_50 from './SubArrayUI_50';
+import ModalWrapper from './ModalWrapper';
 import styled from 'styled-components';
 
 const StyledCards = styled.div`
@@ -55,11 +55,11 @@ export class CardsDisplay extends Component {
                 {vocabItems.map((item, idx)=>{
                     return(
                         (idx%50 === 0)?
-                        <FiftyButton key={idx} idx={idx} fiftyModalClickHandler={this.fiftyModalClickHandler}/>:
+                        <SubArrayUI_50 key={idx} idx={idx} fiftyModalClickHandler={this.fiftyModalClickHandler}/>:
                      '');
                 })}
 
-                <FiftyModalWrapper
+                <ModalWrapper
                 modalIsOpen={this.state.modalIsOpen}
                 arrayDispMinIndex={this.state.arrayDispMinIndex}
                 fiftyModalClear={this.fiftyModalClear}

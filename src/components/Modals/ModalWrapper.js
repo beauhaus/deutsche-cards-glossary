@@ -1,12 +1,9 @@
 import React, {Component} from 'react';
-// import { connect } from 'react-redux';
-// import VocabListItem from './VocabListItem';
-// import selectVocabItems from '../reduxUtils/selectors/vocabSelectors';
-import FiftyMoDalInlay from './FiftyMoDalInlay';
 import Modal from 'react-modal';
+import ModalInlay from './ModalInlay';
 
 
-class FiftyModalWrapper extends Component {
+class ModalWrapper extends Component {
     componentWillMount() {
         // CODE FOUND HERE=> https://stackoverflow.com/questions/48269381/warning-react-modal-app-element-is-not-defined-please-use-modal-setappeleme
         //in order to avoid common `appElement={el}` warning
@@ -16,17 +13,17 @@ class FiftyModalWrapper extends Component {
     render() {
         return(
             <Modal 
-            className="fifty-modal"
+            className="modal-base"
             isOpen={this.props.modalIsOpen}
-            contentLabel="fifty-modal"
+            contentLabel="modal-base"
             onRequestClose={this.props.fiftyModalClear}
             closeTimeoutMS={1500}
             overlayClassName="Overlay"
             >
-               <FiftyMoDalInlay {...this.props}/>
+               <ModalInlay {...this.props}/>
             </Modal>
         )
     }
 }
 
-export default FiftyModalWrapper;
+export default ModalWrapper;

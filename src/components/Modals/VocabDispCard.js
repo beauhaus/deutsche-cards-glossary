@@ -6,7 +6,7 @@ const VocDispCard = styled.div`
     height: 10vh;
     width: 40vw;   
 `;
-const FiftyButton = (props => {
+const VocabDisplayCard = (props => {
     const item = props.item;
     return (
         <VocDispCard className="vocab-disp-card">
@@ -18,4 +18,4 @@ const FiftyButton = (props => {
     )
 }) 
 
-export default FiftyButton;
+export default VocabDisplayCard;
