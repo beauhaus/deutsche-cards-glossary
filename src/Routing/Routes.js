@@ -10,18 +10,19 @@ import VocabItemDashboard from '../components/VocabItemDashboard';
 import beauplate from '../components/beauplate';
 import FourOhFour from './FourOhFour';
 
-const RouterLiner = styled.div`
-    width: 100wv;
+const RouterContainer = styled.div`
+    width: 100vw;
     height: 100vh;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(20, 1fr);
+    position: fixed;
     `;
 
 // TODO: dynamic routing refusing "/" for some reason on edit page
 const Routes = (props) => (
     <BrowserRouter>
-        <RouterLiner className="router-liner">
+        <RouterContainer className="router-container">
             <MainNav />
             <Switch>
                 <Route path="/" exact={true} />
@@ -32,7 +33,7 @@ const Routes = (props) => (
                 <Route path="/beauplate" component={beauplate} />
                 <Route component={FourOhFour} />
             </Switch>
-        </RouterLiner>
+        </RouterContainer>
     </BrowserRouter>
 )
 

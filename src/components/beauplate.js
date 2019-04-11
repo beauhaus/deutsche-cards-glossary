@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import VocabListItem from './VocabListItem';
 import selectVocabItems from '../reduxUtils/selectors/vocabSelectors';
 import FiftyButton from './Modals/FiftyButton';
 import FiftyModalWrapper from './Modals/FiftyModalWrapper';
 import styled from 'styled-components';
 
-const Styled_BeauPlate = styled.div`
+const StyledCards = styled.div`
     width: 80vw;
     margin: 4vh auto;
     /* outline: 4px ridge maroon; */
@@ -30,7 +29,7 @@ const Styled_BeauPlate = styled.div`
         }
 `;
 
-export class beauplate extends Component {
+export class CardsDisplay extends Component {
     state = {
         arrayDispMinIndex: 0,
         modalIsOpen: false
@@ -52,7 +51,7 @@ export class beauplate extends Component {
     render() {
         const {vocabItems} = this.props;
         return (
-            <Styled_BeauPlate className="styled-beauplate">
+            <StyledCards className="styled-cards-display">
                 {vocabItems.map((item, idx)=>{
                     return(
                         (idx%50 === 0)?
@@ -65,7 +64,7 @@ export class beauplate extends Component {
                 arrayDispMinIndex={this.state.arrayDispMinIndex}
                 fiftyModalClear={this.fiftyModalClear}
                 />
-            </Styled_BeauPlate>
+            </StyledCards>
         )
     }
 }
@@ -75,6 +74,4 @@ const MapStateToProps = (state) => {
         vocabItems: selectVocabItems(state.vocabItems, state.filters)
     }
 }
-export default connect(MapStateToProps)(beauplate)
-
-// export default beauplate;
+export default connect(MapStateToProps)(CardsDisplay)

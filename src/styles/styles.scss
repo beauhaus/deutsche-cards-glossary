@@ -31,7 +31,7 @@ body {
 }
 
 #app {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     bottom: 0;
@@ -40,9 +40,6 @@ body {
     width: 100wv;
     height: 100vh;
     overflow: hidden;
-    // display: grid;
-    // grid-template-columns: 20vw 40vw 40vw;
-    // grid-template-rows: repeat(3, 1fr);
 }
 
 
@@ -71,9 +68,6 @@ div.ReactModalPortal {
 }
 
 .ReactModalPortal .ReactModal__Overlay {
-    display: grid;
-    // border: 1px dashed orange;
-    // box-shadow: inset 2px 2px 5px 5px yellow;
     width: 100vw;
     min-height: 100vh;
     transition: opacity 200ms ease-in-out;
@@ -89,6 +83,7 @@ div.ReactModalPortal {
 
 .Overlay {
     background-color: rgba(0, 0, 0, 0.85);
+    width: 100vw;
   }
 
 /*MODAL STYLING END*/
