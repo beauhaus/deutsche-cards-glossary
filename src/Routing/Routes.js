@@ -7,7 +7,7 @@ import MainNav from './MainNav';
 import AddVocabPage from '../components/AddVocabPage';
 import EditVocabPage from '../components/EditVocabPage';
 import VocabItemDashboard from '../components/VocabItemDashboard';
-import beauplate from '../components/beauplate';
+import CardsDisplay from '../components/CardsDisplay';
 import FourOhFour from './FourOhFour';
 
 const RouterContainer = styled.div`
@@ -30,7 +30,7 @@ const Routes = (props) => (
                 <Route path="/edit:id" component={EditVocabPage} />
                 <Route path="/addVocabPage" component={AddVocabPage} />
                 <Route path="/vocabItemDashboard" component={VocabItemDashboard} />
-                <Route path="/beauplate" component={beauplate} />
+                <Route path="/cards_display" component={CardsDisplay} />
                 <Route component={FourOhFour} />
             </Switch>
         </RouterContainer>
