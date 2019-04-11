@@ -13,7 +13,7 @@ import 'normalize.css/normalize.css'
 import './styles/styles.scss'
 
 import Routes from './Routing/Routes';
-import db from './data/wordsDB.JSON';
+import db from './data/db.json';
 
 const store = configureStore();
 
