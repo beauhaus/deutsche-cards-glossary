@@ -15,7 +15,7 @@ const StyledCards = styled.div`
     button {
         width: 100%;
         height: 4vh;
-        /* background: transparent; */
+
         &:hover {
             outline: 1px solid coral;
         }

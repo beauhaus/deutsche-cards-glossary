@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch, Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-
 import MainNav from './MainNav';
 
 import AddVocabPage from '../components/AddVocabPage';
