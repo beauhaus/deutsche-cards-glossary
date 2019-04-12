@@ -8,21 +8,18 @@ import styled from 'styled-components';
 const StyledCards = styled.div`
     width: 80vw;
     margin: 4vh auto;
-    /* outline: 4px ridge maroon; */
     display: grid;
-    grid-template-columns: repeat(2, 2fr);
+    grid-template-columns: repeat(4, 2fr);
     grid-gap: 5px;
     button {
         width: 100%;
         height: 4vh;
-
         &:hover {
             outline: 1px solid coral;
         }
     }
     &:nth-child(2) > div:nth-child(even)>button {
         background: #885959;
-        margin-top: 4vh;
         }
     &:nth-child(2) > div:nth-child(odd)>button {
         background: #598871;
