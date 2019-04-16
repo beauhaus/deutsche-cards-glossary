@@ -8,12 +8,11 @@
 + redux
 + jest (testing suite)
 + modal
-+ 
+
 ---
 
 # React Mobile-App
-Budgeting App taking inputs from user and subtracting bills/expenses from a deposited sum.
-The remainding sum is to be sub-divided into 25% and 75% (Long-term and Short-term Savings).
+Crud app for learning vocabulary
 
 ## Feature-set
 
