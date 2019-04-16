@@ -5,9 +5,10 @@
 + react
 + webpack, 
 + babel in 
-+ bootstrap
-+ 5 clean components with a tidy index.js file
-
++ redux
++ jest (testing suite)
++ modal
++ 
 ---
 
 # React Mobile-App
