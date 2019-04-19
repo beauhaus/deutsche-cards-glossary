@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import selectVocabItems from '../../reduxUtils/selectors/vocabSelectors';
-import SubArrayUI_50 from './SubArrayUI_50';
-import ModalWrapper from './ModalWrapper';
+import selectVocabItems from '../reduxUtils/selectors/vocabSelectors';
+import SubArrayUI_50 from './Modals/SubArrayUI_50';
+import ModalWrapper from './Modals/ModalWrapper';
 import styled from 'styled-components';
 
 const StyledCards = styled.div`

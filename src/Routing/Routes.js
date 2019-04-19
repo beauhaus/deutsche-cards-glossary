@@ -6,8 +6,9 @@ import MainNav from './MainNav';
 import AddVocabPage from '../components/AddVocabPage';
 import EditVocabPage from '../components/EditVocabPage';
 import VocabItemDashboard from '../components/VocabItemDashboard';
-import CardsDisplay from '../components/Modals/CardsDisplay';
+import CardsDisplay from '../components/CardsDisplay';
 import FourOhFour from './FourOhFour';
+
 
 const RouterContainer = styled.div`
     width: 100vw;
