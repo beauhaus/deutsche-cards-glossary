@@ -30,6 +30,22 @@ const filtersReducer = (state = filtersReducerDefaultState, action) => {
                 ...state,
                 sortBy: 'date'
             }
+            case 'SHOW_MEDIUM_DIFFICULTY':
+            return {
+                ...state,
+                sortBy: 'medium'
+            }
+            case 'SHOW_EASY_DIFFICULTY':
+            return {
+                ...state,
+                sortBy: 'easy'
+            }
+            case 'SHOW_MEDIUM_DIFFICULTY':
+            return {
+                ...state,
+                sortBy: 'hard'
+            }
+ 
             
         case 'SET_START_DATE':
             return {
