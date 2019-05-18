@@ -24,6 +24,7 @@
 | **Styling**       | Styled-Components      | ***√***         |
 | **Modals**        | React-Modal            | ***√***         |
 
+![Select page screenshot](https://github.com/beauhaus/react-hooks-todo-app/blob/master/readmeRefImg/germanvocabmentorscrn.jpg?raw=true "Select page screenshot")
 
 ---TEST ICON---
 ![Image of German to English](https://www.dropbox.com/s/48w2brxgauatb79/German-Eng-glossary_preview.png?raw=1)
