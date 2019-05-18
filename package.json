@@ -25,14 +25,14 @@
     "enzyme-to-json": "3.0.1",
     "file-loader": "^3.0.1",
     "html-webpack-plugin": "^2.25.0",
-    "jest": "20.0.4",
+    "jest": "^24.8.0",
     "morgan": "^1.9.1",
-    "webpack-dev-server": "^3.1.14",
-    "react-test-renderer": "16.0.0"
+    "react-test-renderer": "16.0.0",
+    "webpack-dev-server": "^3.4.1"
   },
   "dependencies": {
-    "webpack": "^4.29.6",
-    "webpack-cli": "^3.2.1",
+    "webpack": "^4.31.0",
+    "webpack-cli": "^3.3.2",
     "babel-core": "^6.26.3",
     "css-loader": "^2.1.0",
     "style-loader": "^0.23.1",
@@ -58,6 +58,6 @@
     "uuid": "^3.3.2",
     "validator": "^10.11.0",
     "webpack-server": "^0.1.2",
-    "react-modal":"3.8.1"
+    "react-modal": "3.8.1"
   }
 }

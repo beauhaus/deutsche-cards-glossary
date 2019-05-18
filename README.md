@@ -1,5 +1,4 @@
-# react_glossary
-## Dictionary Entries
+# German Vocab Mentor
 
 
 + react
@@ -7,23 +6,23 @@
 + babel in 
 + redux
 + jest (testing suite)
-+ modal
++ react-modal
 
 ---
 
-# React Mobile-App
-Crud app for learning vocabulary
+--Crud app for learning vocabulary
 
 ## Feature-set
 
-| <h3>Feature</h3>  | <h3>Notes</h3>    | <h3>Status</h3> |
-| :---------------- | :---------------- | :-------------- |
-| **React**         | 16.4.2            | ***√***         |
-| **Responsivity**  | iPhone 6/7/8      | ***√***         |
-| **Normalization** | normalize.css     | *Pending*       |
-| **Layout**        | CSS Grid/Flexbox  | ***√***         |
-| **Styling**       | Styled-Components | ***√***         |
-| **Modals**        | React-Modal       | ***√***         |
+| <h3>Feature</h3>  | <h3>Notes</h3>         | <h3>Status</h3> |
+| :---------------- | :--------------------- | :-------------- |
+| **React**         | 16.4.2                 | ***√***         |
+| **Responsivity**  | iPhone 6/7/8           | ***√***         |
+| **Normalization** | normalize.css          | *Pending*       |
+| **TESTING**       | jest (unit/integrated) | ***√***         |
+| **Layout**        | CSS Grid/Flexbox       | ***√***         |
+| **Styling**       | Styled-Components      | ***√***         |
+| **Modals**        | React-Modal            | ***√***         |
 
 
 ---TEST ICON---
