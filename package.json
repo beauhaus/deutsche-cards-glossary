@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "iterate over a words db",
   "main": "webpack.config.js",
+  "repository": "https://github.com/beauhaus/German-Vocab-Mentor.git",
   "notes": {
     "@babel/core(removed from dep": "^7.2.2"
   },
@@ -36,7 +37,7 @@
     "babel-core": "^6.26.3",
     "css-loader": "^2.1.0",
     "style-loader": "^0.23.1",
-    "babel-loader": "7.1.1",
+    "babel-loader": "8.0.6",
     "react-addons-shallow-compare": "15.6.0",
     "babel-plugin-transform-class-properties": "6.24.1",
     "babel-plugin-transform-object-rest-spread": "6.23.0",
