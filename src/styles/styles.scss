@@ -153,12 +153,21 @@ div.ReactModalPortal {
     justify-items: center;
     justify-content: center;
 }
-.vocab-form {
-    margin: 15vh auto;
-    // width: 65vw;
+.vocab-form-container {
+    margin: 10vh auto;
+    width: 90vw;
     display: grid;
     justify-content: center;
     justify-items: center;
+    // border: 1px solid yellow;
+    & .new-vocab-form {
+        width: 80%;
+        
+    }
+    & button {
+        margin: auto;
+    }
+
 }
 
 .vocab-item-list {
@@ -183,4 +192,16 @@ div.ReactModalPortal {
     & .vocab-edit-link {
         position: absolute;
     }
+}
+#btn-submit {
+    width: 100%;
+    height: 5vh;
+    color: whitesmoke;
+    background: #74a577;
+    box-shadow: 1px 1px 4px 0px 000;
+}
+
+#check-box {
+    height: 4vw;
+    width: 4vw;
 }

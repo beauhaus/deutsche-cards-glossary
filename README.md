@@ -25,6 +25,9 @@
 | **Modals**        | React-Modal            | ***√***         |
 
 
-![List Scrn](https://github.com/beauhaus/German-Vocab-Mentor/blob/master/readmeRefImg/listscrn.png?raw=true "List Scrn")
+<img src="https://github.com/beauhaus/German-Vocab-Mentor/blob/master/readmeRefImg/form2.jpg?raw=true" alt="form 2" width="400"/>
+
+<img src="https://github.com/beauhaus/German-Vocab-Mentor/blob/master/readmeRefImg/listscrn.png?raw=true" alt="List Scrn" width="400"/>
+
 
 ![Select page screenshot](https://github.com/beauhaus/German-Vocab-Mentor/blob/master/readmeRefImg/formscrn1.jpg?raw=true "Select page screenshot")

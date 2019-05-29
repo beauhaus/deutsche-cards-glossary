@@ -13,7 +13,12 @@ const StyledAddVocabPage = styled.div`
     background: #3b6064;
     & label, input, textarea {
         margin: 0.5vh 0.5vw;
-        width: 40%;
+        width: 100%;
+        height: 5vh;
+        
+    }
+    & input, textarea {
+        background-color: grey;
     }
 `;
 

@@ -74,9 +74,9 @@ class VocabForm extends Component {
     }
     render() {
         return (
-            <div className="vocab-form">
+            <div className="vocab-form-container">
                 {this.state.error && <p className="form-error">{this.state.error}</p>}
-                <form onSubmit={this.onSubmit}>
+                <form className="new-vocab-form" onSubmit={this.onSubmit}>
                     <input
                         onChange={this.onWord_deChange}
                         type="text"
@@ -115,6 +115,7 @@ class VocabForm extends Component {
                         max="10"
                     />
                     <input
+                    id="check-box"
                         onChange={this.onCheckboxChange}
                         type="checkbox"
                         name="isShowing"
@@ -122,7 +123,7 @@ class VocabForm extends Component {
                         checked={!!this.state.isShowing}
                     />
                     <textarea placeholder="Add Note" onChange={this.onNoteChange}></textarea>
-                    <button type="submit">Add VocabItem</button>
+                    <button id="btn-submit" type="submit">Add VocabItem</button>
                 </form>
             </div>
         )
