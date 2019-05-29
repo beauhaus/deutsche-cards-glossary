@@ -5,9 +5,8 @@ import selectVocabItems from '../reduxUtils/selectors/vocabSelectors';
 
 export const VocabItemList = (props) =>{
     return (
-    <div>
-       <h1>VocabItemList</h1>
-       <h2>(length: <em>{props.vocabItems.length}</em>)</h2>
+    <div className="vocab-item-list">
+       <h1>Vocab List</h1>
        {props.vocabItems.length === 0?(
         <p>Sorry. I have no words.</p>
        ):

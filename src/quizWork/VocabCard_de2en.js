@@ -25,14 +25,12 @@ const StyledVocabCard = styled.div`
     }
 
     & #word-de {
-        font-weight: bold;
         grid-column: 1;
         grid-row: 1;
         margin: auto;
     }
 
     & #word-en {
-        font-weight: bold;
         grid-column: 1;
         grid-row: 1;
         margin: auto;

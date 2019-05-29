@@ -104,7 +104,6 @@ class VocabForm extends Component {
                         placeholder="English Sentence"
                         value={this.state.example_en}
                     />
-                    <hr />
                     <label htmlFor="difficulty">difficulty:</label>
                     <input
                         onChange={this.onDiffChange}

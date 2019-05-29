@@ -11,6 +11,10 @@ const StyledAddVocabPage = styled.div`
     grid-column: 1;
     grid-row: 2/-1;
     background: #3b6064;
+    & label, input, textarea {
+        margin: 0.5vh 0.5vw;
+        width: 40%;
+    }
 `;
 
 export class AddVocabPage extends Component {
@@ -20,7 +24,7 @@ export class AddVocabPage extends Component {
     }
     render() {
         return (
-            <StyledAddVocabPage>
+            <StyledAddVocabPage className="add-vocab-page">
                 <VocabForm onSubmit={this.onSubmit} />
             </StyledAddVocabPage>
         )
