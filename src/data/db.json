@@ -6978,8 +6978,8 @@
 		"difficulty": 7,
 		"isShowing": "true",
 		"createdAt": 50000,
-		"example_en": "EXAMPLEENG",
-		"example_de": "EXAMPLEDE",
+		"example_en": "Glabst du an die wahre Liebe?",
+		"example_de": "Do you believe in true love?",
 		"word_de": "Liebe",
 		"word_en": "Love"
 	},
@@ -8712,7 +8712,106 @@
 		"word_en": "Which"
 	},
 	{
+		"difficulty": 5,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "TEMPLATEEXAMPLEENG",
+		"example_de": "TEMPLATEEXAMPLEDE",
+		"word_de": "TEMPLATE",
+		"word_en": "TEMPLATE"
+	},
+	{
 		"difficulty": 7,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "I've loved her from the moment I met her",
+		"example_de": "Ich liebe sie, seit ich sie kennengelernt habe.",
+		"word_de": "Lieben",
+		"word_en": "to love"
+	},
+	{
+		"difficulty": 5,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "I've never fallen in love with one of my teachers",
+		"example_de": "Ich habe mich noch nie in einen meiner Lehrer verliebt",
+		"word_de": "to fall in love",
+		"word_en": "sich verlieben"
+	},
+	{
+		"difficulty": 4,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "I do not understand her hatred for colorful clothes.",
+		"example_de": "Ich verstehe ihren Hass auf bunte Kleidung nicht.",
+		"word_de": "der Hass",
+		"word_en": "hatred"
+	},
+	{
+		"difficulty": 5,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "I hate it when he goes out with his secretary",
+		"example_de": "Ich hasse es, wenn er mit seiner Sekretärin ausgeht",
+		"word_de": "hassen",
+		"word_en": "to hate"
+	},
+	{
+		"difficulty": 5,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "I kissed her only once on the cheek",
+		"example_de": "Ich habe sie nur einmal auf die Wange geküsst",
+		"word_de": "küssen",
+		"word_en": "to kiss"
+	},
+	{
+		"difficulty": 5,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "I send you many warm/affectionate hugs.",
+		"example_de": "Ich sende dir viele herzliche Umarmungen.",
+		"word_de": "die Umarmungen",
+		"word_en": "hug"
+	},
+	{
+		"difficulty": 5,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "Can you hug me before you do something?",
+		"example_de": "Kannst du mich umarmen, bevor du etwas tust?",
+		"word_de": "sich umarmen",
+		"word_en": "to hug"
+	},
+	{
+		"difficulty": 5,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "TEMPLATEEXAMPLEENG",
+		"example_de": "TEMPLATEEXAMPLEDE",
+		"word_de": "TEMPLATE",
+		"word_en": "TEMPLATE"
+	},
+	{
+		"difficulty": 5,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "TEMPLATEEXAMPLEENG",
+		"example_de": "TEMPLATEEXAMPLEDE",
+		"word_de": "TEMPLATE",
+		"word_en": "TEMPLATE"
+	},
+	{
+		"difficulty": 5,
+		"isShowing": "true",
+		"createdAt": 50000,
+		"example_en": "TEMPLATEEXAMPLEENG",
+		"example_de": "TEMPLATEEXAMPLEDE",
+		"word_de": "TEMPLATE",
+		"word_en": "TEMPLATE"
+	},
+	{
+		"difficulty": 5,
 		"isShowing": "true",
 		"createdAt": 50000,
 		"example_en": "TEMPLATEEXAMPLEENG",
