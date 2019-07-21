@@ -8778,8 +8778,8 @@
 		"difficulty": 5,
 		"isShowing": "true",
 		"createdAt": 50000,
-		"example_en": "Can you hug me before you do something?",
-		"example_de": "Kannst du mich umarmen, bevor du etwas tust?",
+		"example_en": "Before you do anything, hug me",
+		"example_de": "Bevor Sie etwas tun, umarme mich",
 		"word_de": "sich umarmen",
 		"word_en": "to hug"
 	},
